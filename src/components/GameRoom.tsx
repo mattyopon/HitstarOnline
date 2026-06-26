@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRoom } from "@/hooks/useRoom";
 import { useNow } from "@/hooks/useNow";
+import { useGoogleToken } from "@/hooks/useGoogleToken";
 import { api } from "@/lib/clientApi";
 import { Timeline } from "./Timeline";
 import { PlayerList } from "./PlayerList";
@@ -14,6 +15,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const router = useRouter();
   const { state, error } = useRoom(code, true);
   const now = useNow();
+  const googleToken = useGoogleToken();
 
   const [soundOn, setSoundOn] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
@@ -254,7 +256,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {stage}
 
           {/* Reveal */}
-          {revealMode && <RevealCard state={state} />}
+          {revealMode && <RevealCard state={state} googleToken={googleToken} />}
 
           {/* Game over */}
           {state.phase === "gameover" && (

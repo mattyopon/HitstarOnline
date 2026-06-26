@@ -1,10 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import type { PublicState } from "@/lib/protocol";
+import { addToFavorites, type FavoriteResult } from "@/lib/youtubeFavorites";
 
-export function RevealCard({ state }: { state: PublicState }) {
+export function RevealCard({
+  state,
+  googleToken,
+}: {
+  state: PublicState;
+  googleToken?: string | null;
+}) {
+  const [fav, setFav] = useState<"idle" | "saving" | FavoriteResult>("idle");
   const r = state.reveal;
   if (!r) return null;
+
+  async function onFavorite(videoId: string) {
+    setFav("saving");
+    setFav(await addToFavorites(googleToken ?? null, videoId));
+  }
   const nameOf = (id: string | null) =>
     id ? state.players.find((p) => p.userId === id)?.name ?? "?" : null;
 
@@ -47,6 +61,31 @@ export function RevealCard({ state }: { state: PublicState }) {
         >
           YouTubeで開く ↗
         </a>
+      )}
+
+      {googleToken && r.youtubeId && (
+        <div className="stack" style={{ gap: 4, alignItems: "center", marginTop: 4 }}>
+          <button
+            className="btn gold"
+            disabled={fav === "saving" || fav === "added"}
+            onClick={() => onFavorite(r.youtubeId!)}
+          >
+            {fav === "added"
+              ? "★ お気に入り追加済み"
+              : fav === "saving"
+                ? "追加中…"
+                : "★ お気に入りに追加"}
+          </button>
+          {fav === "added" && (
+            <span className="tiny muted">YouTubeの「{`Hitstar お気に入り`}」に追加しました</span>
+          )}
+          {fav === "scope" && (
+            <span className="tiny tag-wrong">
+              権限が必要です。一度ログアウトし、Googleで再ログインしてYouTube連携を許可してください。
+            </span>
+          )}
+          {fav === "error" && <span className="tiny tag-wrong">追加に失敗しました。もう一度お試しください。</span>}
+        </div>
       )}
     </div>
   );

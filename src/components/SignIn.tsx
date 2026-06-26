@@ -16,7 +16,12 @@ export function SignIn({ authError }: { authError?: boolean }) {
     const supabase = createClient();
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${location.origin}/auth/callback` },
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+        // Request YouTube access so players can save liked songs to a playlist.
+        scopes: "openid email profile https://www.googleapis.com/auth/youtube",
+        queryParams: { access_type: "online", prompt: "consent", include_granted_scopes: "true" },
+      },
     });
     if (error) {
       setErr("Googleログインを開始できませんでした。Supabaseの設定をご確認ください。");
