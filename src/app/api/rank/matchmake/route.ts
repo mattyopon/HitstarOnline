@@ -1,4 +1,4 @@
-import { json, mapError, requireUser, seedFrom } from "@/lib/api";
+import { json, mapError, readBody, requireUser, seedFrom } from "@/lib/api";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ensureRank } from "@/lib/rank";
 import { createRoom, joinRoom } from "@/lib/rooms";
@@ -21,7 +21,7 @@ const FRESH_MS = 5 * 60 * 1000; // ignore lobbies older than 5 min
  * callers; a filled/started room just falls through to the next candidate or a
  * fresh create. A rare double-create yields two half-full lobbies that later fill.
  */
-export async function POST() {
+export async function POST(req: Request) {
   const user = await requireUser();
   if (user instanceof Response) return user;
   if (user.isAnonymous) {
@@ -29,9 +29,10 @@ export async function POST() {
   }
 
   try {
+    const body = await readBody(req);
     const rank = await ensureRank(user.id);
     const admin = createAdminClient();
-    const seed = seedFrom(user);
+    const seed = seedFrom(user, body.name);
 
     const { data: rooms } = await admin
       .from("rooms")
