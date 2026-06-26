@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { api } from "@/lib/clientApi";
 import { createClient } from "@/lib/supabase/client";
 import type { ClientUser } from "@/hooks/useUser";
+import { CATEGORIES } from "@/lib/protocol";
 import type { BotDifficulty, GameMode } from "@/lib/protocol";
 
 export function Lobby({ user }: { user: ClientUser }) {
@@ -22,6 +23,11 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [playMode, setPlayMode] = useState<"solo" | "multi">("multi");
   const [botCount, setBotCount] = useState(1);
   const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>("normal");
+  const [cats, setCats] = useState<string[]>([]);
+
+  function toggleCat(id: string) {
+    setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
+  }
 
   async function createSolo() {
     setBusy("solo");
@@ -29,7 +35,11 @@ export function Lobby({ user }: { user: ClientUser }) {
     saveName();
     try {
       const bots = Array.from({ length: botCount }, () => ({ difficulty: botDifficulty }));
-      const { code } = await api<{ code: string }>("/api/room/create", { name, solo: { bots } });
+      const { code } = await api<{ code: string }>("/api/room/create", {
+        name,
+        solo: { bots },
+        settings: { categories: cats },
+      });
       router.push(`/room/${code}`);
     } catch (e) {
       setErr(e instanceof Error ? e.message : "作成に失敗しました");
@@ -48,7 +58,7 @@ export function Lobby({ user }: { user: ClientUser }) {
     try {
       const { code } = await api<{ code: string }>("/api/room/create", {
         name,
-        settings: { mode },
+        settings: { mode, categories: cats },
       });
       router.push(`/room/${code}`);
     } catch (e) {
@@ -122,6 +132,29 @@ export function Lobby({ user }: { user: ClientUser }) {
         onChange={(e) => setName(e.target.value)}
         placeholder="あなたの名前"
       />
+
+      <label className="tiny muted">出題カテゴリ（未選択＝全ジャンル）</label>
+      <div className="row wrap" style={{ gap: 6 }}>
+        {CATEGORIES.map((c) => {
+          const on = cats.includes(c.id);
+          return (
+            <button
+              key={c.id}
+              type="button"
+              className="pill"
+              onClick={() => toggleCat(c.id)}
+              style={{
+                cursor: "pointer",
+                borderColor: on ? "var(--accent)" : undefined,
+                background: on ? "rgba(255,77,157,0.18)" : undefined,
+                color: on ? "#fff" : undefined,
+              }}
+            >
+              {c.labelJa}
+            </button>
+          );
+        })}
+      </div>
 
       {playMode === "multi" ? (
         <>

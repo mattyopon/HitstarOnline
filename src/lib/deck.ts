@@ -27,9 +27,26 @@ function randInt(maxExclusive: number): number {
   return buf[0] % maxExclusive;
 }
 
-/** A freshly shuffled draw order over all deck indices (Fisher–Yates). */
-export function shuffledDeckOrder(): number[] {
-  const arr = DECK.map((_, i) => i);
+function inCategories(song: Song, set: Set<string> | null): boolean {
+  if (!set) return true;
+  const cats = song.categories ?? [];
+  return cats.some((c) => set.has(c));
+}
+
+/** How many songs match the given categories (empty/undefined = all). */
+export function countInCategories(categories?: string[]): number {
+  const set = categories && categories.length ? new Set(categories) : null;
+  return DECK.reduce((n, s) => n + (inCategories(s, set) ? 1 : 0), 0);
+}
+
+/**
+ * A freshly shuffled draw order over deck indices (Fisher–Yates), optionally
+ * filtered to the given categories. CRITICAL: returns GLOBAL indices into the
+ * full deck (songId == getDeck() index), never a re-indexed subset.
+ */
+export function shuffledDeckOrder(categories?: string[]): number[] {
+  const set = categories && categories.length ? new Set(categories) : null;
+  const arr = DECK.map((_, i) => i).filter((i) => inCategories(DECK[i], set));
   for (let i = arr.length - 1; i > 0; i--) {
     const j = randInt(i + 1);
     [arr[i], arr[j]] = [arr[j], arr[i]];

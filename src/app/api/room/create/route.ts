@@ -17,12 +17,14 @@ export async function POST(req: Request) {
     if (solo) {
       // Solo vs NPCs: create the room, add bots, and start — all server-side.
       // Snappier timers since there's no waiting on other humans.
+      const categories = sanitizeSettings(body.settings).categories ?? [];
       const { code } = await createRoom(seed, {
         mode: "original",
         stealSeconds: 8,
         revealSeconds: 7,
+        categories,
       });
-      const order = shuffledDeckOrder();
+      const order = shuffledDeckOrder(categories);
       const songs = getDeck();
       const now = Date.now();
       await mutateByCode(code, (g) => {

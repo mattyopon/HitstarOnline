@@ -11,6 +11,7 @@ import { PlacementArea } from "./PlacementArea";
 import { PlayerList } from "./PlayerList";
 import { RevealCard } from "./RevealCard";
 import { YouTubePlayer } from "./YouTubePlayer";
+import { CATEGORIES } from "@/lib/protocol";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const router = useRouter();
@@ -225,6 +226,8 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             <div className="notice tiny">
               ルール: {modeLabel(state.settings.mode)} ／ {state.settings.targetCards}枚で勝利 ／
               開始トークン{state.settings.startingTokens}
+              <br />
+              カテゴリ: {catLabels(state.settings.categories)}
             </div>
             {actionErr && <div className="error">{actionErr}</div>}
             {isHost ? (
@@ -479,4 +482,11 @@ function modeLabel(mode: string): string {
   if (mode === "pro") return "プロ";
   if (mode === "expert") return "エキスパート";
   return "オリジナル";
+}
+
+function catLabels(categories: string[]): string {
+  if (!categories || categories.length === 0) return "全ジャンル";
+  return categories
+    .map((id) => CATEGORIES.find((c) => c.id === id)?.labelJa ?? id)
+    .join("・");
 }

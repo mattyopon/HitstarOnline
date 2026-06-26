@@ -1,608 +1,3116 @@
 [
   {
-    "title": "Rock Around the Clock",
-    "artist": "Bill Haley & His Comets",
-    "year": 1954,
-    "region": "international"
+    "title": "Hei Mao Jingzhang (Black Cat Detective theme)",
+    "artist": "Various / Shanghai Animation",
+    "year": 1984,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
   },
   {
-    "title": "Hound Dog",
-    "artist": "Elvis Presley",
-    "year": 1956,
-    "region": "international"
+    "title": "Hulu Wa (Calabash Brothers theme)",
+    "artist": "Wu Yingju",
+    "year": 1986,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
   },
   {
-    "title": "Jailhouse Rock",
-    "artist": "Elvis Presley",
-    "year": 1957,
-    "region": "international"
+    "title": "Lan Jingling Zhi Ge (The Smurfs Chinese theme)",
+    "artist": "Zheng Xudong / Chorus",
+    "year": 1986,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
   },
   {
-    "title": "Johnny B. Goode",
-    "artist": "Chuck Berry",
-    "year": 1958,
-    "region": "international"
+    "title": "Shuke He Beita (Shuke and Beita theme)",
+    "artist": "Various",
+    "year": 1989,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
   },
   {
-    "title": "What'd I Say",
-    "artist": "Ray Charles",
-    "year": 1959,
-    "region": "international"
+    "title": "Lan Pi Shu He Da Lian Mao (Blue Mouse and Big-Face Cat theme)",
+    "artist": "Zhang Zhongjin",
+    "year": 1993,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
   },
   {
-    "title": "The Twist",
-    "artist": "Chubby Checker",
-    "year": 1960,
-    "region": "international"
+    "title": "Da Tou Erzi He Xiao Tou Baba (Big Head Son and Small Head Dad theme)",
+    "artist": "Various",
+    "year": 1995,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
   },
   {
-    "title": "Stand By Me",
-    "artist": "Ben E. King",
-    "year": 1961,
-    "region": "international"
+    "title": "Ai Jiu Yi Ge Zi (Lotus Lantern / Bao Lian Deng ending)",
+    "artist": "Jeff Chang (Zhang Xinzhe)",
+    "year": 1999,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Hou Ge (Monkey Brother - Journey to the West)",
+    "artist": "Zhang Weijin",
+    "year": 1999,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Bie Kan Wo Zhi Shi Yi Zhi Yang (Pleasant Goat and Big Big Wolf theme)",
+    "artist": "Gu Lijia",
+    "year": 2005,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Hong Mao Lan Tu Qi Xia Zhuan (Rainbow Cat & Blue Rabbit theme)",
+    "artist": "Various",
+    "year": 2006,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Yue Guang (The Legend of Qin theme)",
+    "artist": "Anson Hu (Hu Yanbin)",
+    "year": 2007,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Xiong Chu Mo (Boonie Bears theme)",
+    "artist": "Various",
+    "year": 2012,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Yuan Dian (Hua Jianghu: Bu Liang Ren theme)",
+    "artist": "Xidan Girl (Ren Yueli)",
+    "year": 2014,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Cong Qian De Wo (Monkey King: Hero Is Back theme)",
+    "artist": "Kit Chan (Chen Jieyi)",
+    "year": 2015,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Da Yu (Big Fish & Begonia impression song)",
+    "artist": "Zhou Shen",
+    "year": 2016,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Wangu Xianqiong (Spirit Sword theme)",
+    "artist": "Tengger",
+    "year": 2017,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Yuan Qi (White Snake ending song)",
+    "artist": "Zhou Shen",
+    "year": 2018,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Zui Meng Qian Chen (Mo Dao Zu Shi theme)",
+    "artist": "Terry Lin (Lin Zhixuan)",
+    "year": 2018,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Ne Zha (Ne Zha: Birth of the Demon Child theme)",
+    "artist": "GAI Zhou Yan",
+    "year": 2019,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Bu Fan (A Record of a Mortal's Journey to Immortality theme)",
+    "artist": "Wang Zhengliang (Reno Wang)",
+    "year": 2020,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Po Jian (Soul Land / Douluo Dalu theme)",
+    "artist": "Angela Chang (Zhang Shaohan)",
+    "year": 2020,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Xian (The Daily Life of the Immortal King theme)",
+    "artist": "Wei Bo'en / Yang Bingyin",
+    "year": 2020,
+    "country": "cn",
+    "categories": [
+      "cn-anime"
+    ]
+  },
+  {
+    "title": "Heigh-Ho",
+    "artist": "Snow White and the Seven Dwarfs Cast",
+    "year": 1937,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "When You Wish Upon a Star",
+    "artist": "Cliff Edwards",
+    "year": 1940,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "A Dream Is a Wish Your Heart Makes",
+    "artist": "Ilene Woods",
+    "year": 1950,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Supercalifragilisticexpialidocious",
+    "artist": "Julie Andrews & Dick Van Dyke",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "The Bare Necessities",
+    "artist": "Phil Harris & Bruce Reitherman",
+    "year": 1967,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Under the Sea",
+    "artist": "Samuel E. Wright",
+    "year": 1989,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Beauty and the Beast",
+    "artist": "Angela Lansbury",
+    "year": 1991,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "A Whole New World",
+    "artist": "Brad Kane & Lea Salonga",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Can You Feel the Love Tonight",
+    "artist": "Elton John",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Hakuna Matata",
+    "artist": "Nathan Lane, Ernie Sabella & Jason Weaver",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Colors of the Wind",
+    "artist": "Judy Kuhn",
+    "year": 1995,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "You've Got a Friend in Me",
+    "artist": "Randy Newman",
+    "year": 1995,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Go the Distance",
+    "artist": "Roger Bart",
+    "year": 1997,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Reflection",
+    "artist": "Lea Salonga",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "You'll Be in My Heart",
+    "artist": "Phil Collins",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Almost There",
+    "artist": "Anika Noni Rose",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "I See the Light",
+    "artist": "Mandy Moore & Zachary Levi",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Let It Go",
+    "artist": "Idina Menzel",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "How Far I'll Go",
+    "artist": "Auli'i Cravalho",
+    "year": 2016,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Remember Me",
+    "artist": "Miguel feat. Natalia Lafourcade",
+    "year": 2017,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "Into the Unknown",
+    "artist": "Idina Menzel feat. Aurora",
+    "year": 2019,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "We Don't Talk About Bruno",
+    "artist": "Encanto Cast",
+    "year": 2021,
+    "country": "us",
+    "categories": [
+      "disney"
+    ]
+  },
+  {
+    "title": "The Moon Represents My Heart (Yueliang Daibiao Wo De Xin)",
+    "artist": "Teresa Teng",
+    "year": 1977,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Tian Mimi (Sweet Honey)",
+    "artist": "Teresa Teng",
+    "year": 1979,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Monica",
+    "artist": "Leslie Cheung",
+    "year": 1984,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Shi Shui Liu Nian (The Years Flow Like Water)",
+    "artist": "Anita Mui",
+    "year": 1985,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Yi Wu Suo You (Nothing to My Name)",
+    "artist": "Cui Jian",
+    "year": 1986,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Ye Lai Xiang (Pal at Night)",
+    "artist": "Leslie Cheung",
+    "year": 1987,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Rongyi Shoushang De Nüren (Fragile Woman)",
+    "artist": "Faye Wong",
+    "year": 1992,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Hai Kuo Tian Kong (Boundless Oceans, Vast Skies)",
+    "artist": "Beyond",
+    "year": 1993,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Wen Bie (Goodbye Kiss)",
+    "artist": "Jacky Cheung",
+    "year": 1993,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Wang Qing Shui (Forget Love Potion)",
+    "artist": "Andy Lau",
+    "year": 1994,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Pengyou (Friends)",
+    "artist": "Emil Chau (Wakin Chau)",
+    "year": 1997,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Hong Dou (Red Bean)",
+    "artist": "Faye Wong",
+    "year": 1998,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Shi Nian (Ten Years)",
+    "artist": "Eason Chan",
+    "year": 2003,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Yu Jian (Encounter)",
+    "artist": "Stefanie Sun",
+    "year": 2003,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Jue Jiang (Stubborn)",
+    "artist": "Mayday",
+    "year": 2004,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Lao Shu Ai Da Mi (Mouse Loves Rice)",
+    "artist": "Yang Chengang",
+    "year": 2004,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Qi Li Xiang (Common Jasmine Orange)",
+    "artist": "Jay Chou",
+    "year": 2004,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Fu Kua (Exaggerated)",
+    "artist": "Eason Chan",
+    "year": 2005,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Tong Hua (Fairy Tale)",
+    "artist": "Michael Wong (Guang Liang)",
+    "year": 2005,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Qing Hua Ci (Blue and White Porcelain)",
+    "artist": "Jay Chou",
+    "year": 2007,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Dao Xiang (Rice Field)",
+    "artist": "Jay Chou",
+    "year": 2008,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
+  },
+  {
+    "title": "Pao Mo (Bubble)",
+    "artist": "G.E.M.",
+    "year": 2012,
+    "country": "cn",
+    "categories": [
+      "famous-in-china"
+    ]
   },
   {
     "title": "Ue wo Muite Arukou (Sukiyaki)",
     "artist": "Kyu Sakamoto",
     "year": 1961,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "I Want to Hold Your Hand",
-    "artist": "The Beatles",
-    "year": 1963,
-    "region": "international"
-  },
-  {
-    "title": "My Girl",
-    "artist": "The Temptations",
-    "year": 1964,
-    "region": "international"
-  },
-  {
-    "title": "The House of the Rising Sun",
-    "artist": "The Animals",
-    "year": 1964,
-    "region": "international"
-  },
-  {
-    "title": "(I Can't Get No) Satisfaction",
-    "artist": "The Rolling Stones",
-    "year": 1965,
-    "region": "international"
-  },
-  {
-    "title": "Good Vibrations",
-    "artist": "The Beach Boys",
-    "year": 1966,
-    "region": "international"
-  },
-  {
-    "title": "A Whiter Shade of Pale",
-    "artist": "Procol Harum",
-    "year": 1967,
-    "region": "international"
-  },
-  {
-    "title": "Respect",
-    "artist": "Aretha Franklin",
-    "year": 1967,
-    "region": "international"
-  },
-  {
-    "title": "Hey Jude",
-    "artist": "The Beatles",
-    "year": 1968,
-    "region": "international"
-  },
-  {
-    "title": "I Heard It Through the Grapevine",
-    "artist": "Marvin Gaye",
-    "year": 1968,
-    "region": "international"
-  },
-  {
-    "title": "Proud Mary",
-    "artist": "Creedence Clearwater Revival",
-    "year": 1969,
-    "region": "international"
-  },
-  {
-    "title": "Sweet Caroline",
-    "artist": "Neil Diamond",
-    "year": 1969,
-    "region": "international"
-  },
-  {
-    "title": "Let It Be",
-    "artist": "The Beatles",
-    "year": 1970,
-    "region": "international"
-  },
-  {
-    "title": "Imagine",
-    "artist": "John Lennon",
+    "title": "Mata Au Hi Made",
+    "artist": "Kiyohiko Ozaki",
     "year": 1971,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Stairway to Heaven",
-    "artist": "Led Zeppelin",
-    "year": 1971,
-    "region": "international"
+    "title": "Kyo de Owakare",
+    "artist": "Naoko Ken",
+    "year": 1974,
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Tsubasa wo Kudasai",
-    "artist": "Akai Tori",
-    "year": 1971,
-    "region": "japanese"
-  },
-  {
-    "title": "Superstition",
-    "artist": "Stevie Wonder",
-    "year": 1972,
-    "region": "international"
-  },
-  {
-    "title": "Bohemian Rhapsody",
-    "artist": "Queen",
+    "title": "Played Free Bird... Oyoge! Taiyaki-kun",
+    "artist": "Masato Shimon",
     "year": 1975,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Dancing Queen",
-    "artist": "ABBA",
-    "year": 1976,
-    "region": "international"
+    "title": "Sotsugyo Shashin",
+    "artist": "Yumi Arai",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Hotel California",
-    "artist": "Eagles",
-    "year": 1976,
-    "region": "international"
-  },
-  {
-    "title": "Stayin' Alive",
-    "artist": "Bee Gees",
-    "year": 1977,
-    "region": "international"
-  },
-  {
-    "title": "UFO",
-    "artist": "Pink Lady",
-    "year": 1977,
-    "region": "japanese"
-  },
-  {
-    "title": "Call Me",
-    "artist": "Blondie",
-    "year": 1980,
-    "region": "international"
-  },
-  {
-    "title": "Don't Stop Believin'",
-    "artist": "Journey",
+    "title": "Ruby no Yubiwa",
+    "artist": "Akira Terao",
     "year": 1981,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Akai Sweet Pea",
-    "artist": "Seiko Matsuda",
-    "year": 1982,
-    "region": "japanese"
-  },
-  {
-    "title": "Eye of the Tiger",
-    "artist": "Survivor",
-    "year": 1982,
-    "region": "international"
-  },
-  {
-    "title": "Billie Jean",
-    "artist": "Michael Jackson",
+    "title": "Naki Usagi",
+    "artist": "Akina Nakamori",
     "year": 1983,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Every Breath You Take",
-    "artist": "The Police",
-    "year": 1983,
-    "region": "international"
-  },
-  {
-    "title": "Sweet Dreams (Are Made of This)",
-    "artist": "Eurythmics",
-    "year": 1983,
-    "region": "international"
-  },
-  {
-    "title": "Like a Virgin",
-    "artist": "Madonna",
+    "title": "Tsugunai",
+    "artist": "Teresa Teng",
     "year": 1984,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Wake Me Up Before You Go-Go",
-    "artist": "Wham!",
-    "year": 1984,
-    "region": "international"
-  },
-  {
-    "title": "Take On Me",
-    "artist": "a-ha",
-    "year": 1985,
-    "region": "international"
-  },
-  {
-    "title": "Livin' on a Prayer",
-    "artist": "Bon Jovi",
-    "year": 1986,
-    "region": "international"
-  },
-  {
-    "title": "The Final Countdown",
-    "artist": "Europe",
-    "year": 1986,
-    "region": "international"
-  },
-  {
-    "title": "Linda Linda",
-    "artist": "The Blue Hearts",
-    "year": 1987,
-    "region": "japanese"
-  },
-  {
-    "title": "Never Gonna Give You Up",
-    "artist": "Rick Astley",
-    "year": 1987,
-    "region": "international"
-  },
-  {
-    "title": "Sweet Child o' Mine",
-    "artist": "Guns N' Roses",
-    "year": 1987,
-    "region": "international"
-  },
-  {
-    "title": "Kawa no Nagare no Yo ni",
-    "artist": "Hibari Misora",
-    "year": 1989,
-    "region": "japanese"
-  },
-  {
-    "title": "Like a Prayer",
-    "artist": "Madonna",
-    "year": 1989,
-    "region": "international"
-  },
-  {
-    "title": "Nothing Compares 2 U",
-    "artist": "Sinead O'Connor",
+    "title": "Odoru Pompokorin",
+    "artist": "B.B. Queens",
     "year": 1990,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "The Power",
-    "artist": "Snap!",
-    "year": 1990,
-    "region": "international"
-  },
-  {
-    "title": "U Can't Touch This",
-    "artist": "MC Hammer",
-    "year": 1990,
-    "region": "international"
-  },
-  {
-    "title": "Smells Like Teen Spirit",
-    "artist": "Nirvana",
-    "year": 1991,
-    "region": "international"
-  },
-  {
-    "title": "I Will Always Love You",
-    "artist": "Whitney Houston",
+    "title": "Ito",
+    "artist": "Miyuki Nakajima",
     "year": 1992,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "What Is Love",
-    "artist": "Haddaway",
-    "year": 1993,
-    "region": "international"
-  },
-  {
-    "title": "Gangsta's Paradise",
-    "artist": "Coolio",
-    "year": 1995,
-    "region": "international"
-  },
-  {
-    "title": "Robinson",
-    "artist": "Spitz",
-    "year": 1995,
-    "region": "japanese"
-  },
-  {
-    "title": "Wonderwall",
-    "artist": "Oasis",
-    "year": 1995,
-    "region": "international"
-  },
-  {
-    "title": "Zankoku na Tenshi no Teze (A Cruel Angel's Thesis)",
+    "title": "Zankoku na Tenshi no Thesis",
     "artist": "Yoko Takahashi",
     "year": 1995,
-    "region": "japanese"
-  },
-  {
-    "title": "Sobakasu",
-    "artist": "Judy and Mary",
-    "year": 1996,
-    "region": "japanese"
-  },
-  {
-    "title": "Wannabe",
-    "artist": "Spice Girls",
-    "year": 1996,
-    "region": "international"
-  },
-  {
-    "title": "...Baby One More Time",
-    "artist": "Britney Spears",
-    "year": 1998,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
     "title": "Automatic",
-    "artist": "Utada Hikaru",
+    "artist": "Hikaru Utada",
     "year": 1998,
-    "region": "japanese"
-  },
-  {
-    "title": "Believe",
-    "artist": "Cher",
-    "year": 1998,
-    "region": "international"
-  },
-  {
-    "title": "First Love",
-    "artist": "Utada Hikaru",
-    "year": 1999,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
     "title": "Tsunami",
     "artist": "Southern All Stars",
     "year": 2000,
-    "region": "japanese"
-  },
-  {
-    "title": "In the End",
-    "artist": "Linkin Park",
-    "year": 2001,
-    "region": "international"
-  },
-  {
-    "title": "Hey Ya!",
-    "artist": "OutKast",
-    "year": 2003,
-    "region": "international"
-  },
-  {
-    "title": "Mr. Brightside",
-    "artist": "The Killers",
-    "year": 2003,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
     "title": "Sakura (Dokushou)",
     "artist": "Naotaro Moriyama",
     "year": 2003,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
     "title": "Sekai ni Hitotsu Dake no Hana",
     "artist": "SMAP",
     "year": 2003,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Hung Up",
-    "artist": "Madonna",
-    "year": 2005,
-    "region": "international"
-  },
-  {
-    "title": "Crazy",
-    "artist": "Gnarls Barkley",
-    "year": 2006,
-    "region": "international"
-  },
-  {
-    "title": "Umbrella",
-    "artist": "Rihanna ft. Jay-Z",
-    "year": 2007,
-    "region": "international"
-  },
-  {
-    "title": "Poker Face",
-    "artist": "Lady Gaga",
-    "year": 2008,
-    "region": "international"
-  },
-  {
-    "title": "Viva la Vida",
-    "artist": "Coldplay",
-    "year": 2008,
-    "region": "international"
-  },
-  {
-    "title": "I Gotta Feeling",
-    "artist": "The Black Eyed Peas",
-    "year": 2009,
-    "region": "international"
-  },
-  {
-    "title": "Rolling in the Deep",
-    "artist": "Adele",
-    "year": 2010,
-    "region": "international"
-  },
-  {
-    "title": "Levels",
-    "artist": "Avicii",
-    "year": 2011,
-    "region": "international"
-  },
-  {
-    "title": "Senbonzakura",
-    "artist": "Kurousa-P feat. Hatsune Miku",
-    "year": 2011,
-    "region": "japanese"
-  },
-  {
-    "title": "Somebody That I Used to Know",
-    "artist": "Gotye ft. Kimbra",
-    "year": 2011,
-    "region": "international"
-  },
-  {
-    "title": "Gangnam Style",
-    "artist": "PSY",
-    "year": 2012,
-    "region": "international"
-  },
-  {
-    "title": "Get Lucky",
-    "artist": "Daft Punk ft. Pharrell Williams",
-    "year": 2013,
-    "region": "international"
-  },
-  {
-    "title": "Happy",
-    "artist": "Pharrell Williams",
-    "year": 2013,
-    "region": "international"
-  },
-  {
-    "title": "Uptown Funk",
-    "artist": "Mark Ronson ft. Bruno Mars",
-    "year": 2014,
-    "region": "international"
-  },
-  {
-    "title": "Hello",
-    "artist": "Adele",
-    "year": 2015,
-    "region": "international"
-  },
-  {
-    "title": "Lean On",
-    "artist": "Major Lazer & DJ Snake ft. MØ",
-    "year": 2015,
-    "region": "international"
-  },
-  {
-    "title": "Closer",
-    "artist": "The Chainsmokers ft. Halsey",
-    "year": 2016,
-    "region": "international"
-  },
-  {
-    "title": "Koi",
+    "title": "Koi no Dance Site / Koi",
     "artist": "Gen Hoshino",
     "year": 2016,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
     "title": "Zenzenzense",
-    "artist": "Radwimps",
+    "artist": "RADWIMPS",
     "year": 2016,
-    "region": "japanese"
-  },
-  {
-    "title": "Despacito (Remix)",
-    "artist": "Luis Fonsi & Daddy Yankee ft. Justin Bieber",
-    "year": 2017,
-    "region": "international"
-  },
-  {
-    "title": "Shape of You",
-    "artist": "Ed Sheeran",
-    "year": 2017,
-    "region": "international"
-  },
-  {
-    "title": "God's Plan",
-    "artist": "Drake",
-    "year": 2018,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
     "title": "Lemon",
     "artist": "Kenshi Yonezu",
     "year": 2018,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
   },
   {
-    "title": "Marigold",
-    "artist": "Aimyon",
-    "year": 2018,
-    "region": "japanese"
-  },
-  {
-    "title": "U.S.A.",
-    "artist": "Da Pump",
-    "year": 2018,
-    "region": "japanese"
-  },
-  {
-    "title": "Blinding Lights",
-    "artist": "The Weeknd",
+    "title": "Pretender",
+    "artist": "Official HIGE DANdism",
     "year": 2019,
-    "region": "international"
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
+  },
+  {
+    "title": "Kaibutsu",
+    "artist": "YOASOBI",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "famous-in-japan"
+    ]
+  },
+  {
+    "title": "Tears of Mokpo (Mokpo-ui Nunmul)",
+    "artist": "Lee Nan-young",
+    "year": 1935,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Camellia Lady (Dongbaek Agassi)",
+    "artist": "Lee Mi-ja",
+    "year": 1964,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Beautiful Rivers and Mountains (Areumdaun Gangsan)",
+    "artist": "Shin Joong-hyun",
+    "year": 1972,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Short Hair (Danbalmeori)",
+    "artist": "Cho Yong-pil",
+    "year": 1980,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "My Love by My Side (Nae Gyeoteseo)",
+    "artist": "Kim Hyun-sik",
+    "year": 1991,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "I Know (Nan Arayo)",
+    "artist": "Seo Taiji and Boys",
+    "year": 1992,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Wrongful Encounter (Jalmotdoen Mannam)",
+    "artist": "Kim Gun-mo",
+    "year": 1995,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Candy",
+    "artist": "H.O.T.",
+    "year": 1996,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Tears (Nunmul)",
+    "artist": "So Chan-whee",
+    "year": 2000,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Hope (Huimangsahang)",
+    "artist": "Jang Yoon-jeong",
+    "year": 2004,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Tell Me",
+    "artist": "Wonder Girls",
+    "year": 2007,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "That Woman (Geu Yeoja) (Secret Garden OST)",
+    "artist": "Baek Ji-young",
+    "year": 2010,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Bbang Bbang (Pung)",
+    "artist": "Hong Jin-young",
+    "year": 2011,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Bounce",
+    "artist": "Cho Yong-pil",
+    "year": 2013,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Some",
+    "artist": "Soyou & Junggigo",
+    "year": 2014,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "You Are My Everything (Descendants of the Sun OST)",
+    "artist": "Gummy",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Spring Day (Bom Nal)",
+    "artist": "BTS",
+    "year": 2017,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Trust in Me (Mideoyo)",
+    "artist": "Lim Young-woong",
+    "year": 2020,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Love Always Runs Away (Sarangeun Neul Domanggat)",
+    "artist": "Im Young-woong",
+    "year": 2021,
+    "country": "kr",
+    "categories": [
+      "famous-in-korea"
+    ]
+  },
+  {
+    "title": "Johnny B. Goode",
+    "artist": "Chuck Berry",
+    "year": 1958,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Stand By Me",
+    "artist": "Ben E. King",
+    "year": 1961,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "My Girl",
+    "artist": "The Temptations",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "(Sittin' On) The Dock of the Bay",
+    "artist": "Otis Redding",
+    "year": 1968,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Born to Be Wild",
+    "artist": "Steppenwolf",
+    "year": 1968,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "I Heard It Through the Grapevine",
+    "artist": "Marvin Gaye",
+    "year": 1968,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Bad Moon Rising",
+    "artist": "Creedence Clearwater Revival",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Take Me Home, Country Roads",
+    "artist": "John Denver",
+    "year": 1971,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Tiny Dancer",
+    "artist": "Elton John",
+    "year": 1971,
+    "country": "gb",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Take It Easy",
+    "artist": "Eagles",
+    "year": 1972,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Sweet Home Alabama",
+    "artist": "Lynyrd Skynyrd",
+    "year": 1974,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Born to Run",
+    "artist": "Bruce Springsteen",
+    "year": 1975,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Don't Stop Believin'",
+    "artist": "Journey",
+    "year": 1981,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Jack and Diane",
+    "artist": "John Mellencamp",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Born in the U.S.A.",
+    "artist": "Bruce Springsteen",
+    "year": 1984,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Sweet Child o' Mine",
+    "artist": "Guns N' Roses",
+    "year": 1987,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Friends in Low Places",
+    "artist": "Garth Brooks",
+    "year": 1990,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "year": 1991,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "I Will Always Love You",
+    "artist": "Whitney Houston",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Mr. Brightside",
+    "artist": "The Killers",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "famous-in-usa"
+    ]
+  },
+  {
+    "title": "Super Mario Bros. (Ground Theme / Overworld)",
+    "artist": "Koji Kondo",
+    "year": 1985,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Castlevania - Vampire Killer",
+    "artist": "Konami Kukeiha Club",
+    "year": 1986,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "The Legend of Zelda (Main Theme / Overworld)",
+    "artist": "Koji Kondo",
+    "year": 1986,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Mega Man 2 - Dr. Wily's Castle Stage 1",
+    "artist": "Takashi Tateishi",
+    "year": 1988,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Tetris - Theme A (Korobeiniki)",
+    "artist": "Hirokazu Tanaka (Nintendo)",
+    "year": 1989,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Super Mario World - Overworld Theme (Athletic)",
+    "artist": "Koji Kondo",
+    "year": 1990,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Sonic the Hedgehog - Green Hill Zone",
+    "artist": "Masato Nakamura",
+    "year": 1991,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Street Fighter II - Guile's Theme",
+    "artist": "Yoko Shimomura",
+    "year": 1991,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Chrono Trigger - Corridors of Time",
+    "artist": "Yasunori Mitsuda",
+    "year": 1995,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Pokemon Red/Green/Blue - Battle! (Wild Pokemon)",
+    "artist": "Junichi Masuda",
+    "year": 1996,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Super Mario 64 - Bob-omb Battlefield",
+    "artist": "Koji Kondo",
+    "year": 1996,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Final Fantasy VII - One-Winged Angel",
+    "artist": "Nobuo Uematsu",
+    "year": 1997,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "The Legend of Zelda: Ocarina of Time - Gerudo Valley",
+    "artist": "Koji Kondo",
+    "year": 1998,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Halo - Main Theme (Mjolnir Mix)",
+    "artist": "Martin O'Donnell & Michael Salvatori",
+    "year": 2001,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Katamari Damacy - Katamari on the Rocks (Lonely Rolling Star)",
+    "artist": "Yuu Miyake",
+    "year": 2004,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Portal - Still Alive",
+    "artist": "Jonathan Coulton (feat. Ellen McLain)",
+    "year": 2007,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Minecraft - Sweden (C418)",
+    "artist": "C418",
+    "year": 2011,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "The Elder Scrolls V: Skyrim - Dragonborn (Main Theme)",
+    "artist": "Jeremy Soule",
+    "year": 2011,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Undertale - Megalovania",
+    "artist": "Toby Fox",
+    "year": 2015,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "DOOM (2016) - BFG Division",
+    "artist": "Mick Gordon",
+    "year": 2016,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "NieR: Automata - Weight of the World",
+    "artist": "Keiichi Okabe (MONACA)",
+    "year": 2017,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Celeste - Resurrections",
+    "artist": "Lena Raine",
+    "year": 2018,
+    "country": "int",
+    "categories": [
+      "game-music"
+    ]
+  },
+  {
+    "title": "Uchuu Senkan Yamato",
+    "artist": "Isao Sasaki",
+    "year": 1974,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Doraemon no Uta",
+    "artist": "Kumiko Osugi",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Tobe! Gundam",
+    "artist": "Koh Ikeda",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Lum no Love Song",
+    "artist": "Yuko Matsutani",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Pegasus Fantasy",
+    "artist": "MAKE-UP",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Anpanman no March",
+    "artist": "Dreaming",
+    "year": 1988,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Cha-La Head-Cha-La",
+    "artist": "Hironobu Kageyama",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Moonlight Densetsu",
+    "artist": "DALI",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "A Cruel Angel's Thesis",
+    "artist": "Yoko Takahashi",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Sobakasu",
+    "artist": "Judy and Mary",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Mezase Pokemon Master",
+    "artist": "Rica Matsumoto",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Tank!",
+    "artist": "The Seatbelts",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Butter-Fly",
+    "artist": "Koji Wada",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "We Are!",
+    "artist": "Hiroshi Kitadani",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Ready Steady Go",
+    "artist": "L'Arc-en-Ciel",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Hare Hare Yukai",
+    "artist": "Aya Hirano, Minori Chihara, Yuko Goto",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Sorairo Days",
+    "artist": "Shoko Nakagawa",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Again",
+    "artist": "YUI",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Guren no Yumiya",
+    "artist": "Linked Horizon",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Unravel",
+    "artist": "TK from Ling tosite sigure",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
   },
   {
     "title": "Gurenge",
     "artist": "LiSA",
     "year": 2019,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
   },
   {
-    "title": "Old Town Road",
-    "artist": "Lil Nas X ft. Billy Ray Cyrus",
-    "year": 2019,
-    "region": "international"
-  },
-  {
-    "title": "Pretender",
-    "artist": "Official Hige Dandism",
-    "year": 2019,
-    "region": "japanese"
-  },
-  {
-    "title": "Yoru ni Kakeru (Racing into the Night)",
+    "title": "Idol",
     "artist": "YOASOBI",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Itoshi no Ellie",
+    "artist": "Southern All Stars",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Sayonara",
+    "artist": "Off Course",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Christmas Eve",
+    "artist": "Tatsuro Yamashita",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Koi no Yokan",
+    "artist": "Anzen Chitai",
+    "year": 1984,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Paradise Ginga",
+    "artist": "Hikaru Genji",
+    "year": 1988,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Diamonds",
+    "artist": "Princess Princess",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Say Yes",
+    "artist": "Chage and Aska",
+    "year": 1991,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Makenaide",
+    "artist": "ZARD",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Haru yo, Koi",
+    "artist": "Yumi Matsutoya",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Tomorrow Never Knows",
+    "artist": "Mr. Children",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Sakura",
+    "artist": "Ikimonogakari",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Tsubomi",
+    "artist": "Kobukuro",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Kiseki",
+    "artist": "GReeeeN",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Best Friend",
+    "artist": "Kana Nishino",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Heavy Rotation",
+    "artist": "AKB48",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "PonPonPon",
+    "artist": "Kyary Pamyu Pamyu",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "RPG",
+    "artist": "Sekai no Owari",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Christmas Song",
+    "artist": "back number",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Uma to Shika",
+    "artist": "Kenshi Yonezu",
     "year": 2019,
-    "region": "japanese"
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Kaiju no Hanauta",
+    "artist": "Vaundy",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Usseewa",
+    "artist": "Ado",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Zankyou Sanka",
+    "artist": "Aimer",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ]
+  },
+  {
+    "title": "Mirotic",
+    "artist": "TVXQ",
+    "year": 2008,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Nobody",
+    "artist": "Wonder Girls",
+    "year": 2008,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Gee",
+    "artist": "Girls' Generation",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Sorry, Sorry",
+    "artist": "Super Junior",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Good Day",
+    "artist": "IU",
+    "year": 2010,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "I Am the Best",
+    "artist": "2NE1",
+    "year": 2011,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Fantastic Baby",
+    "artist": "Big Bang",
+    "year": 2012,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Gangnam Style",
+    "artist": "Psy",
+    "year": 2012,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Growl",
+    "artist": "EXO",
+    "year": 2013,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Bang Bang Bang",
+    "artist": "Big Bang",
+    "year": 2015,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Blood Sweat & Tears",
+    "artist": "BTS",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Boombayah",
+    "artist": "BLACKPINK",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "TT",
+    "artist": "TWICE",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Red Flavor",
+    "artist": "Red Velvet",
+    "year": 2017,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "DDU-DU DDU-DU",
+    "artist": "BLACKPINK",
+    "year": 2018,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Boy With Luv",
+    "artist": "BTS",
+    "year": 2019,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Dynamite",
+    "artist": "BTS",
+    "year": 2020,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "God's Menu",
+    "artist": "Stray Kids",
+    "year": 2020,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Next Level",
+    "artist": "aespa",
+    "year": 2021,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Ditto",
+    "artist": "NewJeans",
+    "year": 2022,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "I AM",
+    "artist": "IVE",
+    "year": 2023,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "Super Shy",
+    "artist": "NewJeans",
+    "year": 2023,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ]
+  },
+  {
+    "title": "La Bamba",
+    "artist": "Ritchie Valens",
+    "year": 1958,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Oye Como Va",
+    "artist": "Santana",
+    "year": 1970,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Como La Flor",
+    "artist": "Selena",
+    "year": 1992,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Macarena",
+    "artist": "Los del Rio",
+    "year": 1993,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Suavemente",
+    "artist": "Elvis Crespo",
+    "year": 1998,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Livin' la Vida Loca",
+    "artist": "Ricky Martin",
+    "year": 1999,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Whenever, Wherever",
+    "artist": "Shakira",
+    "year": 2001,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Gasolina",
+    "artist": "Daddy Yankee",
+    "year": 2004,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "La Camisa Negra",
+    "artist": "Juanes",
+    "year": 2004,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "La Tortura",
+    "artist": "Shakira feat. Alejandro Sanz",
+    "year": 2005,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Hips Don't Lie",
+    "artist": "Shakira feat. Wyclef Jean",
+    "year": 2006,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Danza Kuduro",
+    "artist": "Don Omar feat. Lucenzo",
+    "year": 2010,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Waka Waka (This Time for Africa)",
+    "artist": "Shakira feat. Freshlyground",
+    "year": 2010,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Ai Se Eu Te Pego",
+    "artist": "Michel Telo",
+    "year": 2011,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Propuesta Indecente",
+    "artist": "Romeo Santos",
+    "year": 2013,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Vivir Mi Vida",
+    "artist": "Marc Anthony",
+    "year": 2013,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Bailando",
+    "artist": "Enrique Iglesias feat. Descemer Bueno & Gente de Zona",
+    "year": 2014,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Despacito",
+    "artist": "Luis Fonsi feat. Daddy Yankee",
+    "year": 2017,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Mi Gente",
+    "artist": "J Balvin & Willy William",
+    "year": 2017,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Con Calma",
+    "artist": "Daddy Yankee feat. Snow",
+    "year": 2019,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Dakiti",
+    "artist": "Bad Bunny & Jhay Cortez",
+    "year": 2020,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Titi Me Pregunto",
+    "artist": "Bad Bunny",
+    "year": 2022,
+    "country": "int",
+    "categories": [
+      "latin"
+    ]
+  },
+  {
+    "title": "Moon River",
+    "artist": "Audrey Hepburn / Henry Mancini",
+    "year": 1961,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "The Pink Panther Theme",
+    "artist": "Henry Mancini",
+    "year": 1963,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Goldfinger",
+    "artist": "Shirley Bassey",
+    "year": 1964,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Raindrops Keep Fallin' on My Head",
+    "artist": "B.J. Thomas",
+    "year": 1969,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Theme from Shaft",
+    "artist": "Isaac Hayes",
+    "year": 1971,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "The Godfather (Love Theme / Speak Softly Love)",
+    "artist": "Nino Rota",
+    "year": 1972,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Stayin' Alive (Saturday Night Fever)",
+    "artist": "Bee Gees",
+    "year": 1977,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Theme from Rocky (Gonna Fly Now)",
+    "artist": "Bill Conti",
+    "year": 1977,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Eye of the Tiger (Rocky III)",
+    "artist": "Survivor",
+    "year": 1982,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Up Where We Belong (An Officer and a Gentleman)",
+    "artist": "Joe Cocker & Jennifer Warnes",
+    "year": 1982,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Flashdance... What a Feeling",
+    "artist": "Irene Cara",
+    "year": 1983,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Ghostbusters",
+    "artist": "Ray Parker Jr.",
+    "year": 1984,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Take My Breath Away (Top Gun)",
+    "artist": "Berlin",
+    "year": 1986,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "(I've Had) The Time of My Life (Dirty Dancing)",
+    "artist": "Bill Medley & Jennifer Warnes",
+    "year": 1987,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "(Everything I Do) I Do It for You (Robin Hood: Prince of Thieves)",
+    "artist": "Bryan Adams",
+    "year": 1991,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "I Will Always Love You (The Bodyguard)",
+    "artist": "Whitney Houston",
+    "year": 1992,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "My Heart Will Go On (Titanic)",
+    "artist": "Celine Dion",
+    "year": 1997,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Lose Yourself (8 Mile)",
+    "artist": "Eminem",
+    "year": 2002,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "He's a Pirate (Pirates of the Caribbean)",
+    "artist": "Klaus Badelt / Hans Zimmer",
+    "year": 2003,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Time (Inception)",
+    "artist": "Hans Zimmer",
+    "year": 2010,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Skyfall",
+    "artist": "Adele",
+    "year": 2012,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "Writing's on the Wall (Spectre)",
+    "artist": "Sam Smith",
+    "year": 2015,
+    "country": "int",
+    "categories": [
+      "movie-themes"
+    ]
+  },
+  {
+    "title": "She Loves You",
+    "artist": "The Beatles",
+    "year": 1963,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "You Really Got Me",
+    "artist": "The Kinks",
+    "year": 1964,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "My Generation",
+    "artist": "The Who",
+    "year": 1965,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Paint It Black",
+    "artist": "The Rolling Stones",
+    "year": 1966,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Waterloo Sunset",
+    "artist": "The Kinks",
+    "year": 1967,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Brown Sugar",
+    "artist": "The Rolling Stones",
+    "year": 1971,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Starman",
+    "artist": "David Bowie",
+    "year": 1972,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Don't Stop Me Now",
+    "artist": "Queen",
+    "year": 1978,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "London Calling",
+    "artist": "The Clash",
+    "year": 1979,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Love Will Tear Us Apart",
+    "artist": "Joy Division",
+    "year": 1980,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Don't You Want Me",
+    "artist": "The Human League",
+    "year": 1981,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Every Breath You Take",
+    "artist": "The Police",
+    "year": 1983,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "There Is a Light That Never Goes Out",
+    "artist": "The Smiths",
+    "year": 1986,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "With or Without You",
+    "artist": "U2",
+    "year": 1987,
+    "country": "int",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Creep",
+    "artist": "Radiohead",
+    "year": 1992,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Common People",
+    "artist": "Pulp",
+    "year": 1995,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Wonderwall",
+    "artist": "Oasis",
+    "year": 1995,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Bitter Sweet Symphony",
+    "artist": "The Verve",
+    "year": 1997,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Song 2",
+    "artist": "Blur",
+    "year": 1997,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Yellow",
+    "artist": "Coldplay",
+    "year": 2000,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "I Bet You Look Good on the Dancefloor",
+    "artist": "Arctic Monkeys",
+    "year": 2005,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Sex on Fire",
+    "artist": "Kings of Leon",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Do I Wanna Know?",
+    "artist": "Arctic Monkeys",
+    "year": 2013,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "The Merry-Go-Round Broke Down (Looney Tunes Theme)",
+    "artist": "Carl Stalling",
+    "year": 1937,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Meet the Flintstones (The Flintstones Theme)",
+    "artist": "Hoyt Curtin",
+    "year": 1962,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "The Jetsons Main Theme",
+    "artist": "Hoyt Curtin",
+    "year": 1962,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Scooby-Doo, Where Are You!",
+    "artist": "Larry Marks",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "I'm Just a Bill (Schoolhouse Rock!)",
+    "artist": "Jack Sheldon",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "DuckTales Theme",
+    "artist": "Jeff Pescetto",
+    "year": 1987,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Teenage Mutant Ninja Turtles Theme",
+    "artist": "Chuck Lorre / Dennis C. Brown",
+    "year": 1987,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "The Simpsons Theme",
+    "artist": "Danny Elfman",
+    "year": 1989,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Tiny Toon Adventures Theme",
+    "artist": "Bruce Broughton",
+    "year": 1990,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Batman: The Animated Series Theme",
+    "artist": "Danny Elfman",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Animaniacs Theme Song",
+    "artist": "Richard Stone",
+    "year": 1993,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Pinky and the Brain Theme",
+    "artist": "Richard Stone",
+    "year": 1995,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Pokemon Theme (Gotta Catch 'Em All)",
+    "artist": "Jason Paige",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "The Powerpuff Girls Theme",
+    "artist": "James L. Venable / Thomas Chase",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "SpongeBob SquarePants Theme Song",
+    "artist": "Painty the Pirate (Patrick Pinney)",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Teen Titans Theme",
+    "artist": "Puffy AmiYumi",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Avatar: The Last Airbender Theme",
+    "artist": "Jeremy Zuckerman / Benjamin Wynn",
+    "year": 2005,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Today Is Gonna Be a Great Day (Phineas and Ferb Theme)",
+    "artist": "Bowling for Soup",
+    "year": 2007,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Adventure Time Theme Song",
+    "artist": "Pendleton Ward",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Regular Show Theme",
+    "artist": "Mark Mothersbaugh",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Gravity Falls Theme (Made Me Realize)",
+    "artist": "Brad Breeck",
+    "year": 2012,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "We Are the Crystal Gems (Steven Universe Theme)",
+    "artist": "Rebecca Sugar",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "us-cartoon"
+    ]
+  },
+  {
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "I Wanna Dance with Somebody (Who Loves Me)",
+    "artist": "Whitney Houston",
+    "year": 1987,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Like a Prayer",
+    "artist": "Madonna",
+    "year": 1989,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Wannabe",
+    "artist": "Spice Girls",
+    "year": 1996,
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "...Baby One More Time",
+    "artist": "Britney Spears",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Genie in a Bottle",
+    "artist": "Christina Aguilera",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Crazy in Love",
+    "artist": "Beyonce",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Hey Ya!",
+    "artist": "OutKast",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Since U Been Gone",
+    "artist": "Kelly Clarkson",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Umbrella",
+    "artist": "Rihanna",
+    "year": 2007,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Poker Face",
+    "artist": "Lady Gaga",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Rolling in the Deep",
+    "artist": "Adele",
+    "year": 2010,
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Call Me Maybe",
+    "artist": "Carly Rae Jepsen",
+    "year": 2011,
+    "country": "int",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Party Rock Anthem",
+    "artist": "LMFAO",
+    "year": 2011,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Happy",
+    "artist": "Pharrell Williams",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Shake It Off",
+    "artist": "Taylor Swift",
+    "year": 2014,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Uptown Funk",
+    "artist": "Mark Ronson feat. Bruno Mars",
+    "year": 2014,
+    "country": "int",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Shape of You",
+    "artist": "Ed Sheeran",
+    "year": 2017,
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Bad Guy",
+    "artist": "Billie Eilish",
+    "year": 2019,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "year": 2019,
+    "country": "int",
+    "categories": [
+      "uspop"
+    ]
   },
   {
     "title": "Levitating",
     "artist": "Dua Lipa",
     "year": 2020,
-    "region": "international"
-  },
-  {
-    "title": "As It Was",
-    "artist": "Harry Styles",
-    "year": 2022,
-    "region": "international"
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
   },
   {
     "title": "Flowers",
     "artist": "Miley Cyrus",
     "year": 2023,
-    "region": "international"
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Melt",
+    "artist": "supercell (ryo) feat. Hatsune Miku",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Hatsune Miku no Shoushitsu (The Disappearance of Hatsune Miku)",
+    "artist": "cosMo@Bousou-P feat. Hatsune Miku",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Koi wa Sensou (Love Is War)",
+    "artist": "supercell (ryo) feat. Hatsune Miku",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "World is Mine",
+    "artist": "supercell (ryo) feat. Hatsune Miku",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Just Be Friends",
+    "artist": "Dixie Flatline feat. Megurine Luka",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Romeo and Cinderella",
+    "artist": "doriko feat. Hatsune Miku",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Uraomote Lovers (Two-Faced Lovers)",
+    "artist": "wowaka feat. Hatsune Miku",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Deep Sea Girl (Shinkai Shoujo)",
+    "artist": "Yuuyu feat. Hatsune Miku",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Matryoshka",
+    "artist": "Hachi feat. Hatsune Miku & GUMI",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Rolling Girl",
+    "artist": "wowaka feat. Hatsune Miku",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Panda Hero",
+    "artist": "Hachi feat. GUMI",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Senbonzakura",
+    "artist": "Kurousa-P feat. Hatsune Miku",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "ODDS&ENDS",
+    "artist": "ryo (supercell) feat. Hatsune Miku",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Tell Your World",
+    "artist": "livetune (kz) feat. Hatsune Miku",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Donut Hole",
+    "artist": "Hachi feat. GUMI",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Hibikase",
+    "artist": "Giga-P & reol feat. Hatsune Miku",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Sharing the World",
+    "artist": "BIGHEAD feat. Hatsune Miku",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Streaming Heart",
+    "artist": "DECO*27 feat. Hatsune Miku",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Ghost Rule",
+    "artist": "DECO*27 feat. Hatsune Miku",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Suna no Wakusei (Sand Planet)",
+    "artist": "Hachi feat. Hatsune Miku",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Ai Kotoba III (Love Words III)",
+    "artist": "DECO*27 feat. Hatsune Miku",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
+  },
+  {
+    "title": "Vampire",
+    "artist": "DECO*27 feat. Hatsune Miku",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "vocaloid"
+    ]
   }
 ]

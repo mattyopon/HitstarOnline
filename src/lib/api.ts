@@ -2,7 +2,7 @@
 import { getSessionUser, SessionUser } from "./auth";
 import { GameError } from "./engine";
 import { ConflictError, NotFoundError } from "./rooms";
-import { BotDifficulty, GameMode, GameSettings, PlayerSeed } from "./protocol";
+import { BotDifficulty, CATEGORY_IDS, GameMode, GameSettings, PlayerSeed } from "./protocol";
 
 export function json(data: unknown, status = 200) {
   return Response.json(data, { status });
@@ -36,6 +36,11 @@ export function sanitizeSettings(input: unknown): Partial<GameSettings> {
   }
   if (typeof s.targetCards === "number" && s.targetCards >= 3 && s.targetCards <= 20) {
     out.targetCards = Math.floor(s.targetCards);
+  }
+  if (Array.isArray(s.categories)) {
+    out.categories = [...new Set(s.categories)].filter(
+      (x): x is string => typeof x === "string" && CATEGORY_IDS.has(x),
+    );
   }
   return out;
 }

@@ -11,6 +11,8 @@ export type GameMode = "original" | "pro" | "expert";
 
 export interface GameSettings {
   mode: GameMode;
+  /** Song category ids to draw from (empty = all categories). */
+  categories: string[];
   /** Earned cards (excluding the starting seed) needed to win. Official = 10. */
   targetCards: number;
   /** Tokens each player starts with. */
@@ -62,6 +64,7 @@ export const BOT_NAMES = ["アオイ", "ハル", "ミオ", "ソラ", "リク", "
 export function defaultSettings(): GameSettings {
   return {
     mode: "original",
+    categories: [],
     targetCards: 10,
     startingTokens: 2,
     maxTokens: 5,
@@ -198,4 +201,39 @@ export interface Song {
   artist: string;
   year: number;
   region?: string;
+  /** Country of origin, e.g. "jp" | "us" | "cn" | "kr" | "intl". */
+  country?: string;
+  /** Category tags (e.g. ["jp-anime"]); used for category-filtered decks. */
+  categories?: string[];
+  /** Alternate titles/scripts/romanizations for cross-language matching. */
+  aliases?: string[];
+  artistAliases?: string[];
 }
+
+export interface CategoryDef {
+  id: string;
+  labelJa: string;
+  labelEn: string;
+}
+
+/** Selectable song categories (shared by client + server). */
+export const CATEGORIES: CategoryDef[] = [
+  { id: "jpop", labelJa: "J-POP", labelEn: "J-Pop" },
+  { id: "jp-anime", labelJa: "アニメ(日)", labelEn: "Anime (JP)" },
+  { id: "vocaloid", labelJa: "ボカロ", labelEn: "Vocaloid" },
+  { id: "uspop", labelJa: "洋楽ポップ", labelEn: "US Pop" },
+  { id: "us-cartoon", labelJa: "アニメ(米)", labelEn: "Cartoon (US)" },
+  { id: "disney", labelJa: "ディズニー", labelEn: "Disney" },
+  { id: "uk-rock", labelJa: "UKロック", labelEn: "UK Rock" },
+  { id: "kpop", labelJa: "K-POP", labelEn: "K-Pop" },
+  { id: "cn-anime", labelJa: "アニメ(中)", labelEn: "Anime (CN)" },
+  { id: "game-music", labelJa: "ゲーム音楽", labelEn: "Game Music" },
+  { id: "movie-themes", labelJa: "映画音楽", labelEn: "Movie Themes" },
+  { id: "latin", labelJa: "ラテン", labelEn: "Latin" },
+  { id: "famous-in-japan", labelJa: "日本で人気", labelEn: "Famous in Japan" },
+  { id: "famous-in-usa", labelJa: "アメリカで人気", labelEn: "Famous in USA" },
+  { id: "famous-in-korea", labelJa: "韓国で人気", labelEn: "Famous in Korea" },
+  { id: "famous-in-china", labelJa: "中国で人気", labelEn: "Famous in China" },
+];
+
+export const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id));
