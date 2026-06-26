@@ -82,6 +82,30 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
       .upsert({ key, youtube_id: ytId, updated_at: new Date().toISOString() });
   }
   game.public.current.youtubeId = ytId;
+
+  // Re-anchor the listening clock to the moment the song actually becomes
+  // playable. beginTurn() starts the clock at turn-begin, but resolving the
+  // YouTube id (this function — a network lookup) can take several seconds.
+  // Without re-anchoring, that latency is silently subtracted from the listening
+  // window AND from the 10s early-placement bonus window ("within 10s of song
+  // START"), so a player who places correctly and quickly still misses the bonus
+  // token because the server clock already passed 10s before they heard a note.
+  // Only on a fresh placing turn (no extension, still listening).
+  if (
+    ytId &&
+    game.public.phase === "placing" &&
+    game.public.listeningEndedAt == null &&
+    !game.public.listeningExtended
+  ) {
+    const s = game.public.settings;
+    const now = Date.now();
+    const listenDur = game.public.listenDurationMs ?? (s.listenSeconds ?? 30) * 1000;
+    const placeDur = (s.placementSeconds ?? 30) * 1000;
+    game.public.current.startedAt = now;
+    game.public.listenStartedAt = now;
+    game.public.placementDeadline = now + listenDur + placeDur;
+    game.public.deadline = game.public.placementDeadline;
+  }
 }
 
 async function persist(roomId: string, expectedVersion: number, game: FullGame): Promise<void> {

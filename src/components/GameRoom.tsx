@@ -38,11 +38,12 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const [gArtist, setGArtist] = useState("");
   const [busy, setBusy] = useState(false);
   const [actionErr, setActionErr] = useState<string | null>(null);
-  // "横取りしない" preference (per player, persisted). Default ON → auto-pass.
+  // "横取りしない" preference (per player, persisted). Default OFF: opponents get
+  // the full steal window to react. Opt-in ON makes you auto-pass for fast games.
   const [dontSteal, setDontSteal] = useState<boolean>(() => {
-    if (typeof window === "undefined") return true;
+    if (typeof window === "undefined") return false;
     const v = localStorage.getItem("hitstar_dont_steal");
-    return v == null ? true : v === "true";
+    return v == null ? false : v === "true";
   });
   const [showSettings, setShowSettings] = useState(false);
   // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
