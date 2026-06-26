@@ -13,10 +13,11 @@ const FRESH_MS = 5 * 60 * 1000; // ignore lobbies older than 5 min
 /**
  * POST /api/rank/matchmake → { code }
  * Tier-bucketed find-or-create over the EXISTING room system.
- *  1. Reject anonymous (guests cannot play ranked).
- *  2. Lazy-create the user's ranking, read their tier.
- *  3. Find an open, fresh, non-full ranked lobby of that tier → join it.
- *  4. Else create a new ranked lobby (tier fixed at creation by createRoom).
+ *  1. Lazy-create the user's ranking, read their tier (guests included).
+ *  2. Find an open, fresh, non-full ranked lobby of that tier → join it.
+ *  3. Else create a new ranked lobby (tier fixed at creation by createRoom).
+ * Ranked is open to everyone (guests too); the ladder keys on the user id,
+ * which exists for anonymous sessions as well.
  * Concurrency: joinRoom's optimistic-version retry serializes simultaneous
  * callers; a filled/started room just falls through to the next candidate or a
  * fresh create. A rare double-create yields two half-full lobbies that later fill.
@@ -24,9 +25,6 @@ const FRESH_MS = 5 * 60 * 1000; // ignore lobbies older than 5 min
 export async function POST(req: Request) {
   const user = await requireUser();
   if (user instanceof Response) return user;
-  if (user.isAnonymous) {
-    return json({ error: "ランクマッチには Google ログインが必要です" }, 403);
-  }
 
   try {
     const body = await readBody(req);

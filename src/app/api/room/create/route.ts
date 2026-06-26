@@ -42,11 +42,8 @@ export async function POST(req: Request) {
       return json({ code, solo: true, practice });
     }
 
-    // Casual multiplayer is open to guests; only ranked requires a Google account.
+    // Both casual and ranked are open to everyone, guests included.
     const settings = sanitizeSettings(body.settings);
-    if (settings.ranked && user.isAnonymous) {
-      return json({ error: "ランクマッチには Google ログインが必要です" }, 403);
-    }
     const { code } = await createRoom(seed, settings);
     return json({ code });
   } catch (e) {

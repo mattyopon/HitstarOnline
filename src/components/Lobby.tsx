@@ -161,11 +161,9 @@ export function Lobby({ user }: { user: ClientUser }) {
           {user.isAnonymous ? t("ゲスト") : "Google"}
         </span>
         <div className="row" style={{ gap: 6 }}>
-          {!user.isAnonymous && (
-            <button className="btn ghost tiny" onClick={() => setShowStats(true)}>
-              📊 {t("戦績")}
-            </button>
-          )}
+          <button className="btn ghost tiny" onClick={() => setShowStats(true)}>
+            📊 {t("戦績")}
+          </button>
           <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title={t("設定")}>
             ⚙️
           </button>
@@ -256,7 +254,7 @@ export function Lobby({ user }: { user: ClientUser }) {
         <>
           {user.isAnonymous && (
             <div className="notice stack tiny" style={{ gap: 8 }}>
-              <span>{t("👤 ゲストでもみんなで遊べます。🏆ランクや⭐お気に入りには Google ログインを。")}</span>
+              <span>{t("👤 ゲストでもランク戦・対戦が遊べます。⭐お気に入り保存には Google ログインを。")}</span>
               <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
                 {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
               </button>
@@ -264,7 +262,7 @@ export function Lobby({ user }: { user: ClientUser }) {
           )}
 
           <label className="tiny muted">{t("ルール")}</label>
-          {ranked && !user.isAnonymous ? (
+          {ranked ? (
             <div className="notice tiny">
               {t("🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。")}
             </div>
@@ -276,19 +274,17 @@ export function Lobby({ user }: { user: ClientUser }) {
             </select>
           )}
 
-          {!user.isAnonymous && (
-            <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
-              <input
-                type="checkbox"
-                checked={ranked}
-                onChange={(e) => setRanked(e.target.checked)}
-                style={{ width: "auto" }}
-              />
-              <span className="tiny">{t("🏆 ランクマッチで遊ぶ（戦績に記録）")}</span>
-            </label>
-          )}
+          <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={ranked}
+              onChange={(e) => setRanked(e.target.checked)}
+              style={{ width: "auto" }}
+            />
+            <span className="tiny">{t("🏆 ランクマッチで遊ぶ（戦績に記録）")}</span>
+          </label>
 
-          {ranked && !user.isAnonymous ? (
+          {ranked ? (
             <>
               <button className="btn block gold" onClick={matchmake} disabled={!!busy}>
                 {busy === "matchmake" ? t("対戦相手を探しています…") : t("🏆 ランクマッチを探す")}

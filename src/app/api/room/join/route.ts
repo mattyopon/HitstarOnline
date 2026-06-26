@@ -11,9 +11,9 @@ export async function POST(req: Request) {
   const code = typeof body.code === "string" ? body.code.trim().toUpperCase() : "";
   if (!code) return json({ error: "部屋コードを入力してください" }, 400);
   try {
-    // Guests may join casual rooms; joinRoom rejects guests from ranked rooms.
+    // Casual and ranked are both open to everyone (guests included).
     // Return the public state so a reconnecting client can resync immediately.
-    const game = await joinRoom(code, seedFrom(user, body.name), user.isAnonymous);
+    const game = await joinRoom(code, seedFrom(user, body.name));
     return json({ code, state: game.public });
   } catch (e) {
     return mapError(e);

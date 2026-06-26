@@ -12,7 +12,6 @@ import {
   addPlayer,
   createLobby,
   currentSongId,
-  GameError,
   needsTrackResolution,
   removePlayer,
 } from "./engine";
@@ -205,24 +204,17 @@ export async function createRoom(
   throw new Error("部屋コードの生成に失敗しました");
 }
 
-export async function joinRoom(
-  code: string,
-  seed: PlayerSeed,
-  isAnonymous = false,
-): Promise<FullGame> {
+export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame> {
   const admin = createAdminClient();
   // Retry on version conflict: concurrent joins (or duplicate calls) race on the
   // optimistic version; reloading and re-applying addPlayer is safe & idempotent.
   // Membership is granted only AFTER addPlayer succeeds, so a rejected join
   // (e.g. game already started) never leaves lingering read access.
+  // Both casual and ranked rooms are open to everyone (guests included).
   let lastConflict: ConflictError | null = null;
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     const loaded = await loadByCode(code);
     if (!loaded) throw new NotFoundError("部屋が見つかりません");
-    // Casual rooms are open to guests; ranked rooms require a Google account.
-    if (loaded.game.public.settings.ranked && isAnonymous) {
-      throw new GameError("ランクマッチには Google ログインが必要です");
-    }
     const expected = loaded.game.public.version;
     // addPlayer adds new lobby players and reconnects existing ones; it rejects
     // brand-new players once the game has started (throws GameError → no retry).
