@@ -15,6 +15,7 @@ import {
   BOT_PROFILES,
   BotDifficulty,
   BotProfile,
+  DEFAULT_SETTINGS,
   FullGame,
   GameSettings,
   MODE_START_TOKENS,
@@ -89,21 +90,21 @@ function eligibleStealers(state: PublicState): PublicPlayer[] {
   );
 }
 
-// ── Timing accessors (with backward-compat defaults for old persisted rooms) ──
+// ── Timing accessors (fall back to DEFAULT_SETTINGS for old persisted rooms) ──
 export function listenMs(s: GameSettings): number {
-  return (s.listenSeconds ?? 30) * 1000;
+  return (s.listenSeconds ?? DEFAULT_SETTINGS.listenSeconds) * 1000;
 }
 export function placeMs(s: GameSettings): number {
-  return (s.placementSeconds ?? 30) * 1000;
+  return (s.placementSeconds ?? DEFAULT_SETTINGS.placementSeconds) * 1000;
 }
 function stealMs(s: GameSettings): number {
-  return (s.stealSeconds ?? 10) * 1000;
+  return (s.stealSeconds ?? DEFAULT_SETTINGS.stealSeconds) * 1000;
 }
 function earlyMs(s: GameSettings): number {
-  return s.earlyBonusMs ?? 10000;
+  return s.earlyBonusMs ?? DEFAULT_SETTINGS.earlyBonusMs;
 }
 function earlyTokens(s: GameSettings): number {
-  return s.earlyBonusTokens ?? 2;
+  return s.earlyBonusTokens ?? DEFAULT_SETTINGS.earlyBonusTokens;
 }
 
 /** True once every still-eligible (token-holding, connected) opponent has
@@ -274,8 +275,10 @@ function drawNext(secret: SecretState): number | null {
   return songId;
 }
 
-/** Begin a turn: draw the mystery card and open the placing phase. */
-function beginTurn(g: FullGame, songs: Song[], now: number): void {
+/** Begin a turn: draw the mystery card and open the placing phase.
+ *  (`_songs` is unused here — kept for call-site symmetry with the other
+ *  transitions; the mystery card is materialized lazily at reveal.) */
+function beginTurn(g: FullGame, _songs: Song[], now: number): void {
   const songId = drawNext(g.secret);
   if (songId === null) {
     endGame(g);
@@ -403,7 +406,7 @@ export function extendListening(game: FullGame, userId: string, now: number): Fu
   const g = clone(game);
   const s = g.public.settings;
   if (g.public.phase !== "placing") throw new GameError("今は試聴を延長できません");
-  if (!(s.allowExtend ?? true)) throw new GameError("試聴延長は無効です");
+  if (!(s.allowExtend ?? DEFAULT_SETTINGS.allowExtend)) throw new GameError("試聴延長は無効です");
   const active = activePlayer(g.public);
   if (active.userId !== userId) throw new GameError("あなたの番ではありません");
   if (g.public.listeningExtended) throw new GameError("試聴延長は1回までです");
@@ -413,12 +416,12 @@ export function extendListening(game: FullGame, userId: string, now: number): Fu
   if (now >= start + dur || g.public.listeningEndedAt != null) {
     throw new GameError("試聴は既に終了しました");
   }
-  const cost = s.extendCost ?? 1;
+  const cost = s.extendCost ?? DEFAULT_SETTINGS.extendCost;
   if (active.tokens < cost) throw new GameError("トークンが足りません");
 
   active.tokens -= cost;
   g.public.listeningExtended = true;
-  g.public.listenDurationMs = dur + (s.extendSeconds ?? 60) * 1000;
+  g.public.listenDurationMs = dur + (s.extendSeconds ?? DEFAULT_SETTINGS.extendSeconds) * 1000;
   // Placement deadline shifts with the longer listening window; the early-bonus
   // cutoff (start + earlyMs) is UNCHANGED — it is measured from the song start.
   g.public.placementDeadline = start + g.public.listenDurationMs + placeMs(s);
@@ -598,7 +601,7 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
   // placement is correct (stacks on the early/naming bonuses). Independent of
   // whether they ultimately keep the card (pro/expert may still lose it to a
   // stealer without naming) — the reward is for reading the year correctly.
-  const placementTokens = g.public.settings.placementTokens ?? 1;
+  const placementTokens = g.public.settings.placementTokens ?? DEFAULT_SETTINGS.placementTokens;
   if (placementCorrect && placementTokens > 0) {
     const gained = Math.min(g.public.settings.maxTokens - active.tokens, placementTokens);
     if (gained > 0) active.tokens += gained;

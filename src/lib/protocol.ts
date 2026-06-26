@@ -110,6 +110,11 @@ export function defaultSettings(): GameSettings {
   };
 }
 
+/** Frozen canonical defaults — the single source for the backward-compat
+ *  fallbacks used when reading possibly-old persisted settings
+ *  (e.g. `s.listenSeconds ?? DEFAULT_SETTINGS.listenSeconds`). */
+export const DEFAULT_SETTINGS: Readonly<GameSettings> = Object.freeze(defaultSettings());
+
 /** A revealed song card sitting on a player's timeline. */
 export interface TimelineCard {
   /** Unique instance id for this card placement. */
