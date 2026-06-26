@@ -89,6 +89,30 @@ function eligibleStealers(state: PublicState): PublicPlayer[] {
   );
 }
 
+// ── Timing accessors (with backward-compat defaults for old persisted rooms) ──
+function listenMs(s: GameSettings): number {
+  return (s.listenSeconds ?? 30) * 1000;
+}
+function placeMs(s: GameSettings): number {
+  return (s.placementSeconds ?? 30) * 1000;
+}
+function stealMs(s: GameSettings): number {
+  return (s.stealSeconds ?? 10) * 1000;
+}
+function earlyMs(s: GameSettings): number {
+  return s.earlyBonusMs ?? 10000;
+}
+function earlyTokens(s: GameSettings): number {
+  return s.earlyBonusTokens ?? 2;
+}
+
+/** True once every still-eligible (token-holding, connected) opponent has
+ *  decided steal-or-pass — lets the steal phase end before its 10s deadline. */
+function allStealersDecided(state: PublicState): boolean {
+  const decisions = state.stealerDecisions ?? {};
+  return eligibleStealers(state).every((p) => decisions[p.userId] !== undefined);
+}
+
 // ─── Lobby ──────────────────────────────────────────────────────────────────
 
 export function createLobby(
@@ -268,9 +292,20 @@ function beginTurn(g: FullGame, songs: Song[], now: number): void {
   g.public.guess = undefined;
   g.public.steals = [];
   g.public.stealOpenedAt = undefined;
+  g.public.stealerDecisions = undefined;
   g.public.reveal = undefined;
+
+  // Listening window: song plays listenSeconds, then placementSeconds to place.
+  const s = g.public.settings;
+  g.public.listenStartedAt = now;
+  g.public.listenDurationMs = listenMs(s);
+  g.public.listeningExtended = false;
+  g.public.listeningEndedAt = null;
+  g.public.earlyBonusAwarded = false;
+  g.public.placementDeadline = now + listenMs(s) + placeMs(s);
+
   g.public.phase = "placing";
-  g.public.deadline = now + g.public.settings.placeSeconds * 1000;
+  g.public.deadline = g.public.placementDeadline;
   g.public.deckRemaining = g.secret.deck.length - g.secret.drawPos;
 }
 
@@ -329,18 +364,62 @@ export function placeCard(
   if (active.userId !== userId) throw new GameError("あなたの番ではありません");
   if (slotIndex < 0 || slotIndex > active.timeline.length) throw new GameError("配置位置が不正です");
 
+  const s = g.public.settings;
+  const song = songs[g.secret.currentSongId ?? -1];
+
+  // Submitting ends the listening window (music stops) if still listening.
+  if (g.public.listeningEndedAt == null) g.public.listeningEndedAt = now;
+
   g.public.placement = { slotIndex };
   g.public.guess = guess && (guess.title || guess.artist) ? { ...guess } : undefined;
+
+  // Early-placement bonus: correct AND within earlyBonusMs of the song START.
+  const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
+  const correct = !!song && isPlacementCorrect(active.timeline, slotIndex, song.year);
+  if (correct && now - start <= earlyMs(s) && !g.public.earlyBonusAwarded) {
+    active.tokens = Math.min(s.maxTokens, active.tokens + earlyTokens(s));
+    g.public.earlyBonusAwarded = true;
+  }
 
   // Open stealing if anyone can; otherwise resolve immediately.
   if (eligibleStealers(g.public).length > 0) {
     g.public.phase = "stealing";
-    g.public.deadline = now + g.public.settings.stealSeconds * 1000;
+    g.public.deadline = now + stealMs(s);
     g.public.stealOpenedAt = now;
+    g.public.stealerDecisions = {};
     g.public.version++;
     return g;
   }
   resolve(g, songs, now);
+  g.public.version++;
+  return g;
+}
+
+/** Spend a token to extend the listening window (一回のみ / one-time per turn). */
+export function extendListening(game: FullGame, userId: string, now: number): FullGame {
+  const g = clone(game);
+  const s = g.public.settings;
+  if (g.public.phase !== "placing") throw new GameError("今は試聴を延長できません");
+  if (!(s.allowExtend ?? true)) throw new GameError("試聴延長は無効です");
+  const active = activePlayer(g.public);
+  if (active.userId !== userId) throw new GameError("あなたの番ではありません");
+  if (g.public.listeningExtended) throw new GameError("試聴延長は1回までです");
+
+  const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
+  const dur = g.public.listenDurationMs ?? listenMs(s);
+  if (now >= start + dur || g.public.listeningEndedAt != null) {
+    throw new GameError("試聴は既に終了しました");
+  }
+  const cost = s.extendCost ?? 1;
+  if (active.tokens < cost) throw new GameError("トークンが足りません");
+
+  active.tokens -= cost;
+  g.public.listeningExtended = true;
+  g.public.listenDurationMs = dur + (s.extendSeconds ?? 60) * 1000;
+  // Placement deadline shifts with the longer listening window; the early-bonus
+  // cutoff (start + earlyMs) is UNCHANGED — it is measured from the song start.
+  g.public.placementDeadline = start + g.public.listenDurationMs + placeMs(s);
+  g.public.deadline = g.public.placementDeadline;
   g.public.version++;
   return g;
 }
@@ -419,9 +498,32 @@ export function stealCard(
 
   p.tokens -= 1;
   g.public.steals.push({ userId, slotIndex, at: now });
+  g.public.stealerDecisions = g.public.stealerDecisions ?? {};
+  g.public.stealerDecisions[userId] = "steal";
 
-  // If nobody else can steal, resolve now.
-  if (eligibleStealers(g.public).length === 0) {
+  // Resolve once every still-eligible opponent has decided (stolen or passed).
+  if (allStealersDecided(g.public)) {
+    resolve(g, songs, now);
+  }
+  g.public.version++;
+  return g;
+}
+
+/** Decline to steal. When every eligible stealer has decided, resolve early. */
+export function passSteal(game: FullGame, userId: string, songs: Song[], now: number): FullGame {
+  const g = clone(game);
+  if (g.public.phase !== "stealing") throw new GameError("今は横取りをスキップできません");
+  const active = activePlayer(g.public);
+  if (userId === active.userId) throw new GameError("自分の番では横取りをスキップできません");
+  const p = getPlayer(g.public, userId);
+  if (p.tokens <= 0) throw new GameError("横取り対象ではありません");
+  if (g.public.steals.some((x) => x.userId === userId)) throw new GameError("既に横取り済みです");
+  if (g.public.stealerDecisions?.[userId]) throw new GameError("既に決定済みです");
+
+  g.public.stealerDecisions = g.public.stealerDecisions ?? {};
+  g.public.stealerDecisions[userId] = "pass";
+
+  if (allStealersDecided(g.public)) {
     resolve(g, songs, now);
   }
   g.public.version++;
@@ -473,6 +575,18 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     tokenAwards.push({ userId: active.userId, namedTitle, namedArtist, tokensGained });
   }
 
+  // Early-placement bonus tokens were already credited in placeCard; record the
+  // award here so the reveal can show it (no token math repeated).
+  if (g.public.earlyBonusAwarded) {
+    tokenAwards.push({
+      userId: active.userId,
+      namedTitle: false,
+      namedArtist: false,
+      tokensGained: earlyTokens(g.public.settings),
+      reason: "早置きボーナス",
+    });
+  }
+
   // In Pro/Expert the active player must also name the song to KEEP the card.
   const namingOk = mode === "original" ? true : namedBoth;
   const activeKeeps = placementCorrect && namingOk;
@@ -518,6 +632,8 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     placementSlot,
     activeCorrect: activeKeeps,
     awardedTo,
+    earlyBonus: g.public.earlyBonusAwarded ?? false,
+    extendUsed: g.public.listeningExtended ?? false,
     steals,
     tokenAwards,
     reason,
@@ -573,14 +689,28 @@ export function advance(game: FullGame, songs: Song[], now: number): FullGame {
   const g = clone(game);
   const dl = g.public.deadline ?? Infinity;
 
-  if (g.public.phase === "placing" && now >= dl) {
-    // A bot's turn is owned by stepBots — never time it out here.
+  if (g.public.phase === "placing") {
+    // A bot's turn is owned by stepBots — never auto-mark/time-out here.
     if (isBot(activePlayer(g.public))) return game;
-    // Active (human) player timed out — no placement, card discarded.
-    g.public.placement = undefined;
-    resolve(g, songs, now);
-    g.public.version++;
-    return g;
+    const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
+    const dur = g.public.listenDurationMs ?? listenMs(g.public.settings);
+    // Placement deadline passed with no submission → discard, resolve. (Checked
+    // first so a single advance call always resolves a timed-out turn.)
+    if (now >= dl) {
+      g.public.listeningEndedAt = g.public.listeningEndedAt ?? now;
+      g.public.placement = undefined;
+      resolve(g, songs, now);
+      g.public.version++;
+      return g;
+    }
+    // Listening window ended (but still within the placement window) → stop the
+    // music by marking it, without resolving.
+    if (g.public.listeningEndedAt == null && now >= start + dur) {
+      g.public.listeningEndedAt = now;
+      g.public.version++;
+      return g;
+    }
+    return game;
   }
   if (g.public.phase === "stealing" && now >= dl) {
     resolve(g, songs, now);
@@ -716,10 +846,17 @@ export function stepBots(game: FullGame, songs: Song[], now: number): FullGame {
     const active = activePlayer(game.public);
     if (!isBot(active)) return game;
     const profile = botProfile(game, active.userId);
-    const startedAt = game.public.current?.startedAt ?? now;
+    // Bots place AFTER the listening window ends (so humans hear the full song),
+    // then think, clamped to safely before the placement deadline.
+    const start = game.public.listenStartedAt ?? game.public.current?.startedAt ?? now;
+    const dur = game.public.listenDurationMs ?? listenMs(game.public.settings);
+    const listenEnd = start + dur;
     const dl = game.public.deadline ?? Infinity;
     const SAFETY = 1500;
-    const botActAt = Math.min(startedAt + thinkMs(profile, botRng(game.public, active.seat, "think")), dl - SAFETY);
+    const botActAt = Math.min(
+      listenEnd + thinkMs(profile, botRng(game.public, active.seat, "think")),
+      dl - SAFETY,
+    );
     if (now < botActAt) return game;
     const slot = botPlaceDecision(active.timeline, year, profile, botRng(game.public, active.seat, "place"));
     return placeCard(game, active.userId, slot, undefined, songs, now);
@@ -727,8 +864,10 @@ export function stepBots(game: FullGame, songs: Song[], now: number): FullGame {
 
   if (phase === "stealing") {
     const openedAt = game.public.stealOpenedAt ?? game.public.current?.startedAt ?? now;
+    const decisions = game.public.stealerDecisions ?? {};
     const eligibleBots = eligibleStealers(game.public).filter(isBot);
     for (const bot of eligibleBots) {
+      if (decisions[bot.userId]) continue; // already decided
       const profile = botProfile(game, bot.userId);
       if (now < openedAt + thinkMs(profile, botRng(game.public, bot.seat, "stealthink"))) continue;
       const decision = botStealDecision(
@@ -738,7 +877,8 @@ export function stepBots(game: FullGame, songs: Song[], now: number): FullGame {
         botRng(game.public, bot.seat, "steal"),
         bot.tokens,
       );
-      if (decision === "pass") continue;
+      // Register a decision either way so the steal phase can end early.
+      if (decision === "pass") return passSteal(game, bot.userId, songs, now);
       return stealCard(game, bot.userId, decision.slotIndex, songs, now);
     }
     return game;
