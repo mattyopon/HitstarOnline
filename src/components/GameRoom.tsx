@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRoom } from "@/hooks/useRoom";
 import { useNow } from "@/hooks/useNow";
@@ -34,6 +34,15 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const [gArtist, setGArtist] = useState("");
   const [busy, setBusy] = useState(false);
   const [actionErr, setActionErr] = useState<string | null>(null);
+  // "横取りしない" preference (per player, persisted). Default ON → auto-pass.
+  const [dontSteal, setDontSteal] = useState<boolean>(() => {
+    if (typeof window === "undefined") return true;
+    const v = localStorage.getItem("hitstar_dont_steal");
+    return v == null ? true : v === "true";
+  });
+  // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
+  const autoPassedRound = useRef<number | null>(null);
+  const listenEndNudgedRound = useRef<number | null>(null);
 
   const phase = state?.phase;
   const round = state?.round;
@@ -87,6 +96,44 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     }, 1300);
     return () => clearInterval(iv);
   }, [version, state, code, apply]);
+
+  // Active player nudges the server at the listening-window end so the music
+  // stops promptly (advance marks listeningEndedAt) even if they don't submit.
+  useEffect(() => {
+    if (!state || state.phase !== "placing") return;
+    if (state.order[state.activeIndex] !== meId) return;
+    if (state.listeningEndedAt != null) return;
+    if (listenEndNudgedRound.current === state.round) return;
+    const start = state.listenStartedAt ?? state.current?.startedAt ?? 0;
+    const dur = state.listenDurationMs ?? (state.settings.listenSeconds ?? 30) * 1000;
+    const round = state.round;
+    const delay = Math.max(0, start + dur - Date.now()) + 200;
+    const t = setTimeout(() => {
+      listenEndNudgedRound.current = round;
+      api<{ state?: PublicState }>("/api/game/advance", { code })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {});
+    }, delay);
+    return () => clearTimeout(t);
+  }, [version, state, meId, code, apply]);
+
+  // Auto-pass the steal decision when the player has "横取りしない" enabled,
+  // so the steal phase can end without waiting the full 10s. Fires once/round.
+  useEffect(() => {
+    if (!state || state.phase !== "stealing" || !dontSteal) return;
+    if (state.order[state.activeIndex] === meId) return;
+    const meNow = state.players.find((p) => p.userId === meId);
+    if (!meNow || meNow.tokens <= 0) return;
+    if (state.steals.some((s) => s.userId === meId)) return;
+    if (state.stealerDecisions?.[meId]) return;
+    if (autoPassedRound.current === state.round) return;
+    autoPassedRound.current = state.round;
+    api<{ state?: PublicState }>("/api/game/steal-pass", { code })
+      .then((r) => r.state && apply(r.state))
+      .catch(() => {
+        autoPassedRound.current = null;
+      });
+  }, [version, state, meId, code, dontSteal, apply]);
 
   // Best-effort leave when the tab closes.
   useEffect(() => {
@@ -155,22 +202,38 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const inGame = state.phase !== "lobby";
   const revealMode = state.phase === "reveal" || state.phase === "gameover";
 
+  // Listening / placement sub-phase timing (derived from state + now).
+  const listenStart = state.listenStartedAt ?? state.current?.startedAt ?? 0;
+  const listenDur = state.listenDurationMs ?? (state.settings.listenSeconds ?? 30) * 1000;
+  const listenEndAt = listenStart + listenDur;
+  const isListening =
+    state.phase === "placing" && state.listeningEndedAt == null && now < listenEndAt;
+  const earlyCutoff = listenStart + (state.settings.earlyBonusMs ?? 10000);
+  const inEarlyWindow = state.phase === "placing" && now <= earlyCutoff;
+  const listenLeft = Math.max(0, Math.ceil((listenEndAt - now) / 1000));
+  const earlyLeft = Math.max(0, Math.ceil((earlyCutoff - now) / 1000));
+
   const playVideoId = revealMode
     ? state.reveal?.youtubeId ?? null
     : state.current?.youtubeId ?? null;
-  const playing =
-    soundOn &&
-    (state.phase === "placing" || state.phase === "stealing" || state.phase === "reveal") &&
-    !!playVideoId;
+  // Music plays only while the song is "on": the listening window, or at reveal.
+  const playing = soundOn && !!playVideoId && (isListening || state.phase === "reveal");
 
   const secondsLeft = state.deadline
     ? Math.max(0, Math.ceil((state.deadline - now) / 1000))
     : null;
 
   const alreadyStole = state.steals.some((s) => s.userId === meId);
-  const canSteal = !!me && me.tokens > 0 && !isActive && !alreadyStole;
+  const myStealDecided = alreadyStole || !!state.stealerDecisions?.[meId];
   const canBuy = !!me && isActive && me.tokens >= state.settings.buyCost;
   const canSkip = !!me && isActive && state.settings.allowSkip && me.tokens > 0;
+  const canExtend =
+    !!me &&
+    isActive &&
+    isListening &&
+    (state.settings.allowExtend ?? true) &&
+    !state.listeningExtended &&
+    me.tokens >= (state.settings.extendCost ?? 1);
 
   // ── Header ────────────────────────────────────────────────────────────────
   const header = (
@@ -267,15 +330,24 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   }
 
   // ── In-game ────────────────────────────────────────────────────────────────
-  const countdownEl = secondsLeft !== null && (
-    <div className={"countdown" + (secondsLeft <= 5 ? " urgent" : "")}>⏳ {secondsLeft}s</div>
+  const cdValue = isListening ? listenLeft : secondsLeft;
+  const cdIcon = isListening ? "🎧" : "⏳";
+  const countdownEl = cdValue !== null && (
+    <div className={"countdown" + (cdValue <= 5 ? " urgent" : "")}>
+      {cdIcon} {cdValue}s
+    </div>
   );
 
   const stage = (
     <div className="card stack">
       <div className="row spread">
         <strong>
-          {state.phase === "placing" && (isActive ? "あなたの番です！" : `${activePlayer?.name} の番`)}
+          {state.phase === "placing" &&
+            isListening &&
+            (isActive ? "🎧 試聴中（聞いて配置）" : `🎧 ${activePlayer?.name} が試聴中`)}
+          {state.phase === "placing" &&
+            !isListening &&
+            (isActive ? "⏳ 配置してOK！" : `⏳ ${activePlayer?.name} が配置中`)}
           {state.phase === "stealing" && "横取りチャンス！"}
           {state.phase === "reveal" && "結果発表"}
           {state.phase === "gameover" && "ゲーム終了"}
@@ -361,7 +433,20 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {/* Active player's placement controls */}
           {state.phase === "placing" && isActive && me && (
             <div className="card stack fade-in">
-              <strong>年表の正しい位置に置こう</strong>
+              <div className="row spread" style={{ alignItems: "center" }}>
+                <strong>
+                  {isListening ? "🎧 曲を聞いて配置しよう" : "⏳ 30秒以内に配置してOK！"}
+                </strong>
+                {inEarlyWindow && (
+                  <span
+                    className="pill"
+                    style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
+                    title="開始10秒以内に正解配置でトークン2枚"
+                  >
+                    ⚡早置き +{state.settings.earlyBonusTokens ?? 2}🪙 あと{earlyLeft}s
+                  </span>
+                )}
+              </div>
               <PlacementArea
                 cards={me.timeline}
                 selectedSlot={selectedSlot}
@@ -394,8 +479,18 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                     })
                   }
                 >
-                  ここに置く
+                  ✅ 提出（OK）
                 </button>
+                {canExtend && (
+                  <button
+                    className="btn secondary"
+                    disabled={busy}
+                    onClick={() => act("/api/game/extend", {})}
+                    title={`トークン${state.settings.extendCost ?? 1}枚で試聴を${state.settings.extendSeconds ?? 60}秒延長（1回のみ）`}
+                  >
+                    ⏱ 延長 +{state.settings.extendSeconds ?? 60}s 🪙{state.settings.extendCost ?? 1}
+                  </button>
+                )}
                 <button
                   className="btn secondary"
                   disabled={busy || !canSkip}
@@ -415,6 +510,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               </div>
               <div className="tiny muted">
                 あなたのトークン: <span className="token">🪙 {me.tokens}</span>
+                {state.listeningExtended && <span className="muted">　（延長済み）</span>}
               </div>
             </div>
           )}
@@ -422,7 +518,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {/* Non-active waiting during placing */}
           {state.phase === "placing" && !isActive && (
             <div className="card stack">
-              <div className="muted">{activePlayer?.name} が考え中… 配置されたら横取りのチャンス！</div>
+              <div className="muted">
+                {isListening
+                  ? `🎧 ${activePlayer?.name} が試聴中… 一緒に聞こう（${listenLeft}s）`
+                  : `${activePlayer?.name} が配置中… 配置されたら横取りのチャンス！`}
+              </div>
               {me && <Timeline cards={me.timeline} compact />}
             </div>
           )}
@@ -434,29 +534,58 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               {activePlayer && (
                 <Timeline cards={activePlayer.timeline} mysterySlot={state.placement?.slotIndex ?? null} compact />
               )}
+              {!isActive && (
+                <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={dontSteal}
+                    onChange={(e) => {
+                      setDontSteal(e.target.checked);
+                      try {
+                        localStorage.setItem("hitstar_dont_steal", String(e.target.checked));
+                      } catch {
+                        /* ignore */
+                      }
+                    }}
+                    style={{ width: "auto" }}
+                  />
+                  <span className="tiny">横取りしない（ONなら自動でパス）</span>
+                </label>
+              )}
               {isActive ? (
-                <div className="notice">相手の横取りを待っています…</div>
-              ) : alreadyStole ? (
-                <div className="notice">横取り済み！結果を待っています</div>
-              ) : canSteal && me ? (
+                <div className="notice">相手の判断を待っています…（{secondsLeft}s）</div>
+              ) : myStealDecided ? (
+                <div className="notice">決定済み！結果を待っています</div>
+              ) : !me || me.tokens <= 0 ? (
+                <div className="muted">トークンがないため横取りできません。</div>
+              ) : dontSteal ? (
+                <div className="notice">「横取りしない」設定のためスキップします…</div>
+              ) : (
                 <>
-                  <strong>違うと思う？正しい位置にタイルを置いて横取り！（🪙1）</strong>
+                  <strong>違うと思う？正しい位置に置いて横取り！（🪙1・あと{secondsLeft}s）</strong>
                   <PlacementArea
                     cards={me.timeline}
                     selectedSlot={selectedSlot}
                     onSelect={setSelectedSlot}
                     hint="違うと思う位置にタイルをドラッグ（タップでもOK）"
                   />
-                  <button
-                    className="btn"
-                    disabled={busy || selectedSlot === null}
-                    onClick={() => act("/api/game/steal", { slotIndex: selectedSlot })}
-                  >
-                    横取りする 🪙1
-                  </button>
+                  <div className="row wrap">
+                    <button
+                      className="btn"
+                      disabled={busy || selectedSlot === null}
+                      onClick={() => act("/api/game/steal", { slotIndex: selectedSlot })}
+                    >
+                      横取りする 🪙1
+                    </button>
+                    <button
+                      className="btn secondary"
+                      disabled={busy}
+                      onClick={() => act("/api/game/steal-pass", {})}
+                    >
+                      パス
+                    </button>
+                  </div>
                 </>
-              ) : (
-                <div className="muted">トークンがないため横取りできません。</div>
               )}
             </div>
           )}

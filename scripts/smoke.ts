@@ -7,6 +7,7 @@
 import assert from "node:assert";
 import {
   createLobby,
+  createGame,
   addPlayer,
   addBot,
   startGame,
@@ -14,6 +15,8 @@ import {
   stealCard,
   skipSong,
   buyCard,
+  extendListening,
+  passSteal,
   advance,
   isPlacementCorrect,
 } from "../src/lib/engine";
@@ -56,6 +59,7 @@ console.log("Scenario A (no tokens):");
     allowSkip: false,
     revealSeconds: 10,
     placeSeconds: 60,
+    earlyBonusMs: 0, // disable the early bonus so the "no tokens ever" invariant holds
   });
   g = addPlayer(g, { userId: "bob", name: "Bob" });
   g = addPlayer(g, { userId: "carol", name: "Carol" });
@@ -142,10 +146,10 @@ console.log("Scenario C (timeout):");
   g = addPlayer(g, { userId: "bob", name: "Bob" });
   g = startGame(g, [0, 1, 5], songs, 1000);
   const dl = g.public.deadline!;
-  // Before deadline: advance is a no-op.
-  const before = advance(g, songs, dl - 1);
-  ok("advance before deadline is no-op", before.public.version === g.public.version);
-  // After deadline: placing times out → reveal with no award.
+  // During the listening window: advance is a no-op.
+  const before = advance(g, songs, 2000);
+  ok("advance during listening is no-op", before.public.version === g.public.version);
+  // After the placement deadline: placing times out → reveal with no award.
   g = advance(g, songs, dl + 1);
   ok("placing timed out → reveal", g.public.phase === "reveal");
   ok("timeout reason set", g.public.reveal!.reason === "時間切れ");
@@ -232,6 +236,107 @@ console.log("Scenario F (abandoned room ends):");
   g = advance(g, songs, 2000);
   ok("no-human guard ends the game", g.public.phase === "gameover");
   ok("a winner is still declared", g.public.winnerId !== undefined);
+}
+
+// ── Scenario G: listening extension + early-placement bonus ────────────────
+console.log("Scenario G (extend + early bonus):");
+{
+  // alice [1960], bob [1965]; mystery 5(1985) for alice.
+  let g = createGame(
+    "ROOMGG",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 2, listenSeconds: 30, placementSeconds: 30, extendSeconds: 60, earlyBonusMs: 10000, earlyBonusTokens: 2 },
+  );
+  ok("listen 30s", g.public.listenDurationMs === 30000);
+  ok("not extended", g.public.listeningExtended === false);
+  ok("placementDeadline = start+60s", g.public.placementDeadline === 1000 + 60000);
+
+  g = extendListening(g, "alice", 5000);
+  ok("extended flag", g.public.listeningExtended === true);
+  ok("listen now 90s", g.public.listenDurationMs === 90000);
+  ok("alice spent extend token (2→1)", g.public.players[0].tokens === 1);
+  ok("placementDeadline = start+120s", g.public.placementDeadline === 1000 + 120000);
+
+  let threw = false;
+  try {
+    extendListening(g, "alice", 6000);
+  } catch {
+    threw = true;
+  }
+  ok("second extend rejected", threw);
+
+  // Submit a CORRECT placement within 10s of song start → +2 bonus.
+  g = placeCard(g, "alice", 1, undefined, songs, 8000);
+  ok("listeningEndedAt set on submit", g.public.listeningEndedAt === 8000);
+  ok("early bonus flagged", g.public.earlyBonusAwarded === true);
+  ok("alice +2 early bonus (1→3)", g.public.players[0].tokens === 3);
+}
+
+// ── Scenario H: no early bonus after the 10s window ────────────────────────
+console.log("Scenario H (no early bonus when late):");
+{
+  let g = createGame(
+    "ROOMHH",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 0, earlyBonusMs: 10000 },
+  );
+  g = placeCard(g, "alice", 1, undefined, songs, 1000 + 12000); // correct, but late
+  ok("no early bonus (late)", g.public.earlyBonusAwarded === false);
+  ok("alice tokens unchanged", g.public.players[0].tokens === 0);
+}
+
+// ── Scenario I: steal pass → early end of the steal phase ──────────────────
+console.log("Scenario I (steal pass early-end):");
+{
+  let g = createGame(
+    "ROOMII",
+    [
+      { userId: "alice", name: "Alice" },
+      { userId: "bob", name: "Bob" },
+      { userId: "carol", name: "Carol" },
+    ],
+    [0, 1, 2, 5],
+    songs,
+    1000,
+    { startingTokens: 2, stealSeconds: 10 },
+  );
+  g = placeCard(g, "alice", 1, undefined, songs, 2000);
+  ok("stealing opens", g.public.phase === "stealing");
+  ok("steal deadline = +10s", g.public.deadline === 2000 + 10000);
+  g = passSteal(g, "bob", songs, 2100);
+  ok("bob passed", g.public.stealerDecisions?.bob === "pass");
+  ok("still stealing (carol undecided)", g.public.phase === "stealing");
+  g = passSteal(g, "carol", songs, 2200);
+  ok("all decided → reveal early", g.public.phase === "reveal");
+  ok("no steals occurred", g.public.reveal!.steals.length === 0);
+}
+
+// ── Scenario J: placement timeout (listen-end mark then deadline) ──────────
+console.log("Scenario J (placement timeout):");
+{
+  let g = createGame(
+    "ROOMJJ",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 0, listenSeconds: 30, placementSeconds: 30 },
+  );
+  const pd = g.public.placementDeadline!;
+  ok("placementDeadline = listenEnd+30s", pd === 1000 + 60000);
+  g = advance(g, songs, 1000 + 30000 + 1); // mid-window → marks listen end
+  ok("listeningEndedAt marked", g.public.listeningEndedAt != null);
+  ok("still placing", g.public.phase === "placing");
+  g = advance(g, songs, pd + 1); // deadline → resolve
+  ok("timed out → reveal", g.public.phase === "reveal");
+  ok("reason 時間切れ", g.public.reveal!.reason === "時間切れ");
+  ok("no award on timeout", g.public.reveal!.awardedTo === null);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

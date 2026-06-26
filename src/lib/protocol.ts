@@ -33,6 +33,22 @@ export interface GameSettings {
   buyCost: number;
   /** Where in the YouTube track to start playback (seconds). */
   startSeconds: number;
+  /** Seconds the active player listens before the song ends. Official 30. */
+  listenSeconds: number;
+  /** Seconds to PLACE after the song ends. Official 30. */
+  placementSeconds: number;
+  /** Allow spending tokens to extend listening (延長). */
+  allowExtend: boolean;
+  /** Token cost to extend listening once. */
+  extendCost: number;
+  /** Seconds added to listening per extension. Official 60. */
+  extendSeconds: number;
+  /** Max extensions per turn. 1 = one-time (official); 0 disables. */
+  maxExtendPerTurn: number;
+  /** Early-placement bonus window from song START (ms). Official 10000. */
+  earlyBonusMs: number;
+  /** Tokens awarded for a correct early placement. Official 2. */
+  earlyBonusTokens: number;
 }
 
 /** Starting tokens per official mode. */
@@ -71,12 +87,20 @@ export function defaultSettings(): GameSettings {
     targetCards: 10,
     startingTokens: 2,
     maxTokens: 5,
-    placeSeconds: 75,
-    stealSeconds: 20,
+    placeSeconds: 75, // legacy, superseded by listenSeconds + placementSeconds
+    stealSeconds: 10, // steal-decision window
     revealSeconds: 12,
     allowSkip: true,
     buyCost: 3,
     startSeconds: 0,
+    listenSeconds: 30,
+    placementSeconds: 30,
+    allowExtend: true,
+    extendCost: 1,
+    extendSeconds: 60,
+    maxExtendPerTurn: 1,
+    earlyBonusMs: 10000,
+    earlyBonusTokens: 2,
   };
 }
 
@@ -125,6 +149,8 @@ export interface TokenAward {
   namedArtist: boolean;
   /** Tokens actually gained (Original mode: 1 only if both names correct). */
   tokensGained: number;
+  /** Optional UI label, e.g. "早置きボーナス". Omitted for the naming bonus. */
+  reason?: string;
 }
 
 export interface StealResult {
@@ -146,6 +172,10 @@ export interface RevealInfo {
   awardedTo: string | null;
   /** True when the active player bought (auto-placed) the card. */
   bought?: boolean;
+  /** True if the active player's placement earned the early-placement bonus. */
+  earlyBonus?: boolean;
+  /** True if the active player extended their listening this turn. */
+  extendUsed?: boolean;
   steals: StealResult[];
   tokenAwards: TokenAward[];
   reason?: string;
@@ -171,6 +201,20 @@ export interface PublicState {
   deadline?: number;
   /** Epoch ms when the stealing window opened (used to time bot steals). */
   stealOpenedAt?: number;
+  /** Epoch ms when the song started playing (early-bonus cutoff base). */
+  listenStartedAt?: number;
+  /** Duration of the listening window in ms (30000, or 90000 if extended). */
+  listenDurationMs?: number;
+  /** True once the active player has extended listening this turn (one-time). */
+  listeningExtended?: boolean;
+  /** Epoch ms when listening ended; null/undefined = still listening. */
+  listeningEndedAt?: number | null;
+  /** Epoch ms placement is due (= listen end + placementSeconds). */
+  placementDeadline?: number;
+  /** True if the active player's placement earned the early bonus. */
+  earlyBonusAwarded?: boolean;
+  /** Stealers who have decided (steal OR pass) — enables early steal-phase end. */
+  stealerDecisions?: Record<string, "steal" | "pass">;
   reveal?: RevealInfo;
   winnerId?: string | null;
   /** Number of cards remaining in the deck (for UI). */
