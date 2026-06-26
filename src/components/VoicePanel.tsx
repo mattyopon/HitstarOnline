@@ -77,7 +77,7 @@ export function VoicePanel({ code, players }: { code: string; players: PublicPla
                 return (
                   <div key={p.userId} className="voice-peer">
                     <span className={"speak-dot" + (p.speaking ? " on" : "")} />
-                    <span className="avatar" style={{ width: 26, height: 26, fontSize: 12 }}>
+                    <span className="avatar avatar--sm">
                       {avatarUrl ? (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img src={avatarUrl} alt="" />

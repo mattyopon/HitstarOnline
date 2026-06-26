@@ -32,7 +32,7 @@ export function PlayerList({
               className={"player-block" + (inGame && p.userId === activeId ? " active" : "")}
             >
               <div className="player-row">
-                <span className="avatar" style={{ width: 30, height: 30, fontSize: 13 }}>
+                <span className="avatar avatar--md">
                   {p.avatarUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={p.avatarUrl} alt="" />

@@ -150,7 +150,7 @@ export function Lobby({ user }: { user: ClientUser }) {
     <div className="stack">
       <div className="row spread">
         <span className="pill">
-          <span className="avatar" style={{ width: 24, height: 24, fontSize: 12 }}>
+          <span className="avatar avatar--xs">
             {user.avatarUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={user.avatarUrl} alt="" />

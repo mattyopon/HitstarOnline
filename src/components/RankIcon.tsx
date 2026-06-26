@@ -18,7 +18,7 @@ export function RankIcon({ tier, size = 20 }: RankIconProps) {
   const t = tier as Tier;
   const idx = tierIndex(t); // 0..6
   const color = tierColor(t);
-  const glow = idx * 1.4; // drop-shadow blur in px
+  const glow = size * idx * 0.06; // drop-shadow blur, PROPORTIONAL to icon size
   const animate = idx >= 3; // platinum+ animate
   const dur = (3 - idx * 0.3).toFixed(2); // faster shimmer for higher tiers
   const uid = `rk_${t}`;
@@ -33,6 +33,9 @@ export function RankIcon({ tier, size = 20 }: RankIconProps) {
         lineHeight: 0,
         verticalAlign: "middle",
         flex: "0 0 auto",
+        // Glow lives on the wrapper so it never fights the svg's brightness
+        // animation (both are `filter`) — keeps the icon's footprint constant.
+        filter: `drop-shadow(0 0 ${glow}px ${color})`,
       }}
     >
       <svg
@@ -40,7 +43,7 @@ export function RankIcon({ tier, size = 20 }: RankIconProps) {
         width={size}
         height={size}
         className={animate ? "rank-shine" : undefined}
-        style={{ filter: `drop-shadow(0 0 ${glow}px ${color})`, ["--rk-dur" as string]: `${dur}s` }}
+        style={{ display: "block", flex: "0 0 auto", ["--rk-dur" as string]: `${dur}s` }}
       >
         <defs>
           <linearGradient id={`${uid}_g`} x1="0" y1="0" x2="1" y2="1">

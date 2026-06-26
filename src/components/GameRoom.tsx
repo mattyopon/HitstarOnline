@@ -305,11 +305,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // ── Header ────────────────────────────────────────────────────────────────
   const header = (
     <div className="row spread" style={{ marginBottom: 16 }}>
-      <div className="brand" style={{ gap: 8 }}>
-        <div className="logo" style={{ width: 32, height: 32 }} />
+      <div className="brand header" style={{ gap: 8 }}>
+        <div className="logo" />
         <h1 style={{ fontSize: 18 }}>Hitstar Online</h1>
       </div>
-      <div className="row" style={{ gap: 10 }}>
+      <div className="row wrap" style={{ gap: 10 }}>
         <span className="pill">部屋 <strong style={{ letterSpacing: 2 }}>{state.code}</strong></span>
         {inGame && <span className="pill">第{state.round}ターン</span>}
         {inGame && <span className="pill">残り{state.deckRemaining}曲</span>}
@@ -335,7 +335,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const soundGate = !soundOn ? (
     <div className="tap-overlay" onClick={() => setSoundOn(true)}>
       <div className="card stack" style={{ maxWidth: 360 }}>
-        <div style={{ fontSize: 44 }}>🔊</div>
+        <div className="emoji-xl">🔊</div>
         <h2 style={{ margin: 0 }}>{t("タップして開始")}</h2>
         <p className="muted" style={{ margin: 0 }}>
           {t("音楽を再生するために一度タップしてください。")}
