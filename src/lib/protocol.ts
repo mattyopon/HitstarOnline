@@ -51,6 +51,9 @@ export interface GameSettings {
   earlyBonusMs: number;
   /** Tokens awarded for a correct early placement. Official 2. */
   earlyBonusTokens: number;
+  /** Tokens awarded to the active player for ANY correct placement (every turn).
+   *  Stacks on top of the early/naming bonuses. 0 disables. */
+  placementTokens: number;
 }
 
 /** Starting tokens per official mode. */
@@ -103,6 +106,7 @@ export function defaultSettings(): GameSettings {
     maxExtendPerTurn: 1,
     earlyBonusMs: 10000,
     earlyBonusTokens: 2,
+    placementTokens: 1,
   };
 }
 
@@ -218,6 +222,9 @@ export interface PublicState {
   placementDeadline?: number;
   /** True if the active player's placement earned the early bonus. */
   earlyBonusAwarded?: boolean;
+  /** Actual early-bonus tokens credited (after the maxTokens cap) — so the
+   *  reveal shows the real gain, not the nominal earlyBonusTokens. */
+  earlyBonusGained?: number;
   /** Stealers who have decided (steal OR pass) — enables early steal-phase end. */
   stealerDecisions?: Record<string, "steal" | "pass">;
   reveal?: RevealInfo;

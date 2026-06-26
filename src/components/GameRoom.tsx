@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRoom } from "@/hooks/useRoom";
-import { useNow } from "@/hooks/useNow";
+import { useServerNow } from "@/hooks/useServerNow";
+import { serverNow } from "@/lib/serverClock";
 import { useGoogleToken } from "@/hooks/useGoogleToken";
 import { api } from "@/lib/clientApi";
 import { Timeline } from "./Timeline";
@@ -24,7 +25,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const t = useT();
   const router = useRouter();
   const { state, error, apply } = useRoom(code, true);
-  const now = useNow();
+  // Server-corrected clock: all timing is compared against server-authored
+  // timestamps, so a skewed device clock here would silence the song / mis-time
+  // the countdown for that device only (the 3-player "can't hear" bug).
+  const now = useServerNow();
   const googleToken = useGoogleToken();
 
   const [soundOn, setSoundOn] = useState(false);
@@ -69,7 +73,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     if (!state || !state.deadline) return;
     if (state.phase === "lobby" || state.phase === "gameover") return;
     const amHost = state.hostId === meId;
-    const delay = Math.max(0, state.deadline - Date.now()) + (amHost ? 300 : 2800);
+    const delay = Math.max(0, state.deadline - serverNow()) + (amHost ? 300 : 2800);
     const t = setTimeout(() => {
       api<{ state?: PublicState }>("/api/game/advance", { code })
         .then((r) => r.state && apply(r.state))
@@ -114,7 +118,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     const start = state.listenStartedAt ?? state.current?.startedAt ?? 0;
     const dur = state.listenDurationMs ?? (state.settings.listenSeconds ?? 30) * 1000;
     const round = state.round;
-    const delay = Math.max(0, start + dur - Date.now()) + 200;
+    const delay = Math.max(0, start + dur - serverNow()) + 200;
     const t = setTimeout(() => {
       listenEndNudgedRound.current = round;
       api<{ state?: PublicState }>("/api/game/advance", { code })
@@ -225,11 +229,20 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const listenStart = state.listenStartedAt ?? state.current?.startedAt ?? 0;
   const listenDur = state.listenDurationMs ?? (state.settings.listenSeconds ?? 30) * 1000;
   const listenEndAt = listenStart + listenDur;
+  // Small grace so residual clock jitter at the boundary can't briefly silence
+  // the song; the server still authoritatively ends listening via listeningEndedAt.
+  const LISTEN_GRACE_MS = 1200;
   const isListening =
-    state.phase === "placing" && state.listeningEndedAt == null && now < listenEndAt;
+    state.phase === "placing" &&
+    state.listeningEndedAt == null &&
+    now < listenEndAt + LISTEN_GRACE_MS;
   const earlyCutoff = listenStart + (state.settings.earlyBonusMs ?? 10000);
   const inEarlyWindow = state.phase === "placing" && now <= earlyCutoff;
-  const listenLeft = Math.max(0, Math.ceil((listenEndAt - now) / 1000));
+  // While still listening (incl. the grace window) never show 0s — audio is
+  // audibly playing, so a "0s" countdown would look like a stall.
+  const listenLeft = isListening
+    ? Math.max(1, Math.ceil((listenEndAt - now) / 1000))
+    : Math.max(0, Math.ceil((listenEndAt - now) / 1000));
   const earlyLeft = Math.max(0, Math.ceil((earlyCutoff - now) / 1000));
 
   const playVideoId = revealMode
@@ -280,25 +293,29 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   );
 
   // ── Sound unlock overlay ───────────────────────────────────────────────────
-  const soundGate =
-    inGame && !soundOn ? (
-      <div className="tap-overlay" onClick={() => setSoundOn(true)}>
-        <div className="card stack" style={{ maxWidth: 360 }}>
-          <div style={{ fontSize: 44 }}>🔊</div>
-          <h2 style={{ margin: 0 }}>{t("タップして開始")}</h2>
-          <p className="muted" style={{ margin: 0 }}>
-            {t("音楽を再生するために一度タップしてください。")}
-          </p>
-          <button className="btn block">{t("サウンドを有効にする")}</button>
-        </div>
+  // Shown from the LOBBY onward (not only in-game): browsers need a user gesture
+  // before audio can autoplay, and a player who only taps after the first song
+  // has already started misses it. Pre-tapping in the lobby grants the page audio
+  // activation so the very first song plays for everyone.
+  const soundGate = !soundOn ? (
+    <div className="tap-overlay" onClick={() => setSoundOn(true)}>
+      <div className="card stack" style={{ maxWidth: 360 }}>
+        <div style={{ fontSize: 44 }}>🔊</div>
+        <h2 style={{ margin: 0 }}>{t("タップして開始")}</h2>
+        <p className="muted" style={{ margin: 0 }}>
+          {t("音楽を再生するために一度タップしてください。")}
+        </p>
+        <button className="btn block">{t("サウンドを有効にする")}</button>
       </div>
-    ) : null;
+    </div>
+  ) : null;
 
   // ── Lobby ──────────────────────────────────────────────────────────────────
   if (state.phase === "lobby") {
     const isHost = state.hostId === meId;
     return (
       <div className="container">
+        {soundGate}
         {settingsModal}
         {header}
         <div className="grid-2">
@@ -544,6 +561,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                   購入 🪙{state.settings.buyCost}
                 </button>
               </div>
+              {(state.settings.placementTokens ?? 1) > 0 && (
+                <div className="tiny muted">
+                  ✅ 正しい位置に置けば毎ターン 🪙+{state.settings.placementTokens ?? 1}
+                </div>
+              )}
               <div className="tiny muted">
                 あなたのトークン: <span className="token">🪙 {me.tokens}</span>
                 {state.listeningExtended && <span className="muted">　（延長済み）</span>}

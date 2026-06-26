@@ -47,9 +47,9 @@ export function RevealCard({
       {r.reason && <div className="tiny muted">{r.reason}</div>}
       {r.tokenAwards
         .filter((a) => a.tokensGained > 0)
-        .map((a) => (
-          <div key={a.userId} className="tiny token">
-            🪙 {nameOf(a.userId)} が曲名＋アーティスト正解でトークン獲得！
+        .map((a, i) => (
+          <div key={`${a.userId}-${i}`} className="tiny token">
+            🪙 {nameOf(a.userId)} {a.reason ?? "曲名＋アーティスト正解"}で +{a.tokensGained}
           </div>
         ))}
       {r.youtubeId && (

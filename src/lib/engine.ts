@@ -302,6 +302,7 @@ function beginTurn(g: FullGame, songs: Song[], now: number): void {
   g.public.listeningExtended = false;
   g.public.listeningEndedAt = null;
   g.public.earlyBonusAwarded = false;
+  g.public.earlyBonusGained = 0;
   g.public.placementDeadline = now + listenMs(s) + placeMs(s);
 
   g.public.phase = "placing";
@@ -377,7 +378,9 @@ export function placeCard(
   const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
   const correct = !!song && isPlacementCorrect(active.timeline, slotIndex, song.year);
   if (correct && now - start <= earlyMs(s) && !g.public.earlyBonusAwarded) {
-    active.tokens = Math.min(s.maxTokens, active.tokens + earlyTokens(s));
+    const before = active.tokens;
+    active.tokens = Math.min(s.maxTokens, before + earlyTokens(s));
+    g.public.earlyBonusGained = active.tokens - before; // actual gain (0..earlyTokens)
     g.public.earlyBonusAwarded = true;
   }
 
@@ -576,14 +579,35 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
   }
 
   // Early-placement bonus tokens were already credited in placeCard; record the
-  // award here so the reveal can show it (no token math repeated).
+  // award here so the reveal can show it (using the ACTUAL capped gain, not the
+  // nominal earlyBonusTokens). Skip a zero gain (player was already at the cap).
   if (g.public.earlyBonusAwarded) {
+    const gained = g.public.earlyBonusGained ?? earlyTokens(g.public.settings);
+    if (gained > 0) {
+      tokenAwards.push({
+        userId: active.userId,
+        namedTitle: false,
+        namedArtist: false,
+        tokensGained: gained,
+        reason: "早置きボーナス",
+      });
+    }
+  }
+
+  // Correct-placement reward: the active player gains a token EVERY turn their
+  // placement is correct (stacks on the early/naming bonuses). Independent of
+  // whether they ultimately keep the card (pro/expert may still lose it to a
+  // stealer without naming) — the reward is for reading the year correctly.
+  const placementTokens = g.public.settings.placementTokens ?? 1;
+  if (placementCorrect && placementTokens > 0) {
+    const gained = Math.min(g.public.settings.maxTokens - active.tokens, placementTokens);
+    if (gained > 0) active.tokens += gained;
     tokenAwards.push({
       userId: active.userId,
       namedTitle: false,
       namedArtist: false,
-      tokensGained: earlyTokens(g.public.settings),
-      reason: "早置きボーナス",
+      tokensGained: gained,
+      reason: "正解配置",
     });
   }
 

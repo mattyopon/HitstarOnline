@@ -46,6 +46,7 @@ export function YouTubePlayer({
   const playerRef = useRef<any>(null);
   const ready = useRef(false);
   const currentId = useRef<string | null>(null);
+  const retried = useRef<Set<string>>(new Set());
   const [expanded, setExpanded] = useState(false);
 
   // Close the enlarged view with Escape.
@@ -124,6 +125,22 @@ export function YouTubePlayer({
           onReady: () => {
             ready.current = true;
             sync();
+          },
+          onError: (e: any) => {
+            // 5 = transient HTML5 player error → reload the same video once.
+            // 100 = removed/private, 101/150 = embedding disabled by the owner:
+            // unrecoverable on the client, so leave the "preparing audio" cover.
+            const vid = currentId.current;
+            // Only spend the one-shot retry when we actually intend to play
+            // (otherwise sync() just stops the video and the budget is wasted,
+            // disabling a genuine retry when the same video replays at reveal).
+            if (vid && e?.data === 5 && propsRef.current.playing && !retried.current.has(vid)) {
+              retried.current.add(vid);
+              currentId.current = null;
+              sync();
+            } else if (e?.data === 100 || e?.data === 101 || e?.data === 150) {
+              console.warn("[yt] video not embeddable/available:", e?.data, vid);
+            }
           },
         },
       });

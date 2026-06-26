@@ -61,6 +61,7 @@ console.log("Scenario A (no tokens):");
     revealSeconds: 10,
     placeSeconds: 60,
     earlyBonusMs: 0, // disable the early bonus so the "no tokens ever" invariant holds
+    placementTokens: 0, // ditto: no per-placement token in this scenario
   });
   g = addPlayer(g, { userId: "bob", name: "Bob" });
   g = addPlayer(g, { userId: "carol", name: "Carol" });
@@ -285,11 +286,60 @@ console.log("Scenario H (no early bonus when late):");
     [0, 1, 5],
     songs,
     1000,
-    { startingTokens: 0, earlyBonusMs: 10000 },
+    { startingTokens: 0, earlyBonusMs: 10000, placementTokens: 0 },
   );
   g = placeCard(g, "alice", 1, undefined, songs, 1000 + 12000); // correct, but late
   ok("no early bonus (late)", g.public.earlyBonusAwarded === false);
   ok("alice tokens unchanged", g.public.players[0].tokens === 0);
+}
+
+// ── Scenario H2: per-placement token (correct → +N, wrong → +0) ────────────
+console.log("Scenario H2 (placement token):");
+{
+  // CORRECT: alice [1960], bob [1965]; mystery 5(1985). bob has 0 tokens → no
+  // stealers → placeCard resolves immediately. Late submit → no early bonus.
+  let g = createGame(
+    "ROOMH2",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 0, earlyBonusMs: 0, placementTokens: 1 },
+  );
+  g = placeCard(g, "alice", 1, undefined, songs, 1000 + 20000); // 1985 after 1960 → correct
+  ok("resolved to reveal", g.public.phase === "reveal");
+  ok("alice +1 for correct placement", g.public.players[0].tokens === 1);
+  ok(
+    "placement token award recorded",
+    g.public.reveal!.tokenAwards.some((a) => a.userId === "alice" && a.reason === "正解配置" && a.tokensGained === 1),
+  );
+
+  // WRONG: fresh game, alice places 1985 BEFORE 1960 (slot 0) → wrong → no token.
+  let g2 = createGame(
+    "ROOMH3",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 0, earlyBonusMs: 0, placementTokens: 1 },
+  );
+  g2 = placeCard(g2, "alice", 0, undefined, songs, 1000 + 20000);
+  ok("wrong placement → reveal", g2.public.phase === "reveal" && g2.public.reveal!.activeCorrect === false);
+  ok("wrong placement → no placement token", g2.public.players[0].tokens === 0);
+
+  // CAP: a player at maxTokens gets no placement token (recorded as +0/filtered).
+  let g3 = createGame(
+    "ROOMH4",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 5, maxTokens: 5, earlyBonusMs: 0, placementTokens: 1, stealSeconds: 10 },
+  );
+  // bob has 5 tokens → eligible stealer → stealing opens; pass to resolve.
+  g3 = placeCard(g3, "alice", 1, undefined, songs, 1000 + 20000); // correct
+  if (g3.public.phase === "stealing") g3 = passSteal(g3, "bob", songs, 1000 + 20100);
+  ok("alice stays capped at 5", g3.public.players[0].tokens === 5);
 }
 
 // ── Scenario I: steal pass → early end of the steal phase ──────────────────
