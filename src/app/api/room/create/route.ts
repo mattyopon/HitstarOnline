@@ -16,7 +16,12 @@ export async function POST(req: Request) {
     const solo = sanitizeSolo(body.solo);
     if (solo) {
       // Solo vs NPCs: create the room, add bots, and start — all server-side.
-      const { code } = await createRoom(seed, { mode: "original" });
+      // Snappier timers since there's no waiting on other humans.
+      const { code } = await createRoom(seed, {
+        mode: "original",
+        stealSeconds: 8,
+        revealSeconds: 7,
+      });
       const order = shuffledDeckOrder();
       const songs = getDeck();
       const now = Date.now();
