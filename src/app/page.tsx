@@ -4,6 +4,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { createClient } from "@/lib/supabase/client";
+import { initLocale } from "@/lib/i18n";
 import { Brand } from "@/components/Brand";
 import { SignIn } from "@/components/SignIn";
 import { Lobby } from "@/components/Lobby";
@@ -17,6 +18,11 @@ function HomeInner() {
 
   const triedAnon = useRef(false);
   const [anonFailed, setAnonFailed] = useState(false);
+
+  // Pick up the saved/browser language once, after hydration.
+  useEffect(() => {
+    initLocale();
+  }, []);
 
   // Guest-first: auto-create an anonymous session so there's NO login wall —
   // solo and casual multiplayer are immediately playable. Google is optional

@@ -9,8 +9,10 @@ import { CATEGORIES } from "@/lib/protocol";
 import type { BotDifficulty, GameMode } from "@/lib/protocol";
 import { StatsPanel } from "./StatsPanel";
 import { SettingsPanel } from "./SettingsPanel";
+import { useT } from "@/lib/i18n";
 
 export function Lobby({ user }: { user: ClientUser }) {
+  const t = useT();
   const router = useRouter();
   const [name, setName] = useState(() => {
     if (typeof window !== "undefined") {
@@ -138,19 +140,19 @@ export function Lobby({ user }: { user: ClientUser }) {
               name.charAt(0).toUpperCase()
             )}
           </span>
-          {user.isAnonymous ? "ゲスト" : "Google"}
+          {user.isAnonymous ? t("ゲスト") : "Google"}
         </span>
         <div className="row" style={{ gap: 6 }}>
           {!user.isAnonymous && (
             <button className="btn ghost tiny" onClick={() => setShowStats(true)}>
-              📊 戦績
+              📊 {t("戦績")}
             </button>
           )}
-          <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title="設定">
+          <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title={t("設定")}>
             ⚙️
           </button>
           <button className="btn ghost tiny" onClick={signOut}>
-            ログアウト
+            {t("ログアウト")}
           </button>
         </div>
       </div>
@@ -165,26 +167,26 @@ export function Lobby({ user }: { user: ClientUser }) {
           className={"btn block" + (playMode === "multi" ? "" : " secondary")}
           onClick={() => setPlayMode("multi")}
         >
-          👥 みんなで
+          👥 {t("みんなで")}
         </button>
         <button
           className={"btn block" + (playMode === "solo" ? "" : " secondary")}
           onClick={() => setPlayMode("solo")}
         >
-          🧑‍💻 ソロ(1人)
+          🧑‍💻 {t("ソロ(1人)")}
         </button>
       </div>
 
-      <label className="tiny muted">表示名</label>
+      <label className="tiny muted">{t("表示名")}</label>
       <input
         type="text"
         value={name}
         maxLength={24}
         onChange={(e) => setName(e.target.value)}
-        placeholder="あなたの名前"
+        placeholder={t("あなたの名前")}
       />
 
-      <label className="tiny muted">出題カテゴリ（未選択＝全ジャンル）</label>
+      <label className="tiny muted">{t("出題カテゴリ（未選択＝全ジャンル）")}</label>
       <div className="row wrap" style={{ gap: 6 }}>
         {CATEGORIES.map((c) => {
           const on = cats.includes(c.id);
@@ -211,23 +213,23 @@ export function Lobby({ user }: { user: ClientUser }) {
         <>
           {user.isAnonymous && (
             <div className="notice stack tiny" style={{ gap: 8 }}>
-              <span>👤 ゲストでもみんなで遊べます。🏆ランクや⭐お気に入りには Google ログインを。</span>
+              <span>{t("👤 ゲストでもみんなで遊べます。🏆ランクや⭐お気に入りには Google ログインを。")}</span>
               <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
-                {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
+                {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
               </button>
             </div>
           )}
 
-          <label className="tiny muted">ルール</label>
+          <label className="tiny muted">{t("ルール")}</label>
           {ranked && !user.isAnonymous ? (
             <div className="notice tiny">
-              🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。
+              {t("🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。")}
             </div>
           ) : (
             <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
-              <option value="original">オリジナル（配置のみで獲得・推測でトークン）</option>
-              <option value="pro">プロ（配置＋曲名/アーティスト正解が必要）</option>
-              <option value="expert">エキスパート（プロ＋難度高め）</option>
+              <option value="original">{t("オリジナル（配置のみで獲得・推測でトークン）")}</option>
+              <option value="pro">{t("プロ（配置＋曲名/アーティスト正解が必要）")}</option>
+              <option value="expert">{t("エキスパート（プロ＋難度高め）")}</option>
             </select>
           )}
 
@@ -239,28 +241,28 @@ export function Lobby({ user }: { user: ClientUser }) {
                 onChange={(e) => setRanked(e.target.checked)}
                 style={{ width: "auto" }}
               />
-              <span className="tiny">🏆 ランクマッチで遊ぶ（戦績に記録）</span>
+              <span className="tiny">{t("🏆 ランクマッチで遊ぶ（戦績に記録）")}</span>
             </label>
           )}
 
           {ranked && !user.isAnonymous ? (
             <>
               <button className="btn block gold" onClick={matchmake} disabled={!!busy}>
-                {busy === "matchmake" ? "対戦相手を探しています…" : "🏆 ランクマッチを探す"}
+                {busy === "matchmake" ? t("対戦相手を探しています…") : t("🏆 ランクマッチを探す")}
               </button>
               <p className="tiny muted" style={{ marginBottom: 0 }}>
-                同じランク帯のプレイヤーと自動マッチング。1位で +25LP / それ以外 −20LP。
+                {t("同じランク帯のプレイヤーと自動マッチング。1位で +25LP / それ以外 −20LP。")}
               </p>
             </>
           ) : (
             <button className="btn block" onClick={create} disabled={!!busy}>
-              {busy === "create" ? "作成中…" : "🎵 部屋を作る"}
+              {busy === "create" ? t("作成中…") : t("🎵 部屋を作る")}
             </button>
           )}
 
           <div className="row" style={{ gap: 10 }}>
             <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-            <span className="tiny muted">友達の部屋に入る</span>
+            <span className="tiny muted">{t("友達の部屋に入る")}</span>
             <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
           </div>
 
@@ -268,20 +270,20 @@ export function Lobby({ user }: { user: ClientUser }) {
             <input
               type="text"
               value={code}
-              placeholder="部屋コード（例: AB23）"
+              placeholder={t("部屋コード（例: AB23）")}
               maxLength={6}
               style={{ textTransform: "uppercase", letterSpacing: 3 }}
               onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && join()}
             />
             <button className="btn secondary" onClick={join} disabled={!!busy}>
-              参加
+              {t("参加")}
             </button>
           </div>
         </>
       ) : (
         <>
-          <label className="tiny muted">NPC（CPU）の人数</label>
+          <label className="tiny muted">{t("NPC（CPU）の人数")}</label>
           <div className="row" style={{ gap: 10, alignItems: "center" }}>
             <button className="btn secondary" onClick={() => setBotCount((c) => Math.max(1, c - 1))}>
               －
@@ -292,21 +294,21 @@ export function Lobby({ user }: { user: ClientUser }) {
             </button>
           </div>
 
-          <label className="tiny muted">NPCの強さ</label>
+          <label className="tiny muted">{t("NPCの強さ")}</label>
           <select
             value={botDifficulty}
             onChange={(e) => setBotDifficulty(e.target.value as BotDifficulty)}
           >
-            <option value="easy">やさしい</option>
-            <option value="normal">ふつう</option>
-            <option value="hard">つよい</option>
+            <option value="easy">{t("やさしい")}</option>
+            <option value="normal">{t("ふつう")}</option>
+            <option value="hard">{t("つよい")}</option>
           </select>
 
           <button className="btn block" onClick={createSolo} disabled={!!busy}>
-            {busy === "solo" ? "準備中…" : "▶ ソロで始める"}
+            {busy === "solo" ? t("準備中…") : t("▶ ソロで始める")}
           </button>
           <p className="tiny muted" style={{ marginBottom: 0 }}>
-            NPCがDJ＆対戦相手を担当します。曲が流れたら年表の正しい位置に配置！
+            {t("NPCがDJ＆対戦相手を担当します。曲が流れたら年表の正しい位置に配置！")}
           </p>
         </>
       )}

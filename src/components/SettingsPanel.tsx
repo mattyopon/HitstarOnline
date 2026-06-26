@@ -2,9 +2,12 @@
 
 import { useState } from "react";
 import { getSeVolume, setSeVolume } from "@/lib/rankSound";
+import { LOCALES, useLocale, useT } from "@/lib/i18n";
 
-/** Site settings modal. Currently: sound-effect (SE) volume. */
+/** Site settings modal: language + sound-effect (SE) volume. */
 export function SettingsPanel({ onClose }: { onClose: () => void }) {
+  const t = useT();
+  const [locale, setLoc] = useLocale();
   const [se, setSe] = useState<number>(() => Math.round(getSeVolume() * 100));
 
   return (
@@ -15,13 +18,22 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="row spread">
-          <h2 style={{ margin: 0 }}>⚙️ 設定</h2>
+          <h2 style={{ margin: 0 }}>⚙️ {t("設定")}</h2>
           <button className="btn ghost tiny" onClick={onClose}>
             ✕
           </button>
         </div>
 
-        <label className="tiny muted">効果音（SE）の音量</label>
+        <label className="tiny muted">{t("言語 / Language")}</label>
+        <select value={locale} onChange={(e) => setLoc(e.target.value)} aria-label="Language">
+          {LOCALES.map((l) => (
+            <option key={l.code} value={l.code}>
+              {l.label}
+            </option>
+          ))}
+        </select>
+
+        <label className="tiny muted">{t("効果音（SE）の音量")}</label>
         <div className="row" style={{ gap: 10, alignItems: "center" }}>
           <span className="tiny muted">🔈</span>
           <input

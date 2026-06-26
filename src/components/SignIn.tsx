@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { useT } from "@/lib/i18n";
 
 export function SignIn({ authError }: { authError?: string | null }) {
+  const t = useT();
   const [name, setName] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(
@@ -29,7 +31,7 @@ export function SignIn({ authError }: { authError?: string | null }) {
       },
     });
     if (error) {
-      setErr("Googleログインを開始できませんでした。Supabaseの設定をご確認ください。");
+      setErr(t("Googleログインを開始できませんでした。Supabaseの設定をご確認ください。"));
       setBusy(null);
     }
   }
@@ -42,7 +44,7 @@ export function SignIn({ authError }: { authError?: string | null }) {
     const supabase = createClient();
     const { error } = await supabase.auth.signInAnonymously();
     if (error) {
-      setErr("ゲスト参加が無効です。Supabaseで匿名サインインを有効にしてください。");
+      setErr(t("ゲスト参加が無効です。Supabaseで匿名サインインを有効にしてください。"));
       setBusy(null);
     }
   }
@@ -52,8 +54,7 @@ export function SignIn({ authError }: { authError?: string | null }) {
   return (
     <div className="stack">
       <p className="muted" style={{ marginTop: 0 }}>
-        曲を聴いて発売年を当て、年表に並べるパーティーゲーム。
-        離れた友達と同じ部屋でリアルタイムに遊ぼう。
+        {t("曲を聴いて発売年を当て、年表に並べるパーティーゲーム。離れた友達と同じ部屋でリアルタイムに遊ぼう。")}
       </p>
       {err && <div className="error">{err}</div>}
 
@@ -61,11 +62,11 @@ export function SignIn({ authError }: { authError?: string | null }) {
         <>
           <button className="btn google block" onClick={google} disabled={!!busy}>
             <GoogleMark />
-            {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
+            {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
           </button>
           <div className="row" style={{ gap: 10 }}>
             <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-            <span className="tiny muted">または</span>
+            <span className="tiny muted">{t("または")}</span>
             <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
           </div>
         </>
@@ -73,19 +74,19 @@ export function SignIn({ authError }: { authError?: string | null }) {
 
       <input
         type="text"
-        placeholder="ニックネーム"
+        placeholder={t("ニックネーム")}
         value={name}
         maxLength={24}
         onChange={(e) => setName(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && guest()}
       />
       <button className="btn block" onClick={guest} disabled={!!busy}>
-        {busy === "guest" ? "参加中…" : "▶ ゲストとして始める"}
+        {busy === "guest" ? t("参加中…") : t("▶ ゲストとして始める")}
       </button>
       <p className="tiny muted" style={{ marginBottom: 0 }}>
         {googleEnabled
-          ? "※ ゲストはこの端末のみの一時アカウントです。"
-          : "※ いまはゲストですぐ遊べます（Googleログインは設定後に有効化）。"}
+          ? t("※ ゲストはこの端末のみの一時アカウントです。")
+          : t("※ いまはゲストですぐ遊べます（Googleログインは設定後に有効化）。")}
       </p>
     </div>
   );
