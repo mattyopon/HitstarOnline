@@ -1,0 +1,27 @@
+import { json, mapError, readBody, requireUser, sanitizeGuess } from "@/lib/api";
+import { getDeck } from "@/lib/deck";
+import { placeCard } from "@/lib/engine";
+import { mutateByCode } from "@/lib/rooms";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+export async function POST(req: Request) {
+  const user = await requireUser();
+  if (user instanceof Response) return user;
+  const body = await readBody(req);
+  const code = typeof body.code === "string" ? body.code.trim().toUpperCase() : "";
+  const slotIndex = Number(body.slotIndex);
+  if (!code) return json({ error: "部屋コードがありません" }, 400);
+  if (!Number.isInteger(slotIndex)) return json({ error: "配置位置が不正です" }, 400);
+
+  const songs = getDeck();
+  const guess = sanitizeGuess(body.guess);
+  const now = Date.now();
+  try {
+    await mutateByCode(code, (g) => placeCard(g, user.id, slotIndex, guess, songs, now));
+    return json({ ok: true });
+  } catch (e) {
+    return mapError(e);
+  }
+}

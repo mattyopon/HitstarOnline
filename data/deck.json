@@ -1,0 +1,608 @@
+[
+  {
+    "title": "Rock Around the Clock",
+    "artist": "Bill Haley & His Comets",
+    "year": 1954,
+    "region": "international"
+  },
+  {
+    "title": "Hound Dog",
+    "artist": "Elvis Presley",
+    "year": 1956,
+    "region": "international"
+  },
+  {
+    "title": "Jailhouse Rock",
+    "artist": "Elvis Presley",
+    "year": 1957,
+    "region": "international"
+  },
+  {
+    "title": "Johnny B. Goode",
+    "artist": "Chuck Berry",
+    "year": 1958,
+    "region": "international"
+  },
+  {
+    "title": "What'd I Say",
+    "artist": "Ray Charles",
+    "year": 1959,
+    "region": "international"
+  },
+  {
+    "title": "The Twist",
+    "artist": "Chubby Checker",
+    "year": 1960,
+    "region": "international"
+  },
+  {
+    "title": "Stand By Me",
+    "artist": "Ben E. King",
+    "year": 1961,
+    "region": "international"
+  },
+  {
+    "title": "Ue wo Muite Arukou (Sukiyaki)",
+    "artist": "Kyu Sakamoto",
+    "year": 1961,
+    "region": "japanese"
+  },
+  {
+    "title": "I Want to Hold Your Hand",
+    "artist": "The Beatles",
+    "year": 1963,
+    "region": "international"
+  },
+  {
+    "title": "My Girl",
+    "artist": "The Temptations",
+    "year": 1964,
+    "region": "international"
+  },
+  {
+    "title": "The House of the Rising Sun",
+    "artist": "The Animals",
+    "year": 1964,
+    "region": "international"
+  },
+  {
+    "title": "(I Can't Get No) Satisfaction",
+    "artist": "The Rolling Stones",
+    "year": 1965,
+    "region": "international"
+  },
+  {
+    "title": "Good Vibrations",
+    "artist": "The Beach Boys",
+    "year": 1966,
+    "region": "international"
+  },
+  {
+    "title": "A Whiter Shade of Pale",
+    "artist": "Procol Harum",
+    "year": 1967,
+    "region": "international"
+  },
+  {
+    "title": "Respect",
+    "artist": "Aretha Franklin",
+    "year": 1967,
+    "region": "international"
+  },
+  {
+    "title": "Hey Jude",
+    "artist": "The Beatles",
+    "year": 1968,
+    "region": "international"
+  },
+  {
+    "title": "I Heard It Through the Grapevine",
+    "artist": "Marvin Gaye",
+    "year": 1968,
+    "region": "international"
+  },
+  {
+    "title": "Proud Mary",
+    "artist": "Creedence Clearwater Revival",
+    "year": 1969,
+    "region": "international"
+  },
+  {
+    "title": "Sweet Caroline",
+    "artist": "Neil Diamond",
+    "year": 1969,
+    "region": "international"
+  },
+  {
+    "title": "Let It Be",
+    "artist": "The Beatles",
+    "year": 1970,
+    "region": "international"
+  },
+  {
+    "title": "Imagine",
+    "artist": "John Lennon",
+    "year": 1971,
+    "region": "international"
+  },
+  {
+    "title": "Stairway to Heaven",
+    "artist": "Led Zeppelin",
+    "year": 1971,
+    "region": "international"
+  },
+  {
+    "title": "Tsubasa wo Kudasai",
+    "artist": "Akai Tori",
+    "year": 1971,
+    "region": "japanese"
+  },
+  {
+    "title": "Superstition",
+    "artist": "Stevie Wonder",
+    "year": 1972,
+    "region": "international"
+  },
+  {
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "year": 1975,
+    "region": "international"
+  },
+  {
+    "title": "Dancing Queen",
+    "artist": "ABBA",
+    "year": 1976,
+    "region": "international"
+  },
+  {
+    "title": "Hotel California",
+    "artist": "Eagles",
+    "year": 1976,
+    "region": "international"
+  },
+  {
+    "title": "Stayin' Alive",
+    "artist": "Bee Gees",
+    "year": 1977,
+    "region": "international"
+  },
+  {
+    "title": "UFO",
+    "artist": "Pink Lady",
+    "year": 1977,
+    "region": "japanese"
+  },
+  {
+    "title": "Call Me",
+    "artist": "Blondie",
+    "year": 1980,
+    "region": "international"
+  },
+  {
+    "title": "Don't Stop Believin'",
+    "artist": "Journey",
+    "year": 1981,
+    "region": "international"
+  },
+  {
+    "title": "Akai Sweet Pea",
+    "artist": "Seiko Matsuda",
+    "year": 1982,
+    "region": "japanese"
+  },
+  {
+    "title": "Eye of the Tiger",
+    "artist": "Survivor",
+    "year": 1982,
+    "region": "international"
+  },
+  {
+    "title": "Billie Jean",
+    "artist": "Michael Jackson",
+    "year": 1983,
+    "region": "international"
+  },
+  {
+    "title": "Every Breath You Take",
+    "artist": "The Police",
+    "year": 1983,
+    "region": "international"
+  },
+  {
+    "title": "Sweet Dreams (Are Made of This)",
+    "artist": "Eurythmics",
+    "year": 1983,
+    "region": "international"
+  },
+  {
+    "title": "Like a Virgin",
+    "artist": "Madonna",
+    "year": 1984,
+    "region": "international"
+  },
+  {
+    "title": "Wake Me Up Before You Go-Go",
+    "artist": "Wham!",
+    "year": 1984,
+    "region": "international"
+  },
+  {
+    "title": "Take On Me",
+    "artist": "a-ha",
+    "year": 1985,
+    "region": "international"
+  },
+  {
+    "title": "Livin' on a Prayer",
+    "artist": "Bon Jovi",
+    "year": 1986,
+    "region": "international"
+  },
+  {
+    "title": "The Final Countdown",
+    "artist": "Europe",
+    "year": 1986,
+    "region": "international"
+  },
+  {
+    "title": "Linda Linda",
+    "artist": "The Blue Hearts",
+    "year": 1987,
+    "region": "japanese"
+  },
+  {
+    "title": "Never Gonna Give You Up",
+    "artist": "Rick Astley",
+    "year": 1987,
+    "region": "international"
+  },
+  {
+    "title": "Sweet Child o' Mine",
+    "artist": "Guns N' Roses",
+    "year": 1987,
+    "region": "international"
+  },
+  {
+    "title": "Kawa no Nagare no Yo ni",
+    "artist": "Hibari Misora",
+    "year": 1989,
+    "region": "japanese"
+  },
+  {
+    "title": "Like a Prayer",
+    "artist": "Madonna",
+    "year": 1989,
+    "region": "international"
+  },
+  {
+    "title": "Nothing Compares 2 U",
+    "artist": "Sinead O'Connor",
+    "year": 1990,
+    "region": "international"
+  },
+  {
+    "title": "The Power",
+    "artist": "Snap!",
+    "year": 1990,
+    "region": "international"
+  },
+  {
+    "title": "U Can't Touch This",
+    "artist": "MC Hammer",
+    "year": 1990,
+    "region": "international"
+  },
+  {
+    "title": "Smells Like Teen Spirit",
+    "artist": "Nirvana",
+    "year": 1991,
+    "region": "international"
+  },
+  {
+    "title": "I Will Always Love You",
+    "artist": "Whitney Houston",
+    "year": 1992,
+    "region": "international"
+  },
+  {
+    "title": "What Is Love",
+    "artist": "Haddaway",
+    "year": 1993,
+    "region": "international"
+  },
+  {
+    "title": "Gangsta's Paradise",
+    "artist": "Coolio",
+    "year": 1995,
+    "region": "international"
+  },
+  {
+    "title": "Robinson",
+    "artist": "Spitz",
+    "year": 1995,
+    "region": "japanese"
+  },
+  {
+    "title": "Wonderwall",
+    "artist": "Oasis",
+    "year": 1995,
+    "region": "international"
+  },
+  {
+    "title": "Zankoku na Tenshi no Teze (A Cruel Angel's Thesis)",
+    "artist": "Yoko Takahashi",
+    "year": 1995,
+    "region": "japanese"
+  },
+  {
+    "title": "Sobakasu",
+    "artist": "Judy and Mary",
+    "year": 1996,
+    "region": "japanese"
+  },
+  {
+    "title": "Wannabe",
+    "artist": "Spice Girls",
+    "year": 1996,
+    "region": "international"
+  },
+  {
+    "title": "...Baby One More Time",
+    "artist": "Britney Spears",
+    "year": 1998,
+    "region": "international"
+  },
+  {
+    "title": "Automatic",
+    "artist": "Utada Hikaru",
+    "year": 1998,
+    "region": "japanese"
+  },
+  {
+    "title": "Believe",
+    "artist": "Cher",
+    "year": 1998,
+    "region": "international"
+  },
+  {
+    "title": "First Love",
+    "artist": "Utada Hikaru",
+    "year": 1999,
+    "region": "japanese"
+  },
+  {
+    "title": "Tsunami",
+    "artist": "Southern All Stars",
+    "year": 2000,
+    "region": "japanese"
+  },
+  {
+    "title": "In the End",
+    "artist": "Linkin Park",
+    "year": 2001,
+    "region": "international"
+  },
+  {
+    "title": "Hey Ya!",
+    "artist": "OutKast",
+    "year": 2003,
+    "region": "international"
+  },
+  {
+    "title": "Mr. Brightside",
+    "artist": "The Killers",
+    "year": 2003,
+    "region": "international"
+  },
+  {
+    "title": "Sakura (Dokushou)",
+    "artist": "Naotaro Moriyama",
+    "year": 2003,
+    "region": "japanese"
+  },
+  {
+    "title": "Sekai ni Hitotsu Dake no Hana",
+    "artist": "SMAP",
+    "year": 2003,
+    "region": "japanese"
+  },
+  {
+    "title": "Hung Up",
+    "artist": "Madonna",
+    "year": 2005,
+    "region": "international"
+  },
+  {
+    "title": "Crazy",
+    "artist": "Gnarls Barkley",
+    "year": 2006,
+    "region": "international"
+  },
+  {
+    "title": "Umbrella",
+    "artist": "Rihanna ft. Jay-Z",
+    "year": 2007,
+    "region": "international"
+  },
+  {
+    "title": "Poker Face",
+    "artist": "Lady Gaga",
+    "year": 2008,
+    "region": "international"
+  },
+  {
+    "title": "Viva la Vida",
+    "artist": "Coldplay",
+    "year": 2008,
+    "region": "international"
+  },
+  {
+    "title": "I Gotta Feeling",
+    "artist": "The Black Eyed Peas",
+    "year": 2009,
+    "region": "international"
+  },
+  {
+    "title": "Rolling in the Deep",
+    "artist": "Adele",
+    "year": 2010,
+    "region": "international"
+  },
+  {
+    "title": "Levels",
+    "artist": "Avicii",
+    "year": 2011,
+    "region": "international"
+  },
+  {
+    "title": "Senbonzakura",
+    "artist": "Kurousa-P feat. Hatsune Miku",
+    "year": 2011,
+    "region": "japanese"
+  },
+  {
+    "title": "Somebody That I Used to Know",
+    "artist": "Gotye ft. Kimbra",
+    "year": 2011,
+    "region": "international"
+  },
+  {
+    "title": "Gangnam Style",
+    "artist": "PSY",
+    "year": 2012,
+    "region": "international"
+  },
+  {
+    "title": "Get Lucky",
+    "artist": "Daft Punk ft. Pharrell Williams",
+    "year": 2013,
+    "region": "international"
+  },
+  {
+    "title": "Happy",
+    "artist": "Pharrell Williams",
+    "year": 2013,
+    "region": "international"
+  },
+  {
+    "title": "Uptown Funk",
+    "artist": "Mark Ronson ft. Bruno Mars",
+    "year": 2014,
+    "region": "international"
+  },
+  {
+    "title": "Hello",
+    "artist": "Adele",
+    "year": 2015,
+    "region": "international"
+  },
+  {
+    "title": "Lean On",
+    "artist": "Major Lazer & DJ Snake ft. MØ",
+    "year": 2015,
+    "region": "international"
+  },
+  {
+    "title": "Closer",
+    "artist": "The Chainsmokers ft. Halsey",
+    "year": 2016,
+    "region": "international"
+  },
+  {
+    "title": "Koi",
+    "artist": "Gen Hoshino",
+    "year": 2016,
+    "region": "japanese"
+  },
+  {
+    "title": "Zenzenzense",
+    "artist": "Radwimps",
+    "year": 2016,
+    "region": "japanese"
+  },
+  {
+    "title": "Despacito (Remix)",
+    "artist": "Luis Fonsi & Daddy Yankee ft. Justin Bieber",
+    "year": 2017,
+    "region": "international"
+  },
+  {
+    "title": "Shape of You",
+    "artist": "Ed Sheeran",
+    "year": 2017,
+    "region": "international"
+  },
+  {
+    "title": "God's Plan",
+    "artist": "Drake",
+    "year": 2018,
+    "region": "international"
+  },
+  {
+    "title": "Lemon",
+    "artist": "Kenshi Yonezu",
+    "year": 2018,
+    "region": "japanese"
+  },
+  {
+    "title": "Marigold",
+    "artist": "Aimyon",
+    "year": 2018,
+    "region": "japanese"
+  },
+  {
+    "title": "U.S.A.",
+    "artist": "Da Pump",
+    "year": 2018,
+    "region": "japanese"
+  },
+  {
+    "title": "Blinding Lights",
+    "artist": "The Weeknd",
+    "year": 2019,
+    "region": "international"
+  },
+  {
+    "title": "Gurenge",
+    "artist": "LiSA",
+    "year": 2019,
+    "region": "japanese"
+  },
+  {
+    "title": "Old Town Road",
+    "artist": "Lil Nas X ft. Billy Ray Cyrus",
+    "year": 2019,
+    "region": "international"
+  },
+  {
+    "title": "Pretender",
+    "artist": "Official Hige Dandism",
+    "year": 2019,
+    "region": "japanese"
+  },
+  {
+    "title": "Yoru ni Kakeru (Racing into the Night)",
+    "artist": "YOASOBI",
+    "year": 2019,
+    "region": "japanese"
+  },
+  {
+    "title": "Levitating",
+    "artist": "Dua Lipa",
+    "year": 2020,
+    "region": "international"
+  },
+  {
+    "title": "As It Was",
+    "artist": "Harry Styles",
+    "year": 2022,
+    "region": "international"
+  },
+  {
+    "title": "Flowers",
+    "artist": "Miley Cyrus",
+    "year": 2023,
+    "region": "international"
+  }
+]
