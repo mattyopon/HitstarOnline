@@ -29,6 +29,22 @@ export function Lobby({ user }: { user: ClientUser }) {
     setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
   }
 
+  async function googleLogin() {
+    setBusy("google");
+    const { error } = await createClient().auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${location.origin}/auth/callback`,
+        scopes: "openid email profile https://www.googleapis.com/auth/youtube",
+        queryParams: { access_type: "offline", prompt: "consent", include_granted_scopes: "true" },
+      },
+    });
+    if (error) {
+      setErr("Googleログインを開始できませんでした");
+      setBusy(null);
+    }
+  }
+
   async function createSolo() {
     setBusy("solo");
     setErr(null);
@@ -157,9 +173,17 @@ export function Lobby({ user }: { user: ClientUser }) {
       </div>
 
       {playMode === "multi" ? (
-        <>
-          <label className="tiny muted">ルール</label>
-          <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
+        user.isAnonymous ? (
+          <div className="notice stack" style={{ gap: 10 }}>
+            <span>👥 みんなで遊ぶには Google ログインが必要です（ゲストはソロのみ）。</span>
+            <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
+              {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
+            </button>
+          </div>
+        ) : (
+          <>
+            <label className="tiny muted">ルール</label>
+            <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
             <option value="original">オリジナル（配置のみで獲得・推測でトークン）</option>
             <option value="pro">プロ（配置＋曲名/アーティスト正解が必要）</option>
             <option value="expert">エキスパート（プロ＋難度高め）</option>
@@ -189,7 +213,8 @@ export function Lobby({ user }: { user: ClientUser }) {
               参加
             </button>
           </div>
-        </>
+          </>
+        )
       ) : (
         <>
           <label className="tiny muted">NPC（CPU）の人数</label>

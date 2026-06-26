@@ -35,6 +35,10 @@ export async function POST(req: Request) {
       return json({ code, solo: true });
     }
 
+    // Multiplayer requires a Google account (guests can only play solo).
+    if (user.isAnonymous) {
+      return json({ error: "みんなで遊ぶには Google ログインが必要です" }, 403);
+    }
     const { code } = await createRoom(seed, sanitizeSettings(body.settings));
     return json({ code });
   } catch (e) {
