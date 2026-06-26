@@ -11,6 +11,7 @@ import { PlacementArea } from "./PlacementArea";
 import { PlayerList } from "./PlayerList";
 import { RevealCard } from "./RevealCard";
 import { YouTubePlayer } from "./YouTubePlayer";
+import { ChatDock } from "./ChatDock";
 import { CATEGORIES } from "@/lib/protocol";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
@@ -135,6 +136,8 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   }
 
   const me = state.players.find((p) => p.userId === meId);
+  // Chat/danmaku only makes sense with other humans → multiplayer rooms (no bots).
+  const isMultiplayer = !state.players.some((p) => p.isBot);
   const activeId = state.order[state.activeIndex];
   const activePlayer = state.players.find((p) => p.userId === activeId);
   const isActive = activeId === meId;
@@ -244,6 +247,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           </div>
           <PlayerList state={state} meId={meId} />
         </div>
+        {isMultiplayer && <ChatDock code={code} players={state.players} />}
       </div>
     );
   }
@@ -474,6 +478,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           )}
         </div>
       </div>
+      {isMultiplayer && <ChatDock code={code} players={state.players} />}
     </div>
   );
 }
