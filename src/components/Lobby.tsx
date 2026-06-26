@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/clientApi";
 import { createClient } from "@/lib/supabase/client";
+import { Avatar } from "./Avatar";
 import type { ClientUser } from "@/hooks/useUser";
 import { CATEGORIES } from "@/lib/protocol";
 import type { BotDifficulty, GameMode } from "@/lib/protocol";
@@ -150,14 +151,7 @@ export function Lobby({ user }: { user: ClientUser }) {
     <div className="stack">
       <div className="row spread">
         <span className="pill">
-          <span className="avatar avatar--xs">
-            {user.avatarUrl ? (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src={user.avatarUrl} alt="" />
-            ) : (
-              name.charAt(0).toUpperCase()
-            )}
-          </span>
+          <Avatar name={name} url={user.avatarUrl} size="xs" />
           {user.isAnonymous ? t("ゲスト") : "Google"}
         </span>
         <div className="row" style={{ gap: 6 }}>

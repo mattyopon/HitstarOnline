@@ -7,10 +7,6 @@ export function getDeck(): Song[] {
   return DECK;
 }
 
-export function deckSize(): number {
-  return DECK.length;
-}
-
 /** Stable cache key for a song (used by the YouTube id cache). */
 export function deckKey(song: Song): string {
   return `${song.title}|${song.artist}`.toLowerCase().replace(/\s+/g, " ").trim();
@@ -31,12 +27,6 @@ function inCategories(song: Song, set: Set<string> | null): boolean {
   if (!set) return true;
   const cats = song.categories ?? [];
   return cats.some((c) => set.has(c));
-}
-
-/** How many songs match the given categories (empty/undefined = all). */
-export function countInCategories(categories?: string[]): number {
-  const set = categories && categories.length ? new Set(categories) : null;
-  return DECK.reduce((n, s) => n + (inCategories(s, set) ? 1 : 0), 0);
 }
 
 /**

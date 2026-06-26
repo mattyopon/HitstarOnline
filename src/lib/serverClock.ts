@@ -18,20 +18,11 @@
 // ───────────────────────────────────────────────────────────────────────────
 
 let offset = 0; // serverNow - clientNow, in ms
-let synced = false;
 let inflight: Promise<void> | null = null;
 
 /** Best estimate of the server's current epoch-ms on this device. */
 export function serverNow(): number {
   return Date.now() + offset;
-}
-
-export function clockOffset(): number {
-  return offset;
-}
-
-export function isClockSynced(): boolean {
-  return synced;
 }
 
 /**
@@ -64,7 +55,6 @@ export async function syncServerClock(samples = 4): Promise<void> {
     }
     if (bestRtt !== Infinity) {
       offset = bestOffset;
-      synced = true;
     }
   })();
   try {

@@ -2,6 +2,7 @@
 
 import { useVoice } from "@/hooks/useVoice";
 import { useUser } from "@/hooks/useUser";
+import { Avatar } from "./Avatar";
 import type { PublicPlayer } from "@/lib/protocol";
 
 /**
@@ -77,14 +78,7 @@ export function VoicePanel({ code, players }: { code: string; players: PublicPla
                 return (
                   <div key={p.userId} className="voice-peer">
                     <span className={"speak-dot" + (p.speaking ? " on" : "")} />
-                    <span className="avatar avatar--sm">
-                      {avatarUrl ? (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img src={avatarUrl} alt="" />
-                      ) : (
-                        nameOf(p.userId, p.name).charAt(0).toUpperCase()
-                      )}
-                    </span>
+                    <Avatar name={nameOf(p.userId, p.name)} url={avatarUrl} size="sm" />
                     <span className="voice-name tiny">
                       {nameOf(p.userId, p.name)}
                       {p.muted && <span className="muted"> 🔇</span>}

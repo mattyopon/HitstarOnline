@@ -1,6 +1,7 @@
 "use client";
 
 import type { PublicState } from "@/lib/protocol";
+import { Avatar } from "./Avatar";
 import { RankIcon } from "./RankIcon";
 import { Timeline } from "./Timeline";
 import { useT } from "@/lib/i18n";
@@ -32,14 +33,7 @@ export function PlayerList({
               className={"player-block" + (inGame && p.userId === activeId ? " active" : "")}
             >
               <div className="player-row">
-                <span className="avatar avatar--md">
-                  {p.avatarUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={p.avatarUrl} alt="" />
-                  ) : (
-                    p.name.charAt(0).toUpperCase()
-                  )}
-                </span>
+                <Avatar name={p.name} url={p.avatarUrl} size="md" />
                 <span className="name">
                   <RankIcon tier={p.tier} size={18} />
                   {p.name}

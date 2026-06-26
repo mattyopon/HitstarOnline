@@ -4,6 +4,7 @@
 
 import { createAdminClient } from "./supabase/admin";
 import { getDeck } from "./deck";
+import { wonCards } from "./engine";
 import { CATEGORIES, type Phase, type PublicPlayer, type PublicState } from "./protocol";
 
 function isRealUser(p: PublicPlayer | undefined): p is PublicPlayer {
@@ -13,11 +14,6 @@ function isRealUser(p: PublicPlayer | undefined): p is PublicPlayer {
 function categoriesOf(songId: number | undefined): string[] {
   if (songId === undefined) return [];
   return getDeck()[songId]?.categories ?? [];
-}
-
-/** Won cards excludes the starting seed card. */
-function wonCards(p: PublicPlayer): number {
-  return Math.max(0, p.timeline.length - 1);
 }
 
 /**

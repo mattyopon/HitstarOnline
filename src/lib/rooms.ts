@@ -12,7 +12,9 @@ import {
   addPlayer,
   createLobby,
   currentSongId,
+  listenMs,
   needsTrackResolution,
+  placeMs,
   removePlayer,
 } from "./engine";
 
@@ -98,8 +100,8 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
   ) {
     const s = game.public.settings;
     const now = Date.now();
-    const listenDur = game.public.listenDurationMs ?? (s.listenSeconds ?? 30) * 1000;
-    const placeDur = (s.placementSeconds ?? 30) * 1000;
+    const listenDur = game.public.listenDurationMs ?? listenMs(s);
+    const placeDur = placeMs(s);
     game.public.current.startedAt = now;
     game.public.listenStartedAt = now;
     game.public.placementDeadline = now + listenDur + placeDur;

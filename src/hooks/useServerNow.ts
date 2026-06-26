@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { serverNow, syncServerClock } from "@/lib/serverClock";
 
 /**
- * Like useNow, but ticks the SERVER-corrected clock (Date.now() + estimated
+ * A clock that ticks the SERVER-corrected time (Date.now() + estimated
  * offset). Triggers a clock sync on mount, periodically, and whenever the tab
  * regains focus (backgrounded tabs throttle timers and the device clock can
  * drift). Use this for every comparison against server-authored timestamps so a

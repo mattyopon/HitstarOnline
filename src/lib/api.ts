@@ -1,8 +1,17 @@
 // Shared helpers for API route handlers (server only).
 import { getSessionUser, SessionUser } from "./auth";
 import { GameError } from "./engine";
-import { ConflictError, NotFoundError } from "./rooms";
-import { BotDifficulty, CATEGORY_IDS, GameMode, GameSettings, PlayerSeed } from "./protocol";
+import { getDeck } from "./deck";
+import { ConflictError, NotFoundError, mutateByCode } from "./rooms";
+import {
+  BotDifficulty,
+  CATEGORY_IDS,
+  FullGame,
+  GameMode,
+  GameSettings,
+  PlayerSeed,
+  Song,
+} from "./protocol";
 
 export function json(data: unknown, status = 200) {
   return Response.json(data, { status });
@@ -62,6 +71,70 @@ export function sanitizeGuess(
 
 export async function readBody(req: Request): Promise<Record<string, unknown>> {
   return (await req.json().catch(() => ({}))) as Record<string, unknown>;
+}
+
+/** Parse the room code from a request body (uppercased); "" if missing/invalid. */
+export function extractCode(body: Record<string, unknown>): string {
+  return typeof body.code === "string" ? body.code.trim().toUpperCase() : "";
+}
+
+/** Validate body.slotIndex as an integer; returns a 400 Response on failure. */
+export function parseSlotIndex(body: Record<string, unknown>): number | Response {
+  const n = Number(body.slotIndex);
+  if (!Number.isInteger(n)) return json({ error: "配置位置が不正です" }, 400);
+  return n;
+}
+
+interface RoomActionCtx {
+  user: SessionUser;
+  body: Record<string, unknown>;
+  code: string;
+  songs: Song[];
+  now: number;
+}
+
+interface RoomActionOpts {
+  /** Load the deck into ctx.songs (default true; false for actions not needing it). */
+  deck?: boolean;
+  /** Treat ConflictError as success ({ok:true}) — for idempotent advance/next. */
+  conflictOk?: boolean;
+  /** Include the resulting public state in the response (default true). */
+  respondState?: boolean;
+}
+
+/**
+ * Build a POST handler for a room mutation: auth → parse code → optional
+ * validate → mutateByCode(build(ctx)) → { ok, state }. Collapses the identical
+ * scaffolding repeated across the game routes; per-route logic lives in `build`.
+ * (create/join/leave/matchmake intentionally opt out — their shapes differ.)
+ */
+export function withRoomAction(
+  opts: RoomActionOpts,
+  build: (ctx: RoomActionCtx) => (game: FullGame) => FullGame,
+  validate?: (body: Record<string, unknown>, code: string) => Response | null,
+): (req: Request) => Promise<Response> {
+  return async (req: Request) => {
+    const user = await requireUser();
+    if (user instanceof Response) return user;
+    const body = await readBody(req);
+    const code = extractCode(body);
+    if (!code) return json({ error: "部屋コードがありません" }, 400);
+    if (validate) {
+      const bad = validate(body, code);
+      if (bad) return bad;
+    }
+    const songs = opts.deck === false ? [] : getDeck();
+    const now = Date.now();
+    try {
+      const result = await mutateByCode(code, build({ user, body, code, songs, now }));
+      return opts.respondState === false
+        ? json({ ok: true })
+        : json({ ok: true, state: result.public });
+    } catch (e) {
+      if (opts.conflictOk && e instanceof ConflictError) return json({ ok: true });
+      return mapError(e);
+    }
+  };
 }
 
 /** Validate a solo request body: { bots: [{difficulty}], ... }. */

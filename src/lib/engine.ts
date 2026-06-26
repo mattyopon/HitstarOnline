@@ -78,22 +78,22 @@ function getPlayer(state: PublicState, userId: string): PublicPlayer {
 function eligibleStealers(state: PublicState): PublicPlayer[] {
   const activeUid = state.order[state.activeIndex];
   const already = new Set(state.steals.map((s) => s.userId));
+  // Any timeline always has len+1 placement slots, so an eligible stealer always
+  // has somewhere to place — the only gates are turn/connection/tokens/not-yet-acted.
   return state.players.filter(
     (p) =>
       p.userId !== activeUid &&
       p.connected &&
       p.tokens > 0 &&
-      !already.has(p.userId) &&
-      // must have somewhere to place (always true: any timeline has len+1 slots)
-      true,
+      !already.has(p.userId),
   );
 }
 
 // ── Timing accessors (with backward-compat defaults for old persisted rooms) ──
-function listenMs(s: GameSettings): number {
+export function listenMs(s: GameSettings): number {
   return (s.listenSeconds ?? 30) * 1000;
 }
-function placeMs(s: GameSettings): number {
+export function placeMs(s: GameSettings): number {
   return (s.placementSeconds ?? 30) * 1000;
 }
 function stealMs(s: GameSettings): number {
@@ -542,8 +542,8 @@ function correctSlot(timeline: TimelineCard[], year: number): number {
   return timeline.length;
 }
 
-function wonCards(p: PublicPlayer): number {
-  // The starting seed card doesn't count toward the target.
+/** Earned cards (excludes the starting seed card). Shared with stats.ts. */
+export function wonCards(p: PublicPlayer): number {
   return Math.max(0, p.timeline.length - 1);
 }
 

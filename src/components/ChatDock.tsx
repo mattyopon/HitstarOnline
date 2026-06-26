@@ -6,6 +6,7 @@ import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
 import { EMOTES, MAX_CHAT_LEN, browserLang, type ChatMessage } from "@/lib/chat";
 import type { PublicPlayer } from "@/lib/protocol";
+import { Avatar } from "./Avatar";
 import { RankIcon } from "./RankIcon";
 
 interface FlyItem {
@@ -185,14 +186,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                 style={{ top: `${f.top}%`, animationDuration: `${f.dur}s` }}
                 onAnimationEnd={() => setFly((prev) => prev.filter((x) => x.key !== f.key))}
               >
-                <span className="danmaku-avatar">
-                  {d.avatarUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={d.avatarUrl} alt="" />
-                  ) : (
-                    (d.name || "?").charAt(0).toUpperCase()
-                  )}
-                </span>
+                <Avatar name={d.name || "?"} url={d.avatarUrl} className="danmaku-avatar" />
                 <RankIcon tier={d.tier} size={14} />
                 <span className="danmaku-name">{d.name}</span>
                 <span className="danmaku-text">{f.text}</span>
@@ -234,14 +228,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                   const translated = !m.emote && shown !== m.text;
                   return (
                     <div key={m.id} className="chat-msg">
-                      <span className="chat-avatar">
-                        {d.avatarUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={d.avatarUrl} alt="" />
-                        ) : (
-                          (d.name || "?").charAt(0).toUpperCase()
-                        )}
-                      </span>
+                      <Avatar name={d.name || "?"} url={d.avatarUrl} className="chat-avatar" />
                       <div className="chat-body">
                         <span className="chat-name">
                           <RankIcon tier={d.tier} size={14} />
