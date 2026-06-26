@@ -881,3 +881,23 @@ select:focus {
   max-height: 88vh;
   box-shadow: var(--shadow);
 }
+
+/* ── Rank emblems (escalating shine) ──────────────────────────────────────── */
+@keyframes rankShine {
+  0%, 100% { filter: brightness(1); }
+  50%      { filter: brightness(1.5); }
+}
+.rank-shine { animation: rankShine var(--rk-dur, 2s) ease-in-out infinite; }
+@keyframes rankSparkle {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 1; }
+}
+.rank-sparkle { animation: rankSparkle 1.2s ease-in-out infinite; }
+
+/* Rank chip in the stats / lobby header */
+.rank-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}

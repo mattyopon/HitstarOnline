@@ -128,6 +128,20 @@ async function recordMatchEnd(roomId: string, state: PublicState): Promise<void>
       is_winner: state.winnerId === p.userId,
     }));
   if (rows.length) await admin.from("match_players").insert(rows);
+
+  // Ranked: 1st place = WIN (+25 LP), every other real human = LOSS (−20 LP).
+  // Bots are skipped (isRealUser). Idempotent: recordMatchEnd runs once per room
+  // (recorded_matches guard above), so each player's RPC fires exactly once.
+  if (state.settings.ranked) {
+    for (const p of state.players) {
+      if (!isRealUser(p)) continue;
+      const { error } = await admin.rpc("apply_rank_result", {
+        p_user_id: p.userId,
+        p_is_win: state.winnerId === p.userId,
+      });
+      if (error) console.error(`[stats] LP update failed for ${p.userId}:`, error);
+    }
+  }
 }
 
 function realOrNull(state: PublicState, userId: string | null): string | null {

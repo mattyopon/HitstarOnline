@@ -6,6 +6,7 @@ import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
 import { EMOTES, MAX_CHAT_LEN, browserLang, type ChatMessage } from "@/lib/chat";
 import type { PublicPlayer } from "@/lib/protocol";
+import { RankIcon } from "./RankIcon";
 
 interface FlyItem {
   key: string;
@@ -43,11 +44,15 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
     setDanmaku(localStorage.getItem("hitstar_danmaku") !== "off");
   }, []);
 
-  // Resolve a sender's current display identity from the room roster.
+  // Resolve a sender's current display identity (incl. rank tier) from the roster.
   const display = useCallback(
     (m: ChatMessage) => {
       const p = players.find((pp) => pp.userId === m.userId);
-      return { name: p?.name ?? m.name, avatarUrl: p?.avatarUrl ?? m.avatarUrl ?? null };
+      return {
+        name: p?.name ?? m.name,
+        avatarUrl: p?.avatarUrl ?? m.avatarUrl ?? null,
+        tier: p?.tier,
+      };
     },
     [players],
   );
@@ -188,6 +193,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                     (d.name || "?").charAt(0).toUpperCase()
                   )}
                 </span>
+                <RankIcon tier={d.tier} size={14} />
                 <span className="danmaku-name">{d.name}</span>
                 <span className="danmaku-text">{f.text}</span>
               </div>
@@ -237,7 +243,10 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                         )}
                       </span>
                       <div className="chat-body">
-                        <span className="chat-name">{d.name}</span>{" "}
+                        <span className="chat-name">
+                          <RankIcon tier={d.tier} size={14} />
+                          {d.name}
+                        </span>{" "}
                         <span className={m.emote ? "chat-emote" : ""}>{shown}</span>
                         {translated && (
                           <span className="chat-orig tiny muted" title="原文">

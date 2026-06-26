@@ -1,6 +1,7 @@
 "use client";
 
 import type { PublicState } from "@/lib/protocol";
+import { RankIcon } from "./RankIcon";
 
 export function PlayerList({
   state,
@@ -36,6 +37,7 @@ export function PlayerList({
                 )}
               </span>
               <span className="name">
+                <RankIcon tier={p.tier} size={18} />
                 {p.name}
                 {p.userId === meId && <span className="muted tiny">（あなた）</span>}
                 {p.userId === state.hostId && <span className="tiny"> 👑</span>}

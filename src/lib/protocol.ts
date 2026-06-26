@@ -4,6 +4,8 @@
 // a FullGame = { public, secret }. Only `public` is ever sent to clients.
 // ───────────────────────────────────────────────────────────────────────────
 
+import type { Tier } from "./rank";
+
 export type Phase = "lobby" | "placing" | "stealing" | "reveal" | "gameover";
 
 /** Difficulty mode (changes what it takes to keep/steal a card). */
@@ -125,6 +127,9 @@ export interface PublicPlayer {
   isBot?: boolean;
   /** Always sorted ascending by year. */
   timeline: TimelineCard[];
+  /** Ranked tier for display only (undefined for casual/solo/guest/bot).
+   *  Opaque to the engine — injected by rooms.ts AFTER the pure engine runs. */
+  tier?: Tier;
 }
 
 /** What clients need to PLAY the mystery song without learning the answer. */

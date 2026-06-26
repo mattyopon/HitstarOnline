@@ -13,9 +13,11 @@ import { RevealCard } from "./RevealCard";
 import { YouTubePlayer } from "./YouTubePlayer";
 import { ChatDock } from "./ChatDock";
 import { VoicePanel } from "./VoicePanel";
+import { SettingsPanel } from "./SettingsPanel";
 import { CATEGORIES } from "@/lib/protocol";
 import type { PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
+import { playRankEntrySound } from "@/lib/rankSound";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const router = useRouter();
@@ -40,9 +42,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     const v = localStorage.getItem("hitstar_dont_steal");
     return v == null ? true : v === "true";
   });
+  const [showSettings, setShowSettings] = useState(false);
   // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
   const autoPassedRound = useRef<number | null>(null);
   const listenEndNudgedRound = useRef<number | null>(null);
+  const entrySePlayed = useRef(false);
 
   const phase = state?.phase;
   const round = state?.round;
@@ -134,6 +138,18 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
         autoPassedRound.current = null;
       });
   }, [version, state, meId, code, dontSteal, apply]);
+
+  // Ranked entry fanfare: play the local player's rank SE once, after the sound
+  // gate unlocks (reuses the existing tap gate; no extra gesture listener).
+  useEffect(() => {
+    if (!soundOn || !state || entrySePlayed.current) return;
+    if (!state.settings.ranked) return;
+    const meTier = state.players.find((p) => p.userId === meId)?.tier;
+    if (meTier) {
+      entrySePlayed.current = true;
+      playRankEntrySound(meTier);
+    }
+  }, [soundOn, state, meId]);
 
   // Best-effort leave when the tab closes.
   useEffect(() => {
@@ -246,11 +262,18 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
         <span className="pill">部屋 <strong style={{ letterSpacing: 2 }}>{state.code}</strong></span>
         {inGame && <span className="pill">第{state.round}ターン</span>}
         {inGame && <span className="pill">残り{state.deckRemaining}曲</span>}
+        <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title="設定">
+          ⚙️
+        </button>
         <button className="btn ghost tiny" onClick={leave}>
           退出
         </button>
       </div>
     </div>
+  );
+
+  const settingsModal = showSettings && (
+    <SettingsPanel onClose={() => setShowSettings(false)} />
   );
 
   // ── Sound unlock overlay ───────────────────────────────────────────────────
@@ -273,6 +296,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     const isHost = state.hostId === meId;
     return (
       <div className="container">
+        {settingsModal}
         {header}
         <div className="grid-2">
           <div className="card stack">
@@ -390,6 +414,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   return (
     <div className="container">
       {soundGate}
+      {settingsModal}
       {header}
       {actionErr && (
         <div className="error" style={{ marginBottom: 12 }}>

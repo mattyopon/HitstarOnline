@@ -8,6 +8,7 @@ import type { ClientUser } from "@/hooks/useUser";
 import { CATEGORIES } from "@/lib/protocol";
 import type { BotDifficulty, GameMode } from "@/lib/protocol";
 import { StatsPanel } from "./StatsPanel";
+import { SettingsPanel } from "./SettingsPanel";
 
 export function Lobby({ user }: { user: ClientUser }) {
   const router = useRouter();
@@ -27,6 +28,8 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [cats, setCats] = useState<string[]>([]);
   const [ranked, setRanked] = useState(false);
   const [showStats, setShowStats] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
+  const wechatEnabled = process.env.NEXT_PUBLIC_WECHAT_ENABLED === "true";
 
   function toggleCat(id: string) {
     setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
@@ -68,6 +71,19 @@ export function Lobby({ user }: { user: ClientUser }) {
 
   function saveName() {
     if (typeof window !== "undefined") localStorage.setItem("hitstar_name", name.trim());
+  }
+
+  async function matchmake() {
+    setBusy("matchmake");
+    setErr(null);
+    saveName();
+    try {
+      const { code } = await api<{ code: string }>("/api/rank/matchmake", { name });
+      router.push(`/room/${code}`);
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : "マッチメイキングに失敗しました");
+      setBusy(null);
+    }
   }
 
   async function create() {
@@ -127,6 +143,9 @@ export function Lobby({ user }: { user: ClientUser }) {
               📊 戦績
             </button>
           )}
+          <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title="設定">
+            ⚙️
+          </button>
           <button className="btn ghost tiny" onClick={signOut}>
             ログアウト
           </button>
@@ -134,6 +153,7 @@ export function Lobby({ user }: { user: ClientUser }) {
       </div>
 
       {showStats && <StatsPanel onClose={() => setShowStats(false)} />}
+      {showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />}
 
       {err && <div className="error">{err}</div>}
 
@@ -187,10 +207,25 @@ export function Lobby({ user }: { user: ClientUser }) {
       {playMode === "multi" ? (
         user.isAnonymous ? (
           <div className="notice stack" style={{ gap: 10 }}>
-            <span>👥 みんなで遊ぶには Google ログインが必要です（ゲストはソロのみ）。</span>
+            <span>👥 みんなで遊ぶ・ランクには Google または WeChat のログインが必要です（ゲストはソロのみ）。</span>
             <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
               {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
             </button>
+            {wechatEnabled ? (
+              <button
+                className="btn block secondary"
+                onClick={() => {
+                  window.location.href = "/api/auth/wechat";
+                }}
+                disabled={!!busy}
+              >
+                微信（WeChat）でログイン
+              </button>
+            ) : (
+              <button className="btn block secondary" disabled title="準備中">
+                微信（WeChat）でログイン（準備中）
+              </button>
+            )}
           </div>
         ) : (
           <>
@@ -217,9 +252,20 @@ export function Lobby({ user }: { user: ClientUser }) {
               <span className="tiny">🏆 ランクマッチで遊ぶ（戦績に記録）</span>
             </label>
 
-          <button className="btn block" onClick={create} disabled={!!busy}>
-            {busy === "create" ? "作成中…" : ranked ? "🏆 ランク部屋を作る" : "🎵 部屋を作る"}
-          </button>
+          {ranked ? (
+            <>
+              <button className="btn block gold" onClick={matchmake} disabled={!!busy}>
+                {busy === "matchmake" ? "対戦相手を探しています…" : "🏆 ランクマッチを探す"}
+              </button>
+              <p className="tiny muted" style={{ marginBottom: 0 }}>
+                同じランク帯のプレイヤーと自動マッチング。1位で +25LP / それ以外 −20LP。
+              </p>
+            </>
+          ) : (
+            <button className="btn block" onClick={create} disabled={!!busy}>
+              {busy === "create" ? "作成中…" : "🎵 部屋を作る"}
+            </button>
+          )}
 
           <div className="row" style={{ gap: 10 }}>
             <div style={{ flex: 1, height: 1, background: "var(--line)" }} />

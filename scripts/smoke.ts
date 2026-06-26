@@ -21,6 +21,7 @@ import {
   isPlacementCorrect,
 } from "../src/lib/engine";
 import { Song } from "../src/lib/protocol";
+import { applyResult, defaultRank } from "../src/lib/rank";
 
 // 12 songs, years 1960,1965,...,2015 — distinct so placement is determinable.
 const songs: Song[] = Array.from({ length: 12 }, (_, i) => ({
@@ -337,6 +338,45 @@ console.log("Scenario J (placement timeout):");
   ok("timed out → reveal", g.public.phase === "reveal");
   ok("reason 時間切れ", g.public.reveal!.reason === "時間切れ");
   ok("no award on timeout", g.public.reveal!.awardedTo === null);
+}
+
+// ── Scenario K: rank LP / tier transitions (pure applyResult) ──────────────
+console.log("Scenario K (rank LP):");
+{
+  const win = (r: ReturnType<typeof defaultRank>) => applyResult(r, true);
+  const loss = (r: ReturnType<typeof defaultRank>) => applyResult(r, false);
+
+  ok("starts bronze 0", defaultRank().tier === "bronze" && defaultRank().lp === 0);
+
+  let r = win(defaultRank());
+  ok("bronze 0 +win → bronze 25", r.tier === "bronze" && r.lp === 25 && r.wins === 1 && r.games === 1);
+
+  r = win({ tier: "bronze", lp: 80, games: 0, wins: 0 });
+  ok("bronze 80 +win → silver 0 (promo, reset)", r.tier === "silver" && r.lp === 0);
+
+  r = loss({ tier: "bronze", lp: 0, games: 0, wins: 0 });
+  ok("bronze 0 −loss → wood 75 (demote)", r.tier === "wood" && r.lp === 75);
+
+  r = loss({ tier: "wood", lp: 0, games: 0, wins: 0 });
+  ok("wood 0 −loss → wood 0 (floor)", r.tier === "wood" && r.lp === 0);
+
+  r = loss({ tier: "wood", lp: 10, games: 0, wins: 0 });
+  ok("wood 10 −loss → wood 0 (clamp, no demote)", r.tier === "wood" && r.lp === 0);
+
+  r = win({ tier: "challenger", lp: 90, games: 0, wins: 0 });
+  ok("challenger 90 +win → challenger 100 (apex cap)", r.tier === "challenger" && r.lp === 100);
+
+  r = win({ tier: "challenger", lp: 100, games: 0, wins: 0 });
+  ok("challenger 100 +win → stays 100", r.tier === "challenger" && r.lp === 100);
+
+  r = loss({ tier: "challenger", lp: 100, games: 0, wins: 0 });
+  ok("challenger 100 −loss → challenger 80", r.tier === "challenger" && r.lp === 80);
+
+  r = win({ tier: "diamond", lp: 40, games: 0, wins: 0 });
+  ok("diamond 40 +win → diamond 65 (no promo)", r.tier === "diamond" && r.lp === 65);
+
+  r = loss({ tier: "diamond", lp: 40, games: 0, wins: 0 });
+  ok("diamond 40 −loss → diamond 20 (no demote)", r.tier === "diamond" && r.lp === 20);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

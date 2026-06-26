@@ -6,6 +6,7 @@ import { createAdminClient } from "./supabase/admin";
 import { getDeck, deckKey, searchQuery } from "./deck";
 import { searchYouTubeId } from "./youtube";
 import { recordTransitions } from "./stats";
+import { getTierForUser } from "./rank";
 import { FullGame, PlayerSeed, PublicState, SecretState } from "./protocol";
 import {
   addPlayer,
@@ -142,10 +143,18 @@ export async function createRoom(
   settings: Partial<PublicState["settings"]> = {},
 ): Promise<{ code: string; game: FullGame }> {
   const admin = createAdminClient();
+  // Ranked rooms snapshot the host's tier (fixed for the room's lifetime).
+  const isRanked = !!settings.ranked;
+  const roomTier = isRanked ? await getTierForUser(seed.userId) : null;
   // Insert-and-retry on the UNIQUE(code) constraint (no TOCTOU window).
   for (let attempt = 0; attempt < 10; attempt++) {
     const code = genRoomCode(6);
     const game = createLobby(code, seed, settings);
+    // Inject tier into the host's public player (post-engine; engine stays pure).
+    if (roomTier) {
+      const host = game.public.players.find((p) => p.userId === seed.userId);
+      if (host) host.tier = roomTier;
+    }
     const { data: room, error } = await admin
       .from("rooms")
       .insert({
@@ -154,6 +163,8 @@ export async function createRoom(
         status: game.public.phase,
         version: game.public.version,
         state: game.public,
+        ranked: isRanked,
+        tier: roomTier,
       })
       .select("id")
       .single();
@@ -183,6 +194,11 @@ export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame
     // addPlayer adds new lobby players and reconnects existing ones; it rejects
     // brand-new players once the game has started (throws GameError → no retry).
     const next = addPlayer(loaded.game, seed);
+    // Ranked rooms: stamp the joiner's tier (post-engine; opaque to the engine).
+    if (loaded.game.public.settings.ranked) {
+      const joiner = next.public.players.find((p) => p.userId === seed.userId);
+      if (joiner) joiner.tier = await getTierForUser(seed.userId);
+    }
     try {
       if (next.public.version !== expected) {
         await persist(loaded.id, expected, next);
