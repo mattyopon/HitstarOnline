@@ -1,0 +1,27 @@
+# Supabase project config. Used by the Supabase CLI:
+#   supabase link --project-ref <your-ref>
+#   supabase db push           # apply migrations
+#   supabase config push       # apply the auth settings below
+#
+# Values wrapped in env(...) are read from your shell environment at push time.
+
+project_id = "hitstar-online"
+
+[auth]
+enable_signup = true
+# Lets people play instantly as a guest (used as a fallback alongside Google).
+enable_anonymous_sign_ins = true
+# Set SITE_URL to your deployed URL (e.g. https://your-app.vercel.app).
+site_url = "env(SITE_URL)"
+additional_redirect_urls = [
+  "http://localhost:3000/auth/callback",
+  "https://*.vercel.app/auth/callback",
+]
+
+# Google "external ID" sign-in. Create an OAuth client in Google Cloud Console,
+# then set GOOGLE_CLIENT_ID and GOOGLE_SECRET in your environment before push.
+[auth.external.google]
+enabled = true
+client_id = "env(GOOGLE_CLIENT_ID)"
+secret = "env(GOOGLE_SECRET)"
+skip_nonce_check = false
