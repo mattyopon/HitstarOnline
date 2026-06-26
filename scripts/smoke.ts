@@ -8,6 +8,7 @@ import assert from "node:assert";
 import {
   createLobby,
   addPlayer,
+  addBot,
   startGame,
   placeCard,
   stealCard,
@@ -168,6 +169,69 @@ console.log("Scenario D (buy a card):");
   ok("auto-placed correctly", g.public.reveal!.activeCorrect === true);
   ok("alice timeline grew", g.public.players.find((p) => p.userId === "alice")!.timeline.length === before + 1);
   ok("alice spent 3 tokens", g.public.players.find((p) => p.userId === "alice")!.tokens === 0);
+}
+
+// ── Scenario E: solo with an NPC (bot) ─────────────────────────────────────
+console.log("Scenario E (solo NPC):");
+{
+  let g = createLobby("ROOMEE", { userId: "alice", name: "Alice" }, {
+    startingTokens: 2,
+    placeSeconds: 60,
+    stealSeconds: 20,
+    revealSeconds: 10,
+  });
+  g = addBot(g, "hard");
+  // starting: 0(1960)→alice, 4(1980)→bot; mystery 8(2000), then 2,10,6...
+  g = startGame(g, [0, 4, 8, 2, 10, 6, 11, 9], songs, 1000);
+  ok("bot is a player", g.public.players.some((p) => p.isBot));
+  ok("bot connected", g.public.players.find((p) => p.isBot)!.connected === true);
+  ok("difficulty stored secret-side", !!g.secret.bots && Object.keys(g.secret.bots).length === 1);
+  ok("difficulty NOT in public state", !JSON.stringify(g.public).includes("difficulty"));
+
+  // Alice (human, seat0) is active; before her deadline nothing should happen.
+  const v0 = g.public.version;
+  g = advance(g, songs, 1100);
+  ok("human turn: advance no-op before deadline", g.public.version === v0);
+
+  // Alice places 2000 after 1960 → correct; bot has tokens → stealing opens.
+  g = placeCard(g, "alice", 1, undefined, songs, 1200);
+  ok("stealing opens (bot can steal)", g.public.phase === "stealing");
+
+  // Run the clock forward; bot either steals or the window times out → reveal.
+  let guard = 0;
+  let t = 1200;
+  while (g.public.phase !== "reveal" && guard++ < 6) {
+    t += 30000;
+    g = advance(g, songs, t);
+  }
+  ok("reached reveal after steal window", g.public.phase === "reveal");
+
+  // Next turn becomes the bot's; bot takes it via stepBots (no human client).
+  t += 30000;
+  g = advance(g, songs, t); // reveal timeout → nextTurn (bot active)
+  ok("bot's turn begins (placing)", g.public.phase === "placing");
+  ok("active is the bot", g.public.order[g.public.activeIndex].startsWith("bot:"));
+
+  const vb = g.public.version;
+  const tBot = (g.public.deadline ?? t) - 100; // just before deadline, past botActAt
+  // determinism: same inputs → identical result
+  const a1 = advance(g, songs, tBot);
+  const a2 = advance(g, songs, tBot);
+  ok("bot acted (version bumped)", a1.public.version > vb);
+  ok("bot decision deterministic on retry", JSON.stringify(a1.public) === JSON.stringify(a2.public));
+}
+
+// ── Scenario F: no connected human → game ends (abandoned room) ─────────────
+console.log("Scenario F (abandoned room ends):");
+{
+  let g = createLobby("ROOMFF", { userId: "alice", name: "Alice" }, { startingTokens: 0 });
+  g = addBot(g, "easy");
+  g = startGame(g, [0, 4, 8, 2], songs, 1000);
+  // Simulate the only human disconnecting.
+  g.public.players.find((p) => p.userId === "alice")!.connected = false;
+  g = advance(g, songs, 2000);
+  ok("no-human guard ends the game", g.public.phase === "gameover");
+  ok("a winner is still declared", g.public.winnerId !== undefined);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

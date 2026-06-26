@@ -38,6 +38,27 @@ export const MODE_START_TOKENS: Record<GameMode, number> = {
   expert: 3,
 };
 
+/** NPC difficulty for solo play. */
+export type BotDifficulty = "easy" | "normal" | "hard";
+
+export interface BotProfile {
+  /** Probability the bot places the card in a correct slot. */
+  placeCorrectP: number;
+  /** Probability the bot attempts a steal when it can. */
+  stealAttemptP: number;
+  /** Min/max "thinking" time before the bot acts (ms). */
+  thinkMsMin: number;
+  thinkMsMax: number;
+}
+
+export const BOT_PROFILES: Record<BotDifficulty, BotProfile> = {
+  easy: { placeCorrectP: 0.5, stealAttemptP: 0.15, thinkMsMin: 3000, thinkMsMax: 6000 },
+  normal: { placeCorrectP: 0.8, stealAttemptP: 0.45, thinkMsMin: 2500, thinkMsMax: 5000 },
+  hard: { placeCorrectP: 0.97, stealAttemptP: 0.85, thinkMsMin: 1500, thinkMsMax: 3500 },
+};
+
+export const BOT_NAMES = ["アオイ", "ハル", "ミオ", "ソラ", "リク", "ナギ", "ユウ", "カイ"];
+
 export function defaultSettings(): GameSettings {
   return {
     mode: "original",
@@ -70,6 +91,8 @@ export interface PublicPlayer {
   seat: number;
   tokens: number;
   connected: boolean;
+  /** NPC flag. Bot difficulty is kept server-side (SecretState), never public. */
+  isBot?: boolean;
   /** Always sorted ascending by year. */
   timeline: TimelineCard[];
 }
@@ -140,6 +163,8 @@ export interface PublicState {
   steals: StealEntry[];
   /** Epoch ms when the current phase auto-advances. */
   deadline?: number;
+  /** Epoch ms when the stealing window opened (used to time bot steals). */
+  stealOpenedAt?: number;
   reveal?: RevealInfo;
   winnerId?: string | null;
   /** Number of cards remaining in the deck (for UI). */
@@ -152,6 +177,8 @@ export interface SecretState {
   drawPos: number;
   /** songId of the current mystery card (resolved at reveal). */
   currentSongId?: number;
+  /** NPC difficulty by bot userId (server-only; never exposed publicly). */
+  bots?: Record<string, { difficulty: BotDifficulty }>;
 }
 
 export interface FullGame {

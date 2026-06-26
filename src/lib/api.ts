@@ -2,7 +2,7 @@
 import { getSessionUser, SessionUser } from "./auth";
 import { GameError } from "./engine";
 import { ConflictError, NotFoundError } from "./rooms";
-import { GameMode, GameSettings, PlayerSeed } from "./protocol";
+import { BotDifficulty, GameMode, GameSettings, PlayerSeed } from "./protocol";
 
 export function json(data: unknown, status = 200) {
   return Response.json(data, { status });
@@ -52,4 +52,17 @@ export function sanitizeGuess(
 
 export async function readBody(req: Request): Promise<Record<string, unknown>> {
   return (await req.json().catch(() => ({}))) as Record<string, unknown>;
+}
+
+/** Validate a solo request body: { bots: [{difficulty}], ... }. */
+export function sanitizeSolo(input: unknown): { bots: { difficulty: BotDifficulty }[] } | null {
+  const s = (input ?? {}) as Record<string, unknown>;
+  if (!Array.isArray(s.bots)) return null;
+  const diffs: BotDifficulty[] = ["easy", "normal", "hard"];
+  const bots = s.bots.slice(0, 3).map((b) => {
+    const d = (b as { difficulty?: unknown })?.difficulty;
+    return { difficulty: (diffs as string[]).includes(d as string) ? (d as BotDifficulty) : "normal" };
+  });
+  if (bots.length < 1) return null;
+  return { bots };
 }

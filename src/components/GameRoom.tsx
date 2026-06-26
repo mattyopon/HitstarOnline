@@ -55,6 +55,30 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     return () => clearTimeout(t);
   }, [version, state, meId, code]);
 
+  // Bot heartbeat: while it's an NPC's turn, nudge the server to step the bot
+  // promptly (foreground). Backgrounded tabs fall back to the server cron.
+  useEffect(() => {
+    if (!state) return;
+    const activeId = state.order[state.activeIndex];
+    const botPlacing =
+      state.phase === "placing" && !!state.players.find((p) => p.userId === activeId)?.isBot;
+    const botStealing =
+      state.phase === "stealing" &&
+      state.players.some(
+        (p) =>
+          p.isBot &&
+          p.connected &&
+          p.tokens > 0 &&
+          p.userId !== activeId &&
+          !state.steals.some((s) => s.userId === p.userId),
+      );
+    if (!botPlacing && !botStealing) return;
+    const iv = setInterval(() => {
+      api("/api/game/advance", { code }).catch(() => {});
+    }, 1300);
+    return () => clearInterval(iv);
+  }, [version, state, code]);
+
   // Best-effort leave when the tab closes.
   useEffect(() => {
     const onLeave = () => {

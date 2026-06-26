@@ -32,8 +32,15 @@ async function run(req: Request): Promise<Response> {
   const now = Date.now();
   const songs = getDeck();
   const due = (data || []).filter((r) => {
-    const dl = (r.state as { deadline?: number })?.deadline;
-    return typeof dl === "number" && dl <= now;
+    const st = r.state as {
+      deadline?: number;
+      phase?: string;
+      players?: { isBot?: boolean }[];
+    };
+    if (typeof st?.deadline === "number" && st.deadline <= now) return true;
+    // Rooms with NPCs: step bots even before the deadline (backgrounded solo).
+    const hasBot = (st?.players || []).some((p) => p?.isBot);
+    return hasBot && (st?.phase === "placing" || st?.phase === "stealing");
   });
 
   let advanced = 0;

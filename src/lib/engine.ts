@@ -11,6 +11,10 @@
 // ───────────────────────────────────────────────────────────────────────────
 
 import {
+  BOT_NAMES,
+  BOT_PROFILES,
+  BotDifficulty,
+  BotProfile,
   FullGame,
   GameSettings,
   MODE_START_TOKENS,
@@ -124,6 +128,19 @@ export function createLobby(
 }
 
 export function addPlayer(game: FullGame, seed: PlayerSeed): FullGame {
+  // Redundant join of an already-present, already-connected player with the same
+  // name/avatar is a true no-op (don't bump version → no realtime thrash / no
+  // race with an in-progress solo game). Mirrors setConnected's early return.
+  const cur = game.public.players.find((p) => p.userId === seed.userId);
+  if (
+    cur &&
+    cur.connected &&
+    cur.name === seed.name &&
+    (cur.avatarUrl ?? null) === (seed.avatarUrl ?? null)
+  ) {
+    return game;
+  }
+
   const g = clone(game);
   if (g.public.phase !== "lobby") {
     // Allow rejoin if already a member (reconnect); otherwise reject.
@@ -157,6 +174,34 @@ export function addPlayer(game: FullGame, seed: PlayerSeed): FullGame {
   g.public.order.push(seed.userId);
   g.public.version++;
   return g;
+}
+
+/** Add an NPC (bot) player. Lobby only. Bots live only in state/secret. */
+export function addBot(game: FullGame, difficulty: BotDifficulty): FullGame {
+  const g = clone(game);
+  if (g.public.phase !== "lobby") throw new GameError("ゲーム開始後はNPCを追加できません");
+  if (g.public.players.length >= 10) throw new GameError("部屋が満員です（最大10人）");
+  const seat = g.public.players.length;
+  const botId = `bot:${g.public.code}:${seat}`;
+  g.public.players.push({
+    userId: botId,
+    name: `BOT ${BOT_NAMES[seat % BOT_NAMES.length]}`,
+    avatarUrl: null,
+    seat,
+    tokens: g.public.settings.startingTokens,
+    connected: true,
+    isBot: true,
+    timeline: [],
+  });
+  g.public.order.push(botId);
+  if (!g.secret.bots) g.secret.bots = {};
+  g.secret.bots[botId] = { difficulty };
+  g.public.version++;
+  return g;
+}
+
+export function isBot(p: PublicPlayer): boolean {
+  return p.isBot === true;
 }
 
 export function removePlayer(game: FullGame, userId: string): FullGame {
@@ -222,6 +267,7 @@ function beginTurn(g: FullGame, songs: Song[], now: number): void {
   g.public.placement = undefined;
   g.public.guess = undefined;
   g.public.steals = [];
+  g.public.stealOpenedAt = undefined;
   g.public.reveal = undefined;
   g.public.phase = "placing";
   g.public.deadline = now + g.public.settings.placeSeconds * 1000;
@@ -290,6 +336,7 @@ export function placeCard(
   if (eligibleStealers(g.public).length > 0) {
     g.public.phase = "stealing";
     g.public.deadline = now + g.public.settings.stealSeconds * 1000;
+    g.public.stealOpenedAt = now;
     g.public.version++;
     return g;
   }
@@ -519,11 +566,17 @@ function nextTurn(g: FullGame, songs: Song[], now: number): void {
  * call it safely.
  */
 export function advance(game: FullGame, songs: Song[], now: number): FullGame {
+  // Let NPCs act first (deterministic + idempotent). If a bot moved, return it.
+  const stepped = stepBots(game, songs, now);
+  if (stepped.public.version !== game.public.version) return stepped;
+
   const g = clone(game);
   const dl = g.public.deadline ?? Infinity;
 
   if (g.public.phase === "placing" && now >= dl) {
-    // Active player timed out — no placement, card discarded.
+    // A bot's turn is owned by stepBots — never time it out here.
+    if (isBot(activePlayer(g.public))) return game;
+    // Active (human) player timed out — no placement, card discarded.
     g.public.placement = undefined;
     resolve(g, songs, now);
     g.public.version++;
@@ -561,4 +614,135 @@ export function needsTrackResolution(g: FullGame): boolean {
 /** The songId of the card currently being played (server-side use only). */
 export function currentSongId(g: FullGame): number | undefined {
   return g.secret.currentSongId;
+}
+
+// ─── NPC (bot) logic ────────────────────────────────────────────────────────
+// Pure & deterministic: RNG is seeded from (code, round, seat, purpose) so a
+// mutateByCode CAS retry re-derives the SAME decision. Bots run only here,
+// server-side; their difficulty never enters public state.
+
+function hash32(str: string): number {
+  let h = 2166136261 >>> 0;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619) >>> 0;
+  }
+  return h >>> 0;
+}
+
+function mulberry32(seed: number): () => number {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function botRng(state: PublicState, seat: number, purpose: string): () => number {
+  return mulberry32(hash32(`${state.code}|${state.round}|${seat}|${purpose}`));
+}
+
+function botProfile(g: FullGame, botId: string): BotProfile {
+  const diff = g.secret.bots?.[botId]?.difficulty ?? "normal";
+  return BOT_PROFILES[diff];
+}
+
+export function botPlaceDecision(
+  timeline: TimelineCard[],
+  year: number,
+  profile: BotProfile,
+  rng: () => number,
+): number {
+  const correct = correctSlot(timeline, year);
+  if (rng() < profile.placeCorrectP) return correct;
+  // Deliberately wrong: prefer a neighboring incorrect slot.
+  const n = timeline.length;
+  const candidates = [correct - 1, correct + 1].filter(
+    (s) => s >= 0 && s <= n && !isPlacementCorrect(timeline, s, year),
+  );
+  if (candidates.length > 0) return candidates[Math.floor(rng() * candidates.length)];
+  for (let s = 0; s <= n; s++) if (!isPlacementCorrect(timeline, s, year)) return s;
+  return correct; // every slot correct (degenerate) → just be right
+}
+
+export function botStealDecision(
+  timeline: TimelineCard[],
+  year: number,
+  profile: BotProfile,
+  rng: () => number,
+  tokens: number,
+): { slotIndex: number } | "pass" {
+  if (tokens <= 0) return "pass";
+  let correct = -1;
+  for (let s = 0; s <= timeline.length; s++) {
+    if (isPlacementCorrect(timeline, s, year)) {
+      correct = s;
+      break;
+    }
+  }
+  if (correct < 0) return "pass"; // no correct spot on its own timeline
+  return rng() < profile.stealAttemptP ? { slotIndex: correct } : "pass";
+}
+
+function thinkMs(profile: BotProfile, rng: () => number): number {
+  return profile.thinkMsMin + rng() * (profile.thinkMsMax - profile.thinkMsMin);
+}
+
+/**
+ * Drive NPC actions. Pure & idempotent: returns the INPUT unchanged (no version
+ * bump) unless a bot actually acted, so any client/cron may call it safely and
+ * repeatedly. Applies at most ONE bot action per call.
+ */
+export function stepBots(game: FullGame, songs: Song[], now: number): FullGame {
+  const phase = game.public.phase;
+  if (phase !== "placing" && phase !== "stealing" && phase !== "reveal") return game;
+
+  // No connected human → end the game (terminates abandoned / bots-only rooms).
+  const hasHuman = game.public.players.some((p) => p.connected && !isBot(p));
+  if (!hasHuman) {
+    const g = clone(game);
+    endGame(g);
+    g.public.version++;
+    return g;
+  }
+
+  const songId = game.secret.currentSongId;
+  if (songId === undefined) return game;
+  const year = songs[songId].year;
+
+  if (phase === "placing") {
+    const active = activePlayer(game.public);
+    if (!isBot(active)) return game;
+    const profile = botProfile(game, active.userId);
+    const startedAt = game.public.current?.startedAt ?? now;
+    const dl = game.public.deadline ?? Infinity;
+    const SAFETY = 1500;
+    const botActAt = Math.min(startedAt + thinkMs(profile, botRng(game.public, active.seat, "think")), dl - SAFETY);
+    if (now < botActAt) return game;
+    const slot = botPlaceDecision(active.timeline, year, profile, botRng(game.public, active.seat, "place"));
+    return placeCard(game, active.userId, slot, undefined, songs, now);
+  }
+
+  if (phase === "stealing") {
+    const openedAt = game.public.stealOpenedAt ?? game.public.current?.startedAt ?? now;
+    const eligibleBots = eligibleStealers(game.public).filter(isBot);
+    for (const bot of eligibleBots) {
+      const profile = botProfile(game, bot.userId);
+      if (now < openedAt + thinkMs(profile, botRng(game.public, bot.seat, "stealthink"))) continue;
+      const decision = botStealDecision(
+        bot.timeline,
+        year,
+        profile,
+        botRng(game.public, bot.seat, "steal"),
+        bot.tokens,
+      );
+      if (decision === "pass") continue;
+      return stealCard(game, bot.userId, decision.slotIndex, songs, now);
+    }
+    return game;
+  }
+
+  return game; // reveal → advance/nextTurn handles progression
 }
