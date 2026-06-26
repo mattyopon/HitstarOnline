@@ -784,3 +784,33 @@ select:focus {
     display: none;
   }
 }
+
+/* ── Voice chat panel ─────────────────────────────────────────────────────── */
+.voice-peer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.voice-peer input[type="range"] {
+  flex: 1;
+  min-width: 60px;
+}
+.voice-name {
+  flex: 0 0 auto;
+  max-width: 96px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.speak-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line);
+  flex: 0 0 auto;
+  transition: background 0.12s, box-shadow 0.12s;
+}
+.speak-dot.on {
+  background: var(--good);
+  box-shadow: 0 0 0 3px rgba(56, 211, 159, 0.3);
+}

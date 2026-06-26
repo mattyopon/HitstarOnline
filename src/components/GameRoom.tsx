@@ -12,7 +12,9 @@ import { PlayerList } from "./PlayerList";
 import { RevealCard } from "./RevealCard";
 import { YouTubePlayer } from "./YouTubePlayer";
 import { ChatDock } from "./ChatDock";
+import { VoicePanel } from "./VoicePanel";
 import { CATEGORIES } from "@/lib/protocol";
+import { voiceEnabled } from "@/lib/voice";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const router = useRouter();
@@ -136,8 +138,9 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   }
 
   const me = state.players.find((p) => p.userId === meId);
-  // Chat/danmaku only makes sense with other humans → multiplayer rooms (no bots).
+  // Chat/danmaku/voice only make sense with other humans → multiplayer (no bots).
   const isMultiplayer = !state.players.some((p) => p.isBot);
+  const showVoice = isMultiplayer && voiceEnabled();
   const activeId = state.order[state.activeIndex];
   const activePlayer = state.players.find((p) => p.userId === activeId);
   const isActive = activeId === meId;
@@ -245,7 +248,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               <div className="notice">ホストの開始を待っています…</div>
             )}
           </div>
-          <PlayerList state={state} meId={meId} />
+          <div className="stack">
+            <PlayerList state={state} meId={meId} />
+            {showVoice && <VoicePanel code={code} players={state.players} />}
+          </div>
         </div>
         {isMultiplayer && <ChatDock code={code} players={state.players} />}
       </div>
@@ -458,6 +464,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
 
         <div className="stack">
           <PlayerList state={state} meId={meId} />
+          {showVoice && <VoicePanel code={code} players={state.players} />}
           {me && (
             <div className="card stack" style={{ padding: 14 }}>
               <div className="row spread">
