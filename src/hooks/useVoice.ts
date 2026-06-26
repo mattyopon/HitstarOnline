@@ -224,6 +224,14 @@ export function useVoice(code: string, me: ClientUser | null): VoiceApi {
       } catch {
         /* ignore */
       }
+      try {
+        // Detach the speaking-detection nodes from the shared AudioContext so
+        // they can be GC'd (symmetric with attachAnalyser's src.connect).
+        peer.analyser?.disconnect();
+        peer.src?.disconnect();
+      } catch {
+        /* ignore */
+      }
       peersRef.current.delete(peerId);
       publish();
     },
@@ -408,6 +416,10 @@ export function useVoice(code: string, me: ClientUser | null): VoiceApi {
       rafId.current = null;
     }
     localAnalyser.current = null;
+    if (audioCtx.current) {
+      audioCtx.current.close().catch(() => {});
+      audioCtx.current = null;
+    }
     micOnRef.current = false;
     setMicOn(false);
     setSpeaking(false);

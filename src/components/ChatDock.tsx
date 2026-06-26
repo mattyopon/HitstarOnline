@@ -96,6 +96,12 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
   // Spawn danmaku once a message's final (translated) text is available.
   useEffect(() => {
     if (!danmaku) return;
+    // Prune flown ids no longer in the bounded buffer so the Set can't grow
+    // unbounded over a long session (mirrors useChat's seen-Set cleanup).
+    // Pending-translation messages stay in `messages`, so they're never pruned
+    // before they animate.
+    const present = new Set(messages.map((m) => m.id));
+    for (const id of flown.current) if (!present.has(id)) flown.current.delete(id);
     const fresh: FlyItem[] = [];
     for (const m of messages) {
       if (flown.current.has(m.id)) continue;
