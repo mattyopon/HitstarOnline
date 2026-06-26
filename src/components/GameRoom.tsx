@@ -435,7 +435,9 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             <div className="card stack fade-in">
               <div className="row spread" style={{ alignItems: "center" }}>
                 <strong>
-                  {isListening ? "🎧 曲を聞いて配置しよう" : "⏳ 30秒以内に配置してOK！"}
+                  {isListening
+                    ? "🎧 曲を聞いて配置しよう"
+                    : `⏳ ${state.settings.placementSeconds ?? 30}秒以内に配置してOK！`}
                 </strong>
                 {inEarlyWindow && (
                   <span
