@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import type { PublicState } from "@/lib/protocol";
 
@@ -15,20 +15,24 @@ export function useRoom(code: string, enabled: boolean) {
   const [error, setError] = useState<string | null>(null);
   const lastVersion = useRef(-1);
 
+  // Version-guarded state application, shared by the initial fetch, the Realtime
+  // subscription, AND optimistic updates from the acting client (apply()).
+  // Returning it lets the player who just acted reflect their move immediately
+  // instead of waiting for the Realtime round-trip.
+  const apply = useCallback((next: unknown) => {
+    const s = next as PublicState | null | undefined;
+    if (!s || typeof s.version !== "number") return;
+    if (s.version <= lastVersion.current) return; // ignore stale
+    lastVersion.current = s.version;
+    setError(null);
+    setState(s);
+  }, []);
+
   useEffect(() => {
     if (!enabled) return;
     const supabase = createClient();
     let active = true;
     lastVersion.current = -1;
-
-    const apply = (next: unknown) => {
-      const s = next as PublicState | null | undefined;
-      if (!s || typeof s.version !== "number") return;
-      if (s.version <= lastVersion.current) return; // ignore stale
-      lastVersion.current = s.version;
-      setError(null);
-      setState(s);
-    };
 
     const refetch = async () => {
       const { data, error } = await supabase
@@ -61,7 +65,7 @@ export function useRoom(code: string, enabled: boolean) {
       active = false;
       supabase.removeChannel(channel);
     };
-  }, [code, enabled]);
+  }, [code, enabled, apply]);
 
-  return { state, error };
+  return { state, error, apply };
 }

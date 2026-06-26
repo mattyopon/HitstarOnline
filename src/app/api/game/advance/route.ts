@@ -21,13 +21,13 @@ export async function POST(req: Request) {
   const songs = getDeck();
   const now = Date.now();
   try {
-    await mutateByCode(code, (g) => {
+    const result = await mutateByCode(code, (g) => {
       if (!g.public.players.some((p) => p.userId === user.id)) {
         throw new GameError("この部屋のメンバーではありません");
       }
       return advance(g, songs, now);
     });
-    return json({ ok: true });
+    return json({ ok: true, state: result.public });
   } catch (e) {
     // Another client advanced first — that's fine.
     if (e instanceof ConflictError) return json({ ok: true });

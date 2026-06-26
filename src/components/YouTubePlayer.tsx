@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -46,6 +46,15 @@ export function YouTubePlayer({
   const playerRef = useRef<any>(null);
   const ready = useRef(false);
   const currentId = useRef<string | null>(null);
+  const [expanded, setExpanded] = useState(false);
+
+  // Close the enlarged view with Escape.
+  useEffect(() => {
+    if (!expanded) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setExpanded(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [expanded]);
 
   // Keep latest props for the onReady callback.
   const propsRef = useRef({ videoId, startSeconds, playing, volume });
@@ -131,16 +140,28 @@ export function YouTubePlayer({
   }, [videoId, playing, startSeconds, volume]);
 
   return (
-    <div className="yt-stage">
-      <div ref={hostRef} className="yt-frame" />
-      {!reveal && (
-        <div className="yt-cover">
-          <div className={"vinyl" + (playing && videoId ? " spinning" : "")} />
-          <div className="muted" style={{ fontWeight: 700 }}>
-            {videoId ? "♪ 再生中 — 曲名はナイショ！" : "音源を準備中…"}
+    <>
+      {expanded && <div className="yt-backdrop" onClick={() => setExpanded(false)} />}
+      <div className={"yt-stage" + (expanded ? " expanded" : "")}>
+        <div ref={hostRef} className="yt-frame" />
+        {!reveal && (
+          <div className="yt-cover">
+            <div className={"vinyl" + (playing && videoId ? " spinning" : "")} />
+            <div className="muted" style={{ fontWeight: 700 }}>
+              {videoId ? "♪ 再生中 — 曲名はナイショ！" : "音源を準備中…"}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+        <button
+          type="button"
+          className="yt-expand"
+          onClick={() => setExpanded((e) => !e)}
+          title={expanded ? "閉じる" : "拡大表示"}
+          aria-label={expanded ? "閉じる" : "拡大表示"}
+        >
+          {expanded ? "✕" : "⛶"}
+        </button>
+      </div>
+    </>
   );
 }

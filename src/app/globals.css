@@ -839,3 +839,45 @@ select:focus {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ── YouTube player: enlarge / theater mode ───────────────────────────────── */
+.yt-expand {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  z-index: 6;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  background: rgba(12, 10, 26, 0.6);
+  color: #fff;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.yt-expand:hover {
+  background: rgba(12, 10, 26, 0.85);
+}
+.yt-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(6, 4, 16, 0.88);
+  backdrop-filter: blur(3px);
+}
+.yt-stage.expanded {
+  position: fixed;
+  z-index: 61;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(96vw, 1100px);
+  max-width: none;
+  height: auto;
+  max-height: 88vh;
+  box-shadow: var(--shadow);
+}

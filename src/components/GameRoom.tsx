@@ -14,11 +14,12 @@ import { YouTubePlayer } from "./YouTubePlayer";
 import { ChatDock } from "./ChatDock";
 import { VoicePanel } from "./VoicePanel";
 import { CATEGORIES } from "@/lib/protocol";
+import type { PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const router = useRouter();
-  const { state, error } = useRoom(code, true);
+  const { state, error, apply } = useRoom(code, true);
   const now = useNow();
   const googleToken = useGoogleToken();
 
@@ -54,10 +55,12 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     const amHost = state.hostId === meId;
     const delay = Math.max(0, state.deadline - Date.now()) + (amHost ? 300 : 2800);
     const t = setTimeout(() => {
-      api("/api/game/advance", { code }).catch(() => {});
+      api<{ state?: PublicState }>("/api/game/advance", { code })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {});
     }, delay);
     return () => clearTimeout(t);
-  }, [version, state, meId, code]);
+  }, [version, state, meId, code, apply]);
 
   // Bot heartbeat: while it's an NPC's turn, nudge the server to step the bot
   // promptly (foreground). Backgrounded tabs fall back to the server cron.
@@ -78,10 +81,12 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       );
     if (!botPlacing && !botStealing) return;
     const iv = setInterval(() => {
-      api("/api/game/advance", { code }).catch(() => {});
+      api<{ state?: PublicState }>("/api/game/advance", { code })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {});
     }, 1300);
     return () => clearInterval(iv);
-  }, [version, state, code]);
+  }, [version, state, code, apply]);
 
   // Best-effort leave when the tab closes.
   useEffect(() => {
@@ -103,7 +108,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     setBusy(true);
     setActionErr(null);
     try {
-      await api(path, { code, ...body });
+      // Apply the server's returned state immediately so the acting player sees
+      // their move without waiting for the Realtime round-trip.
+      const res = await api<{ ok?: boolean; state?: PublicState }>(path, { code, ...body });
+      if (res.state) apply(res.state);
     } catch (e) {
       setActionErr(e instanceof Error ? e.message : "操作に失敗しました");
     } finally {

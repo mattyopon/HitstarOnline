@@ -16,8 +16,8 @@ export async function POST(req: Request) {
   const songs = getDeck();
   const now = Date.now();
   try {
-    await mutateByCode(code, (g) => buyCard(g, user.id, songs, now));
-    return json({ ok: true });
+    const result = await mutateByCode(code, (g) => buyCard(g, user.id, songs, now));
+    return json({ ok: true, state: result.public });
   } catch (e) {
     return mapError(e);
   }

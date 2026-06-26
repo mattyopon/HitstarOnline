@@ -19,8 +19,8 @@ export async function POST(req: Request) {
   const guess = sanitizeGuess(body.guess);
   const now = Date.now();
   try {
-    await mutateByCode(code, (g) => placeCard(g, user.id, slotIndex, guess, songs, now));
-    return json({ ok: true });
+    const result = await mutateByCode(code, (g) => placeCard(g, user.id, slotIndex, guess, songs, now));
+    return json({ ok: true, state: result.public });
   } catch (e) {
     return mapError(e);
   }
