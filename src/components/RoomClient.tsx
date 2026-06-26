@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
@@ -17,23 +17,36 @@ export function RoomClient({ code }: { code: string }) {
   const { user, loading } = useUser();
   const [joined, setJoined] = useState(false);
   const [joinErr, setJoinErr] = useState<string | null>(null);
+  // Guard so we attempt the join exactly once per (user, room), even though the
+  // auth listener may emit several events (INITIAL_SESSION/SIGNED_IN/refresh).
+  const joinKey = useRef<string | null>(null);
 
+  const userId = user?.id;
   useEffect(() => {
-    if (loading || !user) return;
+    if (loading || !userId) return;
+    const key = `${userId}:${CODE}`;
+    if (joinKey.current === key) return;
+    joinKey.current = key;
+
     let cancelled = false;
     const name =
-      (typeof window !== "undefined" && localStorage.getItem("hitstar_name")) || user.name;
+      (typeof window !== "undefined" && localStorage.getItem("hitstar_name")) ||
+      user?.name ||
+      "ゲスト";
     api("/api/room/join", { code: CODE, name })
       .then(() => {
         if (!cancelled) setJoined(true);
       })
       .catch((e) => {
-        if (!cancelled) setJoinErr(e instanceof Error ? e.message : "参加に失敗しました");
+        if (!cancelled) {
+          joinKey.current = null; // allow a retry on next render
+          setJoinErr(e instanceof Error ? e.message : "参加に失敗しました");
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, [loading, user, CODE]);
+  }, [loading, userId, CODE, user?.name]);
 
   if (loading) {
     return (

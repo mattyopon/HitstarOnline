@@ -104,18 +104,33 @@ async function persist(roomId: string, expectedVersion: number, game: FullGame):
  * concurrency. Throws GameError (from the engine) for invalid moves and
  * ConflictError if another writer won the race.
  */
+const MAX_RETRIES = 5;
+
 export async function mutateByCode(
   code: string,
   fn: (game: FullGame) => FullGame,
 ): Promise<FullGame> {
-  const loaded = await loadByCode(code);
-  if (!loaded) throw new NotFoundError("部屋が見つかりません");
-  const expected = loaded.game.public.version;
-  const next = fn(loaded.game);
-  if (next.public.version === expected) return next; // no-op transition
-  await ensureTrackResolved(next);
-  await persist(loaded.id, expected, next);
-  return next;
+  let lastConflict: ConflictError | null = null;
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const loaded = await loadByCode(code);
+    if (!loaded) throw new NotFoundError("部屋が見つかりません");
+    const expected = loaded.game.public.version;
+    // The engine fn is pure; a GameError here is a real invalid move → propagate.
+    const next = fn(loaded.game);
+    if (next.public.version === expected) return next; // no-op transition
+    await ensureTrackResolved(next);
+    try {
+      await persist(loaded.id, expected, next);
+      return next;
+    } catch (e) {
+      if (e instanceof ConflictError) {
+        lastConflict = e; // another writer won — reload and re-apply
+        continue;
+      }
+      throw e;
+    }
+  }
+  throw lastConflict ?? new ConflictError("バージョン競合が解消できませんでした");
 }
 
 // ─── Room lifecycle (insert / membership) ──────────────────────────────────--
@@ -160,20 +175,35 @@ export async function createRoom(
 }
 
 export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame> {
-  const loaded = await loadByCode(code);
-  if (!loaded) throw new NotFoundError("部屋が見つかりません");
+  const first = await loadByCode(code);
+  if (!first) throw new NotFoundError("部屋が見つかりません");
   const admin = createAdminClient();
   // Membership first so RLS lets them read/subscribe immediately.
-  await admin.from("room_members").upsert({ room_id: loaded.id, user_id: seed.userId });
+  await admin.from("room_members").upsert({ room_id: first.id, user_id: seed.userId });
 
-  const expected = loaded.game.public.version;
-  // addPlayer adds new lobby players and reconnects existing ones; it rejects
-  // brand-new players once the game has started.
-  const next = addPlayer(loaded.game, seed);
-  if (next.public.version === expected) return next;
-  await ensureTrackResolved(next);
-  await persist(loaded.id, expected, next);
-  return next;
+  // Retry on version conflict: concurrent joins (or duplicate calls) race on the
+  // optimistic version; reloading and re-applying addPlayer is safe & idempotent.
+  let lastConflict: ConflictError | null = null;
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const loaded = await loadByCode(code);
+    if (!loaded) throw new NotFoundError("部屋が見つかりません");
+    const expected = loaded.game.public.version;
+    // addPlayer adds new lobby players and reconnects existing ones; it rejects
+    // brand-new players once the game has started.
+    const next = addPlayer(loaded.game, seed);
+    if (next.public.version === expected) return next;
+    try {
+      await persist(loaded.id, expected, next);
+      return next;
+    } catch (e) {
+      if (e instanceof ConflictError) {
+        lastConflict = e;
+        continue;
+      }
+      throw e;
+    }
+  }
+  throw lastConflict ?? new ConflictError("参加処理が競合しました");
 }
 
 export async function leaveRoom(code: string, userId: string): Promise<void> {
