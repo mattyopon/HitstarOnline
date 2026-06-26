@@ -52,6 +52,11 @@ export function Lobby({ user }: { user: ClientUser }) {
   }
 
   async function signOut() {
+    try {
+      localStorage.removeItem("hitstar_fav_playlist_id");
+    } catch {
+      /* ignore */
+    }
     await createClient().auth.signOut();
     location.reload();
   }

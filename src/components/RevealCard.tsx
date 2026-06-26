@@ -81,8 +81,11 @@ export function RevealCard({
           )}
           {fav === "scope" && (
             <span className="tiny tag-wrong">
-              権限が必要です。一度ログアウトし、Googleで再ログインしてYouTube連携を許可してください。
+              連携の有効期限切れか権限不足です。一度ログアウトし、Googleで再ログインしてYouTube連携を許可してください。
             </span>
+          )}
+          {fav === "quota" && (
+            <span className="tiny tag-wrong">YouTube APIの上限に達しました。しばらくしてからお試しください。</span>
           )}
           {fav === "error" && <span className="tiny tag-wrong">追加に失敗しました。もう一度お試しください。</span>}
         </div>

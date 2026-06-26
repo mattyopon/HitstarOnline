@@ -14,9 +14,11 @@ const LS_KEY = "hitstar_fav_playlist_id";
 
 class YouTubeError extends Error {
   status: number;
-  constructor(status: number, message: string) {
+  reason: string;
+  constructor(status: number, message: string, reason = "") {
     super(message);
     this.status = status;
+    this.reason = reason;
   }
 }
 
@@ -31,13 +33,15 @@ async function yt(path: string, token: string, init: RequestInit = {}): Promise<
   });
   if (!res.ok) {
     let detail = "";
+    let reason = "";
     try {
       const j = await res.json();
       detail = j?.error?.message || "";
+      reason = j?.error?.errors?.[0]?.reason || j?.error?.status || "";
     } catch {
       /* ignore */
     }
-    throw new YouTubeError(res.status, detail || `YouTube API error ${res.status}`);
+    throw new YouTubeError(res.status, detail || `YouTube API error ${res.status}`, reason);
   }
   return res.json();
 }
@@ -100,7 +104,21 @@ async function insertItem(token: string, playlistId: string, videoId: string): P
   });
 }
 
-export type FavoriteResult = "added" | "no-token" | "scope" | "error";
+export type FavoriteResult = "added" | "no-token" | "scope" | "quota" | "error";
+
+const QUOTA_RE = /quota|rateLimit|dailyLimit|userRateLimit/i;
+
+function classify(e: unknown): FavoriteResult {
+  if (e instanceof YouTubeError) {
+    if (QUOTA_RE.test(e.reason)) return "quota";
+    if (e.status === 401 || e.status === 403) return "scope";
+  }
+  return "error";
+}
+
+async function tryAdd(token: string): Promise<string> {
+  return ensurePlaylist(token);
+}
 
 export async function addToFavorites(
   token: string | null,
@@ -108,28 +126,26 @@ export async function addToFavorites(
 ): Promise<FavoriteResult> {
   if (!token) return "no-token";
   try {
-    let playlistId = await ensurePlaylist(token);
+    const pid = await tryAdd(token);
     try {
-      await insertItem(token, playlistId, videoId);
+      await insertItem(token, pid, videoId);
+      return "added";
     } catch (e) {
-      // Playlist was deleted out from under the cache — recreate once.
-      if (e instanceof YouTubeError && e.status === 404) {
-        try {
-          localStorage.removeItem(LS_KEY);
-        } catch {
-          /* ignore */
-        }
-        playlistId = await ensurePlaylist(token);
-        await insertItem(token, playlistId, videoId);
-      } else {
-        throw e;
+      // Cached playlist is gone or belongs to another account (shared device):
+      // clear cache and retry once with a freshly resolved/created playlist.
+      const retryable =
+        e instanceof YouTubeError && (e.status === 404 || e.status === 403) && !QUOTA_RE.test(e.reason);
+      if (!retryable) throw e;
+      try {
+        localStorage.removeItem(LS_KEY);
+      } catch {
+        /* ignore */
       }
+      const pid2 = await ensurePlaylist(token);
+      await insertItem(token, pid2, videoId);
+      return "added";
     }
-    return "added";
   } catch (e) {
-    if (e instanceof YouTubeError && (e.status === 401 || e.status === 403)) {
-      return "scope";
-    }
-    return "error";
+    return classify(e);
   }
 }

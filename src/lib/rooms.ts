@@ -83,20 +83,17 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
 
 async function persist(roomId: string, expectedVersion: number, game: FullGame): Promise<void> {
   const admin = createAdminClient();
-  const { data, error } = await admin
-    .from("rooms")
-    .update({
-      state: game.public,
-      version: game.public.version,
-      status: game.public.phase,
-      updated_at: new Date().toISOString(),
-    })
-    .eq("id", roomId)
-    .eq("version", expectedVersion)
-    .select("id");
+  // Single transactional RPC: CAS the rooms row AND upsert the secret atomically.
+  const { data, error } = await admin.rpc("apply_room_state", {
+    p_id: roomId,
+    p_expected_version: expectedVersion,
+    p_state: game.public,
+    p_version: game.public.version,
+    p_status: game.public.phase,
+    p_secret: game.secret,
+  });
   if (error) throw error;
-  if (!data || data.length === 0) throw new ConflictError("バージョン競合が発生しました");
-  await admin.from("room_secrets").upsert({ room_id: roomId, secret: game.secret });
+  if (data !== true) throw new ConflictError("バージョン競合が発生しました");
 }
 
 /**
@@ -140,60 +137,52 @@ export async function createRoom(
   settings: Partial<PublicState["settings"]> = {},
 ): Promise<{ code: string; game: FullGame }> {
   const admin = createAdminClient();
-  // Find a free code.
-  let code = "";
-  for (let attempt = 0; attempt < 8; attempt++) {
-    const candidate = genRoomCode(attempt < 5 ? 4 : 5);
-    const { data: existing } = await admin
+  // Insert-and-retry on the UNIQUE(code) constraint (no TOCTOU window).
+  for (let attempt = 0; attempt < 10; attempt++) {
+    const code = genRoomCode(6);
+    const game = createLobby(code, seed, settings);
+    const { data: room, error } = await admin
       .from("rooms")
+      .insert({
+        code,
+        host_id: seed.userId,
+        status: game.public.phase,
+        version: game.public.version,
+        state: game.public,
+      })
       .select("id")
-      .eq("code", candidate)
-      .maybeSingle();
-    if (!existing) {
-      code = candidate;
-      break;
+      .single();
+    if (error) {
+      // 23505 = unique_violation → code collision, try a fresh code.
+      if ((error as { code?: string }).code === "23505") continue;
+      throw error;
     }
+    await admin.from("room_secrets").insert({ room_id: room.id, secret: game.secret });
+    await admin.from("room_members").upsert({ room_id: room.id, user_id: seed.userId });
+    return { code, game };
   }
-  if (!code) throw new Error("部屋コードの生成に失敗しました");
-
-  const game = createLobby(code, seed, settings);
-  const { data: room, error } = await admin
-    .from("rooms")
-    .insert({
-      code,
-      host_id: seed.userId,
-      status: game.public.phase,
-      version: game.public.version,
-      state: game.public,
-    })
-    .select("id")
-    .single();
-  if (error) throw error;
-  await admin.from("room_secrets").insert({ room_id: room.id, secret: game.secret });
-  await admin.from("room_members").upsert({ room_id: room.id, user_id: seed.userId });
-  return { code, game };
+  throw new Error("部屋コードの生成に失敗しました");
 }
 
 export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame> {
-  const first = await loadByCode(code);
-  if (!first) throw new NotFoundError("部屋が見つかりません");
   const admin = createAdminClient();
-  // Membership first so RLS lets them read/subscribe immediately.
-  await admin.from("room_members").upsert({ room_id: first.id, user_id: seed.userId });
-
   // Retry on version conflict: concurrent joins (or duplicate calls) race on the
   // optimistic version; reloading and re-applying addPlayer is safe & idempotent.
+  // Membership is granted only AFTER addPlayer succeeds, so a rejected join
+  // (e.g. game already started) never leaves lingering read access.
   let lastConflict: ConflictError | null = null;
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     const loaded = await loadByCode(code);
     if (!loaded) throw new NotFoundError("部屋が見つかりません");
     const expected = loaded.game.public.version;
     // addPlayer adds new lobby players and reconnects existing ones; it rejects
-    // brand-new players once the game has started.
+    // brand-new players once the game has started (throws GameError → no retry).
     const next = addPlayer(loaded.game, seed);
-    if (next.public.version === expected) return next;
     try {
-      await persist(loaded.id, expected, next);
+      if (next.public.version !== expected) {
+        await persist(loaded.id, expected, next);
+      }
+      await admin.from("room_members").upsert({ room_id: loaded.id, user_id: seed.userId });
       return next;
     } catch (e) {
       if (e instanceof ConflictError) {
@@ -216,8 +205,15 @@ export async function leaveRoom(code: string, userId: string): Promise<void> {
   if (wasLobby) {
     await admin.from("room_members").delete().eq("room_id", loaded.id).eq("user_id", userId);
     if (next.public.players.length === 0) {
-      await admin.from("rooms").delete().eq("id", loaded.id); // cascade clears the rest
-      return;
+      // Version-guarded delete so a concurrent join doesn't get its room yanked.
+      const { data: del } = await admin
+        .from("rooms")
+        .delete()
+        .eq("id", loaded.id)
+        .eq("version", loaded.game.public.version)
+        .select("id"); // cascade clears secrets/members/etc.
+      if (del && del.length > 0) return;
+      // else someone joined concurrently (version bumped) — keep the room.
     }
   }
   if (next.public.version !== loaded.game.public.version) {

@@ -496,9 +496,21 @@ function endGame(g: FullGame): void {
 
 function nextTurn(g: FullGame, songs: Song[], now: number): void {
   const n = g.public.order.length;
-  g.public.activeIndex = (g.public.activeIndex + 1) % n;
-  g.public.round += 1;
-  beginTurn(g, songs, now);
+  // Advance to the next CONNECTED player, skipping anyone who has dropped so
+  // disconnected players don't inject mandatory empty turns each lap.
+  for (let step = 1; step <= n; step++) {
+    const idx = (g.public.activeIndex + step) % n;
+    const uid = g.public.order[idx];
+    const p = g.public.players.find((x) => x.userId === uid);
+    if (p && p.connected) {
+      g.public.activeIndex = idx;
+      g.public.round += 1;
+      beginTurn(g, songs, now);
+      return;
+    }
+  }
+  // Nobody is connected — end the game (winner by current standings).
+  endGame(g);
 }
 
 /**

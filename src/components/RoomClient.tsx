@@ -17,6 +17,7 @@ export function RoomClient({ code }: { code: string }) {
   const { user, loading } = useUser();
   const [joined, setJoined] = useState(false);
   const [joinErr, setJoinErr] = useState<string | null>(null);
+  const [retry, setRetry] = useState(0);
   // Guard so we attempt the join exactly once per (user, room), even though the
   // auth listener may emit several events (INITIAL_SESSION/SIGNED_IN/refresh).
   const joinKey = useRef<string | null>(null);
@@ -46,7 +47,7 @@ export function RoomClient({ code }: { code: string }) {
     return () => {
       cancelled = true;
     };
-  }, [loading, userId, CODE, user?.name]);
+  }, [loading, userId, CODE, user?.name, retry]);
 
   if (loading) {
     return (
@@ -78,9 +79,20 @@ export function RoomClient({ code }: { code: string }) {
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
           <h2>参加できませんでした</h2>
           <p className="muted">{joinErr}</p>
-          <button className="btn" onClick={() => router.push("/")}>
-            ホームに戻る
-          </button>
+          <div className="row" style={{ gap: 10, justifyContent: "center" }}>
+            <button
+              className="btn"
+              onClick={() => {
+                setJoinErr(null);
+                setRetry((r) => r + 1);
+              }}
+            >
+              再試行
+            </button>
+            <button className="btn secondary" onClick={() => router.push("/")}>
+              ホームに戻る
+            </button>
+          </div>
         </div>
       </Centered>
     );

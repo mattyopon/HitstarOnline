@@ -1,6 +1,6 @@
 import { json, mapError, readBody, requireUser } from "@/lib/api";
 import { getDeck } from "@/lib/deck";
-import { advance } from "@/lib/engine";
+import { advance, GameError } from "@/lib/engine";
 import { ConflictError, mutateByCode } from "@/lib/rooms";
 
 export const runtime = "nodejs";
@@ -21,7 +21,12 @@ export async function POST(req: Request) {
   const songs = getDeck();
   const now = Date.now();
   try {
-    await mutateByCode(code, (g) => advance(g, songs, now));
+    await mutateByCode(code, (g) => {
+      if (!g.public.players.some((p) => p.userId === user.id)) {
+        throw new GameError("この部屋のメンバーではありません");
+      }
+      return advance(g, songs, now);
+    });
     return json({ ok: true });
   } catch (e) {
     // Another client advanced first — that's fine.

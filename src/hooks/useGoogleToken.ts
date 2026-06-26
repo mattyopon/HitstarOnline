@@ -22,7 +22,11 @@ export function useGoogleToken(): string | null {
       }
     });
 
-    const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_OUT") {
+        setToken(null);
+        return;
+      }
       if (session?.provider_token) setToken(session.provider_token);
     });
 

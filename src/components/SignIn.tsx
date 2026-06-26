@@ -20,7 +20,9 @@ export function SignIn({ authError }: { authError?: boolean }) {
         redirectTo: `${location.origin}/auth/callback`,
         // Request YouTube access so players can save liked songs to a playlist.
         scopes: "openid email profile https://www.googleapis.com/auth/youtube",
-        queryParams: { access_type: "online", prompt: "consent", include_granted_scopes: "true" },
+        // offline => a refresh token is issued so the YouTube access can be
+        // refreshed later (favorites keep working beyond ~1h).
+        queryParams: { access_type: "offline", prompt: "consent", include_granted_scopes: "true" },
       },
     });
     if (error) {

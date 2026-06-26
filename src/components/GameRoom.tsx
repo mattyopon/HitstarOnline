@@ -83,7 +83,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     router.push("/");
   }
 
-  if (error) {
+  if (error && !state) {
     return (
       <div className="center-screen">
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
