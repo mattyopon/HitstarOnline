@@ -29,7 +29,6 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [ranked, setRanked] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const wechatEnabled = process.env.NEXT_PUBLIC_WECHAT_ENABLED === "true";
 
   function toggleCat(id: string) {
     setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
@@ -207,25 +206,10 @@ export function Lobby({ user }: { user: ClientUser }) {
       {playMode === "multi" ? (
         user.isAnonymous ? (
           <div className="notice stack" style={{ gap: 10 }}>
-            <span>👥 みんなで遊ぶ・ランクには Google または WeChat のログインが必要です（ゲストはソロのみ）。</span>
+            <span>👥 みんなで遊ぶ・ランクには Google ログインが必要です（ゲストはソロのみ）。</span>
             <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
               {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
             </button>
-            {wechatEnabled ? (
-              <button
-                className="btn block secondary"
-                onClick={() => {
-                  window.location.href = "/api/auth/wechat";
-                }}
-                disabled={!!busy}
-              >
-                微信（WeChat）でログイン
-              </button>
-            ) : (
-              <button className="btn block secondary" disabled title="準備中">
-                微信（WeChat）でログイン（準備中）
-              </button>
-            )}
           </div>
         ) : (
           <>
