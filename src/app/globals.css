@@ -901,3 +901,31 @@ select:focus {
   gap: 6px;
   font-weight: 700;
 }
+
+/* ── Player block (row + always-visible timeline) ─────────────────────────── */
+.player-block {
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 4px 6px;
+}
+.player-block.active {
+  border-color: var(--accent);
+  background: rgba(255, 77, 157, 0.08);
+}
+.player-block .timeline {
+  padding: 4px 2px 2px;
+}
+
+/* Compact hand cards in the always-visible player-list timelines */
+.player-block .timeline { gap: 0; }
+.player-block .tl-card {
+  width: 64px;
+  min-height: 58px;
+  padding: 6px;
+  border-radius: 9px;
+  gap: 2px;
+}
+.player-block .tl-card .year { font-size: 17px; }
+.player-block .tl-card .ttl { font-size: 9px; -webkit-line-clamp: 1; }
+.player-block .tl-card .art { font-size: 8px; }
+.player-block .slot { width: 10px; }

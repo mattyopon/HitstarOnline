@@ -95,7 +95,7 @@ export function defaultSettings(): GameSettings {
     allowSkip: true,
     buyCost: 3,
     startSeconds: 0,
-    listenSeconds: 30,
+    listenSeconds: 60,
     placementSeconds: 30,
     allowExtend: true,
     extendCost: 1,

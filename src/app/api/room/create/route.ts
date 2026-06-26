@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       const categories = sanitizeSettings(body.settings).categories ?? [];
       const { code } = await createRoom(seed, {
         mode: "original",
-        listenSeconds: 12,
+        listenSeconds: 42,
         placementSeconds: 18,
         stealSeconds: 8,
         revealSeconds: 7,
