@@ -657,6 +657,13 @@ select:focus {
   bottom: 16px;
   z-index: 45;
 }
+/* On desktop the viewport is far wider than the centered game (max 1100px), so
+   pin the chat to the game container's right edge instead of the screen corner. */
+@media (min-width: 1180px) {
+  .chat-dock {
+    right: calc((100vw - 1100px) / 2 + 8px);
+  }
+}
 .chat-fab {
   width: 56px;
   height: 56px;

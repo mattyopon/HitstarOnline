@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/clientApi";
 import { createClient } from "@/lib/supabase/client";
@@ -27,10 +27,21 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [playMode, setPlayMode] = useState<"solo" | "multi">("multi");
   const [botCount, setBotCount] = useState(1);
   const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>("normal");
+  const [practice, setPractice] = useState(false);
+  const [target, setTarget] = useState(10); // win-card count (configurable)
   const [cats, setCats] = useState<string[]>([]);
   const [ranked, setRanked] = useState(false);
   const [showStats, setShowStats] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  // If we were in a room recently, offer a one-tap return (survives refresh).
+  const [lastRoom, setLastRoom] = useState<string | null>(null);
+  useEffect(() => {
+    try {
+      setLastRoom(localStorage.getItem("hitstar_last_room"));
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   function toggleCat(id: string) {
     setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
@@ -46,8 +57,11 @@ export function Lobby({ user }: { user: ClientUser }) {
       provider: "google",
       options: {
         redirectTo: `${location.origin}/auth/callback`,
-        scopes: "openid email profile https://www.googleapis.com/auth/youtube",
-        queryParams: { access_type: "offline", prompt: "consent", include_granted_scopes: "true" },
+        // Basic, non-sensitive scopes only → no Google app-verification needed,
+        // so sign-in works worldwide. (The YouTube-favorites scope is sensitive
+        // and would block unverified apps; re-add via incremental auth once the
+        // OAuth consent screen is verified.)
+        scopes: "openid email profile",
       },
     });
     if (error) {
@@ -61,12 +75,15 @@ export function Lobby({ user }: { user: ClientUser }) {
     setErr(null);
     saveName();
     try {
-      const bots = Array.from({ length: botCount }, () => ({ difficulty: botDifficulty }));
-      const { code } = await api<{ code: string }>("/api/room/create", {
-        name,
-        solo: { bots },
-        settings: { categories: cats },
-      });
+      // Practice mode: no NPCs, just keep guessing songs.
+      const body = practice
+        ? { name, practice: true, settings: { categories: cats } }
+        : {
+            name,
+            solo: { bots: Array.from({ length: botCount }, () => ({ difficulty: botDifficulty })) },
+            settings: { categories: cats, targetCards: target },
+          };
+      const { code } = await api<{ code: string }>("/api/room/create", body);
       router.push(`/room/${code}`);
     } catch (e) {
       setErr(e instanceof Error ? e.message : "作成に失敗しました");
@@ -98,7 +115,8 @@ export function Lobby({ user }: { user: ClientUser }) {
     try {
       const { code } = await api<{ code: string }>("/api/room/create", {
         name,
-        settings: { mode, ranked, categories: cats },
+        // Ranked uses a fixed target for fairness; casual honors the chosen count.
+        settings: { mode, ranked, categories: cats, ...(ranked ? {} : { targetCards: target }) },
       });
       router.push(`/room/${code}`);
     } catch (e) {
@@ -162,6 +180,15 @@ export function Lobby({ user }: { user: ClientUser }) {
 
       {err && <div className="error">{err}</div>}
 
+      {lastRoom && (
+        <button
+          className="btn block gold"
+          onClick={() => router.push(`/room/${lastRoom}`)}
+        >
+          ↩ {t("前の部屋に戻る")}（{lastRoom}）
+        </button>
+      )}
+
       <div className="row" style={{ gap: 8 }}>
         <button
           className={"btn block" + (playMode === "multi" ? "" : " secondary")}
@@ -208,6 +235,22 @@ export function Lobby({ user }: { user: ClientUser }) {
           );
         })}
       </div>
+
+      {(playMode === "solo" ? !practice : !ranked) && (
+        <>
+          <label className="tiny muted">{t("勝利に必要な枚数")}</label>
+          <div className="row" style={{ gap: 10, alignItems: "center" }}>
+            <button className="btn secondary" onClick={() => setTarget((n) => Math.max(1, n - 1))}>
+              －
+            </button>
+            <span style={{ minWidth: 28, textAlign: "center", fontWeight: 800 }}>{target}</span>
+            <button className="btn secondary" onClick={() => setTarget((n) => Math.min(50, n + 1))}>
+              ＋
+            </button>
+            <span className="tiny muted">{t("枚で勝利")}</span>
+          </div>
+        </>
+      )}
 
       {playMode === "multi" ? (
         <>
@@ -283,32 +326,52 @@ export function Lobby({ user }: { user: ClientUser }) {
         </>
       ) : (
         <>
-          <label className="tiny muted">{t("NPC（CPU）の人数")}</label>
-          <div className="row" style={{ gap: 10, alignItems: "center" }}>
-            <button className="btn secondary" onClick={() => setBotCount((c) => Math.max(1, c - 1))}>
-              －
-            </button>
-            <span style={{ minWidth: 24, textAlign: "center", fontWeight: 800 }}>{botCount}</span>
-            <button className="btn secondary" onClick={() => setBotCount((c) => Math.min(3, c + 1))}>
-              ＋
-            </button>
-          </div>
+          <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={practice}
+              onChange={(e) => setPractice(e.target.checked)}
+              style={{ width: "auto" }}
+            />
+            <span className="tiny">{t("🎯 練習モード（NPCなし・ひたすら曲を当て続ける）")}</span>
+          </label>
 
-          <label className="tiny muted">{t("NPCの強さ")}</label>
-          <select
-            value={botDifficulty}
-            onChange={(e) => setBotDifficulty(e.target.value as BotDifficulty)}
-          >
-            <option value="easy">{t("やさしい")}</option>
-            <option value="normal">{t("ふつう")}</option>
-            <option value="hard">{t("つよい")}</option>
-          </select>
+          {!practice && (
+            <>
+              <label className="tiny muted">{t("NPC（CPU）の人数")}</label>
+              <div className="row" style={{ gap: 10, alignItems: "center" }}>
+                <button className="btn secondary" onClick={() => setBotCount((c) => Math.max(1, c - 1))}>
+                  －
+                </button>
+                <span style={{ minWidth: 24, textAlign: "center", fontWeight: 800 }}>{botCount}</span>
+                <button className="btn secondary" onClick={() => setBotCount((c) => Math.min(3, c + 1))}>
+                  ＋
+                </button>
+              </div>
+
+              <label className="tiny muted">{t("NPCの強さ")}</label>
+              <select
+                value={botDifficulty}
+                onChange={(e) => setBotDifficulty(e.target.value as BotDifficulty)}
+              >
+                <option value="easy">{t("やさしい")}</option>
+                <option value="normal">{t("ふつう")}</option>
+                <option value="hard">{t("つよい")}</option>
+              </select>
+            </>
+          )}
 
           <button className="btn block" onClick={createSolo} disabled={!!busy}>
-            {busy === "solo" ? t("準備中…") : t("▶ ソロで始める")}
+            {busy === "solo"
+              ? t("準備中…")
+              : practice
+                ? t("🎯 練習を始める")
+                : t("▶ ソロで始める")}
           </button>
           <p className="tiny muted" style={{ marginBottom: 0 }}>
-            {t("NPCがDJ＆対戦相手を担当します。曲が流れたら年表の正しい位置に配置！")}
+            {practice
+              ? t("曲が流れたら年表の正しい位置にどんどん配置。NPCなしで好きなだけ練習できます。")
+              : t("NPCがDJ＆対戦相手を担当します。曲が流れたら年表の正しい位置に配置！")}
           </p>
         </>
       )}

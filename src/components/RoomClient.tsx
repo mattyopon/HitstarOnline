@@ -36,7 +36,16 @@ export function RoomClient({ code }: { code: string }) {
       "ゲスト";
     api("/api/room/join", { code: CODE, name })
       .then(() => {
-        if (!cancelled) setJoined(true);
+        if (!cancelled) {
+          setJoined(true);
+          // Remember this room so a refresh / accidental navigation can offer
+          // "return to room" from the home screen. Cleared on explicit leave.
+          try {
+            localStorage.setItem("hitstar_last_room", CODE);
+          } catch {
+            /* ignore */
+          }
+        }
       })
       .catch((e) => {
         if (!cancelled) {

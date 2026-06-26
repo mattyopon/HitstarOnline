@@ -42,6 +42,8 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const [gArtist, setGArtist] = useState("");
   const [busy, setBusy] = useState(false);
   const [actionErr, setActionErr] = useState<string | null>(null);
+  // True if YouTube reports the current song can't be embedded/played here.
+  const [trackUnavailable, setTrackUnavailable] = useState(false);
   // "横取りしない" preference (per player, persisted). Default OFF: opponents get
   // the full steal window to react. Opt-in ON makes you auto-pass for fast games.
   const [dontSteal, setDontSteal] = useState<boolean>(() => {
@@ -66,6 +68,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     setGTitle("");
     setGArtist("");
     setActionErr(null);
+    setTrackUnavailable(false);
   }, [phase, activeIndex, round]);
 
   // Auto-advance timed-out phases (host first, others as fallback).
@@ -174,7 +177,28 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     return () => window.removeEventListener("beforeunload", onLeave);
   }, [code]);
 
-  async function act(path: string, body: Record<string, unknown>) {
+  // Reconnect recovery: a backgrounded tab or dropped network may have left us
+  // marked disconnected and missing Realtime updates. On regaining focus or
+  // connectivity, re-join (idempotent) to flip our connected flag back on and
+  // resync the latest state — so refreshing or coming back returns you in-game.
+  useEffect(() => {
+    const rejoin = () => {
+      if (document.visibilityState !== "visible") return;
+      const name =
+        (typeof window !== "undefined" && localStorage.getItem("hitstar_name")) || "";
+      api<{ state?: PublicState }>("/api/room/join", { code, name })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {});
+    };
+    document.addEventListener("visibilitychange", rejoin);
+    window.addEventListener("online", rejoin);
+    return () => {
+      document.removeEventListener("visibilitychange", rejoin);
+      window.removeEventListener("online", rejoin);
+    };
+  }, [code, apply]);
+
+  async function act(path: string, body: Record<string, unknown>): Promise<boolean> {
     setBusy(true);
     setActionErr(null);
     try {
@@ -182,14 +206,25 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       // their move without waiting for the Realtime round-trip.
       const res = await api<{ ok?: boolean; state?: PublicState }>(path, { code, ...body });
       if (res.state) apply(res.state);
+      return true;
     } catch (e) {
       setActionErr(e instanceof Error ? e.message : "操作に失敗しました");
+      return false;
     } finally {
       setBusy(false);
     }
   }
 
+  function forgetLastRoom() {
+    try {
+      localStorage.removeItem("hitstar_last_room");
+    } catch {
+      /* ignore */
+    }
+  }
+
   async function leave() {
+    forgetLastRoom();
     await api("/api/room/leave", { code }).catch(() => {});
     router.push("/");
   }
@@ -400,7 +435,14 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {state.phase === "reveal" && t("結果発表")}
           {state.phase === "gameover" && t("ゲーム終了")}
         </strong>
-        {state.phase !== "gameover" && countdownEl}
+        {/* Reveal plays the full song (long auto-advance) → hide the countdown. */}
+        {state.phase !== "gameover" && state.phase !== "reveal" && countdownEl}
+        {state.phase === "reveal" &&
+          (playVideoId ? (
+            <span className="pill">🎶 {t("フル再生中")}</span>
+          ) : (
+            <span className="pill">{t("音源を取得できませんでした")}</span>
+          ))}
       </div>
       <div className="row" style={{ justifyContent: "center" }}>
         <YouTubePlayer
@@ -409,6 +451,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           playing={playing}
           reveal={revealMode}
           volume={ytVolume}
+          onUnavailable={() => setTrackUnavailable(true)}
         />
       </div>
       <div className="row" style={{ gap: 10, alignItems: "center", justifyContent: "center" }}>
@@ -432,6 +475,14 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
         />
         <span className="tiny muted" style={{ width: 32, textAlign: "right" }}>{ytVolume}</span>
       </div>
+      {trackUnavailable && (state.phase === "placing" || state.phase === "stealing") && (
+        <div className="notice tiny" style={{ borderColor: "var(--gold)", color: "var(--gold)" }}>
+          ⚠️ {t("この曲は再生できないようです。")}
+          {isActive
+            ? t("スキップ🪙1で別の曲にできます。")
+            : t("出題者がスキップするまでお待ちください。")}
+        </div>
+      )}
     </div>
   );
 
@@ -451,6 +502,13 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
 
           {/* Reveal */}
           {revealMode && <RevealCard state={state} googleToken={googleToken} />}
+
+          {/* Skip the reveal — the song plays in full, so anyone can move on. */}
+          {state.phase === "reveal" && (
+            <button className="btn block" disabled={busy} onClick={() => act("/api/game/next", {})}>
+              ▶ {t("次の曲へ")}
+            </button>
+          )}
 
           {/* Game over */}
           {state.phase === "gameover" && (
@@ -475,7 +533,13 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                     </div>
                   ))}
               </div>
-              <button className="btn block" onClick={() => router.push("/")}>
+              <button
+                className="btn block"
+                onClick={() => {
+                  forgetLastRoom();
+                  router.push("/");
+                }}
+              >
                 {t("ホームに戻る")}
               </button>
             </div>
@@ -487,8 +551,8 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               <div className="row spread" style={{ alignItems: "center" }}>
                 <strong>
                   {isListening
-                    ? t("🎧 曲を聞いて配置しよう")
-                    : t("⏳ {n}秒以内に配置してOK！", { n: state.settings.placementSeconds ?? 30 })}
+                    ? t("🎧 曲を聞いて、位置をタップで配置")
+                    : t("⏳ {n}秒以内に位置をタップで配置", { n: state.settings.placementSeconds ?? 30 })}
                 </strong>
                 {inEarlyWindow && (
                   <span
@@ -500,11 +564,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                   </span>
                 )}
               </div>
-              <PlacementArea
-                cards={me.timeline}
-                selectedSlot={selectedSlot}
-                onSelect={setSelectedSlot}
-              />
+              {/* Optional guess FIRST, then tap a slot to place+submit instantly. */}
               <div className="row wrap" style={{ gap: 10 }}>
                 <input
                   type="text"
@@ -521,19 +581,25 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                   style={{ flex: 1, minWidth: 160 }}
                 />
               </div>
+              <PlacementArea
+                cards={me.timeline}
+                selectedSlot={selectedSlot}
+                hint={t("位置をタップ（またはドラッグ）すると、その場で提出します")}
+                onSelect={(slot) => {
+                  // Tap-to-submit: selecting a slot places the card immediately.
+                  if (busy) return;
+                  const prev = selectedSlot;
+                  setSelectedSlot(slot);
+                  act("/api/game/place", {
+                    slotIndex: slot,
+                    guess: { title: gTitle, artist: gArtist },
+                  }).then((ok) => {
+                    // On failure, clear the ghost so it doesn't look placed.
+                    if (!ok) setSelectedSlot(prev);
+                  });
+                }}
+              />
               <div className="row wrap">
-                <button
-                  className="btn"
-                  disabled={busy || selectedSlot === null}
-                  onClick={() =>
-                    act("/api/game/place", {
-                      slotIndex: selectedSlot,
-                      guess: { title: gTitle, artist: gArtist },
-                    })
-                  }
-                >
-                  ✅ {t("提出（OK）")}
-                </button>
                 {canExtend && (
                   <button
                     className="btn secondary"

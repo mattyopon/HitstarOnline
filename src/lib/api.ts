@@ -39,7 +39,7 @@ export function sanitizeSettings(input: unknown): Partial<GameSettings> {
     out.ranked = true;
     out.mode = "expert";
   }
-  if (typeof s.targetCards === "number" && s.targetCards >= 3 && s.targetCards <= 20) {
+  if (typeof s.targetCards === "number" && s.targetCards >= 1 && s.targetCards <= 50) {
     out.targetCards = Math.floor(s.targetCards);
   }
   if (Array.isArray(s.categories)) {

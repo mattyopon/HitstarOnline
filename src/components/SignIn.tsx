@@ -23,11 +23,10 @@ export function SignIn({ authError }: { authError?: string | null }) {
       provider: "google",
       options: {
         redirectTo: `${location.origin}/auth/callback`,
-        // Request YouTube access so players can save liked songs to a playlist.
-        scopes: "openid email profile https://www.googleapis.com/auth/youtube",
-        // offline => a refresh token is issued so the YouTube access can be
-        // refreshed later (favorites keep working beyond ~1h).
-        queryParams: { access_type: "offline", prompt: "consent", include_granted_scopes: "true" },
+        // Basic, non-sensitive scopes only → no Google app-verification needed,
+        // so sign-in works worldwide. (The YouTube-favorites scope is sensitive
+        // and blocks unverified apps; re-add via incremental auth once verified.)
+        scopes: "openid email profile",
       },
     });
     if (error) {

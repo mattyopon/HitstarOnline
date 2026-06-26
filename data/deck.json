@@ -3112,5 +3112,8701 @@
     "categories": [
       "vocaloid"
     ]
+  },
+  {
+    "title": "(I Can't Get No) Satisfaction",
+    "artist": "The Rolling Stones",
+    "year": 1965,
+    "country": "gb",
+    "categories": [
+      "rock",
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Purple Haze",
+    "artist": "The Jimi Hendrix Experience",
+    "year": 1967,
+    "country": "us",
+    "categories": [
+      "rock"
+    ],
+    "artistAliases": [
+      "Jimi Hendrix"
+    ]
+  },
+  {
+    "title": "Come Together",
+    "artist": "The Beatles",
+    "year": 1969,
+    "country": "gb",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Stairway to Heaven",
+    "artist": "Led Zeppelin",
+    "year": 1971,
+    "country": "gb",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Smoke on the Water",
+    "artist": "Deep Purple",
+    "year": 1972,
+    "country": "gb",
+    "categories": [
+      "rock",
+      "metal"
+    ]
+  },
+  {
+    "title": "Bohemian Rhapsody",
+    "artist": "Queen",
+    "year": 1975,
+    "country": "gb",
+    "categories": [
+      "rock",
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Hotel California",
+    "artist": "Eagles",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Highway to Hell",
+    "artist": "AC/DC",
+    "year": 1979,
+    "country": "au",
+    "categories": [
+      "rock",
+      "metal"
+    ],
+    "aliases": [
+      "Highway to Hell"
+    ],
+    "artistAliases": [
+      "ACDC",
+      "AC-DC"
+    ]
+  },
+  {
+    "title": "Another Brick in the Wall, Part 2",
+    "artist": "Pink Floyd",
+    "year": 1979,
+    "country": "gb",
+    "categories": [
+      "rock"
+    ],
+    "aliases": [
+      "Another Brick in the Wall"
+    ]
+  },
+  {
+    "title": "Enter Sandman",
+    "artist": "Metallica",
+    "year": 1991,
+    "country": "us",
+    "categories": [
+      "rock",
+      "metal"
+    ]
+  },
+  {
+    "title": "Black Hole Sun",
+    "artist": "Soundgarden",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Everlong",
+    "artist": "Foo Fighters",
+    "year": 1997,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Californication",
+    "artist": "Red Hot Chili Peppers",
+    "year": 2000,
+    "country": "us",
+    "categories": [
+      "rock"
+    ],
+    "artistAliases": [
+      "RHCP"
+    ]
+  },
+  {
+    "title": "In the End",
+    "artist": "Linkin Park",
+    "year": 2001,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Seven Nation Army",
+    "artist": "The White Stripes",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "American Idiot",
+    "artist": "Green Day",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Boulevard of Broken Dreams",
+    "artist": "Green Day",
+    "year": 2005,
+    "country": "us",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Viva la Vida",
+    "artist": "Coldplay",
+    "year": 2008,
+    "country": "gb",
+    "categories": [
+      "rock"
+    ]
+  },
+  {
+    "title": "Whole Lotta Love",
+    "artist": "Led Zeppelin",
+    "year": 1969,
+    "country": "gb",
+    "categories": [
+      "rock",
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Rapper's Delight",
+    "artist": "The Sugarhill Gang",
+    "year": 1979,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "The Message",
+    "artist": "Grandmaster Flash and the Furious Five",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "It Takes Two",
+    "artist": "Rob Base and DJ E-Z Rock",
+    "year": 1988,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Walk This Way",
+    "artist": "Run-DMC",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Walk This Way (feat. Aerosmith)"
+    ]
+  },
+  {
+    "title": "Fight the Power",
+    "artist": "Public Enemy",
+    "year": 1989,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Nuthin' but a 'G' Thang",
+    "artist": "Dr. Dre",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Nuthin But a G Thang"
+    ]
+  },
+  {
+    "title": "Juicy",
+    "artist": "The Notorious B.I.G.",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Gin and Juice",
+    "artist": "Snoop Dogg",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "artistAliases": [
+      "Snoop Doggy Dogg"
+    ]
+  },
+  {
+    "title": "C.R.E.A.M.",
+    "artist": "Wu-Tang Clan",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Cash Rules Everything Around Me"
+    ]
+  },
+  {
+    "title": "California Love",
+    "artist": "2Pac",
+    "year": 1995,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "California Love (feat. Dr. Dre)"
+    ],
+    "artistAliases": [
+      "Tupac",
+      "Tupac Shakur"
+    ]
+  },
+  {
+    "title": "Hard Knock Life (Ghetto Anthem)",
+    "artist": "Jay-Z",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "My Name Is",
+    "artist": "Eminem",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Ms. Jackson",
+    "artist": "OutKast",
+    "year": 2000,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Lose Yourself",
+    "artist": "Eminem",
+    "year": 2002,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "In da Club",
+    "artist": "50 Cent",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Gold Digger",
+    "artist": "Kanye West",
+    "year": 2005,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Gold Digger (feat. Jamie Foxx)"
+    ]
+  },
+  {
+    "title": "Empire State of Mind",
+    "artist": "Jay-Z",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Empire State of Mind (feat. Alicia Keys)"
+    ]
+  },
+  {
+    "title": "Niggas in Paris",
+    "artist": "Jay-Z and Kanye West",
+    "year": 2011,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "N***as in Paris",
+      "Paris"
+    ]
+  },
+  {
+    "title": "Started from the Bottom",
+    "artist": "Drake",
+    "year": 2013,
+    "country": "ca",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "HUMBLE.",
+    "artist": "Kendrick Lamar",
+    "year": 2017,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Humble"
+    ]
+  },
+  {
+    "title": "Bodak Yellow",
+    "artist": "Cardi B",
+    "year": 2017,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ]
+  },
+  {
+    "title": "Sicko Mode",
+    "artist": "Travis Scott",
+    "year": 2018,
+    "country": "us",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "SICKO MODE"
+    ]
+  },
+  {
+    "title": "God's Plan",
+    "artist": "Drake",
+    "year": 2018,
+    "country": "ca",
+    "categories": [
+      "hiphop"
+    ],
+    "aliases": [
+      "Gods Plan"
+    ]
+  },
+  {
+    "title": "Blue Monday",
+    "artist": "New Order",
+    "year": 1983,
+    "country": "gb",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Children",
+    "artist": "Robert Miles",
+    "year": 1995,
+    "country": "it",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Around the World",
+    "artist": "Daft Punk",
+    "year": 1997,
+    "country": "fr",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Sandstorm",
+    "artist": "Darude",
+    "year": 1999,
+    "country": "fi",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "One More Time",
+    "artist": "Daft Punk",
+    "year": 2000,
+    "country": "fr",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Satisfaction",
+    "artist": "Benny Benassi",
+    "year": 2002,
+    "country": "it",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Call on Me",
+    "artist": "Eric Prydz",
+    "year": 2004,
+    "country": "se",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "When Love Takes Over",
+    "artist": "David Guetta ft. Kelly Rowland",
+    "year": 2009,
+    "country": "fr",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Strobe",
+    "artist": "Deadmau5",
+    "year": 2009,
+    "country": "ca",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "One",
+    "artist": "Swedish House Mafia",
+    "year": 2010,
+    "country": "se",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Levels",
+    "artist": "Avicii",
+    "year": 2011,
+    "country": "se",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Titanium",
+    "artist": "David Guetta ft. Sia",
+    "year": 2011,
+    "country": "fr",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Don't You Worry Child",
+    "artist": "Swedish House Mafia ft. John Martin",
+    "year": 2012,
+    "country": "se",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Clarity",
+    "artist": "Zedd ft. Foxes",
+    "year": 2012,
+    "country": "de",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Wake Me Up",
+    "artist": "Avicii",
+    "year": 2013,
+    "country": "se",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Get Lucky",
+    "artist": "Daft Punk ft. Pharrell Williams",
+    "year": 2013,
+    "country": "fr",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Animals",
+    "artist": "Martin Garrix",
+    "year": 2013,
+    "country": "nl",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Summer",
+    "artist": "Calvin Harris",
+    "year": 2014,
+    "country": "gb",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Lean On",
+    "artist": "Major Lazer & DJ Snake ft. MO",
+    "year": 2015,
+    "country": "intl",
+    "categories": [
+      "edm"
+    ],
+    "aliases": [
+      "Lean On (feat. MØ)"
+    ]
+  },
+  {
+    "title": "Faded",
+    "artist": "Alan Walker",
+    "year": 2015,
+    "country": "no",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Closer",
+    "artist": "The Chainsmokers ft. Halsey",
+    "year": 2016,
+    "country": "us",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Something Just Like This",
+    "artist": "The Chainsmokers & Coldplay",
+    "year": 2017,
+    "country": "intl",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "Happier",
+    "artist": "Marshmello & Bastille",
+    "year": 2018,
+    "country": "us",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "On My Way",
+    "artist": "Alan Walker, Sabrina Carpenter & Farruko",
+    "year": 2019,
+    "country": "no",
+    "categories": [
+      "edm"
+    ]
+  },
+  {
+    "title": "What'd I Say",
+    "artist": "Ray Charles",
+    "year": 1959,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Respect",
+    "artist": "Aretha Franklin",
+    "year": 1967,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Ain't No Mountain High Enough",
+    "artist": "Diana Ross",
+    "year": 1970,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Let's Stay Together",
+    "artist": "Al Green",
+    "year": 1971,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Superstition",
+    "artist": "Stevie Wonder",
+    "year": 1972,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Lady Marmalade",
+    "artist": "Labelle",
+    "year": 1974,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Got to Be Real",
+    "artist": "Cheryl Lynn",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Sexual Healing",
+    "artist": "Marvin Gaye",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "End of the Road",
+    "artist": "Boyz II Men",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "No Diggity",
+    "artist": "Blackstreet",
+    "year": 1996,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Are You That Somebody",
+    "artist": "Aaliyah",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "No Scrubs",
+    "artist": "TLC",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Fallin'",
+    "artist": "Alicia Keys",
+    "year": 2001,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Crazy in Love",
+    "artist": "Beyoncé",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ],
+    "artistAliases": [
+      "Beyonce",
+      "Beyoncé ft. Jay-Z"
+    ]
+  },
+  {
+    "title": "Yeah!",
+    "artist": "Usher",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ],
+    "aliases": [
+      "Yeah! (feat. Lil Jon & Ludacris)"
+    ]
+  },
+  {
+    "title": "Locked Out of Heaven",
+    "artist": "Bruno Mars",
+    "year": 2012,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Can't Feel My Face",
+    "artist": "The Weeknd",
+    "year": 2015,
+    "country": "ca",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "Cranes in the Sky",
+    "artist": "Solange",
+    "year": 2016,
+    "country": "us",
+    "categories": [
+      "rnb"
+    ]
+  },
+  {
+    "title": "I Walk the Line",
+    "artist": "Johnny Cash",
+    "year": 1956,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Ring of Fire",
+    "artist": "Johnny Cash",
+    "year": 1963,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Stand by Your Man",
+    "artist": "Tammy Wynette",
+    "year": 1968,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "A Boy Named Sue",
+    "artist": "Johnny Cash",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Coal Miner's Daughter",
+    "artist": "Loretta Lynn",
+    "year": 1970,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Jolene",
+    "artist": "Dolly Parton",
+    "year": 1973,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "The Gambler",
+    "artist": "Kenny Rogers",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "On the Road Again",
+    "artist": "Willie Nelson",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "9 to 5",
+    "artist": "Dolly Parton",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "country"
+    ],
+    "aliases": [
+      "Nine to Five"
+    ]
+  },
+  {
+    "title": "He Stopped Loving Her Today",
+    "artist": "George Jones",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Islands in the Stream",
+    "artist": "Kenny Rogers & Dolly Parton",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Achy Breaky Heart",
+    "artist": "Billy Ray Cyrus",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Man! I Feel Like a Woman!",
+    "artist": "Shania Twain",
+    "year": 1997,
+    "country": "ca",
+    "categories": [
+      "country"
+    ],
+    "artistAliases": [
+      "Shania Twain"
+    ]
+  },
+  {
+    "title": "This Kiss",
+    "artist": "Faith Hill",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Before He Cheats",
+    "artist": "Carrie Underwood",
+    "year": 2006,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Our Song",
+    "artist": "Taylor Swift",
+    "year": 2007,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Need You Now",
+    "artist": "Lady Antebellum",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "country"
+    ],
+    "artistAliases": [
+      "Lady A"
+    ]
+  },
+  {
+    "title": "Country Girl (Shake It for Me)",
+    "artist": "Luke Bryan",
+    "year": 2011,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Cruise",
+    "artist": "Florida Georgia Line",
+    "year": 2012,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Wagon Wheel",
+    "artist": "Darius Rucker",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Tennessee Whiskey",
+    "artist": "Chris Stapleton",
+    "year": 2015,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "The Git Up",
+    "artist": "Blanco Brown",
+    "year": 2019,
+    "country": "us",
+    "categories": [
+      "country"
+    ]
+  },
+  {
+    "title": "Paranoid",
+    "artist": "Black Sabbath",
+    "year": 1970,
+    "country": "gb",
+    "categories": [
+      "metal",
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Iron Man",
+    "artist": "Black Sabbath",
+    "year": 1970,
+    "country": "gb",
+    "categories": [
+      "metal"
+    ],
+    "aliases": [
+      "Iron Man (Master of Reality)"
+    ]
+  },
+  {
+    "title": "Ace of Spades",
+    "artist": "Motorhead",
+    "year": 1980,
+    "country": "gb",
+    "categories": [
+      "metal"
+    ],
+    "artistAliases": [
+      "Motörhead"
+    ]
+  },
+  {
+    "title": "Back in Black",
+    "artist": "AC/DC",
+    "year": 1980,
+    "country": "au",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Crazy Train",
+    "artist": "Ozzy Osbourne",
+    "year": 1980,
+    "country": "gb",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Breaking the Law",
+    "artist": "Judas Priest",
+    "year": 1980,
+    "country": "gb",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Run to the Hills",
+    "artist": "Iron Maiden",
+    "year": 1982,
+    "country": "gb",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "The Number of the Beast",
+    "artist": "Iron Maiden",
+    "year": 1982,
+    "country": "gb",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Holy Diver",
+    "artist": "Dio",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Master of Puppets",
+    "artist": "Metallica",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Peace Sells",
+    "artist": "Megadeth",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "metal"
+    ],
+    "aliases": [
+      "Peace Sells... but Who's Buying?"
+    ]
+  },
+  {
+    "title": "One",
+    "artist": "Metallica",
+    "year": 1989,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Walk",
+    "artist": "Pantera",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Du Hast",
+    "artist": "Rammstein",
+    "year": 1997,
+    "country": "de",
+    "categories": [
+      "metal"
+    ],
+    "aliases": [
+      "Du hast"
+    ]
+  },
+  {
+    "title": "Freak on a Leash",
+    "artist": "Korn",
+    "year": 1998,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Chop Suey!",
+    "artist": "System of a Down",
+    "year": 2001,
+    "country": "us",
+    "categories": [
+      "metal"
+    ],
+    "aliases": [
+      "Chop Suey"
+    ]
+  },
+  {
+    "title": "Bring Me to Life",
+    "artist": "Evanescence",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Duality",
+    "artist": "Slipknot",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "B.Y.O.B.",
+    "artist": "System of a Down",
+    "year": 2005,
+    "country": "us",
+    "categories": [
+      "metal"
+    ],
+    "aliases": [
+      "BYOB"
+    ]
+  },
+  {
+    "title": "Psychosocial",
+    "artist": "Slipknot",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "metal"
+    ]
+  },
+  {
+    "title": "Down Town",
+    "artist": "Sugar Babe",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "DOWN TOWN",
+      "ダウンタウン"
+    ],
+    "artistAliases": [
+      "シュガー・ベイブ"
+    ]
+  },
+  {
+    "title": "Sparkle",
+    "artist": "Tatsuro Yamashita",
+    "year": 1982,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "Sparkle",
+      "スパークル"
+    ],
+    "artistAliases": [
+      "山下達郎",
+      "Yamashita Tatsuro"
+    ]
+  },
+  {
+    "title": "Bomber",
+    "artist": "Tatsuro Yamashita",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "BOMBER",
+      "ボンバー"
+    ],
+    "artistAliases": [
+      "山下達郎",
+      "Yamashita Tatsuro"
+    ]
+  },
+  {
+    "title": "Ride On Time",
+    "artist": "Tatsuro Yamashita",
+    "year": 1980,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "RIDE ON TIME",
+      "ライド・オン・タイム"
+    ],
+    "artistAliases": [
+      "山下達郎",
+      "Yamashita Tatsuro"
+    ]
+  },
+  {
+    "title": "Magic Ways",
+    "artist": "Tatsuro Yamashita",
+    "year": 1976,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "MAGIC WAYS",
+      "マジック・ウェイズ"
+    ],
+    "artistAliases": [
+      "山下達郎",
+      "Yamashita Tatsuro"
+    ]
+  },
+  {
+    "title": "Plastic Love",
+    "artist": "Mariya Takeuchi",
+    "year": 1984,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "プラスティック・ラブ",
+      "プラスティック・ラヴ"
+    ],
+    "artistAliases": [
+      "竹内まりや",
+      "Takeuchi Mariya"
+    ]
+  },
+  {
+    "title": "September",
+    "artist": "Mariya Takeuchi",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "SEPTEMBER",
+      "セプテンバー"
+    ],
+    "artistAliases": [
+      "竹内まりや",
+      "Takeuchi Mariya"
+    ]
+  },
+  {
+    "title": "Mayonaka no Door / Stay With Me",
+    "artist": "Miki Matsubara",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "真夜中のドア〜Stay With Me",
+      "真夜中のドア",
+      "Stay With Me"
+    ],
+    "artistAliases": [
+      "松原みき",
+      "Matsubara Miki"
+    ]
+  },
+  {
+    "title": "Kimi wa Tennen Shoku",
+    "artist": "Eiichi Ohtaki",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "君は天然色",
+      "Kimi wa Tennenshoku"
+    ],
+    "artistAliases": [
+      "大滝詠一",
+      "大瀧詠一",
+      "Ohtaki Eiichi",
+      "Otaki Eiichi"
+    ]
+  },
+  {
+    "title": "Kanashimi ga Tomaranai",
+    "artist": "Anri",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "悲しみがとまらない",
+      "I Can't Stop the Loneliness"
+    ],
+    "artistAliases": [
+      "杏里"
+    ]
+  },
+  {
+    "title": "Olivia wo Kikinagara",
+    "artist": "Anri",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "オリビアを聴きながら",
+      "Olivia wo Kiki nagara"
+    ],
+    "artistAliases": [
+      "杏里"
+    ]
+  },
+  {
+    "title": "Manatsu no Yoru no Yume",
+    "artist": "Anri",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "真夏の夜の夢",
+      "A Midsummer Night's Dream"
+    ],
+    "artistAliases": [
+      "杏里"
+    ]
+  },
+  {
+    "title": "Telephone Number",
+    "artist": "Junko Ohashi",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "テレフォン・ナンバー"
+    ],
+    "artistAliases": [
+      "大橋純子",
+      "Ohashi Junko"
+    ]
+  },
+  {
+    "title": "4:00 A.M.",
+    "artist": "Taeko Onuki",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "4:00AM",
+      "AM4:00"
+    ],
+    "artistAliases": [
+      "大貫妙子",
+      "Onuki Taeko"
+    ]
+  },
+  {
+    "title": "Fly-Day Chinatown",
+    "artist": "Yasuha",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "FLY-DAY CHINATOWN",
+      "フライディ・チャイナタウン"
+    ],
+    "artistAliases": [
+      "泰葉"
+    ]
+  },
+  {
+    "title": "Tasogare no Bay City",
+    "artist": "Junko Yagami",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "黄昏のBay City",
+      "Tasogare no Bay City"
+    ],
+    "artistAliases": [
+      "八神純子",
+      "Yagami Junko"
+    ]
+  },
+  {
+    "title": "Stay With Me",
+    "artist": "Tomoko Aran",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "I'm in Love",
+      "アイム・イン・ラブ"
+    ],
+    "artistAliases": [
+      "亜蘭知子",
+      "Aran Tomoko"
+    ]
+  },
+  {
+    "title": "Lucky Lady Feel So Good",
+    "artist": "Toshiki Kadomatsu",
+    "year": 1982,
+    "country": "jp",
+    "categories": [
+      "citypop"
+    ],
+    "aliases": [
+      "LUCKY LADY FEEL SO GOOD"
+    ],
+    "artistAliases": [
+      "角松敏生",
+      "Kadomatsu Toshiki"
+    ]
+  },
+  {
+    "title": "Katte ni Sindbad",
+    "artist": "Southern All Stars",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "勝手にシンドバッド"
+    ],
+    "artistAliases": [
+      "サザンオールスターズ"
+    ]
+  },
+  {
+    "title": "Kurenai",
+    "artist": "X JAPAN",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "紅"
+    ]
+  },
+  {
+    "title": "Namida no Kiss",
+    "artist": "Southern All Stars",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "涙のキッス"
+    ],
+    "artistAliases": [
+      "サザンオールスターズ"
+    ]
+  },
+  {
+    "title": "Ultra Soul",
+    "artist": "B'z",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "ウルトラソウル"
+    ]
+  },
+  {
+    "title": "Ai no Mama ni Wagamama ni Boku wa Kimi dake o Kizutsukenai",
+    "artist": "B'z",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "愛のままにわがままに僕は君だけを傷つけない"
+    ]
+  },
+  {
+    "title": "Tomorrow Never Knows",
+    "artist": "Mr.Children",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "トゥモロー・ネバー・ノウズ"
+    ],
+    "artistAliases": [
+      "ミスターチルドレン",
+      "ミスチル"
+    ]
+  },
+  {
+    "title": "Innocent World",
+    "artist": "Mr.Children",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "イノセントワールド"
+    ],
+    "artistAliases": [
+      "ミスチル"
+    ]
+  },
+  {
+    "title": "Namonaki Uta",
+    "artist": "Mr.Children",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "名もなき詩"
+    ],
+    "artistAliases": [
+      "ミスチル"
+    ]
+  },
+  {
+    "title": "Tentai Kansoku",
+    "artist": "BUMP OF CHICKEN",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "天体観測"
+    ],
+    "artistAliases": [
+      "バンプ・オブ・チキン"
+    ]
+  },
+  {
+    "title": "Karma",
+    "artist": "BUMP OF CHICKEN",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "カルマ"
+    ],
+    "artistAliases": [
+      "バンプ・オブ・チキン"
+    ]
+  },
+  {
+    "title": "Rewrite",
+    "artist": "ASIAN KUNG-FU GENERATION",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "リライト"
+    ],
+    "artistAliases": [
+      "アジカン",
+      "アジアン・カンフー・ジェネレーション"
+    ]
+  },
+  {
+    "title": "The Beginning",
+    "artist": "ONE OK ROCK",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "ザ・ビギニング"
+    ],
+    "artistAliases": [
+      "ワンオクロック",
+      "ワンオク"
+    ]
+  },
+  {
+    "title": "Wherever You Are",
+    "artist": "ONE OK ROCK",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "artistAliases": [
+      "ワンオク"
+    ]
+  },
+  {
+    "title": "Zen Zen Zense",
+    "artist": "RADWIMPS",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "jrock",
+      "jpop"
+    ],
+    "aliases": [
+      "前前前世"
+    ],
+    "artistAliases": [
+      "ラッドウィンプス",
+      "ラッド",
+      "RADWIMPS"
+    ]
+  },
+  {
+    "title": "Order Made",
+    "artist": "RADWIMPS",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "オーダーメイド"
+    ],
+    "artistAliases": [
+      "ラッド"
+    ]
+  },
+  {
+    "title": "Linda Linda",
+    "artist": "The Blue Hearts",
+    "year": 1987,
+    "country": "jp",
+    "categories": [
+      "jrock",
+      "jpop"
+    ],
+    "aliases": [
+      "リンダリンダ"
+    ],
+    "artistAliases": [
+      "ザ・ブルーハーツ"
+    ]
+  },
+  {
+    "title": "Robinson",
+    "artist": "Spitz",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "ロビンソン"
+    ],
+    "artistAliases": [
+      "スピッツ"
+    ]
+  },
+  {
+    "title": "Endless Rain",
+    "artist": "X JAPAN",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "エンドレス・レイン"
+    ]
+  },
+  {
+    "title": "Sora mo Toberu Hazu",
+    "artist": "Spitz",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "空も飛べるはず"
+    ],
+    "artistAliases": [
+      "スピッツ"
+    ]
+  },
+  {
+    "title": "Haruka Kanata",
+    "artist": "ASIAN KUNG-FU GENERATION",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "遥か彼方"
+    ],
+    "artistAliases": [
+      "アジカン"
+    ]
+  },
+  {
+    "title": "Sayonara Elegy",
+    "artist": "Masaki Suda",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "さよならエレジー"
+    ],
+    "artistAliases": [
+      "菅田将暉"
+    ]
+  },
+  {
+    "title": "Hanabi",
+    "artist": "Mr.Children",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "jrock"
+    ],
+    "aliases": [
+      "花火",
+      "HANABI"
+    ],
+    "artistAliases": [
+      "ミスチル"
+    ]
+  },
+  {
+    "title": "Israelites",
+    "artist": "Desmond Dekker & The Aces",
+    "year": 1968,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Many Rivers to Cross",
+    "artist": "Jimmy Cliff",
+    "year": 1969,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "The Harder They Come",
+    "artist": "Jimmy Cliff",
+    "year": 1972,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Get Up, Stand Up",
+    "artist": "Bob Marley & The Wailers",
+    "year": 1973,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "No Woman, No Cry",
+    "artist": "Bob Marley & The Wailers",
+    "year": 1974,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Marcus Garvey",
+    "artist": "Burning Spear",
+    "year": 1975,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Police and Thieves",
+    "artist": "Junior Murvin",
+    "year": 1976,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Three Little Birds",
+    "artist": "Bob Marley & The Wailers",
+    "year": 1977,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Is This Love",
+    "artist": "Bob Marley & The Wailers",
+    "year": 1978,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Could You Be Loved",
+    "artist": "Bob Marley & The Wailers",
+    "year": 1980,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Pass the Dutchie",
+    "artist": "Musical Youth",
+    "year": 1982,
+    "country": "gb",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Red Red Wine",
+    "artist": "UB40",
+    "year": 1983,
+    "country": "gb",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Here I Am (Come and Take Me)",
+    "artist": "UB40",
+    "year": 1990,
+    "country": "gb",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Sweat (A La La La La Long)",
+    "artist": "Inner Circle",
+    "year": 1992,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Informer",
+    "artist": "Snow",
+    "year": 1993,
+    "country": "ca",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Bad Boys",
+    "artist": "Inner Circle",
+    "year": 1993,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Boombastic",
+    "artist": "Shaggy",
+    "year": 1995,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Who Am I (Sim Simma)",
+    "artist": "Beenie Man",
+    "year": 1997,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "It Wasn't Me",
+    "artist": "Shaggy",
+    "year": 2000,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ],
+    "aliases": [
+      "It Wasn't Me (feat. Rikrok)"
+    ]
+  },
+  {
+    "title": "Get Busy",
+    "artist": "Sean Paul",
+    "year": 2003,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Temperature",
+    "artist": "Sean Paul",
+    "year": 2005,
+    "country": "jm",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "Rude",
+    "artist": "Magic!",
+    "year": 2013,
+    "country": "ca",
+    "categories": [
+      "reggae"
+    ]
+  },
+  {
+    "title": "West End Blues",
+    "artist": "Louis Armstrong",
+    "year": 1928,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Body and Soul",
+    "artist": "Coleman Hawkins",
+    "year": 1939,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "In the Mood",
+    "artist": "Glenn Miller",
+    "year": 1939,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Take the A Train",
+    "artist": "Duke Ellington",
+    "year": 1941,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Round Midnight",
+    "artist": "Thelonious Monk",
+    "year": 1947,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ],
+    "aliases": [
+      "'Round Midnight",
+      "Round About Midnight"
+    ]
+  },
+  {
+    "title": "How High the Moon",
+    "artist": "Ella Fitzgerald",
+    "year": 1947,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Lullaby of Birdland",
+    "artist": "George Shearing",
+    "year": 1952,
+    "country": "gb",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "My Funny Valentine",
+    "artist": "Chet Baker",
+    "year": 1954,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "I've Got You Under My Skin",
+    "artist": "Frank Sinatra",
+    "year": 1956,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Mack the Knife",
+    "artist": "Louis Armstrong",
+    "year": 1956,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ],
+    "aliases": [
+      "Moritat",
+      "Theme from The Threepenny Opera"
+    ]
+  },
+  {
+    "title": "Blue Rondo a la Turk",
+    "artist": "The Dave Brubeck Quartet",
+    "year": 1959,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ],
+    "aliases": [
+      "Blue Rondo à la Turk"
+    ]
+  },
+  {
+    "title": "Take Five",
+    "artist": "The Dave Brubeck Quartet",
+    "year": 1959,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "So What",
+    "artist": "Miles Davis",
+    "year": 1959,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Giant Steps",
+    "artist": "John Coltrane",
+    "year": 1960,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "My Favorite Things",
+    "artist": "John Coltrane",
+    "year": 1961,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Desafinado",
+    "artist": "Stan Getz & Charlie Byrd",
+    "year": 1962,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "The Girl from Ipanema",
+    "artist": "Stan Getz & Joao Gilberto",
+    "year": 1964,
+    "country": "br",
+    "categories": [
+      "jazz"
+    ],
+    "aliases": [
+      "Garota de Ipanema"
+    ],
+    "artistAliases": [
+      "Stan Getz & João Gilberto"
+    ]
+  },
+  {
+    "title": "Watermelon Man",
+    "artist": "Herbie Hancock",
+    "year": 1962,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Cantaloupe Island",
+    "artist": "Herbie Hancock",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Feeling Good",
+    "artist": "Nina Simone",
+    "year": 1965,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Spain",
+    "artist": "Chick Corea",
+    "year": 1972,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Birdland",
+    "artist": "Weather Report",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "jazz"
+    ]
+  },
+  {
+    "title": "Canon in D",
+    "artist": "Johann Pachelbel",
+    "year": 1680,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Pachelbel's Canon",
+      "Canon and Gigue in D major"
+    ]
+  },
+  {
+    "title": "The Four Seasons: Spring",
+    "artist": "Antonio Vivaldi",
+    "year": 1725,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Le quattro stagioni",
+      "La primavera",
+      "Spring (Vivaldi)"
+    ]
+  },
+  {
+    "title": "Brandenburg Concerto No. 3",
+    "artist": "Johann Sebastian Bach",
+    "year": 1721,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Brandenburgisches Konzert Nr. 3",
+      "BWV 1048"
+    ]
+  },
+  {
+    "title": "Toccata and Fugue in D minor",
+    "artist": "Johann Sebastian Bach",
+    "year": 1708,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Toccata und Fuge in d-Moll",
+      "BWV 565"
+    ]
+  },
+  {
+    "title": "Messiah: Hallelujah Chorus",
+    "artist": "George Frideric Handel",
+    "year": 1741,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Hallelujah Chorus",
+      "Handel Messiah"
+    ]
+  },
+  {
+    "title": "Eine kleine Nachtmusik",
+    "artist": "Wolfgang Amadeus Mozart",
+    "year": 1787,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "A Little Night Music",
+      "Serenade No. 13",
+      "K. 525"
+    ]
+  },
+  {
+    "title": "Symphony No. 5",
+    "artist": "Ludwig van Beethoven",
+    "year": 1808,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Beethoven's Fifth",
+      "Symphony No. 5 in C minor",
+      "Op. 67"
+    ]
+  },
+  {
+    "title": "Symphony No. 9: Ode to Joy",
+    "artist": "Ludwig van Beethoven",
+    "year": 1824,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Ode an die Freude",
+      "Ode to Joy",
+      "Choral Symphony",
+      "Op. 125"
+    ]
+  },
+  {
+    "title": "Symphonie fantastique",
+    "artist": "Hector Berlioz",
+    "year": 1830,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Fantastic Symphony",
+      "Op. 14"
+    ]
+  },
+  {
+    "title": "Carnival of the Animals",
+    "artist": "Camille Saint-Saens",
+    "year": 1886,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Le carnaval des animaux",
+      "The Swan",
+      "Le cygne"
+    ]
+  },
+  {
+    "title": "Wedding March",
+    "artist": "Felix Mendelssohn",
+    "year": 1842,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Hochzeitsmarsch",
+      "A Midsummer Night's Dream incidental music"
+    ]
+  },
+  {
+    "title": "Ride of the Valkyries",
+    "artist": "Richard Wagner",
+    "year": 1870,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Walkurenritt",
+      "Die Walkure"
+    ]
+  },
+  {
+    "title": "Hungarian Rhapsody No. 2",
+    "artist": "Franz Liszt",
+    "year": 1847,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Magyar rapszodia",
+      "S.244 No. 2"
+    ]
+  },
+  {
+    "title": "The Blue Danube",
+    "artist": "Johann Strauss II",
+    "year": 1867,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "An der schonen blauen Donau",
+      "Blue Danube Waltz",
+      "Op. 314"
+    ]
+  },
+  {
+    "title": "Swan Lake",
+    "artist": "Pyotr Ilyich Tchaikovsky",
+    "year": 1877,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Lebedinoye ozero",
+      "Swan Lake Suite",
+      "Op. 20"
+    ],
+    "artistAliases": [
+      "Tchaikovsky",
+      "Peter Tchaikovsky"
+    ]
+  },
+  {
+    "title": "1812 Overture",
+    "artist": "Pyotr Ilyich Tchaikovsky",
+    "year": 1882,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "The Year 1812",
+      "Overture solennelle",
+      "Op. 49"
+    ],
+    "artistAliases": [
+      "Tchaikovsky"
+    ]
+  },
+  {
+    "title": "In the Hall of the Mountain King",
+    "artist": "Edvard Grieg",
+    "year": 1875,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "I Dovregubbens hall",
+      "Peer Gynt Suite"
+    ]
+  },
+  {
+    "title": "Symphony No. 9 (From the New World)",
+    "artist": "Antonin Dvorak",
+    "year": 1893,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "New World Symphony",
+      "Z noveho sveta",
+      "Op. 95"
+    ],
+    "artistAliases": [
+      "Dvorak",
+      "Antonin Dvořak"
+    ]
+  },
+  {
+    "title": "Clair de Lune",
+    "artist": "Claude Debussy",
+    "year": 1905,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Suite bergamasque",
+      "Moonlight"
+    ]
+  },
+  {
+    "title": "The Rite of Spring",
+    "artist": "Igor Stravinsky",
+    "year": 1913,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Le Sacre du printemps",
+      "Vesna svyashchennaya"
+    ]
+  },
+  {
+    "title": "The Planets: Mars, the Bringer of War",
+    "artist": "Gustav Holst",
+    "year": 1916,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "The Planets",
+      "Mars",
+      "Op. 32"
+    ]
+  },
+  {
+    "title": "Bolero",
+    "artist": "Maurice Ravel",
+    "year": 1928,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Ravel's Bolero",
+      "Boléro"
+    ]
+  },
+  {
+    "title": "Symphony No. 40 in G minor",
+    "artist": "Wolfgang Amadeus Mozart",
+    "year": 1788,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Mozart Symphony 40",
+      "K. 550",
+      "Great G minor Symphony"
+    ]
+  },
+  {
+    "title": "Flight of the Bumblebee",
+    "artist": "Nikolai Rimsky-Korsakov",
+    "year": 1900,
+    "country": "intl",
+    "categories": [
+      "classical"
+    ],
+    "aliases": [
+      "Polyot shmelya",
+      "The Tale of Tsar Saltan"
+    ],
+    "artistAliases": [
+      "Rimsky-Korsakov"
+    ]
+  },
+  {
+    "title": "Silent Night",
+    "artist": "Bing Crosby",
+    "year": 1935,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "White Christmas",
+    "artist": "Bing Crosby",
+    "year": 1942,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Have Yourself a Merry Little Christmas",
+    "artist": "Judy Garland",
+    "year": 1944,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "The Christmas Song (Chestnuts Roasting on an Open Fire)",
+    "artist": "Nat King Cole",
+    "year": 1946,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ],
+    "aliases": [
+      "The Christmas Song",
+      "Merry Christmas to You"
+    ]
+  },
+  {
+    "title": "Here Comes Santa Claus",
+    "artist": "Gene Autry",
+    "year": 1947,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Rudolph the Red-Nosed Reindeer",
+    "artist": "Gene Autry",
+    "year": 1949,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Frosty the Snowman",
+    "artist": "Gene Autry",
+    "year": 1950,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "It's Beginning to Look a Lot Like Christmas",
+    "artist": "Perry Como",
+    "year": 1951,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Jingle Bell Rock",
+    "artist": "Bobby Helms",
+    "year": 1957,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Rockin' Around the Christmas Tree",
+    "artist": "Brenda Lee",
+    "year": 1958,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "The Little Drummer Boy",
+    "artist": "The Harry Simeone Chorale",
+    "year": 1958,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ],
+    "aliases": [
+      "Little Drummer Boy"
+    ]
+  },
+  {
+    "title": "Sleigh Ride",
+    "artist": "The Ronettes",
+    "year": 1963,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "A Holly Jolly Christmas",
+    "artist": "Burl Ives",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ],
+    "aliases": [
+      "Holly Jolly Christmas"
+    ]
+  },
+  {
+    "title": "Feliz Navidad",
+    "artist": "Jose Feliciano",
+    "year": 1970,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ],
+    "artistAliases": [
+      "José Feliciano"
+    ]
+  },
+  {
+    "title": "Happy Xmas (War Is Over)",
+    "artist": "John Lennon",
+    "year": 1971,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ],
+    "artistAliases": [
+      "John Lennon & Yoko Ono",
+      "John & Yoko / Plastic Ono Band"
+    ]
+  },
+  {
+    "title": "Merry Xmas Everybody",
+    "artist": "Slade",
+    "year": 1973,
+    "country": "gb",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Step into Christmas",
+    "artist": "Elton John",
+    "year": 1973,
+    "country": "gb",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Wonderful Christmastime",
+    "artist": "Paul McCartney",
+    "year": 1979,
+    "country": "gb",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Last Christmas",
+    "artist": "Wham!",
+    "year": 1984,
+    "country": "gb",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Do They Know It's Christmas?",
+    "artist": "Band Aid",
+    "year": 1984,
+    "country": "gb",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "All I Want for Christmas Is You",
+    "artist": "Mariah Carey",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Christmas Lights",
+    "artist": "Coldplay",
+    "year": 2010,
+    "country": "gb",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Underneath the Tree",
+    "artist": "Kelly Clarkson",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "christmas"
+    ]
+  },
+  {
+    "title": "Awaara Hoon",
+    "artist": "Mukesh",
+    "year": 1951,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "आवारा हूँ",
+      "Awara Hoon"
+    ]
+  },
+  {
+    "title": "Mera Joota Hai Japani",
+    "artist": "Mukesh",
+    "year": 1955,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "मेरा जूता है जापानी"
+    ]
+  },
+  {
+    "title": "Pyar Kiya To Darna Kya",
+    "artist": "Lata Mangeshkar",
+    "year": 1960,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "प्यार किया तो डरना क्या"
+    ],
+    "artistAliases": [
+      "लता मंगेशकर"
+    ]
+  },
+  {
+    "title": "Aaj Phir Jeene Ki Tamanna Hai",
+    "artist": "Lata Mangeshkar",
+    "year": 1965,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "आज फिर जीने की तमन्ना है"
+    ],
+    "artistAliases": [
+      "लता मंगेशकर"
+    ]
+  },
+  {
+    "title": "Mere Sapno Ki Rani",
+    "artist": "Kishore Kumar",
+    "year": 1969,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "मेरे सपनों की रानी"
+    ],
+    "artistAliases": [
+      "किशोर कुमार"
+    ]
+  },
+  {
+    "title": "Dum Maro Dum",
+    "artist": "Asha Bhosle",
+    "year": 1971,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "दम मारो दम"
+    ],
+    "artistAliases": [
+      "आशा भोसले"
+    ]
+  },
+  {
+    "title": "Mehbooba Mehbooba",
+    "artist": "R. D. Burman",
+    "year": 1975,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "महबूबा महबूबा",
+      "Mehbooba O Mehbooba"
+    ],
+    "artistAliases": [
+      "RD Burman",
+      "आर. डी. बर्मन"
+    ]
+  },
+  {
+    "title": "Ek Do Teen",
+    "artist": "Alka Yagnik",
+    "year": 1988,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "एक दो तीन"
+    ],
+    "artistAliases": [
+      "अलका याज्ञिक"
+    ]
+  },
+  {
+    "title": "Choli Ke Peeche",
+    "artist": "Ila Arun",
+    "year": 1993,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "चोली के पीछे",
+      "Choli Ke Peeche Kya Hai"
+    ],
+    "artistAliases": [
+      "Alka Yagnik",
+      "इला अरुण"
+    ]
+  },
+  {
+    "title": "Tujhe Dekha To Yeh Jaana Sanam",
+    "artist": "Kumar Sanu",
+    "year": 1995,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "तुझे देखा तो ये जाना सनम"
+    ],
+    "artistAliases": [
+      "Lata Mangeshkar",
+      "कुमार सानु"
+    ]
+  },
+  {
+    "title": "Chaiyya Chaiyya",
+    "artist": "Sukhwinder Singh",
+    "year": 1998,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "छैयाँ छैयाँ",
+      "Chhaiya Chhaiya"
+    ],
+    "artistAliases": [
+      "Sapna Awasthi",
+      "सुखविंदर सिंह"
+    ]
+  },
+  {
+    "title": "Kal Ho Naa Ho",
+    "artist": "Sonu Nigam",
+    "year": 2003,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "कल हो ना हो"
+    ],
+    "artistAliases": [
+      "सोनू निगम"
+    ]
+  },
+  {
+    "title": "Dhoom Machale",
+    "artist": "Sunidhi Chauhan",
+    "year": 2004,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "धूम मचा ले"
+    ],
+    "artistAliases": [
+      "सुनिधि चौहान"
+    ]
+  },
+  {
+    "title": "Kajra Re",
+    "artist": "Alisha Chinai",
+    "year": 2005,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "कजरा रे"
+    ],
+    "artistAliases": [
+      "Shankar Mahadevan",
+      "Javed Ali",
+      "अलीशा चिनॉय"
+    ]
+  },
+  {
+    "title": "Jai Ho",
+    "artist": "A. R. Rahman",
+    "year": 2008,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "जय हो"
+    ],
+    "artistAliases": [
+      "AR Rahman",
+      "Sukhwinder Singh",
+      "ए. आर. रहमान"
+    ]
+  },
+  {
+    "title": "Munni Badnaam Hui",
+    "artist": "Mamta Sharma",
+    "year": 2010,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "मुन्नी बदनाम हुई"
+    ],
+    "artistAliases": [
+      "ममता शर्मा"
+    ]
+  },
+  {
+    "title": "Sheila Ki Jawani",
+    "artist": "Sunidhi Chauhan",
+    "year": 2010,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "शीला की जवानी"
+    ],
+    "artistAliases": [
+      "सुनिधि चौहान"
+    ]
+  },
+  {
+    "title": "Chammak Challo",
+    "artist": "Akon",
+    "year": 2011,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "चमक चल्लो"
+    ],
+    "artistAliases": [
+      "A. R. Rahman",
+      "Hamsika Iyer"
+    ]
+  },
+  {
+    "title": "Tum Hi Ho",
+    "artist": "Arijit Singh",
+    "year": 2013,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "तुम ही हो"
+    ],
+    "artistAliases": [
+      "अरिजीत सिंह"
+    ]
+  },
+  {
+    "title": "Gerua",
+    "artist": "Arijit Singh",
+    "year": 2015,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "गेरुआ"
+    ],
+    "artistAliases": [
+      "Antara Mitra",
+      "अरिजीत सिंह"
+    ]
+  },
+  {
+    "title": "Ghoomar",
+    "artist": "Shreya Ghoshal",
+    "year": 2017,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "घूमर"
+    ],
+    "artistAliases": [
+      "Swaroop Khan",
+      "श्रेया घोषाल"
+    ]
+  },
+  {
+    "title": "Roja Jaaneman",
+    "artist": "A. R. Rahman",
+    "year": 1992,
+    "country": "in",
+    "categories": [
+      "bollywood"
+    ],
+    "aliases": [
+      "Roja"
+    ],
+    "artistAliases": [
+      "AR Rahman",
+      "ए. आर. रहमान"
+    ]
+  },
+  {
+    "title": "African Queen",
+    "artist": "2Baba",
+    "year": 2004,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ],
+    "artistAliases": [
+      "2Face Idibia",
+      "Tuface Idibia",
+      "Innocent Idibia"
+    ]
+  },
+  {
+    "title": "Do Me",
+    "artist": "P-Square",
+    "year": 2007,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Fall in Love",
+    "artist": "D'banj",
+    "year": 2008,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Bumper to Bumper",
+    "artist": "Wande Coal",
+    "year": 2009,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Pakurumo",
+    "artist": "Wizkid",
+    "year": 2011,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Oliver Twist",
+    "artist": "D'banj",
+    "year": 2011,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Skelewu",
+    "artist": "Davido",
+    "year": 2013,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Ojuelegba",
+    "artist": "Wizkid",
+    "year": 2014,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "My Woman, My Everything",
+    "artist": "Patoranking",
+    "year": 2015,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Leg Over",
+    "artist": "Mr Eazi",
+    "year": 2016,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Fall",
+    "artist": "Davido",
+    "year": 2017,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Ye",
+    "artist": "Burna Boy",
+    "year": 2018,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Soco",
+    "artist": "Starboy",
+    "year": 2018,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ],
+    "artistAliases": [
+      "Wizkid",
+      "Starboy ft. Wizkid"
+    ]
+  },
+  {
+    "title": "Dumebi",
+    "artist": "Rema",
+    "year": 2019,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Anybody",
+    "artist": "Burna Boy",
+    "year": 2019,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Love Nwantiti (ah ah ah)",
+    "artist": "CKay",
+    "year": 2019,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ],
+    "aliases": [
+      "Love Nwantiti",
+      "Love Nwanti Ti",
+      "Open and Close"
+    ]
+  },
+  {
+    "title": "Essence",
+    "artist": "Wizkid",
+    "year": 2020,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ],
+    "artistAliases": [
+      "Wizkid ft. Tems"
+    ]
+  },
+  {
+    "title": "Damages",
+    "artist": "Tems",
+    "year": 2020,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Jowo",
+    "artist": "Davido",
+    "year": 2020,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Peru",
+    "artist": "Fireboy DML",
+    "year": 2021,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Calm Down",
+    "artist": "Rema",
+    "year": 2022,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Sungba",
+    "artist": "Asake",
+    "year": 2022,
+    "country": "ng",
+    "categories": [
+      "afrobeats"
+    ]
+  },
+  {
+    "title": "Oyoge! Taiyaki-kun",
+    "artist": "Masato Shimon",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "およげ!たいやきくん"
+    ],
+    "artistAliases": [
+      "子門真人"
+    ]
+  },
+  {
+    "title": "UFO",
+    "artist": "Pink Lady",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "ユー・エフ・オー"
+    ],
+    "artistAliases": [
+      "ピンク・レディー"
+    ]
+  },
+  {
+    "title": "Rydeen",
+    "artist": "Yellow Magic Orchestra",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "ライディーン",
+      "Rydeen 79/07"
+    ],
+    "artistAliases": [
+      "YMO",
+      "イエロー・マジック・オーケストラ"
+    ]
+  },
+  {
+    "title": "Akai Sweet Pea",
+    "artist": "Seiko Matsuda",
+    "year": 1982,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "赤いスイートピー"
+    ],
+    "artistAliases": [
+      "松田聖子"
+    ]
+  },
+  {
+    "title": "Get Wild",
+    "artist": "TM Network",
+    "year": 1987,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "ゲット・ワイルド"
+    ],
+    "artistAliases": [
+      "ティーエム・ネットワーク"
+    ]
+  },
+  {
+    "title": "Namida no Request",
+    "artist": "The Checkers",
+    "year": 1984,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "涙のリクエスト"
+    ],
+    "artistAliases": [
+      "チェッカーズ"
+    ]
+  },
+  {
+    "title": "Innocent World",
+    "artist": "Mr. Children",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "イノセントワールド"
+    ],
+    "artistAliases": [
+      "ミスチル"
+    ]
+  },
+  {
+    "title": "Can You Celebrate?",
+    "artist": "Namie Amuro",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "キャン・ユー・セレブレイト?"
+    ],
+    "artistAliases": [
+      "安室奈美恵"
+    ]
+  },
+  {
+    "title": "First Love",
+    "artist": "Hikaru Utada",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "ファースト・ラヴ"
+    ],
+    "artistAliases": [
+      "宇多田ヒカル"
+    ]
+  },
+  {
+    "title": "M",
+    "artist": "Ayumi Hamasaki",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "エム"
+    ],
+    "artistAliases": [
+      "浜崎あゆみ"
+    ]
+  },
+  {
+    "title": "Sakurazaka",
+    "artist": "Masaharu Fukuyama",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "桜坂"
+    ],
+    "artistAliases": [
+      "福山雅治"
+    ]
+  },
+  {
+    "title": "Sakura",
+    "artist": "Naotaro Moriyama",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "さくら(独唱)"
+    ],
+    "artistAliases": [
+      "森山直太朗"
+    ]
+  },
+  {
+    "title": "Hanabi",
+    "artist": "Mr. Children",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "HANABI"
+    ],
+    "artistAliases": [
+      "ミスチル"
+    ]
+  },
+  {
+    "title": "Koi Suru Fortune Cookie",
+    "artist": "AKB48",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "恋するフォーチュンクッキー"
+    ],
+    "artistAliases": [
+      "エーケービー フォーティーエイト"
+    ]
+  },
+  {
+    "title": "Koi",
+    "artist": "Gen Hoshino",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "恋"
+    ],
+    "artistAliases": [
+      "星野源"
+    ]
+  },
+  {
+    "title": "Marigold",
+    "artist": "Aimyon",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "マリーゴールド"
+    ],
+    "artistAliases": [
+      "あいみょん"
+    ]
+  },
+  {
+    "title": "Yoru ni Kakeru",
+    "artist": "YOASOBI",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "jpop"
+    ],
+    "aliases": [
+      "夜に駆ける"
+    ],
+    "artistAliases": [
+      "ヨアソビ"
+    ]
+  },
+  {
+    "title": "Where Did Our Love Go",
+    "artist": "The Supremes",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Good Vibrations",
+    "artist": "The Beach Boys",
+    "year": 1966,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "ABC",
+    "artist": "The Jackson 5",
+    "year": 1970,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "It's Too Late",
+    "artist": "Carole King",
+    "year": 1971,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Y.M.C.A.",
+    "artist": "Village People",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Dreams",
+    "artist": "Fleetwood Mac",
+    "year": 1977,
+    "country": "intl",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Beat It",
+    "artist": "Michael Jackson",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Girls Just Want to Have Fun",
+    "artist": "Cyndi Lauper",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Papa Don't Preach",
+    "artist": "Madonna",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Faith",
+    "artist": "George Michael",
+    "year": 1987,
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Vogue",
+    "artist": "Madonna",
+    "year": 1990,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "My Heart Will Go On",
+    "artist": "Celine Dion",
+    "year": 1997,
+    "country": "ca",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "I Want It That Way",
+    "artist": "Backstreet Boys",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Oops!... I Did It Again",
+    "artist": "Britney Spears",
+    "year": 2000,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Hollaback Girl",
+    "artist": "Gwen Stefani",
+    "year": 2005,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "I Kissed a Girl",
+    "artist": "Katy Perry",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Tik Tok",
+    "artist": "Kesha",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ],
+    "aliases": [
+      "TiK ToK"
+    ]
+  },
+  {
+    "title": "Firework",
+    "artist": "Katy Perry",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Someone Like You",
+    "artist": "Adele",
+    "year": 2011,
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Royals",
+    "artist": "Lorde",
+    "year": 2013,
+    "country": "nz",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Problem",
+    "artist": "Ariana Grande",
+    "year": 2014,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Thank U, Next",
+    "artist": "Ariana Grande",
+    "year": 2018,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Don't Start Now",
+    "artist": "Dua Lipa",
+    "year": 2019,
+    "country": "gb",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Anti-Hero",
+    "artist": "Taylor Swift",
+    "year": 2022,
+    "country": "us",
+    "categories": [
+      "uspop"
+    ]
+  },
+  {
+    "title": "Nan Arayo",
+    "artist": "Seo Taiji and Boys",
+    "year": 1992,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "난 알아요",
+      "I Know"
+    ],
+    "artistAliases": [
+      "서태지와 아이들"
+    ]
+  },
+  {
+    "title": "No.1",
+    "artist": "BoA",
+    "year": 2002,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "넘버원"
+    ],
+    "artistAliases": [
+      "보아"
+    ]
+  },
+  {
+    "title": "It's Raining",
+    "artist": "Rain",
+    "year": 2004,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "비",
+      "Bi"
+    ]
+  },
+  {
+    "title": "Into the New World",
+    "artist": "Girls' Generation",
+    "year": 2007,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "다시 만난 세계",
+      "Dasi Mannan Segye"
+    ],
+    "artistAliases": [
+      "소녀시대",
+      "SNSD"
+    ]
+  },
+  {
+    "title": "Replay",
+    "artist": "SHINee",
+    "year": 2008,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "누난 너무 예뻐",
+      "Noona Is So Pretty"
+    ],
+    "artistAliases": [
+      "샤이니"
+    ]
+  },
+  {
+    "title": "Fire",
+    "artist": "2NE1",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "파이어"
+    ],
+    "artistAliases": [
+      "투애니원"
+    ]
+  },
+  {
+    "title": "Mister",
+    "artist": "KARA",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "미스터"
+    ],
+    "artistAliases": [
+      "카라"
+    ]
+  },
+  {
+    "title": "Abracadabra",
+    "artist": "Brown Eyed Girls",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "아브라카다브라"
+    ],
+    "artistAliases": [
+      "브라운 아이드 걸스"
+    ]
+  },
+  {
+    "title": "Bad Girl Good Girl",
+    "artist": "Miss A",
+    "year": 2010,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "미쓰에이"
+    ]
+  },
+  {
+    "title": "Roly-Poly",
+    "artist": "T-ara",
+    "year": 2011,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "롤리폴리",
+      "Roly Poly"
+    ],
+    "artistAliases": [
+      "티아라"
+    ]
+  },
+  {
+    "title": "Alone",
+    "artist": "Sistar",
+    "year": 2012,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "나혼자",
+      "Na Honja"
+    ],
+    "artistAliases": [
+      "씨스타",
+      "SISTAR"
+    ]
+  },
+  {
+    "title": "Gentleman",
+    "artist": "Psy",
+    "year": 2013,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "싸이",
+      "PSY"
+    ]
+  },
+  {
+    "title": "I Need U",
+    "artist": "BTS",
+    "year": 2015,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "방탄소년단",
+      "Bangtan Boys",
+      "방탄"
+    ]
+  },
+  {
+    "title": "Cheer Up",
+    "artist": "TWICE",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "치얼업"
+    ],
+    "artistAliases": [
+      "트와이스"
+    ]
+  },
+  {
+    "title": "Don't Wanna Cry",
+    "artist": "SEVENTEEN",
+    "year": 2017,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "울고 싶지 않아",
+      "Ulgo Sipji Anha"
+    ],
+    "artistAliases": [
+      "세븐틴",
+      "SVT"
+    ]
+  },
+  {
+    "title": "Fake Love",
+    "artist": "BTS",
+    "year": 2018,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "방탄소년단",
+      "Bangtan Boys"
+    ]
+  },
+  {
+    "title": "Dalla Dalla",
+    "artist": "ITZY",
+    "year": 2019,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "달라달라"
+    ],
+    "artistAliases": [
+      "있지"
+    ]
+  },
+  {
+    "title": "Kill This Love",
+    "artist": "BLACKPINK",
+    "year": 2019,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "블랙핑크"
+    ]
+  },
+  {
+    "title": "Savage",
+    "artist": "aespa",
+    "year": 2021,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "에스파"
+    ]
+  },
+  {
+    "title": "Antifragile",
+    "artist": "LE SSERAFIM",
+    "year": 2022,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "artistAliases": [
+      "르세라핌"
+    ]
+  },
+  {
+    "title": "Tomboy",
+    "artist": "(G)I-DLE",
+    "year": 2022,
+    "country": "kr",
+    "categories": [
+      "kpop"
+    ],
+    "aliases": [
+      "톰보이"
+    ],
+    "artistAliases": [
+      "(여자)아이들",
+      "GI-DLE",
+      "G-I-DLE"
+    ]
+  },
+  {
+    "title": "Sunny Afternoon",
+    "artist": "The Kinks",
+    "year": 1966,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "A Whiter Shade of Pale",
+    "artist": "Procol Harum",
+    "year": 1967,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Won't Get Fooled Again",
+    "artist": "The Who",
+    "year": 1971,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Anarchy in the U.K.",
+    "artist": "Sex Pistols",
+    "year": 1976,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Just Like Heaven",
+    "artist": "The Cure",
+    "year": 1987,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Don't Look Back in Anger",
+    "artist": "Oasis",
+    "year": 1996,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Bittersweet Symphony",
+    "artist": "The Verve",
+    "year": 1997,
+    "country": "gb",
+    "categories": [
+      "uk-rock"
+    ]
+  },
+  {
+    "title": "Mazinger Z",
+    "artist": "Ichiro Mizuki",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "マジンガーZ"
+    ],
+    "artistAliases": [
+      "水木一郎"
+    ]
+  },
+  {
+    "title": "Devilman no Uta",
+    "artist": "Kohzoh Toda",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "デビルマンのうた"
+    ],
+    "artistAliases": [
+      "十田敬三"
+    ]
+  },
+  {
+    "title": "Babel Nisei",
+    "artist": "Mitsuko Horie",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "バビル2世"
+    ],
+    "artistAliases": [
+      "堀江美都子"
+    ]
+  },
+  {
+    "title": "Uchu Senkan Yamato",
+    "artist": "Isao Sasaki",
+    "year": 1974,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "宇宙戦艦ヤマト"
+    ],
+    "artistAliases": [
+      "ささきいさお"
+    ]
+  },
+  {
+    "title": "Getter Robo",
+    "artist": "Isao Sasaki",
+    "year": 1974,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ゲッターロボ"
+    ],
+    "artistAliases": [
+      "ささきいさお"
+    ]
+  },
+  {
+    "title": "Yusha Raideen",
+    "artist": "Shinji Shimon",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "勇者ライディーン"
+    ],
+    "artistAliases": [
+      "子門真人"
+    ]
+  },
+  {
+    "title": "UFO Robo Grendizer",
+    "artist": "Isao Sasaki",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "UFOロボ グレンダイザー",
+      "とべ! グレンダイザー"
+    ],
+    "artistAliases": [
+      "ささきいさお"
+    ]
+  },
+  {
+    "title": "Candy Candy",
+    "artist": "Mitsuko Horie",
+    "year": 1976,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "キャンディ・キャンディ"
+    ],
+    "artistAliases": [
+      "堀江美都子"
+    ]
+  },
+  {
+    "title": "Choudenji Robo Combattler V",
+    "artist": "Isao Sasaki",
+    "year": 1976,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "超電磁ロボ コン・バトラーV"
+    ],
+    "artistAliases": [
+      "ささきいさお"
+    ]
+  },
+  {
+    "title": "Galaxy Express 999",
+    "artist": "Isao Sasaki",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "銀河鉄道999",
+      "ギャラクシー・エクスプレス999"
+    ],
+    "artistAliases": [
+      "ささきいさお"
+    ]
+  },
+  {
+    "title": "Cat's Eye",
+    "artist": "Anri",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "jp-anime",
+      "jidol"
+    ],
+    "aliases": [
+      "キャッツ・アイ"
+    ],
+    "artistAliases": [
+      "杏里"
+    ]
+  },
+  {
+    "title": "Ai wo Torimodose",
+    "artist": "Crystal King",
+    "year": 1984,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "愛をとりもどせ!!",
+      "北斗の拳"
+    ],
+    "artistAliases": [
+      "クリスタルキング"
+    ]
+  },
+  {
+    "title": "Ai Oboete Imasu ka",
+    "artist": "Mari Iijima",
+    "year": 1984,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "愛・おぼえていますか",
+      "超時空要塞マクロス"
+    ],
+    "artistAliases": [
+      "飯島真理"
+    ]
+  },
+  {
+    "title": "Touch",
+    "artist": "Yoshimi Iwasaki",
+    "year": 1985,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "タッチ"
+    ],
+    "artistAliases": [
+      "岩崎良美"
+    ]
+  },
+  {
+    "title": "Romantic Agewasete",
+    "artist": "Ushio Hashimoto",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ロマンティックあげるよ",
+      "ドラゴンボール"
+    ],
+    "artistAliases": [
+      "橋本潮"
+    ]
+  },
+  {
+    "title": "Odoru Pompokolin",
+    "artist": "B.B. Queens",
+    "year": 1990,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "おどるポンポコリン",
+      "Dancing Pompokolin"
+    ],
+    "artistAliases": [
+      "B.B.クィーンズ",
+      "B.B.QUEENS",
+      "BB Queens"
+    ]
+  },
+  {
+    "title": "Hohoemi no Bakudan",
+    "artist": "Matsuko Mawatari",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "微笑みの爆弾",
+      "Smile Bomb"
+    ],
+    "artistAliases": [
+      "馬渡松子",
+      "Mawatari Matsuko"
+    ]
+  },
+  {
+    "title": "Kimi ga Suki da to Sakebitai",
+    "artist": "BAAD",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "君が好きだと叫びたい",
+      "I Want to Shout That I Love You"
+    ],
+    "artistAliases": [
+      "BAAD"
+    ]
+  },
+  {
+    "title": "Anata Dake Mitsumeteru",
+    "artist": "Maki Ohguro",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "あなただけ見つめてる",
+      "I'm Only Looking at You"
+    ],
+    "artistAliases": [
+      "大黒摩季",
+      "Ohguro Maki",
+      "Oguro Maki"
+    ]
+  },
+  {
+    "title": "We Gotta Power",
+    "artist": "Hironobu Kageyama",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "WE GOTTA POWER"
+    ],
+    "artistAliases": [
+      "影山ヒロノブ",
+      "Kageyama Hironobu"
+    ]
+  },
+  {
+    "title": "Sekai ga Owaru Made wa",
+    "artist": "WANDS",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "世界が終るまでは…",
+      "Until the World Ends"
+    ],
+    "artistAliases": [
+      "WANDS"
+    ]
+  },
+  {
+    "title": "Yuzurenai Negai",
+    "artist": "Naomi Tamura",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ゆずれない願い",
+      "An Unyielding Wish"
+    ],
+    "artistAliases": [
+      "田村直美",
+      "Tamura Naomi"
+    ]
+  },
+  {
+    "title": "Just Communication",
+    "artist": "Two-Mix",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "JUST COMMUNICATION"
+    ],
+    "artistAliases": [
+      "TWO-MIX",
+      "TWO MIX"
+    ]
+  },
+  {
+    "title": "Zankoku na Tenshi no Teeze",
+    "artist": "Yoko Takahashi",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "残酷な天使のテーゼ",
+      "Zankoku na Tenshi no These",
+      "A Cruel Angel's Thesis"
+    ],
+    "artistAliases": [
+      "高橋洋子",
+      "Takahashi Yoko"
+    ]
+  },
+  {
+    "title": "Sailor Star Song",
+    "artist": "Kae Hanazawa",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "セーラースターソング"
+    ],
+    "artistAliases": [
+      "花沢加絵",
+      "Hanazawa Kae"
+    ]
+  },
+  {
+    "title": "Mune ga Dokidoki",
+    "artist": "The High-Lows",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "胸がドキドキ",
+      "My Heart Goes Doki Doki"
+    ],
+    "artistAliases": [
+      "ザ・ハイロウズ",
+      "THE HIGH-LOWS",
+      "The High Lows"
+    ]
+  },
+  {
+    "title": "Heart of Sword ~Yoake Mae~",
+    "artist": "T.M.Revolution",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "HEART OF SWORD 〜夜明け前〜",
+      "HEART OF SWORD",
+      "Heart of Sword"
+    ],
+    "artistAliases": [
+      "T.M.Revolution",
+      "TM Revolution",
+      "TMR"
+    ]
+  },
+  {
+    "title": "DAN DAN Kokoro Hikareteku",
+    "artist": "Field of View",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "DAN DAN 心魅かれてく",
+      "Dan Dan Kokoro Hikareteku"
+    ],
+    "artistAliases": [
+      "FIELD OF VIEW"
+    ]
+  },
+  {
+    "title": "Give a reason",
+    "artist": "Megumi Hayashibara",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "GIVE A REASON"
+    ],
+    "artistAliases": [
+      "林原めぐみ",
+      "Hayashibara Megumi"
+    ]
+  },
+  {
+    "title": "Catch You Catch Me",
+    "artist": "Gumi",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "キャッチ・ユー・キャッチ・ミー"
+    ],
+    "artistAliases": [
+      "グミ"
+    ]
+  },
+  {
+    "title": "Platinum",
+    "artist": "Maaya Sakamoto",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "プラチナ"
+    ],
+    "artistAliases": [
+      "坂本真綾",
+      "Sakamoto Maaya"
+    ]
+  },
+  {
+    "title": "Bouken Desho Desho?",
+    "artist": "Aya Hirano",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "冒険でしょでしょ?",
+      "Haruhi Suzumiya OP"
+    ],
+    "artistAliases": [
+      "平野綾"
+    ]
+  },
+  {
+    "title": "God knows...",
+    "artist": "Aya Hirano",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ゴッドノウズ",
+      "Haruhi Suzumiya insert song"
+    ],
+    "artistAliases": [
+      "平野綾"
+    ]
+  },
+  {
+    "title": "Cagayake! GIRLS",
+    "artist": "Aki Toyosaki, Yoko Hikasa, Satomi Sato, Minako Kotobuki",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "Cagayake!GIRLS",
+      "K-On! OP",
+      "Houkago Tea Time",
+      "けいおん!"
+    ],
+    "artistAliases": [
+      "豊崎愛生",
+      "日笠陽子",
+      "佐藤聡美",
+      "寿美菜子"
+    ]
+  },
+  {
+    "title": "Motteke! Sailor Fuku",
+    "artist": "Aya Hirano, Emiri Kato, Kaori Fukuhara, Aya Endo",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "もってけ!セーラーふく",
+      "Lucky Star OP",
+      "らき☆すた"
+    ],
+    "artistAliases": [
+      "平野綾",
+      "加藤英美里",
+      "福原香織",
+      "遠藤綾"
+    ]
+  },
+  {
+    "title": "Colors",
+    "artist": "FLOW",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "Code Geass OP",
+      "Code Geass: Lelouch of the Rebellion",
+      "コードギアス"
+    ]
+  },
+  {
+    "title": "Melissa",
+    "artist": "Porno Graffitti",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "メリッサ",
+      "Fullmetal Alchemist OP1",
+      "鋼の錬金術師"
+    ],
+    "artistAliases": [
+      "ポルノグラフィティ",
+      "Porno Graffiti"
+    ]
+  },
+  {
+    "title": "Asterisk",
+    "artist": "Orange Range",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "アスタリスク",
+      "*~Asterisk~",
+      "Bleach OP1",
+      "ブリーチ"
+    ],
+    "artistAliases": [
+      "オレンジレンジ",
+      "ORANGE RANGE"
+    ]
+  },
+  {
+    "title": "D-tecnoLife",
+    "artist": "UVERworld",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "D-technoLife",
+      "Bleach OP2",
+      "ブリーチ"
+    ]
+  },
+  {
+    "title": "Rolling Star",
+    "artist": "Yui",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ROLLING STAR",
+      "Bleach OP5",
+      "ブリーチ"
+    ],
+    "artistAliases": [
+      "YUI"
+    ]
+  },
+  {
+    "title": "Sakura Kiss",
+    "artist": "Chieko Kawabe",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "桜キッス",
+      "Ouran High School Host Club OP",
+      "桜蘭高校ホスト部"
+    ],
+    "artistAliases": [
+      "河辺千恵子"
+    ]
+  },
+  {
+    "title": "Go!!!",
+    "artist": "FLOW",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "GO!!!",
+      "Naruto OP4",
+      "ナルト"
+    ],
+    "artistAliases": [
+      "FLOW"
+    ]
+  },
+  {
+    "title": "Bon Voyage!",
+    "artist": "Bon-Bon Blanco",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ボン ボヤージュ!",
+      "One Piece OP4",
+      "ワンピース"
+    ],
+    "artistAliases": [
+      "ボンボンブランコ"
+    ]
+  },
+  {
+    "title": "Invoke",
+    "artist": "T.M.Revolution",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "INVOKE -インヴォーク-",
+      "Gundam SEED OP1",
+      "Mobile Suit Gundam SEED",
+      "機動戦士ガンダムSEED"
+    ],
+    "artistAliases": [
+      "TMR",
+      "Takanori Nishikawa",
+      "西川貴教"
+    ]
+  },
+  {
+    "title": "Ignited",
+    "artist": "T.M.Revolution",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "IGNITED -イグナイテッド-",
+      "Gundam SEED Destiny OP1",
+      "機動戦士ガンダムSEED DESTINY"
+    ],
+    "artistAliases": [
+      "TMR",
+      "西川貴教"
+    ]
+  },
+  {
+    "title": "Tori no Uta",
+    "artist": "Lia",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "鳥の詩",
+      "Air OP",
+      "エアー"
+    ]
+  },
+  {
+    "title": "Uninstall",
+    "artist": "Chiaki Ishikawa",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "アンインストール",
+      "Bokurano OP",
+      "ぼくらの"
+    ],
+    "artistAliases": [
+      "石川智晶"
+    ]
+  },
+  {
+    "title": "Lion",
+    "artist": "May'n, Megumi Nakajima",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ライオン",
+      "Macross Frontier OP2",
+      "マクロスF"
+    ],
+    "artistAliases": [
+      "メイン",
+      "中島愛"
+    ]
+  },
+  {
+    "title": "Kimi no Shiranai Monogatari",
+    "artist": "supercell",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "君の知らない物語",
+      "Bakemonogatari ED",
+      "化物語"
+    ],
+    "artistAliases": [
+      "スーパーセル"
+    ]
+  },
+  {
+    "title": "Northern lights",
+    "artist": "Megumi Hayashibara",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "Shaman King OP",
+      "シャーマンキング"
+    ],
+    "artistAliases": [
+      "林原めぐみ"
+    ]
+  },
+  {
+    "title": "Hikari e",
+    "artist": "The Babystars",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ひかりへ",
+      "One Piece OP2",
+      "ワンピース"
+    ]
+  },
+  {
+    "title": "snow halation",
+    "artist": "μ's",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "スノーハレーション",
+      "snow halation"
+    ],
+    "artistAliases": [
+      "mu's",
+      "muse",
+      "Muse"
+    ]
+  },
+  {
+    "title": "Uragiri no Yuuyake",
+    "artist": "THEATRE BROOK",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "裏切りの夕焼け",
+      "Treacherous Sunset"
+    ],
+    "artistAliases": [
+      "シアターブルック"
+    ]
+  },
+  {
+    "title": "Connect",
+    "artist": "ClariS",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "コネクト",
+      "connect"
+    ]
+  },
+  {
+    "title": "Hacking to the Gate",
+    "artist": "Kanako Ito",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ハッキング・トゥ・ザ・ゲート"
+    ],
+    "artistAliases": [
+      "いとうかなこ",
+      "Itou Kanako"
+    ]
+  },
+  {
+    "title": "Aoi Shiori",
+    "artist": "Galileo Galilei",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "青い栞",
+      "Blue Bookmark"
+    ],
+    "artistAliases": [
+      "ガリレオ・ガリレイ"
+    ]
+  },
+  {
+    "title": "Departures",
+    "artist": "EGOIST",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "Departures 〜あなたにおくるアイの歌〜",
+      "Departures: Anata ni Okuru Ai no Uta"
+    ],
+    "artistAliases": [
+      "エゴイスト",
+      "Egoist"
+    ]
+  },
+  {
+    "title": "crossing field",
+    "artist": "LiSA",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "クロッシング・フィールド"
+    ],
+    "artistAliases": [
+      "リサ"
+    ]
+  },
+  {
+    "title": "Chase the World",
+    "artist": "May'n",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "チェイス・ザ・ワールド"
+    ],
+    "artistAliases": [
+      "メイン",
+      "May’n"
+    ]
+  },
+  {
+    "title": "sister's noise",
+    "artist": "fripSide",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "シスターズ・ノイズ"
+    ],
+    "artistAliases": [
+      "フリップサイド"
+    ]
+  },
+  {
+    "title": "Hikaru Nara",
+    "artist": "Goose house",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "光るなら"
+    ],
+    "artistAliases": [
+      "グース・ハウス",
+      "グースハウス"
+    ]
+  },
+  {
+    "title": "Daydream cafe",
+    "artist": "Petit Rabbit's",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "デイドリーム・カフェ"
+    ],
+    "artistAliases": [
+      "プチラビッツ",
+      "ぷちらびっと"
+    ]
+  },
+  {
+    "title": "This game",
+    "artist": "Konomi Suzuki",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ディス・ゲーム"
+    ],
+    "artistAliases": [
+      "鈴木このみ",
+      "Suzuki Konomi"
+    ]
+  },
+  {
+    "title": "Sugar Song to Bitter Step",
+    "artist": "UNISON SQUARE GARDEN",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "シュガーソングとビターステップ",
+      "Sugar Song and Bitter Step"
+    ],
+    "artistAliases": [
+      "ユニゾン・スクエア・ガーデン"
+    ]
+  },
+  {
+    "title": "Hanamaru Pippi wa Yoiko dake",
+    "artist": "A応P",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "はなまるぴっぴはよいこだけ"
+    ],
+    "artistAliases": [
+      "AOP",
+      "A-oP",
+      "A応援団P"
+    ]
+  },
+  {
+    "title": "Brave Shine",
+    "artist": "Aimer",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ブレイブ・シャイン"
+    ],
+    "artistAliases": [
+      "エメ"
+    ]
+  },
+  {
+    "title": "Silhouette",
+    "artist": "KANA-BOON",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "シルエット"
+    ],
+    "artistAliases": [
+      "カナブーン",
+      "Kana-Boon"
+    ]
+  },
+  {
+    "title": "THE DAY",
+    "artist": "Porno Graffitti",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ザ・デイ"
+    ],
+    "artistAliases": [
+      "ポルノグラフィティ",
+      "Pornograffitti"
+    ]
+  },
+  {
+    "title": "Peace Sign",
+    "artist": "Kenshi Yonezu",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ピースサイン"
+    ],
+    "artistAliases": [
+      "米津玄師",
+      "Yonezu Kenshi",
+      "Hachi"
+    ]
+  },
+  {
+    "title": "Shinzou wo Sasageyo",
+    "artist": "Linked Horizon",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "心臓を捧げよ",
+      "Shinzou wo Sasageyo!",
+      "Devote Your Hearts"
+    ],
+    "artistAliases": [
+      "リンクト・ホライズン"
+    ]
+  },
+  {
+    "title": "Fukashigi no Carte",
+    "artist": "Sakurajima Mai (CV. Asami Seto)",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "不可思議のカルテ",
+      "Fukashigi no Karte"
+    ],
+    "artistAliases": [
+      "瀬戸麻沙美",
+      "Asami Seto",
+      "不可思議のカルテ cast"
+    ]
+  },
+  {
+    "title": "Homura",
+    "artist": "LiSA",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "炎",
+      "ほむら"
+    ],
+    "artistAliases": [
+      "リサ"
+    ]
+  },
+  {
+    "title": "Kaikai Kitan",
+    "artist": "Eve",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "jp-anime",
+      "jidol"
+    ],
+    "aliases": [
+      "廻廻奇譚",
+      "かいかいきたん"
+    ],
+    "artistAliases": [
+      "イヴ"
+    ]
+  },
+  {
+    "title": "Cry Baby",
+    "artist": "Official Hige Dandism",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "クライベイビー"
+    ],
+    "artistAliases": [
+      "Official髭男dism",
+      "ヒゲダン",
+      "髭男"
+    ]
+  },
+  {
+    "title": "Vivid Vice",
+    "artist": "Who-ya Extended",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ヴィヴィッド・ヴァイス"
+    ],
+    "artistAliases": [
+      "フーヤ・エクステンデッド"
+    ]
+  },
+  {
+    "title": "The Rumbling",
+    "artist": "SiM",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ザ・ランブリング"
+    ],
+    "artistAliases": [
+      "シム"
+    ]
+  },
+  {
+    "title": "Mixed Nuts",
+    "artist": "Official Hige Dandism",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ミックスナッツ"
+    ],
+    "artistAliases": [
+      "Official髭男dism",
+      "ヒゲダン",
+      "髭男"
+    ]
+  },
+  {
+    "title": "Seishun Complex",
+    "artist": "Kessoku Band",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "青春コンプレックス",
+      "せいしゅんコンプレックス"
+    ],
+    "artistAliases": [
+      "結束バンド",
+      "けっそくバンド"
+    ]
+  },
+  {
+    "title": "Kick Back",
+    "artist": "Kenshi Yonezu",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "キックバック"
+    ],
+    "artistAliases": [
+      "米津玄師",
+      "よねづけんし"
+    ]
+  },
+  {
+    "title": "Comedy",
+    "artist": "Gen Hoshino",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "コメディ"
+    ],
+    "artistAliases": [
+      "星野源",
+      "ほしのげん"
+    ]
+  },
+  {
+    "title": "New Genesis",
+    "artist": "Ado",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "新時代",
+      "しんじだい",
+      "Shinjidai"
+    ],
+    "artistAliases": [
+      "アド"
+    ]
+  },
+  {
+    "title": "Yuusha",
+    "artist": "YOASOBI",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "勇者",
+      "ゆうしゃ",
+      "The Brave"
+    ],
+    "artistAliases": [
+      "ヨアソビ",
+      "夜遊び"
+    ]
+  },
+  {
+    "title": "Specialz",
+    "artist": "King Gnu",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "スペシャルズ",
+      "SPECIALZ"
+    ],
+    "artistAliases": [
+      "キングヌー"
+    ]
+  },
+  {
+    "title": "Ao no Sumika",
+    "artist": "Tatsuya Kitani",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "青のすみか",
+      "あおのすみか"
+    ],
+    "artistAliases": [
+      "キタニタツヤ",
+      "きたにたつや"
+    ]
+  },
+  {
+    "title": "Mephisto",
+    "artist": "Queen Bee",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "メフィスト"
+    ],
+    "artistAliases": [
+      "ziyoou-vachi",
+      "女王蜂",
+      "じょおうばち"
+    ]
+  },
+  {
+    "title": "Show",
+    "artist": "Ado",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "ショウ"
+    ],
+    "artistAliases": [
+      "アド"
+    ]
+  },
+  {
+    "title": "Bling-Bang-Bang-Born",
+    "artist": "Creepy Nuts",
+    "year": 2024,
+    "country": "jp",
+    "categories": [
+      "jp-anime",
+      "jrap"
+    ],
+    "aliases": [
+      "ブリンバンバンボーン",
+      "BBBB"
+    ],
+    "artistAliases": [
+      "クリーピーナッツ"
+    ]
+  },
+  {
+    "title": "Otonoke",
+    "artist": "Creepy Nuts",
+    "year": 2024,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ],
+    "aliases": [
+      "オトノケ"
+    ],
+    "artistAliases": [
+      "クリーピーナッツ"
+    ]
+  },
+  {
+    "title": "Ultraman no Uta",
+    "artist": "Misuzu Jido Gassho-dan",
+    "year": 1966,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "ウルトラマンの歌",
+      "Song of Ultraman",
+      "Ultraman Theme"
+    ],
+    "artistAliases": [
+      "みすず児童合唱団",
+      "Misuzu Children's Choir"
+    ]
+  },
+  {
+    "title": "Ultraseven no Uta",
+    "artist": "Misuzu Jido Gassho-dan",
+    "year": 1967,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "ウルトラセブンの歌",
+      "Ultraseven Theme",
+      "Song of Ultraseven"
+    ],
+    "artistAliases": [
+      "みすず児童合唱団",
+      "Misuzu Children's Choir",
+      "The Echoes",
+      "ジ・エコーズ"
+    ]
+  },
+  {
+    "title": "Let's Go!! Rider Kick",
+    "artist": "Masato Shimon",
+    "year": 1971,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "レッツゴー!! ライダーキック",
+      "Kamen Rider Theme"
+    ],
+    "artistAliases": [
+      "子門真人"
+    ]
+  },
+  {
+    "title": "Kaette Kita Ultraman",
+    "artist": "Misuzu Jido Gassho-dan",
+    "year": 1971,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "帰ってきたウルトラマン",
+      "Return of Ultraman",
+      "Kaettekita Ultraman"
+    ],
+    "artistAliases": [
+      "みすず児童合唱団",
+      "Misuzu Children's Choir",
+      "Toa"
+    ]
+  },
+  {
+    "title": "Kamen Rider V3 no Uta",
+    "artist": "Ichiro Mizuki",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "仮面ライダーV3の歌",
+      "Kamen Rider V3 Theme"
+    ],
+    "artistAliases": [
+      "水木一郎"
+    ]
+  },
+  {
+    "title": "Susume! Goranger",
+    "artist": "Isao Sasaki",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "進め！ゴレンジャー",
+      "Susume! Gorenger",
+      "Himitsu Sentai Goranger Theme"
+    ],
+    "artistAliases": [
+      "ささきいさお",
+      "Mitsuko Horie",
+      "堀江美都子"
+    ]
+  },
+  {
+    "title": "Battle Fever J no Theme",
+    "artist": "Ichiro Mizuki",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "バトルフィーバーJのテーマ",
+      "Battle Fever J Theme"
+    ],
+    "artistAliases": [
+      "水木一郎",
+      "Koorogi '73",
+      "こおろぎ'73"
+    ]
+  },
+  {
+    "title": "Chodenshi Bioman",
+    "artist": "Takayuki Miyauchi",
+    "year": 1984,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "超電子バイオマン",
+      "Choudenshi Bioman"
+    ],
+    "artistAliases": [
+      "宮内タカユキ"
+    ]
+  },
+  {
+    "title": "Kamen Rider Black",
+    "artist": "Tetsuo Kurata",
+    "year": 1987,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "仮面ライダーBLACK"
+    ],
+    "artistAliases": [
+      "倉田てつを"
+    ]
+  },
+  {
+    "title": "Kousoku Sentai Turboranger",
+    "artist": "Kenta Sato",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "高速戦隊ターボレンジャー",
+      "Kosoku Sentai Turboranger"
+    ],
+    "artistAliases": [
+      "佐藤健太"
+    ]
+  },
+  {
+    "title": "Kyoryu Sentai Zyuranger",
+    "artist": "Kenta Sato",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "恐竜戦隊ジュウレンジャー",
+      "Kyouryuu Sentai Zyuranger"
+    ],
+    "artistAliases": [
+      "佐藤健太"
+    ]
+  },
+  {
+    "title": "Ohranger! Chouriki Sentai Ohranger",
+    "artist": "Kentaro Hayami",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "超力戦隊オーレンジャー",
+      "Chouriki Sentai Ohranger",
+      "Ohranger"
+    ],
+    "artistAliases": [
+      "速水けんたろう"
+    ]
+  },
+  {
+    "title": "Denji Sentai Megaranger",
+    "artist": "Yukio Yamagata",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "電磁戦隊メガレンジャー",
+      "Denji Sentai Megaranger"
+    ],
+    "artistAliases": [
+      "山形ユキオ"
+    ]
+  },
+  {
+    "title": "Kamen Rider Kuuga!",
+    "artist": "Masayuki Tanaka",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "仮面ライダークウガ!",
+      "Kamen Rider Kuuga",
+      "Kamen Rider Kuga"
+    ],
+    "artistAliases": [
+      "田中昌之"
+    ]
+  },
+  {
+    "title": "Alive A Life (Kamen Rider Ryuki theme)",
+    "artist": "Rica Matsumoto",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "Alive A Life",
+      "Kamen Rider Ryuki",
+      "仮面ライダー龍騎"
+    ],
+    "artistAliases": [
+      "松本梨香",
+      "Matsumoto Rica"
+    ]
+  },
+  {
+    "title": "Justiφ's (Kamen Rider 555 theme)",
+    "artist": "ISSA",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "Justiφ's",
+      "Kamen Rider Faiz",
+      "Kamen Rider 555",
+      "仮面ライダー555"
+    ],
+    "artistAliases": [
+      "DA PUMP",
+      "ダ・パンプ"
+    ]
+  },
+  {
+    "title": "Mahou Sentai Magiranger",
+    "artist": "Takafumi Iwasaki",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "魔法戦隊マジレンジャー",
+      "Maho Sentai Magiranger"
+    ],
+    "artistAliases": [
+      "岩崎貴文"
+    ]
+  },
+  {
+    "title": "Climax Jump (Kamen Rider Den-O theme)",
+    "artist": "AAA DEN-O form",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "Climax Jump",
+      "Kamen Rider Den-O",
+      "仮面ライダー電王"
+    ],
+    "artistAliases": [
+      "Momotaros",
+      "Urataros",
+      "Kintaros",
+      "Ryutaros"
+    ]
+  },
+  {
+    "title": "Samurai Sentai Shinkenger",
+    "artist": "Psychic Lover",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "侍戦隊シンケンジャー",
+      "Samurai Sentai Shinkenger Theme"
+    ],
+    "artistAliases": [
+      "サイキックラバー"
+    ]
+  },
+  {
+    "title": "Anything Goes! (Kamen Rider OOO theme)",
+    "artist": "Maki Ohguro",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "Anything Goes!",
+      "Kamen Rider OOO",
+      "仮面ライダーオーズ"
+    ],
+    "artistAliases": [
+      "大黒摩季"
+    ]
+  },
+  {
+    "title": "Resshasenta! Ressha Sentai ToQger",
+    "artist": "Daiki Ise",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "烈車戦隊トッキュウジャー",
+      "Ressha Sentai ToQger"
+    ],
+    "artistAliases": [
+      "伊勢大貴",
+      "Project.R"
+    ]
+  },
+  {
+    "title": "EXCITE (Kamen Rider Ex-Aid theme)",
+    "artist": "Daichi Miura",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "EXCITE",
+      "Kamen Rider Ex-Aid",
+      "仮面ライダーエグゼイド"
+    ],
+    "artistAliases": [
+      "三浦大知"
+    ]
+  },
+  {
+    "title": "Kishiryu Sentai Ryusoulger",
+    "artist": "Tsuyoshi Matsubara",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "騎士竜戦隊リュウソウジャー",
+      "Kishiryu Sentai Ryusoulger"
+    ],
+    "artistAliases": [
+      "松原剛志",
+      "Project.R"
+    ]
+  },
+  {
+    "title": "liVe for the moment (Kamen Rider Revice theme)",
+    "artist": "Da-iCE",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "tokusatsu"
+    ],
+    "aliases": [
+      "liVe for the moment",
+      "Kamen Rider Revice",
+      "仮面ライダーリバイス"
+    ],
+    "artistAliases": [
+      "ダイス"
+    ]
+  },
+  {
+    "title": "Watashi no Kare wa Hidarikiki",
+    "artist": "Megumi Asaoka",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "私の彼は左きき"
+    ],
+    "artistAliases": [
+      "麻丘めぐみ"
+    ]
+  },
+  {
+    "title": "Momen no Handkerchief",
+    "artist": "Hiromi Ota",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "木綿のハンカチーフ"
+    ],
+    "artistAliases": [
+      "太田裕美"
+    ]
+  },
+  {
+    "title": "Katte ni Shiyagare",
+    "artist": "Kenji Sawada",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "勝手にしやがれ"
+    ],
+    "artistAliases": [
+      "沢田研二",
+      "ジュリー"
+    ]
+  },
+  {
+    "title": "Aoi Sangosho",
+    "artist": "Seiko Matsuda",
+    "year": 1980,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "青い珊瑚礁"
+    ],
+    "artistAliases": [
+      "松田聖子"
+    ]
+  },
+  {
+    "title": "Sailor Fuku to Kikanju",
+    "artist": "Hiroko Yakushimaru",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "セーラー服と機関銃"
+    ],
+    "artistAliases": [
+      "薬師丸ひろ子"
+    ]
+  },
+  {
+    "title": "Shojo A",
+    "artist": "Akina Nakamori",
+    "year": 1982,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "少女A"
+    ],
+    "artistAliases": [
+      "中森明菜"
+    ]
+  },
+  {
+    "title": "Nantettatte Idol",
+    "artist": "Kyoko Koizumi",
+    "year": 1985,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "なんてったってアイドル"
+    ],
+    "artistAliases": [
+      "小泉今日子",
+      "キョンキョン"
+    ]
+  },
+  {
+    "title": "Daite Hold On Me",
+    "artist": "Sayuri Kokusho",
+    "year": 1987,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "抱いてHOLD ON ME!"
+    ],
+    "artistAliases": [
+      "国生さゆり"
+    ]
+  },
+  {
+    "title": "Garasu no Juudai",
+    "artist": "Hikaru Genji",
+    "year": 1987,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "ガラスの十代"
+    ],
+    "artistAliases": [
+      "光GENJI"
+    ]
+  },
+  {
+    "title": "Ai ga Tomaranai",
+    "artist": "Wink",
+    "year": 1988,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "愛が止まらない",
+      "Turn It Into Love"
+    ],
+    "artistAliases": [
+      "ウィンク"
+    ]
+  },
+  {
+    "title": "Sotsugyo",
+    "artist": "Yuki Saito",
+    "year": 1985,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "卒業"
+    ],
+    "artistAliases": [
+      "斉藤由貴"
+    ]
+  },
+  {
+    "title": "Yureru Omoi",
+    "artist": "Zard",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "揺れる想い"
+    ],
+    "artistAliases": [
+      "ZARD"
+    ]
+  },
+  {
+    "title": "Yozora no Mukou",
+    "artist": "SMAP",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "夜空ノムコウ"
+    ],
+    "artistAliases": [
+      "スマップ"
+    ]
+  },
+  {
+    "title": "Can You Keep a Secret?",
+    "artist": "Hikaru Utada",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "artistAliases": [
+      "宇多田ヒカル"
+    ]
+  },
+  {
+    "title": "Seishun Amigo",
+    "artist": "Shuji to Akira",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "青春アミーゴ"
+    ],
+    "artistAliases": [
+      "修二と彰",
+      "亀梨和也",
+      "山下智久"
+    ]
+  },
+  {
+    "title": "Real Face",
+    "artist": "KAT-TUN",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "リアルフェイス"
+    ],
+    "artistAliases": [
+      "カトゥーン"
+    ]
+  },
+  {
+    "title": "U.S.A.",
+    "artist": "Da Pump",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "jidol"
+    ],
+    "aliases": [
+      "USA"
+    ],
+    "artistAliases": [
+      "DA PUMP"
+    ]
+  },
+  {
+    "title": "Da.Yo.Ne",
+    "artist": "EAST END x YURI",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "DA.YO.NE"
+    ],
+    "artistAliases": [
+      "イースト・エンド×ユリ"
+    ]
+  },
+  {
+    "title": "Grateful Days",
+    "artist": "Dragon Ash",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "グレイトフル・デイズ"
+    ],
+    "artistAliases": [
+      "ドラゴンアッシュ"
+    ]
+  },
+  {
+    "title": "Come Again",
+    "artist": "m-flo",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "artistAliases": [
+      "エム・フロウ"
+    ]
+  },
+  {
+    "title": "Rakuen Baby",
+    "artist": "RIP SLYME",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "楽園ベイビー"
+    ],
+    "artistAliases": [
+      "リップスライム"
+    ]
+  },
+  {
+    "title": "One",
+    "artist": "RIP SLYME",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "artistAliases": [
+      "リップスライム"
+    ]
+  },
+  {
+    "title": "Tomo yo",
+    "artist": "Ketsumeishi",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "友よ ~この先もずっと…~"
+    ],
+    "artistAliases": [
+      "ケツメイシ"
+    ]
+  },
+  {
+    "title": "Sakura",
+    "artist": "Ketsumeishi",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "さくら"
+    ],
+    "artistAliases": [
+      "ケツメイシ"
+    ]
+  },
+  {
+    "title": "Luv(sic) Part 2",
+    "artist": "Nujabes feat. Shing02",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "Luv(sic)"
+    ],
+    "artistAliases": [
+      "ヌジャベス"
+    ]
+  },
+  {
+    "title": "Galaxy",
+    "artist": "RIP SLYME",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "ギャラクシー"
+    ],
+    "artistAliases": [
+      "リップスライム"
+    ]
+  },
+  {
+    "title": "Mata Kimi ni Bango wo Kiketa nara",
+    "artist": "Ketsumeishi",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "また君に番号を聞けたなら"
+    ],
+    "artistAliases": [
+      "ケツメイシ"
+    ]
+  },
+  {
+    "title": "Hi no Ataru Basho",
+    "artist": "ZORN",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "陽の当たる場所"
+    ],
+    "artistAliases": [
+      "ゾーン"
+    ]
+  },
+  {
+    "title": "Katsute Tensai Datta Oretachi e",
+    "artist": "Creepy Nuts",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "かつて天才だった俺たちへ"
+    ],
+    "artistAliases": [
+      "クリーピーナッツ"
+    ]
+  },
+  {
+    "title": "Senno",
+    "artist": "Awich",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "jrap"
+    ],
+    "aliases": [
+      "洗脳",
+      "Brainwash"
+    ],
+    "artistAliases": [
+      "エイウィッチ"
+    ]
+  },
+  {
+    "title": "Wakare no Blues",
+    "artist": "Noriko Awaya",
+    "year": 1937,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "別れのブルース"
+    ],
+    "artistAliases": [
+      "淡谷のり子"
+    ]
+  },
+  {
+    "title": "Ringo Oiwake",
+    "artist": "Hibari Misora",
+    "year": 1952,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "リンゴ追分"
+    ],
+    "artistAliases": [
+      "美空ひばり"
+    ]
+  },
+  {
+    "title": "Otomisan",
+    "artist": "Hachiro Kasuga",
+    "year": 1954,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "お富さん"
+    ],
+    "artistAliases": [
+      "春日八郎"
+    ]
+  },
+  {
+    "title": "Yurakucho de Aimasho",
+    "artist": "Frank Nagai",
+    "year": 1957,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "有楽町で逢いましょう"
+    ],
+    "artistAliases": [
+      "フランク永井"
+    ]
+  },
+  {
+    "title": "Yuyake Tonbi",
+    "artist": "Hideo Mishima",
+    "year": 1958,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "夕焼けとんび"
+    ],
+    "artistAliases": [
+      "三橋美智也"
+    ]
+  },
+  {
+    "title": "Osho",
+    "artist": "Hideo Murata",
+    "year": 1961,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "王将"
+    ],
+    "artistAliases": [
+      "村田英雄"
+    ]
+  },
+  {
+    "title": "Anko Tsubaki wa Koi no Hana",
+    "artist": "Harumi Miyako",
+    "year": 1964,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "アンコ椿は恋の花"
+    ],
+    "artistAliases": [
+      "都はるみ"
+    ]
+  },
+  {
+    "title": "Yawara",
+    "artist": "Hibari Misora",
+    "year": 1964,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "柔"
+    ],
+    "artistAliases": [
+      "美空ひばり"
+    ]
+  },
+  {
+    "title": "Hakodate no Onna",
+    "artist": "Saburo Kitajima",
+    "year": 1965,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "函館の女"
+    ],
+    "artistAliases": [
+      "北島三郎"
+    ]
+  },
+  {
+    "title": "Kanashii Sake",
+    "artist": "Hibari Misora",
+    "year": 1966,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "悲しい酒"
+    ],
+    "artistAliases": [
+      "美空ひばり"
+    ]
+  },
+  {
+    "title": "Minatomachi Blues",
+    "artist": "Shinichi Mori",
+    "year": 1969,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "港町ブルース"
+    ],
+    "artistAliases": [
+      "森進一"
+    ]
+  },
+  {
+    "title": "Onna no Michi",
+    "artist": "Shiro Miya to Pinkara Trio",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "女のみち"
+    ],
+    "artistAliases": [
+      "宮史郎とぴんからトリオ",
+      "宮史郎"
+    ]
+  },
+  {
+    "title": "Kassai",
+    "artist": "Naomi Chiaki",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "喝采"
+    ],
+    "artistAliases": [
+      "ちあきなおみ"
+    ]
+  },
+  {
+    "title": "Kita no Yado kara",
+    "artist": "Harumi Miyako",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "北の宿から"
+    ],
+    "artistAliases": [
+      "都はるみ"
+    ]
+  },
+  {
+    "title": "Tsugaru Kaikyo Fuyugeshiki",
+    "artist": "Sayuri Ishikawa",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "津軽海峡・冬景色"
+    ],
+    "artistAliases": [
+      "石川さゆり"
+    ]
+  },
+  {
+    "title": "Funauta",
+    "artist": "Aki Yashiro",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "舟唄"
+    ],
+    "artistAliases": [
+      "八代亜紀"
+    ]
+  },
+  {
+    "title": "Ame no Bojo",
+    "artist": "Aki Yashiro",
+    "year": 1980,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "雨の慕情"
+    ],
+    "artistAliases": [
+      "八代亜紀"
+    ]
+  },
+  {
+    "title": "Kitazakaba",
+    "artist": "Takashi Hosokawa",
+    "year": 1982,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "北酒場"
+    ],
+    "artistAliases": [
+      "細川たかし"
+    ]
+  },
+  {
+    "title": "Yagiri no Watashi",
+    "artist": "Takashi Hosokawa",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "矢切の渡し"
+    ],
+    "artistAliases": [
+      "細川たかし"
+    ]
+  },
+  {
+    "title": "Ettochi Tsubame",
+    "artist": "Masako Mori",
+    "year": 1983,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "越冬つばめ"
+    ],
+    "artistAliases": [
+      "森昌子"
+    ]
+  },
+  {
+    "title": "Amagigoe",
+    "artist": "Sayuri Ishikawa",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "天城越え"
+    ],
+    "artistAliases": [
+      "石川さゆり"
+    ]
+  },
+  {
+    "title": "Midaregami",
+    "artist": "Hibari Misora",
+    "year": 1987,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "みだれ髪"
+    ],
+    "artistAliases": [
+      "美空ひばり"
+    ]
+  },
+  {
+    "title": "Yozakura Oshichi",
+    "artist": "Sayuri Ishikawa",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "夜桜お七"
+    ],
+    "artistAliases": [
+      "石川さゆり"
+    ]
+  },
+  {
+    "title": "Hakone Hachiri no Hanjiro",
+    "artist": "Kiyoshi Hikawa",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "enka"
+    ],
+    "aliases": [
+      "箱根八里の半次郎"
+    ],
+    "artistAliases": [
+      "氷川きよし"
+    ]
+  },
+  {
+    "title": "Rock the Boat",
+    "artist": "The Hues Corporation",
+    "year": 1974,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Rock Your Baby",
+    "artist": "George McCrae",
+    "year": 1974,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "That's the Way (I Like It)",
+    "artist": "KC and the Sunshine Band",
+    "year": 1975,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Love to Love You Baby",
+    "artist": "Donna Summer",
+    "year": 1975,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "You Sexy Thing",
+    "artist": "Hot Chocolate",
+    "year": 1975,
+    "country": "gb",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Love Hangover",
+    "artist": "Diana Ross",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Dancing Queen",
+    "artist": "ABBA",
+    "year": 1976,
+    "country": "se",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "You Should Be Dancing",
+    "artist": "Bee Gees",
+    "year": 1976,
+    "country": "gb",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Don't Leave Me This Way",
+    "artist": "Thelma Houston",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Disco Inferno",
+    "artist": "The Trammps",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "I Feel Love",
+    "artist": "Donna Summer",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Stayin' Alive",
+    "artist": "Bee Gees",
+    "year": 1977,
+    "country": "gb",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Dance, Dance, Dance (Yowsah, Yowsah, Yowsah)",
+    "artist": "Chic",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Boogie Nights",
+    "artist": "Heatwave",
+    "year": 1977,
+    "country": "gb",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Le Freak",
+    "artist": "Chic",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "disco",
+      "funk"
+    ]
+  },
+  {
+    "title": "Boogie Oogie Oogie",
+    "artist": "A Taste of Honey",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "September",
+    "artist": "Earth, Wind & Fire",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "MacArthur Park",
+    "artist": "Donna Summer",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "I Will Survive",
+    "artist": "Gloria Gaynor",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Knock on Wood",
+    "artist": "Amii Stewart",
+    "year": 1979,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Good Times",
+    "artist": "Chic",
+    "year": 1979,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Funkytown",
+    "artist": "Lipps Inc.",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "disco"
+    ]
+  },
+  {
+    "title": "Papa's Got a Brand New Bag",
+    "artist": "James Brown",
+    "year": 1965,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Cold Sweat",
+    "artist": "James Brown",
+    "year": 1967,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Say It Loud - I'm Black and I'm Proud",
+    "artist": "James Brown",
+    "year": 1968,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "aliases": [
+      "Say It Loud (I'm Black and I'm Proud)"
+    ]
+  },
+  {
+    "title": "Thank You (Falettinme Be Mice Elf Agin)",
+    "artist": "Sly & the Family Stone",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "Sly and the Family Stone"
+    ]
+  },
+  {
+    "title": "Get Up (I Feel Like Being a) Sex Machine",
+    "artist": "James Brown",
+    "year": 1970,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "aliases": [
+      "Sex Machine"
+    ]
+  },
+  {
+    "title": "Family Affair",
+    "artist": "Sly & the Family Stone",
+    "year": 1971,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "Sly and the Family Stone"
+    ]
+  },
+  {
+    "title": "Get Down Tonight",
+    "artist": "KC and the Sunshine Band",
+    "year": 1975,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "KC & the Sunshine Band"
+    ]
+  },
+  {
+    "title": "Fire",
+    "artist": "Ohio Players",
+    "year": 1974,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Give Up the Funk (Tear the Roof off the Sucker)",
+    "artist": "Parliament",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "aliases": [
+      "Tear the Roof off the Sucker (Give Up the Funk)"
+    ]
+  },
+  {
+    "title": "Play That Funky Music",
+    "artist": "Wild Cherry",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Flash Light",
+    "artist": "Parliament",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "aliases": [
+      "Flashlight"
+    ]
+  },
+  {
+    "title": "One Nation Under a Groove",
+    "artist": "Funkadelic",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Ladies Night",
+    "artist": "Kool & the Gang",
+    "year": 1979,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "Kool and the Gang"
+    ]
+  },
+  {
+    "title": "Super Freak",
+    "artist": "Rick James",
+    "year": 1981,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Celebration",
+    "artist": "Kool & the Gang",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "Kool and the Gang"
+    ]
+  },
+  {
+    "title": "1999",
+    "artist": "Prince",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Atomic Dog",
+    "artist": "George Clinton",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Kiss",
+    "artist": "Prince",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "Prince and the Revolution"
+    ]
+  },
+  {
+    "title": "Brick House",
+    "artist": "Commodores",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Pick Up the Pieces",
+    "artist": "Average White Band",
+    "year": 1974,
+    "country": "gb",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "Jungle Boogie",
+    "artist": "Kool & the Gang",
+    "year": 1973,
+    "country": "us",
+    "categories": [
+      "funk"
+    ],
+    "artistAliases": [
+      "Kool and the Gang"
+    ]
+  },
+  {
+    "title": "Flashlight",
+    "artist": "Bootsy's Rubber Band",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "funk"
+    ]
+  },
+  {
+    "title": "I Wanna Be Your Dog",
+    "artist": "The Stooges",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Blitzkrieg Bop",
+    "artist": "Ramones",
+    "year": 1976,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Gloria",
+    "artist": "Patti Smith",
+    "year": 1975,
+    "country": "us",
+    "categories": [
+      "punk"
+    ],
+    "aliases": [
+      "Gloria: In Excelsis Deo"
+    ]
+  },
+  {
+    "title": "New Rose",
+    "artist": "The Damned",
+    "year": 1976,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Psycho Killer",
+    "artist": "Talking Heads",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Marquee Moon",
+    "artist": "Television",
+    "year": 1977,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "No More Heroes",
+    "artist": "The Stranglers",
+    "year": 1977,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Oh Bondage Up Yours!",
+    "artist": "X-Ray Spex",
+    "year": 1977,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Teenage Kicks",
+    "artist": "The Undertones",
+    "year": 1978,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Ever Fallen in Love (With Someone You Shouldn't've)",
+    "artist": "Buzzcocks",
+    "year": 1978,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Boys Don't Cry",
+    "artist": "The Cure",
+    "year": 1979,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Holiday in Cambodia",
+    "artist": "Dead Kennedys",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Going Underground",
+    "artist": "The Jam",
+    "year": 1980,
+    "country": "gb",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Whip It",
+    "artist": "Devo",
+    "year": 1980,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Rise Above",
+    "artist": "Black Flag",
+    "year": 1981,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Story of My Life",
+    "artist": "Social Distortion",
+    "year": 1990,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "American Jesus",
+    "artist": "Bad Religion",
+    "year": 1993,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Self Esteem",
+    "artist": "The Offspring",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Linoleum",
+    "artist": "NOFX",
+    "year": 1994,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Time Bomb",
+    "artist": "Rancid",
+    "year": 1995,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Drain the Blood",
+    "artist": "The Distillers",
+    "year": 2003,
+    "country": "us",
+    "categories": [
+      "punk"
+    ]
+  },
+  {
+    "title": "Statesboro Blues",
+    "artist": "Blind Willie McTell",
+    "year": 1928,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Cross Road Blues",
+    "artist": "Robert Johnson",
+    "year": 1936,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Crossroads",
+      "Cross Road Blues (I went to the crossroad)"
+    ]
+  },
+  {
+    "title": "Sweet Home Chicago",
+    "artist": "Robert Johnson",
+    "year": 1937,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Hellhound on My Trail",
+    "artist": "Robert Johnson",
+    "year": 1937,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Stormy Monday",
+    "artist": "T-Bone Walker",
+    "year": 1947,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Call It Stormy Monday (But Tuesday Is Just as Bad)",
+      "They Call It Stormy Monday"
+    ]
+  },
+  {
+    "title": "Boogie Chillen'",
+    "artist": "John Lee Hooker",
+    "year": 1948,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Boogie Chillen",
+      "Boogie Chillun"
+    ]
+  },
+  {
+    "title": "Rollin' Stone",
+    "artist": "Muddy Waters",
+    "year": 1950,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Catfish Blues"
+    ]
+  },
+  {
+    "title": "Three O'Clock Blues",
+    "artist": "B.B. King",
+    "year": 1951,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "3 O'Clock Blues"
+    ]
+  },
+  {
+    "title": "Dust My Broom",
+    "artist": "Elmore James",
+    "year": 1951,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "I Believe My Time Ain't Long"
+    ]
+  },
+  {
+    "title": "Five Long Years",
+    "artist": "Eddie Boyd",
+    "year": 1952,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Hound Dog",
+    "artist": "Big Mama Thornton",
+    "year": 1953,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Hoochie Coochie Man",
+    "artist": "Muddy Waters",
+    "year": 1954,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "I'm Your Hoochie Coochie Man"
+    ]
+  },
+  {
+    "title": "I'm a Man",
+    "artist": "Bo Diddley",
+    "year": 1955,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Smokestack Lightning",
+    "artist": "Howlin' Wolf",
+    "year": 1956,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Smokestack Lightnin'"
+    ]
+  },
+  {
+    "title": "Sweet Little Angel",
+    "artist": "B.B. King",
+    "year": 1956,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Got My Mojo Working",
+    "artist": "Muddy Waters",
+    "year": 1957,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Spoonful",
+    "artist": "Howlin' Wolf",
+    "year": 1960,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Hideaway",
+    "artist": "Freddie King",
+    "year": 1961,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Hide Away"
+    ]
+  },
+  {
+    "title": "Born Under a Bad Sign",
+    "artist": "Albert King",
+    "year": 1967,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Crossroads",
+    "artist": "Cream",
+    "year": 1968,
+    "country": "gb",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Crossroads (Live)"
+    ]
+  },
+  {
+    "title": "The Thrill Is Gone",
+    "artist": "B.B. King",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Layla",
+    "artist": "Derek and the Dominos",
+    "year": 1970,
+    "country": "gb",
+    "categories": [
+      "blues"
+    ],
+    "artistAliases": [
+      "Eric Clapton"
+    ]
+  },
+  {
+    "title": "Texas Flood",
+    "artist": "Stevie Ray Vaughan",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "blues"
+    ],
+    "aliases": [
+      "Texas Flood (Double Trouble)"
+    ]
+  },
+  {
+    "title": "Pride and Joy",
+    "artist": "Stevie Ray Vaughan",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Chega de Saudade",
+    "artist": "Joao Gilberto",
+    "year": 1958,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "No More Blues"
+    ],
+    "artistAliases": [
+      "João Gilberto"
+    ]
+  },
+  {
+    "title": "Desafinado",
+    "artist": "Joao Gilberto",
+    "year": 1959,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Off Key",
+      "Slightly Out of Tune"
+    ],
+    "artistAliases": [
+      "João Gilberto"
+    ]
+  },
+  {
+    "title": "Samba de Uma Nota So",
+    "artist": "Joao Gilberto",
+    "year": 1960,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Samba de Uma Nota Só",
+      "One Note Samba"
+    ],
+    "artistAliases": [
+      "João Gilberto"
+    ]
+  },
+  {
+    "title": "Insensatez",
+    "artist": "Joao Gilberto",
+    "year": 1961,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "How Insensitive"
+    ],
+    "artistAliases": [
+      "João Gilberto"
+    ]
+  },
+  {
+    "title": "O Barquinho",
+    "artist": "Roberto Menescal",
+    "year": 1961,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Little Boat"
+    ]
+  },
+  {
+    "title": "Garota de Ipanema",
+    "artist": "Stan Getz & Joao Gilberto",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "The Girl from Ipanema",
+      "Girl from Ipanema"
+    ],
+    "artistAliases": [
+      "Stan Getz & João Gilberto",
+      "Getz/Gilberto"
+    ]
+  },
+  {
+    "title": "Corcovado",
+    "artist": "Stan Getz & Joao Gilberto",
+    "year": 1964,
+    "country": "us",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Quiet Nights of Quiet Stars"
+    ],
+    "artistAliases": [
+      "Stan Getz & João Gilberto",
+      "Getz/Gilberto"
+    ]
+  },
+  {
+    "title": "Mas Que Nada",
+    "artist": "Sergio Mendes & Brasil '66",
+    "year": 1966,
+    "country": "us",
+    "categories": [
+      "bossa"
+    ],
+    "artistAliases": [
+      "Sérgio Mendes & Brasil '66"
+    ]
+  },
+  {
+    "title": "Aguas de Marco",
+    "artist": "Antonio Carlos Jobim & Elis Regina",
+    "year": 1974,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Águas de Março",
+      "Waters of March"
+    ],
+    "artistAliases": [
+      "Tom Jobim & Elis Regina",
+      "Antônio Carlos Jobim & Elis Regina"
+    ]
+  },
+  {
+    "title": "Wave",
+    "artist": "Antonio Carlos Jobim",
+    "year": 1967,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Vou Te Contar"
+    ],
+    "artistAliases": [
+      "Tom Jobim",
+      "Antônio Carlos Jobim"
+    ]
+  },
+  {
+    "title": "A Felicidade",
+    "artist": "Antonio Carlos Jobim",
+    "year": 1959,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "artistAliases": [
+      "Tom Jobim",
+      "Antônio Carlos Jobim"
+    ]
+  },
+  {
+    "title": "Manha de Carnaval",
+    "artist": "Luiz Bonfa",
+    "year": 1959,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Manhã de Carnaval",
+      "A Day in the Life of a Fool",
+      "Black Orpheus"
+    ],
+    "artistAliases": [
+      "Luiz Bonfá"
+    ]
+  },
+  {
+    "title": "Triste",
+    "artist": "Antonio Carlos Jobim",
+    "year": 1967,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "artistAliases": [
+      "Tom Jobim",
+      "Antônio Carlos Jobim"
+    ]
+  },
+  {
+    "title": "So Danco Samba",
+    "artist": "Antonio Carlos Jobim",
+    "year": 1963,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Só Danço Samba",
+      "Jazz 'n' Samba"
+    ],
+    "artistAliases": [
+      "Tom Jobim",
+      "Antônio Carlos Jobim"
+    ]
+  },
+  {
+    "title": "Berimbau",
+    "artist": "Baden Powell & Vinicius de Moraes",
+    "year": 1963,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "artistAliases": [
+      "Baden Powell & Vinícius de Moraes"
+    ]
+  },
+  {
+    "title": "Construcao",
+    "artist": "Chico Buarque",
+    "year": 1971,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Construção"
+    ]
+  },
+  {
+    "title": "Aguas de Beber",
+    "artist": "Antonio Carlos Jobim",
+    "year": 1965,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Água de Beber",
+      "Drinking Water"
+    ],
+    "artistAliases": [
+      "Tom Jobim",
+      "Antônio Carlos Jobim"
+    ]
+  },
+  {
+    "title": "Travessia",
+    "artist": "Milton Nascimento",
+    "year": 1967,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ],
+    "aliases": [
+      "Bridges"
+    ]
+  },
+  {
+    "title": "La Mer",
+    "artist": "Charles Trenet",
+    "year": 1946,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Les Feuilles mortes",
+    "artist": "Yves Montand",
+    "year": 1946,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "Autumn Leaves"
+    ]
+  },
+  {
+    "title": "Ne me quitte pas",
+    "artist": "Jacques Brel",
+    "year": 1959,
+    "country": "be",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "If You Go Away"
+    ]
+  },
+  {
+    "title": "Tous les garcons et les filles",
+    "artist": "Francoise Hardy",
+    "year": 1962,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "Tous les garçons et les filles"
+    ],
+    "artistAliases": [
+      "Françoise Hardy"
+    ]
+  },
+  {
+    "title": "La Boheme",
+    "artist": "Charles Aznavour",
+    "year": 1965,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "La Bohème"
+    ]
+  },
+  {
+    "title": "Comme d'habitude",
+    "artist": "Claude Francois",
+    "year": 1967,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "My Way"
+    ],
+    "artistAliases": [
+      "Claude François"
+    ]
+  },
+  {
+    "title": "Et maintenant",
+    "artist": "Gilbert Becaud",
+    "year": 1961,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "What Now My Love"
+    ],
+    "artistAliases": [
+      "Gilbert Bécaud"
+    ]
+  },
+  {
+    "title": "Je t'aime moi non plus",
+    "artist": "Jane Birkin",
+    "year": 1969,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Pour un flirt",
+    "artist": "Michel Delpech",
+    "year": 1971,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Paroles, paroles",
+    "artist": "Dalida",
+    "year": 1973,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "L'ete indien",
+    "artist": "Joe Dassin",
+    "year": 1975,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "L'été indien",
+      "Indian Summer"
+    ]
+  },
+  {
+    "title": "Magnolias for Ever",
+    "artist": "Claude Francois",
+    "year": 1977,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "artistAliases": [
+      "Claude François"
+    ]
+  },
+  {
+    "title": "Il jouait du piano debout",
+    "artist": "France Gall",
+    "year": 1980,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Marcia Baila",
+    "artist": "Les Rita Mitsouko",
+    "year": 1984,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Voyage voyage",
+    "artist": "Desireless",
+    "year": 1986,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Joe le taxi",
+    "artist": "Vanessa Paradis",
+    "year": 1987,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Pour que tu m'aimes encore",
+    "artist": "Celine Dion",
+    "year": 1995,
+    "country": "ca",
+    "categories": [
+      "frenchpop"
+    ],
+    "artistAliases": [
+      "Céline Dion"
+    ]
+  },
+  {
+    "title": "Alors on danse",
+    "artist": "Stromae",
+    "year": 2009,
+    "country": "be",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Je veux",
+    "artist": "ZAZ",
+    "year": 2010,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "artistAliases": [
+      "Zaz"
+    ]
+  },
+  {
+    "title": "Derniere danse",
+    "artist": "Indila",
+    "year": 2013,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ],
+    "aliases": [
+      "Dernière danse"
+    ]
+  },
+  {
+    "title": "Papaoutai",
+    "artist": "Stromae",
+    "year": 2013,
+    "country": "be",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Christine",
+    "artist": "Christine and the Queens",
+    "year": 2014,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Move Your Body",
+    "artist": "Marshall Jefferson",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "house"
+    ],
+    "aliases": [
+      "Move Your Body (The House Music Anthem)"
+    ]
+  },
+  {
+    "title": "Your Love",
+    "artist": "Frankie Knuckles",
+    "year": 1987,
+    "country": "us",
+    "categories": [
+      "house"
+    ],
+    "artistAliases": [
+      "Frankie Knuckles presents Jamie Principle"
+    ]
+  },
+  {
+    "title": "Big Fun",
+    "artist": "Inner City",
+    "year": 1988,
+    "country": "us",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "French Kiss",
+    "artist": "Lil Louis",
+    "year": 1989,
+    "country": "us",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Finally",
+    "artist": "CeCe Peniston",
+    "year": 1991,
+    "country": "us",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Gypsy Woman",
+    "artist": "Crystal Waters",
+    "year": 1991,
+    "country": "us",
+    "categories": [
+      "house"
+    ],
+    "aliases": [
+      "Gypsy Woman (She's Homeless)"
+    ]
+  },
+  {
+    "title": "Sweet Harmony",
+    "artist": "Liquid",
+    "year": 1992,
+    "country": "gb",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Show Me Love",
+    "artist": "Robin S",
+    "year": 1993,
+    "country": "us",
+    "categories": [
+      "house"
+    ],
+    "artistAliases": [
+      "Robin S."
+    ]
+  },
+  {
+    "title": "Insomnia",
+    "artist": "Faithless",
+    "year": 1995,
+    "country": "gb",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Push the Feeling On",
+    "artist": "Nightcrawlers",
+    "year": 1995,
+    "country": "gb",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Da Funk",
+    "artist": "Daft Punk",
+    "year": 1997,
+    "country": "fr",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Music Sounds Better with You",
+    "artist": "Stardust",
+    "year": 1998,
+    "country": "fr",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Lady (Hear Me Tonight)",
+    "artist": "Modjo",
+    "year": 2000,
+    "country": "fr",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Where's Your Head At",
+    "artist": "Basement Jaxx",
+    "year": 2001,
+    "country": "gb",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Put Your Hands Up for Detroit",
+    "artist": "Fedde Le Grand",
+    "year": 2006,
+    "country": "nl",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "D.A.N.C.E.",
+    "artist": "Justice",
+    "year": 2007,
+    "country": "fr",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Pjanoo",
+    "artist": "Eric Prydz",
+    "year": 2008,
+    "country": "se",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Latch",
+    "artist": "Disclosure",
+    "year": 2012,
+    "country": "gb",
+    "categories": [
+      "house"
+    ],
+    "artistAliases": [
+      "Disclosure feat. Sam Smith"
+    ]
+  },
+  {
+    "title": "When a Fire Starts to Burn",
+    "artist": "Disclosure",
+    "year": 2013,
+    "country": "gb",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Rather Be",
+    "artist": "Clean Bandit",
+    "year": 2014,
+    "country": "gb",
+    "categories": [
+      "house"
+    ],
+    "artistAliases": [
+      "Clean Bandit feat. Jess Glynne"
+    ]
+  },
+  {
+    "title": "Losing It",
+    "artist": "Fisher",
+    "year": 2018,
+    "country": "au",
+    "categories": [
+      "house"
+    ],
+    "artistAliases": [
+      "FISHER"
+    ]
+  },
+  {
+    "title": "Dale Don Dale",
+    "artist": "Don Omar",
+    "year": 2003,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Rakata",
+    "artist": "Wisin & Yandel",
+    "year": 2005,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Noche de Sexo",
+    "artist": "Wisin & Yandel",
+    "year": 2006,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ],
+    "aliases": [
+      "Noche de Sexo (feat. Aventura)"
+    ]
+  },
+  {
+    "title": "Danza Kuduro",
+    "artist": "Don Omar & Lucenzo",
+    "year": 2010,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Ella Me Levanto",
+    "artist": "Daddy Yankee",
+    "year": 2008,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Pose",
+    "artist": "Daddy Yankee",
+    "year": 2007,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Lo Que Paso, Paso",
+    "artist": "Daddy Yankee",
+    "year": 2004,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ],
+    "aliases": [
+      "Lo Que Pasó, Pasó"
+    ]
+  },
+  {
+    "title": "Atrevete-te-te",
+    "artist": "Calle 13",
+    "year": 2005,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ],
+    "aliases": [
+      "Atrévete-te-te"
+    ]
+  },
+  {
+    "title": "Felices los 4",
+    "artist": "Maluma",
+    "year": 2017,
+    "country": "co",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Hawai",
+    "artist": "Maluma",
+    "year": 2020,
+    "country": "co",
+    "categories": [
+      "reggaeton"
+    ],
+    "aliases": [
+      "Hawái"
+    ]
+  },
+  {
+    "title": "Despacito",
+    "artist": "Luis Fonsi & Daddy Yankee",
+    "year": 2017,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Ginza",
+    "artist": "J Balvin",
+    "year": 2015,
+    "country": "co",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Ay Vamos",
+    "artist": "J Balvin",
+    "year": 2014,
+    "country": "co",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Taki Taki",
+    "artist": "DJ Snake, Selena Gomez, Ozuna & Cardi B",
+    "year": 2018,
+    "country": "us",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Te Bote",
+    "artist": "Casper Magico, Nio Garcia, Darell, Nicky Jam, Ozuna & Bad Bunny",
+    "year": 2018,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ],
+    "aliases": [
+      "Te Boté"
+    ]
+  },
+  {
+    "title": "Tusa",
+    "artist": "Karol G & Nicki Minaj",
+    "year": 2019,
+    "country": "co",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Yonaguni",
+    "artist": "Bad Bunny",
+    "year": 2021,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "China",
+    "artist": "Anuel AA, Daddy Yankee, Karol G, Ozuna & J Balvin",
+    "year": 2019,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Loco Contigo",
+    "artist": "DJ Snake, J Balvin & Tyga",
+    "year": 2019,
+    "country": "co",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "El Perdon",
+    "artist": "Nicky Jam & Enrique Iglesias",
+    "year": 2015,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ],
+    "aliases": [
+      "El Perdón"
+    ]
+  },
+  {
+    "title": "Safaera",
+    "artist": "Bad Bunny, Jowell & Randy & Ñengo Flow",
+    "year": 2020,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
   }
 ]

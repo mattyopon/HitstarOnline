@@ -35,12 +35,15 @@ export function YouTubePlayer({
   playing,
   reveal,
   volume,
+  onUnavailable,
 }: {
   videoId: string | null;
   startSeconds: number;
   playing: boolean;
   reveal: boolean;
   volume?: number;
+  /** Called when YouTube reports the video can't be embedded/played here. */
+  onUnavailable?: () => void;
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
@@ -58,8 +61,8 @@ export function YouTubePlayer({
   }, [expanded]);
 
   // Keep latest props for the onReady callback.
-  const propsRef = useRef({ videoId, startSeconds, playing, volume });
-  propsRef.current = { videoId, startSeconds, playing, volume };
+  const propsRef = useRef({ videoId, startSeconds, playing, volume, onUnavailable });
+  propsRef.current = { videoId, startSeconds, playing, volume, onUnavailable };
 
   function applyVolume(p: any) {
     const v = propsRef.current.volume ?? 70;
@@ -140,6 +143,7 @@ export function YouTubePlayer({
               sync();
             } else if (e?.data === 100 || e?.data === 101 || e?.data === 150) {
               console.warn("[yt] video not embeddable/available:", e?.data, vid);
+              propsRef.current.onUnavailable?.();
             }
           },
         },

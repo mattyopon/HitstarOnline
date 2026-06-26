@@ -94,7 +94,7 @@ export function defaultSettings(): GameSettings {
     maxTokens: 5,
     placeSeconds: 75, // legacy, superseded by listenSeconds + placementSeconds
     stealSeconds: 10, // steal-decision window
-    revealSeconds: 12,
+    revealSeconds: 240, // reveal plays the song in full; players skip with ▶ 次の曲へ
     allowSkip: true,
     buyCost: 3,
     startSeconds: 0,
@@ -293,6 +293,33 @@ export const CATEGORIES: CategoryDef[] = [
   { id: "famous-in-usa", labelJa: "アメリカで人気", labelEn: "Famous in USA" },
   { id: "famous-in-korea", labelJa: "韓国で人気", labelEn: "Famous in Korea" },
   { id: "famous-in-china", labelJa: "中国で人気", labelEn: "Famous in China" },
+  // Genre packs (added later — songs span many decades for good placement play).
+  { id: "rock", labelJa: "ロック", labelEn: "Rock" },
+  { id: "metal", labelJa: "メタル", labelEn: "Metal" },
+  { id: "hiphop", labelJa: "ヒップホップ", labelEn: "Hip-Hop" },
+  { id: "edm", labelJa: "EDM・ダンス", labelEn: "EDM/Dance" },
+  { id: "rnb", labelJa: "R&B・ソウル", labelEn: "R&B/Soul" },
+  { id: "country", labelJa: "カントリー", labelEn: "Country" },
+  { id: "citypop", labelJa: "シティポップ", labelEn: "City Pop" },
+  { id: "jrock", labelJa: "J-ROCK", labelEn: "J-Rock" },
+  { id: "reggae", labelJa: "レゲエ", labelEn: "Reggae" },
+  { id: "jazz", labelJa: "ジャズ", labelEn: "Jazz" },
+  { id: "classical", labelJa: "クラシック", labelEn: "Classical" },
+  { id: "christmas", labelJa: "クリスマス", labelEn: "Christmas" },
+  { id: "bollywood", labelJa: "ボリウッド", labelEn: "Bollywood" },
+  { id: "afrobeats", labelJa: "アフロビーツ", labelEn: "Afrobeats" },
+  { id: "tokusatsu", labelJa: "特撮ヒーロー", labelEn: "Tokusatsu" },
+  { id: "jidol", labelJa: "アイドル(日)", labelEn: "J-Idol" },
+  { id: "jrap", labelJa: "日本語ラップ", labelEn: "J-Hip-Hop" },
+  { id: "enka", labelJa: "演歌", labelEn: "Enka" },
+  { id: "disco", labelJa: "ディスコ", labelEn: "Disco" },
+  { id: "funk", labelJa: "ファンク", labelEn: "Funk" },
+  { id: "punk", labelJa: "パンク", labelEn: "Punk" },
+  { id: "blues", labelJa: "ブルース", labelEn: "Blues" },
+  { id: "bossa", labelJa: "ボサノヴァ", labelEn: "Bossa Nova" },
+  { id: "frenchpop", labelJa: "フレンチポップ", labelEn: "French Pop" },
+  { id: "house", labelJa: "ハウス", labelEn: "House" },
+  { id: "reggaeton", labelJa: "レゲトン", labelEn: "Reggaeton" },
 ];
 
 export const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id));

@@ -12,8 +12,9 @@ export async function POST(req: Request) {
   if (!code) return json({ error: "部屋コードを入力してください" }, 400);
   try {
     // Guests may join casual rooms; joinRoom rejects guests from ranked rooms.
-    await joinRoom(code, seedFrom(user, body.name), user.isAnonymous);
-    return json({ code });
+    // Return the public state so a reconnecting client can resync immediately.
+    const game = await joinRoom(code, seedFrom(user, body.name), user.isAnonymous);
+    return json({ code, state: game.public });
   } catch (e) {
     return mapError(e);
   }

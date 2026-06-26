@@ -59,10 +59,24 @@ export function useRoom(code: string, enabled: boolean) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (payload) => apply((payload.new as any)?.state),
       )
-      .subscribe();
+      .subscribe((status) => {
+        // On (re)subscribe — including after the client auto-reconnects a dropped
+        // socket — refetch to catch up on any updates missed while it was down.
+        if (status === "SUBSCRIBED") refetch();
+      });
+
+    // Coming back from a backgrounded tab or a network drop: resync immediately
+    // (Realtime may have missed messages during the gap).
+    const onWake = () => {
+      if (document.visibilityState === "visible") refetch();
+    };
+    document.addEventListener("visibilitychange", onWake);
+    window.addEventListener("online", onWake);
 
     return () => {
       active = false;
+      document.removeEventListener("visibilitychange", onWake);
+      window.removeEventListener("online", onWake);
       supabase.removeChannel(channel);
     };
   }, [code, enabled, apply]);

@@ -754,6 +754,24 @@ export function advance(game: FullGame, songs: Song[], now: number): FullGame {
   return game; // nothing due
 }
 
+/**
+ * Manually advance PAST the reveal (the "▶ 次の曲へ" skip). The reveal now lets
+ * the song play in full (long auto-advance), so any member can skip ahead when
+ * everyone's ready. Idempotent: no-op if not in the reveal phase.
+ */
+export function advanceReveal(game: FullGame, songs: Song[], now: number): FullGame {
+  if (game.public.phase !== "reveal") return game;
+  const g = clone(game);
+  if (g.public.winnerId) {
+    g.public.phase = "gameover";
+    g.public.deadline = undefined;
+  } else {
+    nextTurn(g, songs, now);
+  }
+  g.public.version++;
+  return g;
+}
+
 // ─── Sanity helpers for the server ────────────────────────────────────────--
 
 /** Does the current state need a YouTube id resolved for its mystery card? */
