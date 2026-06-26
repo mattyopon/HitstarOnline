@@ -7,6 +7,7 @@ import { useNow } from "@/hooks/useNow";
 import { useGoogleToken } from "@/hooks/useGoogleToken";
 import { api } from "@/lib/clientApi";
 import { Timeline } from "./Timeline";
+import { PlacementArea } from "./PlacementArea";
 import { PlayerList } from "./PlayerList";
 import { RevealCard } from "./RevealCard";
 import { YouTubePlayer } from "./YouTubePlayer";
@@ -288,10 +289,9 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {/* Active player's placement controls */}
           {state.phase === "placing" && isActive && me && (
             <div className="card stack fade-in">
-              <strong>年表の正しい位置を選ぼう</strong>
-              <Timeline
+              <strong>年表の正しい位置に置こう</strong>
+              <PlacementArea
                 cards={me.timeline}
-                interactive
                 selectedSlot={selectedSlot}
                 onSelect={setSelectedSlot}
               />
@@ -368,12 +368,12 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                 <div className="notice">横取り済み！結果を待っています</div>
               ) : canSteal && me ? (
                 <>
-                  <strong>違うと思う？自分の年表の正しい位置に置いて横取り！（🪙1）</strong>
-                  <Timeline
+                  <strong>違うと思う？正しい位置にタイルを置いて横取り！（🪙1）</strong>
+                  <PlacementArea
                     cards={me.timeline}
-                    interactive
                     selectedSlot={selectedSlot}
                     onSelect={setSelectedSlot}
+                    hint="違うと思う位置にタイルをドラッグ（タップでもOK）"
                   />
                   <button
                     className="btn"
