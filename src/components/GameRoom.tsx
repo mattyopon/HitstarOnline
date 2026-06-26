@@ -18,8 +18,10 @@ import { CATEGORIES } from "@/lib/protocol";
 import type { PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
 import { playRankEntrySound } from "@/lib/rankSound";
+import { useT } from "@/lib/i18n";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
+  const t = useT();
   const router = useRouter();
   const { state, error, apply } = useRoom(code, true);
   const now = useNow();
@@ -262,11 +264,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
         <span className="pill">部屋 <strong style={{ letterSpacing: 2 }}>{state.code}</strong></span>
         {inGame && <span className="pill">第{state.round}ターン</span>}
         {inGame && <span className="pill">残り{state.deckRemaining}曲</span>}
-        <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title="設定">
+        <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title={t("設定")}>
           ⚙️
         </button>
         <button className="btn ghost tiny" onClick={leave}>
-          退出
+          {t("退出")}
         </button>
       </div>
     </div>
@@ -282,11 +284,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       <div className="tap-overlay" onClick={() => setSoundOn(true)}>
         <div className="card stack" style={{ maxWidth: 360 }}>
           <div style={{ fontSize: 44 }}>🔊</div>
-          <h2 style={{ margin: 0 }}>タップして開始</h2>
+          <h2 style={{ margin: 0 }}>{t("タップして開始")}</h2>
           <p className="muted" style={{ margin: 0 }}>
-            音楽を再生するために一度タップしてください。
+            {t("音楽を再生するために一度タップしてください。")}
           </p>
-          <button className="btn block">サウンドを有効にする</button>
+          <button className="btn block">{t("サウンドを有効にする")}</button>
         </div>
       </div>
     ) : null;
@@ -368,13 +370,17 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
         <strong>
           {state.phase === "placing" &&
             isListening &&
-            (isActive ? "🎧 試聴中（聞いて配置）" : `🎧 ${activePlayer?.name} が試聴中`)}
+            (isActive
+              ? t("🎧 試聴中（聞いて配置）")
+              : t("🎧 {name} が試聴中", { name: activePlayer?.name ?? "" }))}
           {state.phase === "placing" &&
             !isListening &&
-            (isActive ? "⏳ 配置してOK！" : `⏳ ${activePlayer?.name} が配置中`)}
-          {state.phase === "stealing" && "横取りチャンス！"}
-          {state.phase === "reveal" && "結果発表"}
-          {state.phase === "gameover" && "ゲーム終了"}
+            (isActive
+              ? t("⏳ 配置してOK！")
+              : t("⏳ {name} が配置中", { name: activePlayer?.name ?? "" }))}
+          {state.phase === "stealing" && t("横取りチャンス！")}
+          {state.phase === "reveal" && t("結果発表")}
+          {state.phase === "gameover" && t("ゲーム終了")}
         </strong>
         {state.phase !== "gameover" && countdownEl}
       </div>
@@ -433,7 +439,9 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             <div className="card big-banner stack">
               <div className="trophy">🏆</div>
               <h2 style={{ margin: 0 }}>
-                {state.players.find((p) => p.userId === state.winnerId)?.name ?? "?"} の勝ち！
+                {t("{name} の勝ち！", {
+                  name: state.players.find((p) => p.userId === state.winnerId)?.name ?? "?",
+                })}
               </h2>
               <div className="stack" style={{ gap: 6, marginTop: 8 }}>
                 {[...state.players]
@@ -450,7 +458,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                   ))}
               </div>
               <button className="btn block" onClick={() => router.push("/")}>
-                ホームに戻る
+                {t("ホームに戻る")}
               </button>
             </div>
           )}
@@ -461,8 +469,8 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               <div className="row spread" style={{ alignItems: "center" }}>
                 <strong>
                   {isListening
-                    ? "🎧 曲を聞いて配置しよう"
-                    : `⏳ ${state.settings.placementSeconds ?? 30}秒以内に配置してOK！`}
+                    ? t("🎧 曲を聞いて配置しよう")
+                    : t("⏳ {n}秒以内に配置してOK！", { n: state.settings.placementSeconds ?? 30 })}
                 </strong>
                 {inEarlyWindow && (
                   <span
@@ -482,14 +490,14 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               <div className="row wrap" style={{ gap: 10 }}>
                 <input
                   type="text"
-                  placeholder="曲名（任意・当てるとトークン）"
+                  placeholder={t("曲名（任意・当てるとトークン）")}
                   value={gTitle}
                   onChange={(e) => setGTitle(e.target.value)}
                   style={{ flex: 1, minWidth: 160 }}
                 />
                 <input
                   type="text"
-                  placeholder="アーティスト名（任意）"
+                  placeholder={t("アーティスト名（任意）")}
                   value={gArtist}
                   onChange={(e) => setGArtist(e.target.value)}
                   style={{ flex: 1, minWidth: 160 }}
@@ -506,7 +514,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                     })
                   }
                 >
-                  ✅ 提出（OK）
+                  ✅ {t("提出（OK）")}
                 </button>
                 {canExtend && (
                   <button
