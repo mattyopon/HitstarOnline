@@ -37,37 +37,45 @@ export function SignIn({ authError }: { authError?: boolean }) {
     }
   }
 
+  const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_ENABLED === "true";
+
   return (
     <div className="stack">
       <p className="muted" style={{ marginTop: 0 }}>
         曲を聴いて発売年を当て、年表に並べるパーティーゲーム。
-        Googleでログインして、離れた友達と同じ部屋で遊ぼう。
+        離れた友達と同じ部屋でリアルタイムに遊ぼう。
       </p>
       {err && <div className="error">{err}</div>}
 
-      <button className="btn google block" onClick={google} disabled={!!busy}>
-        <GoogleMark />
-        {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
-      </button>
-
-      <div className="row" style={{ gap: 10 }}>
-        <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-        <span className="tiny muted">または</span>
-        <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-      </div>
+      {googleEnabled && (
+        <>
+          <button className="btn google block" onClick={google} disabled={!!busy}>
+            <GoogleMark />
+            {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
+          </button>
+          <div className="row" style={{ gap: 10 }}>
+            <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
+            <span className="tiny muted">または</span>
+            <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
+          </div>
+        </>
+      )}
 
       <input
         type="text"
-        placeholder="ニックネーム（ゲスト用）"
+        placeholder="ニックネーム"
         value={name}
         maxLength={24}
         onChange={(e) => setName(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && guest()}
       />
-      <button className="btn secondary block" onClick={guest} disabled={!!busy}>
-        {busy === "guest" ? "参加中…" : "ゲストとして始める"}
+      <button className="btn block" onClick={guest} disabled={!!busy}>
+        {busy === "guest" ? "参加中…" : "▶ ゲストとして始める"}
       </button>
       <p className="tiny muted" style={{ marginBottom: 0 }}>
-        ※ ゲストはこの端末のみの一時アカウントです。
+        {googleEnabled
+          ? "※ ゲストはこの端末のみの一時アカウントです。"
+          : "※ いまはゲストですぐ遊べます（Googleログインは設定後に有効化）。"}
       </p>
     </div>
   );
