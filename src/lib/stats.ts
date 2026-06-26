@@ -171,28 +171,43 @@ export async function getUserStats(userId: string): Promise<UserStats> {
 
   const { data: mp } = await admin
     .from("match_players")
-    .select("match_id, rank, cards_won, is_winner, matches(mode, ranked, player_count, created_at)")
+    .select("match_id, rank, cards_won, is_winner")
     .eq("user_id", userId)
-    .order("match_id", { ascending: false })
-    .limit(200);
+    .limit(500);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const rows = (mp ?? []) as any[];
+  const mpRows = (mp ?? []) as any[];
+  // Fetch the referenced matches in one query and join in JS (no PostgREST embed).
+  const matchIds = [...new Set(mpRows.map((r) => r.match_id))];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let matchMap = new Map<string, any>();
+  if (matchIds.length) {
+    const { data: ms } = await admin
+      .from("matches")
+      .select("id, mode, ranked, player_count, created_at")
+      .in("id", matchIds);
+    matchMap = new Map((ms ?? []).map((m) => [m.id, m]));
+  }
+
+  const rows = mpRows
+    .map((r) => ({ ...r, match: matchMap.get(r.match_id) }))
+    .sort((a, b) => String(b.match?.created_at ?? "").localeCompare(String(a.match?.created_at ?? "")));
+
   const games = rows.length;
   const wins = rows.filter((r) => r.is_winner).length;
-  const ranked = rows.filter((r) => r.matches?.ranked);
+  const ranked = rows.filter((r) => r.match?.ranked);
   const rankedWins = ranked.filter((r) => r.is_winner).length;
   const totalCards = rows.reduce((n, r) => n + (r.cards_won ?? 0), 0);
   const avgRank = games ? rows.reduce((n, r) => n + (r.rank ?? 0), 0) / games : null;
 
   const recent = rows.slice(0, 10).map((r) => ({
-    mode: r.matches?.mode ?? "original",
-    ranked: !!r.matches?.ranked,
+    mode: r.match?.mode ?? "original",
+    ranked: !!r.match?.ranked,
     rank: r.rank ?? 0,
     cardsWon: r.cards_won ?? 0,
     isWinner: !!r.is_winner,
-    playerCount: r.matches?.player_count ?? 0,
-    createdAt: r.matches?.created_at ?? "",
+    playerCount: r.match?.player_count ?? 0,
+    createdAt: r.match?.created_at ?? "",
   }));
 
   const { data: cs } = await admin
