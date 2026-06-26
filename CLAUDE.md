@@ -57,11 +57,17 @@ npm run build        # next build（本番ビルド検証）
 | `src/lib/deck.ts` | デッキ読込・シャッフル（**サーバ専用 / 答えを含むので client 禁止**） |
 | `src/lib/youtube.ts` | YouTube ID 解決（Data API or スクレイプ、サーバ専用） |
 | `src/app/api/**` | 部屋/ゲーム操作 API（create/join/leave/start/place/steal/skip/buy/advance） |
-| `src/components/GameRoom.tsx` | ゲーム盤（フェーズ別UI・自動進行・音声有効化） |
+| `src/components/GameRoom.tsx` | ゲーム盤（フェーズ別UI・自動進行・音声有効化・チャット/VC のマウント） |
 | `src/hooks/useRoom.ts` | Realtime 購読フック |
-| `supabase/migrations/0001_init.sql` | DBスキーマ + RLS + トリガ + Realtime publication |
-| `data/deck.json` | 楽曲デッキ（検証済み101曲 / 1954–2023 / 洋楽78・邦楽23） |
-| `scripts/smoke.ts` | エンジンのスモークテスト |
+| `src/lib/chat.ts` / `src/components/ChatDock.tsx` / `src/hooks/useChat.ts` | 弾幕チャット＋エモート（private channel `chat:<CODE>`） |
+| `src/lib/profanity.ts` | 多言語の暴言マスク（純粋・client可） |
+| `src/app/api/translate/route.ts` | チャット自動翻訳（Google Translate サーバプロキシ＋キャッシュ） |
+| `src/lib/voice.ts` / `src/hooks/useVoice.ts` / `src/components/VoicePanel.tsx` | VC（WebRTCメッシュ・perfect negotiation・private channel `voice:<CODE>`） |
+| `src/app/api/turn/route.ts` | VC の ICE(STUN/TURN) サーバ一覧（認証必須） |
+| `src/lib/stats.ts`（**サーバ専用**）/ `src/app/api/stats/route.ts` / `src/components/StatsPanel.tsx` | 戦績・カテゴリ別精度・ランク記録 |
+| `supabase/migrations/0001_init.sql` 〜 `0004_stats.sql` | スキーマ/RLS/原子RPC/Realtime認可/戦績（下記） |
+| `data/deck.json` | 楽曲デッキ（346曲 / 16カテゴリ・国別） |
+| `scripts/smoke.ts` | エンジンのスモークテスト（55項目） |
 
 **境界ルール**: `engine.ts` / `deck.ts` / `rooms.ts` / `youtube.ts` /
 `src/lib/supabase/admin.ts` は**サーバ専用**（答えや service_role を含む）。
@@ -86,6 +92,24 @@ npm run build        # next build（本番ビルド検証）
 - **Google ログイン**: Supabase の Google プロバイダにユーザーの Google OAuth
   client_id / secret が必要。未設定でも**匿名/ゲストで全機能が動作**する。
 - デプロイ後 URL を Supabase の `site_url` と Redirect(`<url>/auth/callback`) に登録する。
+
+### 本番プロジェクト & 追加環境変数（値は出力しない）
+- 本番 Supabase ref = `geagqyybikellhwkimbh`（専用プロジェクト。faultray-pro とは別）。
+- 本番 URL = `https://hitstar-online.vercel.app`（Vercel project `hitstar-online`）。
+- Vercel に設定済みの env: `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` /
+  `SUPABASE_SERVICE_ROLE_KEY` / `NEXT_PUBLIC_GOOGLE_ENABLED` / `CRON_SECRET` /
+  `GOOGLE_TRANSLATE_API_KEY`（チャット翻訳）/ `NEXT_PUBLIC_VOICE_ENABLED=true`（VC有効化）/
+  `NEXT_PUBLIC_TURN_URLS` `NEXT_PUBLIC_TURN_USERNAME` `NEXT_PUBLIC_TURN_CREDENTIAL`（metered TURN）/
+  `METERED_API_KEY`（+任意 `METERED_HOST` で動的TURN）。
+- **デプロイ**: `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt npx vercel --prod --token "$VERCEL_TOKEN" --yes`
+  （TLS無効化は禁止。必ず CA bundle を使う。CLIは2分で打ち切られるが裏で完走するので API/ログで確認）。
+- マイグレーション適用は Management API `/database/query`（UA必須）に SQL を POST。
+  - `0002_atomic_apply.sql` = 原子的CAS RPC `apply_room_state`
+  - `0003_realtime_authz.sql` = `realtime.messages` の RLS（private channel `chat:`/`voice:`/`presence:` を部屋メンバー限定）
+  - `0004_stats.sql` = 戦績テーブル＋`bump_category_stat` RPC
+- **テスト**: ブラウザE2Eはサンドボックスのproxyが *.supabase.co/*.vercel.app への
+  WebSocket以外のブラウザ接続を遮断するため不可。代わりに python/node の API/Realtime
+  レベルE2E（匿名サインイン＋@supabase/ssr クッキー再構成）で検証する。
 
 Management API 呼び出し例（UA 必須）:
 ```bash
