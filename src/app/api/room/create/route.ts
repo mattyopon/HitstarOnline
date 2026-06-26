@@ -37,11 +37,12 @@ export async function POST(req: Request) {
       return json({ code, solo: true });
     }
 
-    // Multiplayer requires a Google account (guests can only play solo).
-    if (user.isAnonymous) {
-      return json({ error: "みんなで遊ぶには Google ログインが必要です" }, 403);
+    // Casual multiplayer is open to guests; only ranked requires a Google account.
+    const settings = sanitizeSettings(body.settings);
+    if (settings.ranked && user.isAnonymous) {
+      return json({ error: "ランクマッチには Google ログインが必要です" }, 403);
     }
-    const { code } = await createRoom(seed, sanitizeSettings(body.settings));
+    const { code } = await createRoom(seed, settings);
     return json({ code });
   } catch (e) {
     return mapError(e);

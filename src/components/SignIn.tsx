@@ -3,17 +3,20 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-export function SignIn({ authError }: { authError?: boolean }) {
+export function SignIn({ authError }: { authError?: string | null }) {
   const [name, setName] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(
-    authError ? "ログインに失敗しました。もう一度お試しください。" : null,
+    authError ? `ログインに失敗しました：${authError}` : null,
   );
 
   async function google() {
     setBusy("google");
     setErr(null);
     const supabase = createClient();
+    // Sign out any existing (e.g. anonymous/guest) session first so the OAuth
+    // flow is a clean sign-in, not an anonymous→OAuth conversion (which can fail).
+    await supabase.auth.signOut().catch(() => {});
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {

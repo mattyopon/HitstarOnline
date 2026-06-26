@@ -36,7 +36,11 @@ export function Lobby({ user }: { user: ClientUser }) {
 
   async function googleLogin() {
     setBusy("google");
-    const { error } = await createClient().auth.signInWithOAuth({
+    const supabase = createClient();
+    // Sign out the current guest session first so OAuth is a clean sign-in
+    // (avoids an anonymous→OAuth conversion that can fail at the callback).
+    await supabase.auth.signOut().catch(() => {});
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
         redirectTo: `${location.origin}/auth/callback`,
@@ -204,28 +208,30 @@ export function Lobby({ user }: { user: ClientUser }) {
       </div>
 
       {playMode === "multi" ? (
-        user.isAnonymous ? (
-          <div className="notice stack" style={{ gap: 10 }}>
-            <span>👥 みんなで遊ぶ・ランクには Google ログインが必要です（ゲストはソロのみ）。</span>
-            <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
-              {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
-            </button>
-          </div>
-        ) : (
-          <>
-            <label className="tiny muted">ルール</label>
-            {ranked ? (
-              <div className="notice tiny">
-                🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。
-              </div>
-            ) : (
-              <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
-                <option value="original">オリジナル（配置のみで獲得・推測でトークン）</option>
-                <option value="pro">プロ（配置＋曲名/アーティスト正解が必要）</option>
-                <option value="expert">エキスパート（プロ＋難度高め）</option>
-              </select>
-            )}
+        <>
+          {user.isAnonymous && (
+            <div className="notice stack tiny" style={{ gap: 8 }}>
+              <span>👤 ゲストでもみんなで遊べます。🏆ランクや⭐お気に入りには Google ログインを。</span>
+              <button className="btn google block" onClick={googleLogin} disabled={!!busy}>
+                {busy === "google" ? "リダイレクト中…" : "Googleでログイン"}
+              </button>
+            </div>
+          )}
 
+          <label className="tiny muted">ルール</label>
+          {ranked && !user.isAnonymous ? (
+            <div className="notice tiny">
+              🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。
+            </div>
+          ) : (
+            <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
+              <option value="original">オリジナル（配置のみで獲得・推測でトークン）</option>
+              <option value="pro">プロ（配置＋曲名/アーティスト正解が必要）</option>
+              <option value="expert">エキスパート（プロ＋難度高め）</option>
+            </select>
+          )}
+
+          {!user.isAnonymous && (
             <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
               <input
                 type="checkbox"
@@ -235,8 +241,9 @@ export function Lobby({ user }: { user: ClientUser }) {
               />
               <span className="tiny">🏆 ランクマッチで遊ぶ（戦績に記録）</span>
             </label>
+          )}
 
-          {ranked ? (
+          {ranked && !user.isAnonymous ? (
             <>
               <button className="btn block gold" onClick={matchmake} disabled={!!busy}>
                 {busy === "matchmake" ? "対戦相手を探しています…" : "🏆 ランクマッチを探す"}
@@ -271,8 +278,7 @@ export function Lobby({ user }: { user: ClientUser }) {
               参加
             </button>
           </div>
-          </>
-        )
+        </>
       ) : (
         <>
           <label className="tiny muted">NPC（CPU）の人数</label>
