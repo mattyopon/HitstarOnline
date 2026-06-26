@@ -814,3 +814,27 @@ select:focus {
   background: var(--good);
   box-shadow: 0 0 0 3px rgba(56, 211, 159, 0.3);
 }
+
+/* ── Stats panel ──────────────────────────────────────────────────────────── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.stat-box {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+}
+.stat-val {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+}
+@media (max-width: 380px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -5,6 +5,7 @@
 import { createAdminClient } from "./supabase/admin";
 import { getDeck, deckKey, searchQuery } from "./deck";
 import { searchYouTubeId } from "./youtube";
+import { recordTransitions } from "./stats";
 import { FullGame, PlayerSeed, PublicState, SecretState } from "./protocol";
 import {
   addPlayer,
@@ -112,12 +113,16 @@ export async function mutateByCode(
     const loaded = await loadByCode(code);
     if (!loaded) throw new NotFoundError("部屋が見つかりません");
     const expected = loaded.game.public.version;
+    const prevPhase = loaded.game.public.phase;
     // The engine fn is pure; a GameError here is a real invalid move → propagate.
     const next = fn(loaded.game);
     if (next.public.version === expected) return next; // no-op transition
     await ensureTrackResolved(next);
     try {
       await persist(loaded.id, expected, next);
+      // Best-effort stats recording (never throws): reveal accuracy on entering
+      // reveal, and the final match result on entering gameover.
+      await recordTransitions(loaded.id, prevPhase, next.public);
       return next;
     } catch (e) {
       if (e instanceof ConflictError) {

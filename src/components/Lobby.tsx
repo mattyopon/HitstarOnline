@@ -7,6 +7,7 @@ import { createClient } from "@/lib/supabase/client";
 import type { ClientUser } from "@/hooks/useUser";
 import { CATEGORIES } from "@/lib/protocol";
 import type { BotDifficulty, GameMode } from "@/lib/protocol";
+import { StatsPanel } from "./StatsPanel";
 
 export function Lobby({ user }: { user: ClientUser }) {
   const router = useRouter();
@@ -24,6 +25,8 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [botCount, setBotCount] = useState(1);
   const [botDifficulty, setBotDifficulty] = useState<BotDifficulty>("normal");
   const [cats, setCats] = useState<string[]>([]);
+  const [ranked, setRanked] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   function toggleCat(id: string) {
     setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
@@ -74,7 +77,7 @@ export function Lobby({ user }: { user: ClientUser }) {
     try {
       const { code } = await api<{ code: string }>("/api/room/create", {
         name,
-        settings: { mode, categories: cats },
+        settings: { mode, ranked, categories: cats },
       });
       router.push(`/room/${code}`);
     } catch (e) {
@@ -118,10 +121,19 @@ export function Lobby({ user }: { user: ClientUser }) {
           </span>
           {user.isAnonymous ? "ゲスト" : "Google"}
         </span>
-        <button className="btn ghost tiny" onClick={signOut}>
-          ログアウト
-        </button>
+        <div className="row" style={{ gap: 6 }}>
+          {!user.isAnonymous && (
+            <button className="btn ghost tiny" onClick={() => setShowStats(true)}>
+              📊 戦績
+            </button>
+          )}
+          <button className="btn ghost tiny" onClick={signOut}>
+            ログアウト
+          </button>
+        </div>
       </div>
+
+      {showStats && <StatsPanel onClose={() => setShowStats(false)} />}
 
       {err && <div className="error">{err}</div>}
 
@@ -183,14 +195,30 @@ export function Lobby({ user }: { user: ClientUser }) {
         ) : (
           <>
             <label className="tiny muted">ルール</label>
-            <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
-            <option value="original">オリジナル（配置のみで獲得・推測でトークン）</option>
-            <option value="pro">プロ（配置＋曲名/アーティスト正解が必要）</option>
-            <option value="expert">エキスパート（プロ＋難度高め）</option>
-          </select>
+            {ranked ? (
+              <div className="notice tiny">
+                🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。
+              </div>
+            ) : (
+              <select value={mode} onChange={(e) => setMode(e.target.value as GameMode)}>
+                <option value="original">オリジナル（配置のみで獲得・推測でトークン）</option>
+                <option value="pro">プロ（配置＋曲名/アーティスト正解が必要）</option>
+                <option value="expert">エキスパート（プロ＋難度高め）</option>
+              </select>
+            )}
+
+            <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
+              <input
+                type="checkbox"
+                checked={ranked}
+                onChange={(e) => setRanked(e.target.checked)}
+                style={{ width: "auto" }}
+              />
+              <span className="tiny">🏆 ランクマッチで遊ぶ（戦績に記録）</span>
+            </label>
 
           <button className="btn block" onClick={create} disabled={!!busy}>
-            {busy === "create" ? "作成中…" : "🎵 部屋を作る"}
+            {busy === "create" ? "作成中…" : ranked ? "🏆 ランク部屋を作る" : "🎵 部屋を作る"}
           </button>
 
           <div className="row" style={{ gap: 10 }}>

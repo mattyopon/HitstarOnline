@@ -11,6 +11,8 @@ export type GameMode = "original" | "pro" | "expert";
 
 export interface GameSettings {
   mode: GameMode;
+  /** Ranked match: results count toward the player's record (uses Expert rules). */
+  ranked: boolean;
   /** Song category ids to draw from (empty = all categories). */
   categories: string[];
   /** Earned cards (excluding the starting seed) needed to win. Official = 10. */
@@ -64,6 +66,7 @@ export const BOT_NAMES = ["アオイ", "ハル", "ミオ", "ソラ", "リク", "
 export function defaultSettings(): GameSettings {
   return {
     mode: "original",
+    ranked: false,
     categories: [],
     targetCards: 10,
     startingTokens: 2,

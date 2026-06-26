@@ -34,6 +34,11 @@ export function sanitizeSettings(input: unknown): Partial<GameSettings> {
   if (s.mode === "original" || s.mode === "pro" || s.mode === "expert") {
     out.mode = s.mode as GameMode;
   }
+  // Ranked matches use Expert rules and count toward the player's record.
+  if (s.ranked === true) {
+    out.ranked = true;
+    out.mode = "expert";
+  }
   if (typeof s.targetCards === "number" && s.targetCards >= 3 && s.targetCards <= 20) {
     out.targetCards = Math.floor(s.targetCards);
   }
