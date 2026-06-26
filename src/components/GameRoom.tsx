@@ -19,6 +19,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const googleToken = useGoogleToken();
 
   const [soundOn, setSoundOn] = useState(false);
+  const [ytVolume, setYtVolume] = useState<number>(() => {
+    if (typeof window === "undefined") return 70;
+    const v = Number(localStorage.getItem("hitstar_yt_volume"));
+    return Number.isFinite(v) && v >= 0 && v <= 100 ? v : 70;
+  });
   const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [gTitle, setGTitle] = useState("");
   const [gArtist, setGArtist] = useState("");
@@ -238,7 +243,29 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           startSeconds={state.settings.startSeconds}
           playing={playing}
           reveal={revealMode}
+          volume={ytVolume}
         />
+      </div>
+      <div className="row" style={{ gap: 10, alignItems: "center", justifyContent: "center" }}>
+        <span className="tiny muted">🔊 曲の音量</span>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={ytVolume}
+          onChange={(e) => {
+            const v = Number(e.target.value);
+            setYtVolume(v);
+            try {
+              localStorage.setItem("hitstar_yt_volume", String(v));
+            } catch {
+              /* ignore */
+            }
+          }}
+          style={{ width: 160 }}
+          aria-label="曲の音量"
+        />
+        <span className="tiny muted" style={{ width: 32, textAlign: "right" }}>{ytVolume}</span>
       </div>
     </div>
   );

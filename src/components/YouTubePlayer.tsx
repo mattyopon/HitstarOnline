@@ -34,11 +34,13 @@ export function YouTubePlayer({
   startSeconds,
   playing,
   reveal,
+  volume,
 }: {
   videoId: string | null;
   startSeconds: number;
   playing: boolean;
   reveal: boolean;
+  volume?: number;
 }) {
   const hostRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
@@ -46,8 +48,22 @@ export function YouTubePlayer({
   const currentId = useRef<string | null>(null);
 
   // Keep latest props for the onReady callback.
-  const propsRef = useRef({ videoId, startSeconds, playing });
-  propsRef.current = { videoId, startSeconds, playing };
+  const propsRef = useRef({ videoId, startSeconds, playing, volume });
+  propsRef.current = { videoId, startSeconds, playing, volume };
+
+  function applyVolume(p: any) {
+    const v = propsRef.current.volume ?? 70;
+    try {
+      if (v <= 0) {
+        p.mute();
+      } else {
+        p.unMute();
+        p.setVolume(Math.min(100, Math.max(0, v)));
+      }
+    } catch {
+      /* ignore */
+    }
+  }
 
   function sync() {
     const p = playerRef.current;
@@ -68,6 +84,7 @@ export function YouTubePlayer({
           /* ignore */
         }
       }
+      applyVolume(p);
     } else {
       currentId.current = null;
       try {
@@ -111,7 +128,7 @@ export function YouTubePlayer({
   useEffect(() => {
     sync();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoId, playing, startSeconds]);
+  }, [videoId, playing, startSeconds, volume]);
 
   return (
     <div className="yt-stage">
