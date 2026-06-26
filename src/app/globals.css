@@ -214,6 +214,7 @@ select:focus {
   border-radius: 999px;
   background: var(--panel-2);
   border: 1px solid var(--line);
+  color: var(--text);
   font-size: 13px;
   font-weight: 600;
 }
