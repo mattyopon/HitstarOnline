@@ -110,6 +110,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  min-width: 0;
 }
 .row {
   display: flex;
@@ -332,6 +333,17 @@ select:focus {
   flex-direction: column;
   gap: 6px;
   min-height: 116px;
+  position: relative;
+}
+/* Fan overlap: as a hand grows, cards slide under each other (negative margin
+   set per-timeline by useTimelineFit) so the row fits its column width instead
+   of widening the page. --tl-gap is 0 when everything already fits. Hover/focus
+   pops a card fully forward so covered details stay readable. */
+.timeline > .tl-card + .tl-card {
+  margin-left: var(--tl-gap, 0px);
+}
+.timeline > .tl-card:hover {
+  z-index: 3;
 }
 .tl-card .year {
   font-size: 30px;
@@ -478,9 +490,14 @@ select:focus {
 
 .grid-2 {
   display: grid;
-  grid-template-columns: 1fr 320px;
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 18px;
   align-items: start;
+}
+/* min-width:0 overrides the default min-width:auto on grid items so a wide
+   timeline scrolls/overlaps INSIDE its column instead of widening the page. */
+.grid-2 > * {
+  min-width: 0;
 }
 @media (max-width: 820px) {
   .grid-2 {

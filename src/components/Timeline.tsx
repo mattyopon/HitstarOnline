@@ -2,6 +2,7 @@
 
 import { Fragment, memo } from "react";
 import type { TimelineCard } from "@/lib/protocol";
+import { useTimelineFit } from "@/hooks/useTimelineFit";
 import { useT } from "@/lib/i18n";
 
 // Memoized: the parent (GameRoom) re-renders every clock tick (~500ms); without
@@ -24,6 +25,7 @@ export const Timeline = memo(function Timeline({
   compact?: boolean;
 }) {
   const t = useT();
+  const fitRef = useTimelineFit(cards.length);
   const Slot = ({ i }: { i: number }) => {
     if (mysterySlot === i) {
       return (
@@ -46,7 +48,7 @@ export const Timeline = memo(function Timeline({
   };
 
   return (
-    <div className="timeline">
+    <div className="timeline" ref={fitRef}>
       <Slot i={0} />
       {cards.map((c, idx) => (
         <Fragment key={c.id}>
