@@ -1013,7 +1013,8 @@
     "year": 1971,
     "country": "us",
     "categories": [
-      "famous-in-usa"
+      "famous-in-usa",
+      "karaoke"
     ]
   },
   {
@@ -1040,7 +1041,8 @@
     "year": 1974,
     "country": "us",
     "categories": [
-      "famous-in-usa"
+      "famous-in-usa",
+      "karaoke"
     ]
   },
   {
@@ -1058,7 +1060,8 @@
     "year": 1981,
     "country": "us",
     "categories": [
-      "famous-in-usa"
+      "famous-in-usa",
+      "karaoke"
     ]
   },
   {
@@ -1085,7 +1088,8 @@
     "year": 1987,
     "country": "us",
     "categories": [
-      "famous-in-usa"
+      "famous-in-usa",
+      "karaoke"
     ]
   },
   {
@@ -1103,7 +1107,8 @@
     "year": 1991,
     "country": "us",
     "categories": [
-      "famous-in-usa"
+      "famous-in-usa",
+      "karaoke"
     ]
   },
   {
@@ -1121,7 +1126,8 @@
     "year": 2004,
     "country": "us",
     "categories": [
-      "famous-in-usa"
+      "famous-in-usa",
+      "karaoke"
     ]
   },
   {
@@ -1670,7 +1676,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "karaoke"
     ]
   },
   {
@@ -1985,7 +1992,8 @@
     "year": 2004,
     "country": "int",
     "categories": [
-      "latin"
+      "latin",
+      "karaoke"
     ]
   },
   {
@@ -2012,7 +2020,8 @@
     "year": 2006,
     "country": "int",
     "categories": [
-      "latin"
+      "latin",
+      "karaoke"
     ]
   },
   {
@@ -2192,7 +2201,8 @@
     "year": 1982,
     "country": "int",
     "categories": [
-      "movie-themes"
+      "movie-themes",
+      "karaoke"
     ]
   },
   {
@@ -2255,7 +2265,8 @@
     "year": 1992,
     "country": "int",
     "categories": [
-      "movie-themes"
+      "movie-themes",
+      "karaoke"
     ]
   },
   {
@@ -2381,7 +2392,8 @@
     "year": 1978,
     "country": "gb",
     "categories": [
-      "uk-rock"
+      "uk-rock",
+      "karaoke"
     ]
   },
   {
@@ -2417,7 +2429,8 @@
     "year": 1983,
     "country": "gb",
     "categories": [
-      "uk-rock"
+      "uk-rock",
+      "karaoke"
     ]
   },
   {
@@ -2462,7 +2475,8 @@
     "year": 1995,
     "country": "gb",
     "categories": [
-      "uk-rock"
+      "uk-rock",
+      "karaoke"
     ]
   },
   {
@@ -2723,7 +2737,8 @@
     "year": 1982,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2732,7 +2747,8 @@
     "year": 1987,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2741,7 +2757,8 @@
     "year": 1989,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2750,7 +2767,8 @@
     "year": 1996,
     "country": "gb",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2759,7 +2777,8 @@
     "year": 1998,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2813,7 +2832,8 @@
     "year": 2008,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2822,7 +2842,8 @@
     "year": 2010,
     "country": "gb",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2858,7 +2879,8 @@
     "year": 2014,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -2876,7 +2898,8 @@
     "year": 2017,
     "country": "gb",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -3120,7 +3143,8 @@
     "country": "gb",
     "categories": [
       "rock",
-      "uk-rock"
+      "uk-rock",
+      "karaoke"
     ]
   },
   {
@@ -3170,7 +3194,8 @@
     "country": "gb",
     "categories": [
       "rock",
-      "uk-rock"
+      "uk-rock",
+      "karaoke"
     ]
   },
   {
@@ -3179,7 +3204,8 @@
     "year": 1977,
     "country": "us",
     "categories": [
-      "rock"
+      "rock",
+      "karaoke"
     ]
   },
   {
@@ -3293,7 +3319,8 @@
     "year": 2008,
     "country": "gb",
     "categories": [
-      "rock"
+      "rock",
+      "karaoke"
     ]
   },
   {
@@ -3918,7 +3945,8 @@
     "year": 2012,
     "country": "us",
     "categories": [
-      "rnb"
+      "rnb",
+      "karaoke"
     ]
   },
   {
@@ -4695,7 +4723,8 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "karaoke"
     ],
     "aliases": [
       "ウルトラソウル"
@@ -4719,7 +4748,8 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "karaoke"
     ],
     "aliases": [
       "トゥモロー・ネバー・ノウズ"
@@ -4811,7 +4841,8 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "karaoke"
     ],
     "aliases": [
       "ザ・ビギニング"
@@ -4827,7 +4858,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "karaoke"
     ],
     "artistAliases": [
       "ワンオク"
@@ -6601,7 +6633,8 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "karaoke"
     ],
     "aliases": [
       "イノセントワールド"
@@ -6691,7 +6724,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "karaoke"
     ],
     "aliases": [
       "HANABI"
@@ -6802,7 +6836,8 @@
     "year": 1978,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -6829,7 +6864,8 @@
     "year": 1983,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -6865,7 +6901,8 @@
     "year": 1997,
     "country": "ca",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -6874,7 +6911,8 @@
     "year": 1999,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -6901,7 +6939,8 @@
     "year": 2008,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -6922,7 +6961,8 @@
     "year": 2010,
     "country": "us",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -6931,7 +6971,8 @@
     "year": 2011,
     "country": "gb",
     "categories": [
-      "uspop"
+      "uspop",
+      "karaoke"
     ]
   },
   {
@@ -7062,7 +7103,8 @@
     "year": 2009,
     "country": "kr",
     "categories": [
-      "kpop"
+      "kpop",
+      "karaoke"
     ],
     "aliases": [
       "파이어"
@@ -7978,7 +8020,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "karaoke"
     ],
     "aliases": [
       "D-technoLife",
@@ -8060,7 +8103,8 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "karaoke"
     ],
     "aliases": [
       "INVOKE -インヴォーク-",
@@ -10069,7 +10113,8 @@
     "year": 1976,
     "country": "se",
     "categories": [
-      "disco"
+      "disco",
+      "karaoke"
     ]
   },
   {
@@ -10114,7 +10159,8 @@
     "year": 1977,
     "country": "gb",
     "categories": [
-      "disco"
+      "disco",
+      "karaoke"
     ]
   },
   {
@@ -10160,7 +10206,8 @@
     "year": 1978,
     "country": "us",
     "categories": [
-      "disco"
+      "disco",
+      "karaoke"
     ]
   },
   {
@@ -10178,7 +10225,8 @@
     "year": 1978,
     "country": "us",
     "categories": [
-      "disco"
+      "disco",
+      "karaoke"
     ]
   },
   {
@@ -11807,6 +11855,3030 @@
     "country": "pr",
     "categories": [
       "reggaeton"
+    ]
+  },
+  {
+    "title": "また逢う日まで (Mata Au Hi Made)",
+    "artist": "尾崎紀世彦 (Kiyohiko Ozaki)",
+    "year": 1971,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "瀬戸の花嫁 (Seto no Hanayome)",
+    "artist": "小柳ルミ子 (Rumiko Koyanagi)",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "わたしの城下町 (Watashi no Jokamachi)",
+    "artist": "小柳ルミ子 (Rumiko Koyanagi)",
+    "year": 1971,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "喝采 (Kassai)",
+    "artist": "ちあきなおみ (Naomi Chiaki)",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "危険なふたり (Kiken na Futari)",
+    "artist": "沢田研二 (Kenji Sawada)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "勝手にしやがれ (Katte ni Shiyagare)",
+    "artist": "沢田研二 (Kenji Sawada)",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "TOKIO",
+    "artist": "沢田研二 (Kenji Sawada)",
+    "year": 1980,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "学生街の喫茶店 (Gakuseigai no Kissaten)",
+    "artist": "ガロ (Garo)",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "神田川 (Kanda Gawa)",
+    "artist": "かぐや姫 (Kaguyahime)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "なごり雪 (Nagori Yuki)",
+    "artist": "イルカ (Iruka)",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "結婚しようよ (Kekkon Shiyou yo)",
+    "artist": "よしだたくろう (Takuro Yoshida)",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "木綿のハンカチーフ (Momen no Handkerchief)",
+    "artist": "太田裕美 (Hiromi Ota)",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "あなた (Anata)",
+    "artist": "小坂明子 (Akiko Kosaka)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "個人授業 (Kojin Jugyou)",
+    "artist": "フィンガー5 (Finger 5)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "わかれうた (Wakare Uta)",
+    "artist": "中島みゆき (Miyuki Nakajima)",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "時代 (Jidai)",
+    "artist": "中島みゆき (Miyuki Nakajima)",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "津軽海峡・冬景色 (Tsugaru Kaikyo Fuyugeshiki)",
+    "artist": "石川さゆり (Sayuri Ishikawa)",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "舟唄 (Funauta)",
+    "artist": "八代亜紀 (Aki Yashiro)",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "北の宿から (Kita no Yado kara)",
+    "artist": "都はるみ (Harumi Miyako)",
+    "year": 1975,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "いい日旅立ち (Ii Hi Tabidachi)",
+    "artist": "山口百恵 (Momoe Yamaguchi)",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "プレイバックPart2 (Playback Part 2)",
+    "artist": "山口百恵 (Momoe Yamaguchi)",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "横須賀ストーリー (Yokosuka Story)",
+    "artist": "山口百恵 (Momoe Yamaguchi)",
+    "year": 1976,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "UFO",
+    "artist": "ピンク・レディー (Pink Lady)",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "渚のシンドバッド (Nagisa no Sindbad)",
+    "artist": "ピンク・レディー (Pink Lady)",
+    "year": 1977,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "わたしの彼は左きき (Watashi no Kare wa Hidarikiki)",
+    "artist": "麻丘めぐみ (Megumi Asaoka)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "青い珊瑚礁 (Aoi Sangoshou)",
+    "artist": "松田聖子 (Seiko Matsuda)",
+    "year": 1980,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "赤いスイートピー (Akai Sweet Pea)",
+    "artist": "松田聖子 (Seiko Matsuda)",
+    "year": 1982,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ルビーの指環 (Ruby no Yubiwa)",
+    "artist": "寺尾聰 (Akira Terao)",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "セーラー服と機関銃 (Sailor Fuku to Kikanju)",
+    "artist": "薬師丸ひろ子 (Hiroko Yakushimaru)",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "夢の中へ (Yume no Naka e)",
+    "artist": "井上陽水 (Yosui Inoue)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "氷の世界 (Kori no Sekai)",
+    "artist": "井上陽水 (Yosui Inoue)",
+    "year": 1973,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "サウスポー (Southpaw)",
+    "artist": "ピンク・レディー (Pink Lady)",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "夢一夜 (Yume Ichiya)",
+    "artist": "南こうせつ (Kosetsu Minami)",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "関白宣言 (Kanpaku Sengen)",
+    "artist": "さだまさし (Masashi Sada)",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "贈る言葉 (Okuru Kotoba)",
+    "artist": "海援隊 (Kaientai)",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "微笑がえし (Hohoemi Gaeshi)",
+    "artist": "キャンディーズ (Candies)",
+    "year": 1978,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "EZ DO DANCE",
+    "artist": "TRF",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "BOY MEETS GIRL",
+    "artist": "TRF",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "survival dAnce ～no no cry more～",
+    "artist": "TRF",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "CRAZY GONNA CRAZY",
+    "artist": "TRF",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "DEPARTURES",
+    "artist": "globe",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Can't Stop Fallin' in Love",
+    "artist": "globe",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "FACE",
+    "artist": "globe",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "CAN YOU CELEBRATE?",
+    "artist": "安室奈美恵 (Namie Amuro)",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Don't wanna cry",
+    "artist": "安室奈美恵 (Namie Amuro)",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "SWEET 19 BLUES",
+    "artist": "安室奈美恵 (Namie Amuro)",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "TRY ME ～私を信じて～",
+    "artist": "安室奈美恵 with SUPER MONKEY'S",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "I'm proud",
+    "artist": "華原朋美 (Tomomi Kahara)",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "I BELIEVE",
+    "artist": "華原朋美 (Tomomi Kahara)",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "負けないで (Makenaide)",
+    "artist": "ZARD",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "揺れる想い (Yureru Omoi)",
+    "artist": "ZARD",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "マイ フレンド (My Friend)",
+    "artist": "ZARD",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Secret Base ～君がくれたもの～",
+    "artist": "ZONE",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Love, Day After Tomorrow",
+    "artist": "倉木麻衣 (Mai Kuraki)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "LOVE PHANTOM",
+    "artist": "B'z",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "いつかのメリークリスマス (Itsuka no Merry Christmas)",
+    "artist": "B'z",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ALONE",
+    "artist": "B'z",
+    "year": 1991,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "名もなき詩 (Namonaki Uta)",
+    "artist": "Mr.Children",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "シーソーゲーム ～勇敢な恋の歌～",
+    "artist": "Mr.Children",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロビンソン (Robinson)",
+    "artist": "スピッツ (Spitz)",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "チェリー (Cherry)",
+    "artist": "スピッツ (Spitz)",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "空も飛べるはず (Sora mo Toberu Hazu)",
+    "artist": "スピッツ (Spitz)",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "未来予想図II (Mirai Yosouzu II)",
+    "artist": "DREAMS COME TRUE",
+    "year": 1990,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "決戦は金曜日 (Kessen wa Kinyoubi)",
+    "artist": "DREAMS COME TRUE",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "LOVE LOVE LOVE",
+    "artist": "DREAMS COME TRUE",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "もう恋なんてしない (Mou Koi Nante Shinai)",
+    "artist": "槇原敬之 (Noriyuki Makihara)",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "どんなときも。(Donna Toki mo.)",
+    "artist": "槇原敬之 (Noriyuki Makihara)",
+    "year": 1991,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "HOWEVER",
+    "artist": "GLAY",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "誘惑 (Yuuwaku)",
+    "artist": "GLAY",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "口唇 (Kuchibiru)",
+    "artist": "GLAY",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "winter fall",
+    "artist": "L'Arc-en-Ciel",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "HONEY",
+    "artist": "L'Arc-en-Ciel",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "花葬 (Kasou)",
+    "artist": "L'Arc-en-Ciel",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "White Love",
+    "artist": "SPEED",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Body & Soul",
+    "artist": "SPEED",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "my graduation",
+    "artist": "SPEED",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロマンスの神様 (Romance no Kamisama)",
+    "artist": "広瀬香美 (Kohmi Hirose)",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ゲレンデがとけるほど恋したい (Gelände ga Tokeru hodo Koishitai)",
+    "artist": "広瀬香美 (Kohmi Hirose)",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "DAYBREAK'S BELL",
+    "artist": "L'Arc-en-Ciel",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "WOW WAR TONIGHT ～時には起こせよムーヴメント",
+    "artist": "H Jungle with t",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "そばかす (Sobakasu)",
+    "artist": "JUDY AND MARY",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "First Love",
+    "artist": "宇多田ヒカル (Utada Hikaru)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Can You Keep A Secret?",
+    "artist": "宇多田ヒカル (Utada Hikaru)",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "traveling",
+    "artist": "宇多田ヒカル (Utada Hikaru)",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Flavor Of Life",
+    "artist": "宇多田ヒカル (Utada Hikaru)",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Beautiful World",
+    "artist": "宇多田ヒカル (Utada Hikaru)",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "M",
+    "artist": "浜崎あゆみ (Ayumi Hamasaki)",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Voyage",
+    "artist": "浜崎あゆみ (Ayumi Hamasaki)",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Dearest",
+    "artist": "浜崎あゆみ (Ayumi Hamasaki)",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "SEASONS",
+    "artist": "浜崎あゆみ (Ayumi Hamasaki)",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "君の知らない物語 (Kimi no Shiranai Monogatari)",
+    "artist": "supercell",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "瞳をとじて (Hitomi wo Tojite)",
+    "artist": "平井堅 (Ken Hirai)",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "POP STAR",
+    "artist": "平井堅 (Ken Hirai)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "大きな古時計 (Ookina Furudokei)",
+    "artist": "平井堅 (Ken Hirai)",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "さくら (Sakura)",
+    "artist": "ケツメイシ (Ketsumeishi)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "夏の思い出 (Natsu no Omoide)",
+    "artist": "ケツメイシ (Ketsumeishi)",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "桜 (Sakura)",
+    "artist": "コブクロ (Kobukuro)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "蕾 (Tsubomi)",
+    "artist": "コブクロ (Kobukuro)",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ここにしか咲かない花 (Koko ni Shika Sakanai Hana)",
+    "artist": "コブクロ (Kobukuro)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Choo Choo TRAIN",
+    "artist": "EXILE",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Ti Amo",
+    "artist": "EXILE",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Lovers Again",
+    "artist": "EXILE",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "粉雪 (Konayuki)",
+    "artist": "レミオロメン (Remioromen)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "3月9日 (Sangatsu Kokonoka)",
+    "artist": "レミオロメン (Remioromen)",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "南風 (Minamikaze)",
+    "artist": "レミオロメン (Remioromen)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "SAKURA",
+    "artist": "いきものがかり (Ikimonogakari)",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ありがとう (Arigatou)",
+    "artist": "いきものがかり (Ikimonogakari)",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ブルーバード (Blue Bird)",
+    "artist": "いきものがかり (Ikimonogakari)",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "YELL",
+    "artist": "いきものがかり (Ikimonogakari)",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "雪の華 (Yuki no Hana)",
+    "artist": "中島美嘉 (Mika Nakashima)",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "桜色舞うころ (Sakurairo Maukoro)",
+    "artist": "中島美嘉 (Mika Nakashima)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "GLAMOROUS SKY",
+    "artist": "中島美嘉 (Mika Nakashima)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "天体観測 (Tentai Kansoku)",
+    "artist": "BUMP OF CHICKEN",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "車輪の唄 (Sharin no Uta)",
+    "artist": "BUMP OF CHICKEN",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "花の名 (Hana no Na)",
+    "artist": "BUMP OF CHICKEN",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "上海ハニー (Shanghai Honey)",
+    "artist": "ORANGE RANGE",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "花 (Hana)",
+    "artist": "ORANGE RANGE",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロコローション (Loco Loco Motion)",
+    "artist": "ORANGE RANGE",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "以心電信 (Ishin Denshin)",
+    "artist": "ORANGE RANGE",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "さくらんぼ (Sakuranbo)",
+    "artist": "大塚愛 (Ai Otsuka)",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "プラネタリウム (Planetarium)",
+    "artist": "大塚愛 (Ai Otsuka)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "桃ノ花ビラ (Momo no Hanabira)",
+    "artist": "大塚愛 (Ai Otsuka)",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "世界に一つだけの花 (Sekai ni Hitotsu Dake no Hana)",
+    "artist": "SMAP",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "TSUNAMI",
+    "artist": "サザンオールスターズ (Southern All Stars)",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ヘビーローテーション (Heavy Rotation)",
+    "artist": "AKB48",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Beginner",
+    "artist": "AKB48",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "フライングゲット (Flying Get)",
+    "artist": "AKB48",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "恋するフォーチュンクッキー (Koisuru Fortune Cookie)",
+    "artist": "AKB48",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "会いたかった (Aitakatta)",
+    "artist": "AKB48",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ポニーテールとシュシュ (Ponytail to Shushu)",
+    "artist": "AKB48",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "会いたくて 会いたくて (Aitakute Aitakute)",
+    "artist": "西野カナ (Kana Nishino)",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Best Friend",
+    "artist": "西野カナ (Kana Nishino)",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "トリセツ (Torisetsu)",
+    "artist": "西野カナ (Kana Nishino)",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Dear Bride",
+    "artist": "西野カナ (Kana Nishino)",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "恋 (Koi)",
+    "artist": "星野源 (Gen Hoshino)",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "SUN",
+    "artist": "星野源 (Gen Hoshino)",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "アイデア (Idea)",
+    "artist": "星野源 (Gen Hoshino)",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Family Song",
+    "artist": "星野源 (Gen Hoshino)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "前前前世 (Zenzenzense)",
+    "artist": "RADWIMPS",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "なんでもないや (Nandemonaiya)",
+    "artist": "RADWIMPS",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "スパークル (Sparkle)",
+    "artist": "RADWIMPS",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "高嶺の花子さん (Takane no Hanako-san)",
+    "artist": "back number",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "クリスマスソング (Christmas Song)",
+    "artist": "back number",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ヒロイン (Heroine)",
+    "artist": "back number",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "瞬き (Mabataki)",
+    "artist": "back number",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "happy birthday",
+    "artist": "back number",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "マリーゴールド (Marigold)",
+    "artist": "あいみょん (Aimyon)",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "君はロックを聴かない (Kimi wa Rock wo Kikanai)",
+    "artist": "あいみょん (Aimyon)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "今夜このまま (Konya Kono Mama)",
+    "artist": "あいみょん (Aimyon)",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "貴方解剖純愛歌 ～死ね～ (Anata Kaibou Junaika)",
+    "artist": "あいみょん (Aimyon)",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Lemon",
+    "artist": "米津玄師 (Kenshi Yonezu)",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "アイネクライネ (Eine Kleine)",
+    "artist": "米津玄師 (Kenshi Yonezu)",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "打上花火 (Uchiage Hanabi)",
+    "artist": "DAOKO × 米津玄師 (Kenshi Yonezu)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Flamingo",
+    "artist": "米津玄師 (Kenshi Yonezu)",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ピースサイン (Peace Sign)",
+    "artist": "米津玄師 (Kenshi Yonezu)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "マトリョシカ (Matryoshka)",
+    "artist": "ハチ (Hachi)",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Pretender",
+    "artist": "Official髭男dism",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "宿命 (Shukumei)",
+    "artist": "Official髭男dism",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "白日 (Hakujitsu)",
+    "artist": "King Gnu",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Vinyl",
+    "artist": "King Gnu",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "チョコレイト・ディスコ (Chocolate Disco)",
+    "artist": "Perfume",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ポリリズム (Polyrhythm)",
+    "artist": "Perfume",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "私以外私じゃないの (Watashi Igai Watashi ja Nai no)",
+    "artist": "ゲスの極み乙女。 (Gesu no Kiwami Otome.)",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Dragon Night",
+    "artist": "SEKAI NO OWARI",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "スターライトパレード (Starlight Parade)",
+    "artist": "SEKAI NO OWARI",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Habit",
+    "artist": "SEKAI NO OWARI",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "残酷な天使のテーゼ (Zankoku na Tenshi no Thesis)",
+    "artist": "高橋洋子 (Yoko Takahashi)",
+    "year": 1995,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "千本桜 (Senbonzakura)",
+    "artist": "黒うさP (KurousaP) feat. 初音ミク (Hatsune Miku)",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "夜に駆ける (Yoru ni Kakeru)",
+    "artist": "YOASOBI",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "群青 (Gunjou)",
+    "artist": "YOASOBI",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "怪物 (Kaibutsu)",
+    "artist": "YOASOBI",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "アイドル (Idol)",
+    "artist": "YOASOBI",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "I LOVE...",
+    "artist": "Official髭男dism (Official HIGE DANdism)",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Subtitle",
+    "artist": "Official髭男dism (Official HIGE DANdism)",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "一途 (Ichizu)",
+    "artist": "King Gnu",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "うっせぇわ (Usseewa)",
+    "artist": "Ado",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "新時代 (Shin Jidai)",
+    "artist": "Ado",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "踊 (Odo)",
+    "artist": "Ado",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "踊り子 (Odoriko)",
+    "artist": "Vaundy",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "怪獣の花唄 (Kaijuu no Hanauta)",
+    "artist": "Vaundy",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "カタオモイ (Kataomoi)",
+    "artist": "Aimer",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "残響散歌 (Zankyou Sanka)",
+    "artist": "Aimer",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "炎 (Homura)",
+    "artist": "LiSA",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "紅蓮華 (Gurenge)",
+    "artist": "LiSA",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ドライフラワー (Dry Flower)",
+    "artist": "優里 (Yuuri)",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ベテルギウス (Betelgeuse)",
+    "artist": "優里 (Yuuri)",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "シンデレラボーイ (Cinderella Boy)",
+    "artist": "Saucy Dog",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "裸の心 (Hadaka no Kokoro)",
+    "artist": "あいみょん (Aimyon)",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ケセラセラ (Que Sera Sera)",
+    "artist": "Mrs. GREEN APPLE",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ダンスホール (Dance Hall)",
+    "artist": "Mrs. GREEN APPLE",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "青と夏 (Ao to Natsu)",
+    "artist": "Mrs. GREEN APPLE",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "死ぬのがいいわ (Shinunoga E-Wa)",
+    "artist": "藤井風 (Fujii Kaze)",
+    "year": 2020,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "きらり (Kirari)",
+    "artist": "藤井風 (Fujii Kaze)",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "NIGHT DANCER",
+    "artist": "imase",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "魂のルフラン (Tamashii no Refrain)",
+    "artist": "高橋洋子 (Yoko Takahashi)",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "君をのせて (Kimi wo Nosete)",
+    "artist": "井上あずみ (Azumi Inoue)",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ルパン三世のテーマ (Lupin the Third Theme)",
+    "artist": "大野雄二 (Yuji Ohno)",
+    "year": 1980,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "CHA-LA HEAD-CHA-LA",
+    "artist": "影山ヒロノブ (Hironobu Kageyama)",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "WE GOTTA POWER",
+    "artist": "影山ヒロノブ (Hironobu Kageyama)",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ウィーアー! (We Are!)",
+    "artist": "きただにひろし (Hiroshi Kitadani)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ムーンライト伝説 (Moonlight Densetsu)",
+    "artist": "DALI",
+    "year": 1992,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "おどるポンポコリン (Odoru Pompokolin)",
+    "artist": "B.B.クィーンズ (B.B. Queens)",
+    "year": 1990,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "タッチ (Touch)",
+    "artist": "岩崎良美 (Yoshimi Iwasaki)",
+    "year": 1985,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ライオン (Lion)",
+    "artist": "May'n / 中島愛 (May'n / Megumi Nakajima)",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "God knows...",
+    "artist": "平野綾 (Aya Hirano)",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Butter-Fly",
+    "artist": "和田光司 (Koji Wada)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "創聖のアクエリオン (Sousei no Aquarion)",
+    "artist": "AKINO",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "摩訶不思議アドベンチャー! (Maka Fushigi Adventure!)",
+    "artist": "高橋洋樹 (Hiroki Takahashi)",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "夢をかなえてドラえもん (Yume wo Kanaete Doraemon)",
+    "artist": "mao",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "サザエさん (Sazae-san)",
+    "artist": "宇野ゆう子 (Yuko Uno)",
+    "year": 1969,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "アンパンマンのマーチ (Anpanman no March)",
+    "artist": "ドリーミング (Dreaming)",
+    "year": 1988,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "宇宙戦艦ヤマト (Uchuu Senkan Yamato)",
+    "artist": "ささきいさお (Isao Sasaki)",
+    "year": 1974,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "炎のたからもの (Honoo no Takaramono)",
+    "artist": "ボビー (Bobby)",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ガッチャマンの歌 (Gatchaman no Uta)",
+    "artist": "子門真人 (Masato Shimon)",
+    "year": 1972,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "となりのトトロ (Tonari no Totoro)",
+    "artist": "井上あずみ (Azumi Inoue)",
+    "year": 1988,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "メルト (Melt)",
+    "artist": "ryo (supercell) feat. 初音ミク",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "みくみくにしてあげる♪ (Miku Miku ni Shite Ageru)",
+    "artist": "ika feat. 初音ミク",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ワールドイズマイン (World is Mine)",
+    "artist": "ryo (supercell) feat. 初音ミク",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "恋は戦争 (Koi wa Sensou)",
+    "artist": "ryo (supercell) feat. 初音ミク",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロミオとシンデレラ (Romeo and Cinderella)",
+    "artist": "doriko feat. 初音ミク",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "炉心融解 (Roshin Yuukai / Meltdown)",
+    "artist": "iroha(sasaki) feat. 鏡音リン",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ワールズエンド・ダンスホール (World's End Dancehall)",
+    "artist": "wowaka feat. 初音ミク・巡音ルカ",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "パンダヒーロー (Panda Hero)",
+    "artist": "ハチ (Hachi) feat. GUMI",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロストワンの号哭 (Lost One no Goukoku)",
+    "artist": "Neru feat. 鏡音リン",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "脳漿炸裂ガール (Noushou Sakuretsu Girl)",
+    "artist": "れるりり feat. 初音ミク・GUMI",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ヒビカセ (Hibikase)",
+    "artist": "Giga feat. 初音ミク",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ドーナツホール (Donut Hole)",
+    "artist": "ハチ (Hachi) feat. GUMI",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "砂の惑星 (Sunano Wakusei / Dune)",
+    "artist": "ハチ (Hachi) feat. 初音ミク",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "シャルル (Charles)",
+    "artist": "バルーン (Balloon) feat. flower",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "命に嫌われている (Inochi ni Kirawarete Iru)",
+    "artist": "カンザキイオリ feat. 初音ミク",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロキ (Roki)",
+    "artist": "みきとP feat. 鏡音リン",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ヴァンパイア (Vampire)",
+    "artist": "DECO*27 feat. 初音ミク",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "テレキャスタービーボーイ (Telecaster B-boy)",
+    "artist": "すりぃ feat. 鏡音レン",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ゴーストルール (Ghost Rule)",
+    "artist": "DECO*27 feat. 初音ミク",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ビバハピ (Viva Happy)",
+    "artist": "Mitchie M feat. 初音ミク",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "夏色 (Natsuiro)",
+    "artist": "ゆず (Yuzu)",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "栄光の架橋 (Eikou no Kakehashi)",
+    "artist": "ゆず (Yuzu)",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "アゲハ蝶 (Ageha Chou)",
+    "artist": "ポルノグラフィティ (Porno Graffitti)",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "サウダージ (Saudade)",
+    "artist": "ポルノグラフィティ (Porno Graffitti)",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ミュージック・アワー (Music Hour)",
+    "artist": "ポルノグラフィティ (Porno Graffitti)",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "アポロ (Apollo)",
+    "artist": "ポルノグラフィティ (Porno Graffitti)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "リライト (Rewrite)",
+    "artist": "ASIAN KUNG-FU GENERATION",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "遥か彼方 (Haruka Kanata)",
+    "artist": "ASIAN KUNG-FU GENERATION",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ソラニン (Solanin)",
+    "artist": "ASIAN KUNG-FU GENERATION",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "CORE PRIDE",
+    "artist": "UVERworld",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Supernova",
+    "artist": "ELLEGARDEN",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Salamander",
+    "artist": "ELLEGARDEN",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "完全感覚Dreamer (Kanzen Kankaku Dreamer)",
+    "artist": "ONE OK ROCK",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "We are",
+    "artist": "ONE OK ROCK",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "世界はそれを愛と呼ぶんだぜ (Sekai wa Sore wo Ai to Yobun da ze)",
+    "artist": "サンボマスター (Sambomaster)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "今宵の月のように (Koyoi no Tsuki no You ni)",
+    "artist": "エレファントカシマシ (Elephant Kashimashi)",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "悲しみの果て (Kanashimi no Hate)",
+    "artist": "エレファントカシマシ (Elephant Kashimashi)",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "WHITE BREATH",
+    "artist": "T.M.Revolution",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "HOT LIMIT",
+    "artist": "T.M.Revolution",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "HIGH PRESSURE",
+    "artist": "T.M.Revolution",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ハナミズキ (Hanamizuki)",
+    "artist": "一青窈 (Hitoto Yo)",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "ロックンロール (Rock'n Roll)",
+    "artist": "くるり (Quruli)",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "We Are the Champions",
+    "artist": "Queen",
+    "year": 1977,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Mamma Mia",
+    "artist": "ABBA",
+    "year": 1975,
+    "country": "se",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Livin' on a Prayer",
+    "artist": "Bon Jovi",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Hey Jude",
+    "artist": "The Beatles",
+    "year": 1968,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Let It Be",
+    "artist": "The Beatles",
+    "year": 1970,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Material Girl",
+    "artist": "Madonna",
+    "year": 1985,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Thriller",
+    "artist": "Michael Jackson",
+    "year": 1983,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Sweet Caroline",
+    "artist": "Neil Diamond",
+    "year": 1969,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Summer Nights",
+    "artist": "John Travolta & Olivia Newton-John",
+    "year": 1978,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Take On Me",
+    "artist": "a-ha",
+    "year": 1985,
+    "country": "no",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Sweet Dreams (Are Made of This)",
+    "artist": "Eurythmics",
+    "year": 1983,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Total Eclipse of the Heart",
+    "artist": "Bonnie Tyler",
+    "year": 1983,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "What's Up?",
+    "artist": "4 Non Blondes",
+    "year": 1992,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Africa",
+    "artist": "Toto",
+    "year": 1982,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Wake Me Up Before You Go-Go",
+    "artist": "Wham!",
+    "year": 1984,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Piano Man",
+    "artist": "Billy Joel",
+    "year": 1973,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "American Pie",
+    "artist": "Don McLean",
+    "year": 1971,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Brown Eyed Girl",
+    "artist": "Van Morrison",
+    "year": 1967,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Hello",
+    "artist": "Adele",
+    "year": 2015,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Set Fire to the Rain",
+    "artist": "Adele",
+    "year": 2011,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Just the Way You Are",
+    "artist": "Bruno Mars",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Grenade",
+    "artist": "Bruno Mars",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Uptown Funk",
+    "artist": "Mark Ronson ft. Bruno Mars",
+    "year": 2014,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Bad Romance",
+    "artist": "Lady Gaga",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Just Dance",
+    "artist": "Lady Gaga ft. Colby O'Donis",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Shallow",
+    "artist": "Lady Gaga & Bradley Cooper",
+    "year": 2018,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Roar",
+    "artist": "Katy Perry",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "California Gurls",
+    "artist": "Katy Perry ft. Snoop Dogg",
+    "year": 2010,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Perfect",
+    "artist": "Ed Sheeran",
+    "year": 2017,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Thinking Out Loud",
+    "artist": "Ed Sheeran",
+    "year": 2014,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "The A Team",
+    "artist": "Ed Sheeran",
+    "year": 2011,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Moves Like Jagger",
+    "artist": "Maroon 5 ft. Christina Aguilera",
+    "year": 2011,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Sugar",
+    "artist": "Maroon 5",
+    "year": 2015,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "She Will Be Loved",
+    "artist": "Maroon 5",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Love Story",
+    "artist": "Taylor Swift",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "You Belong with Me",
+    "artist": "Taylor Swift",
+    "year": 2008,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Blank Space",
+    "artist": "Taylor Swift",
+    "year": 2014,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "The Scientist",
+    "artist": "Coldplay",
+    "year": 2002,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Fix You",
+    "artist": "Coldplay",
+    "year": 2005,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Umbrella",
+    "artist": "Rihanna ft. Jay-Z",
+    "year": 2007,
+    "country": "bb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Diamonds",
+    "artist": "Rihanna",
+    "year": 2012,
+    "country": "bb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "We Found Love",
+    "artist": "Rihanna ft. Calvin Harris",
+    "year": 2011,
+    "country": "bb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Baby",
+    "artist": "Justin Bieber ft. Ludacris",
+    "year": 2010,
+    "country": "ca",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Sorry",
+    "artist": "Justin Bieber",
+    "year": 2015,
+    "country": "ca",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Love Yourself",
+    "artist": "Justin Bieber",
+    "year": 2015,
+    "country": "ca",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Counting Stars",
+    "artist": "OneRepublic",
+    "year": 2013,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Apologize",
+    "artist": "Timbaland ft. OneRepublic",
+    "year": 2007,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Complicated",
+    "artist": "Avril Lavigne",
+    "year": 2002,
+    "country": "ca",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Sk8er Boi",
+    "artist": "Avril Lavigne",
+    "year": 2002,
+    "country": "ca",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "I Gotta Feeling",
+    "artist": "The Black Eyed Peas",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Boom Boom Pow",
+    "artist": "The Black Eyed Peas",
+    "year": 2009,
+    "country": "us",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "강남스타일 (Gangnam Style)",
+    "artist": "PSY",
+    "year": 2012,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "거짓말 (Lies)",
+    "artist": "BIGBANG",
+    "year": 2007,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "하루하루 (Haru Haru)",
+    "artist": "BIGBANG",
+    "year": 2008,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Gee",
+    "artist": "소녀시대 (Girls' Generation)",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "I Got A Boy",
+    "artist": "소녀시대 (Girls' Generation)",
+    "year": 2013,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "I Don't Care",
+    "artist": "2NE1",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Nobody",
+    "artist": "원더걸스 (Wonder Girls)",
+    "year": 2008,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Tell Me",
+    "artist": "원더걸스 (Wonder Girls)",
+    "year": 2007,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "벚꽃 엔딩 (Cherry Blossom Ending)",
+    "artist": "버스커 버스커 (Busker Busker)",
+    "year": 2012,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "좋은 날 (Good Day)",
+    "artist": "아이유 (IU)",
+    "year": 2010,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "밤편지 (Through the Night)",
+    "artist": "아이유 (IU)",
+    "year": 2017,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "벌써 일년 (Already One Year)",
+    "artist": "브라운 아이즈 (Brown Eyes)",
+    "year": 2001,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "TT",
+    "artist": "트와이스 (TWICE)",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Cheer Up",
+    "artist": "트와이스 (TWICE)",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "으르렁 (Growl)",
+    "artist": "엑소 (EXO)",
+    "year": 2013,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Sorry, Sorry",
+    "artist": "슈퍼주니어 (Super Junior)",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Abracadabra",
+    "artist": "브라운 아이드 걸스 (Brown Eyed Girls)",
+    "year": 2009,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "DNA",
+    "artist": "방탄소년단 (BTS)",
+    "year": 2017,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Dynamite",
+    "artist": "방탄소년단 (BTS)",
+    "year": 2020,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "불장난 (Playing with Fire)",
+    "artist": "블랙핑크 (BLACKPINK)",
+    "year": 2016,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "뚜두뚜두 (DDU-DU DDU-DU)",
+    "artist": "블랙핑크 (BLACKPINK)",
+    "year": 2018,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "How You Like That",
+    "artist": "블랙핑크 (BLACKPINK)",
+    "year": 2020,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "롤리폴리 (Roly-Poly)",
+    "artist": "티아라 (T-ara)",
+    "year": 2011,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Bar Bar Bar",
+    "artist": "크레용팝 (Crayon Pop)",
+    "year": 2013,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "너의 의미 (You Mean)",
+    "artist": "아이유 (IU)",
+    "year": 2014,
+    "country": "kr",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "The Final Countdown",
+    "artist": "Europe",
+    "year": 1986,
+    "country": "se",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Never Gonna Give You Up",
+    "artist": "Rick Astley",
+    "year": 1987,
+    "country": "gb",
+    "categories": [
+      "karaoke"
+    ]
+  },
+  {
+    "title": "Macarena",
+    "artist": "Los del Río",
+    "year": 1995,
+    "country": "es",
+    "categories": [
+      "karaoke"
     ]
   }
 ]

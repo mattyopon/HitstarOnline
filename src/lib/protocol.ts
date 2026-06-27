@@ -282,6 +282,7 @@ export interface CategoryDef {
 
 /** Selectable song categories (shared by client + server). */
 export const CATEGORIES: CategoryDef[] = [
+  { id: "karaoke", labelJa: "カラオケ定番", labelEn: "Karaoke Hits" },
   { id: "jpop", labelJa: "J-POP", labelEn: "J-Pop" },
   { id: "jp-anime", labelJa: "アニメ(日)", labelEn: "Anime (JP)" },
   { id: "vocaloid", labelJa: "ボカロ", labelEn: "Vocaloid" },
