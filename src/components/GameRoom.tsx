@@ -59,22 +59,24 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
   const autoPassedRound = useRef<number | null>(null);
   const listenEndNudgedRound = useRef<number | null>(null);
-  const autoSkipCardRef = useRef<string | null>(null);
   const entrySePlayed = useRef(false);
 
   const phase = state?.phase;
   const round = state?.round;
   const activeIndex = state?.activeIndex;
   const version = state?.version;
+  const cardId = state?.current?.cardId;
 
-  // Reset per-turn UI when the turn/phase changes.
+  // Reset per-turn UI when the turn/phase/card changes. Including cardId is
+  // important: a free skip swaps the card without changing the turn, and the
+  // "unavailable" flag MUST clear so a stale flag can't haunt the next song.
   useEffect(() => {
     setSelectedSlot(null);
     setGTitle("");
     setGArtist("");
     setActionErr(null);
     setTrackUnavailable(false);
-  }, [phase, activeIndex, round]);
+  }, [phase, activeIndex, round, cardId]);
 
   // Auto-advance timed-out phases (host first, others as fallback).
   useEffect(() => {
@@ -155,25 +157,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       });
   }, [version, state, meId, code, dontSteal, apply]);
 
-  // If the current song can't be played for THIS participant — YouTube reports it
-  // unavailable, or there's no resolvable source at all (youtubeId is null) — report
-  // it so the room moves on to the next song ("参加者のうち誰か聞けない場合は次の曲").
-  // Works in every room (not just solo); the cardId guard + server cardId guard make
-  // concurrent reports skip the card exactly once. reason:"unavailable" lets the
-  // server drop the bad cached id so the song can re-resolve later.
-  useEffect(() => {
-    if (!state || state.phase !== "placing") return;
-    const cardId = state.current?.cardId;
-    if (!cardId) return;
-    const unplayable = trackUnavailable || !state.current?.youtubeId;
-    if (!unplayable || autoSkipCardRef.current === cardId) return;
-    autoSkipCardRef.current = cardId;
-    api<{ state?: PublicState }>("/api/game/skip-song", { code, cardId, reason: "unavailable" })
-      .then((r) => r.state && apply(r.state))
-      .catch(() => {
-        autoSkipCardRef.current = null;
-      });
-  }, [trackUnavailable, state, code, apply]);
+  // NOTE: no automatic skip. YouTube's IFrame API reports "can't embed" (150/101)
+  // for some videos even while audio plays, which caused playable songs to be
+  // skipped — and, looping, every following song too. Skipping an unplayable track
+  // is therefore MANUAL only: the free skip button below (open to everyone). The
+  // ⚠️ notice tells whoever can't hear it to press skip.
 
   // Ranked entry fanfare: play the local player's rank SE once, after the sound
   // gate unlocks (reuses the existing tap gate; no extra gesture listener).
@@ -419,12 +407,18 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
 
           {/* Free skip — open to ANY participant during placing (no token cost),
               separate from the token skip. Lets anyone move past a song they
-              can't hear / don't want. */}
+              can't hear / don't want. reason:"unavailable" (only when this client
+              detected an embed error) lets the server re-resolve a bad cached id. */}
           {state.phase === "placing" && state.current && (
             <button
               className="btn ghost block"
               disabled={busy}
-              onClick={() => act("/api/game/skip-song", { cardId: state.current?.cardId })}
+              onClick={() =>
+                act("/api/game/skip-song", {
+                  cardId: state.current?.cardId,
+                  reason: trackUnavailable ? "unavailable" : "manual",
+                })
+              }
             >
               ⏭ {t("この曲をスキップ")}
             </button>
