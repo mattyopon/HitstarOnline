@@ -161,9 +161,14 @@ export function Lobby({ user }: { user: ClientUser }) {
           <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title={t("設定")}>
             ⚙️
           </button>
-          <button className="btn ghost tiny" onClick={signOut}>
-            {t("ログアウト")}
-          </button>
+          {/* Logout is only meaningful for real (Google) sign-ins. Guests are a
+              throwaway anonymous session — signing them out just loses progress
+              and re-creates a guest on reload, so we hide it for them. */}
+          {!user.isAnonymous && (
+            <button className="btn ghost tiny" onClick={signOut}>
+              {t("ログアウト")}
+            </button>
+          )}
         </div>
       </div>
 
