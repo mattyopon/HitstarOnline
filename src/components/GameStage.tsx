@@ -51,8 +51,7 @@ export function GameStage({
           {phase === "reveal" && t("結果発表")}
           {phase === "gameover" && t("ゲーム終了")}
         </strong>
-        {/* Reveal plays the full song (long auto-advance) → hide the countdown. */}
-        {phase !== "gameover" && phase !== "reveal" && countdownEl}
+        {/* Countdown is shown large over the record below; reveal plays in full. */}
         {phase === "reveal" &&
           (playVideoId ? (
             <span className="pill">🎶 {t("フル再生中")}</span>
@@ -60,7 +59,7 @@ export function GameStage({
             <span className="pill">{t("音源を取得できませんでした")}</span>
           ))}
       </div>
-      <div className="row" style={{ justifyContent: "center" }}>
+      <div className="row" style={{ justifyContent: "center", position: "relative" }}>
         <YouTubePlayer
           videoId={playVideoId}
           startSeconds={startSeconds}
@@ -69,6 +68,12 @@ export function GameStage({
           volume={volume}
           onUnavailable={onUnavailable}
         />
+        {/* Big remaining-seconds overlay on top of the record (placing/stealing). */}
+        {(phase === "placing" || phase === "stealing") && countdownEl && (
+          <div className="yt-countdown" aria-hidden="true">
+            {countdownEl}
+          </div>
+        )}
       </div>
       <div className="row" style={{ gap: 10, alignItems: "center", justifyContent: "center" }}>
         <span className="tiny muted">{t("🔊 曲の音量")}</span>

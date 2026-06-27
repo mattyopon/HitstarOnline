@@ -475,6 +475,28 @@ select:focus {
 .countdown.urgent {
   color: var(--bad);
 }
+/* Big remaining-seconds overlay, centered over the record/vinyl. */
+.yt-countdown {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 4;
+}
+.yt-countdown .countdown {
+  font-size: clamp(46px, 11vw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  text-shadow:
+    0 3px 14px rgba(0, 0, 0, 0.9),
+    0 0 30px rgba(0, 0, 0, 0.75);
+}
+.yt-countdown .countdown.urgent {
+  color: var(--bad);
+}
 
 .bar {
   height: 8px;
