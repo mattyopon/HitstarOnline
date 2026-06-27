@@ -155,16 +155,20 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       });
   }, [version, state, meId, code, dontSteal, apply]);
 
-  // Solo/NPC: if YouTube reports the current song is unplayable, auto-skip to the
-  // next one (free) instead of leaving the human waiting on a bot's dead track.
-  // Bot-room only; the server route is gated the same way. Once per card.
+  // If the current song can't be played for THIS participant — YouTube reports it
+  // unavailable, or there's no resolvable source at all (youtubeId is null) — report
+  // it so the room moves on to the next song ("参加者のうち誰か聞けない場合は次の曲").
+  // Works in every room (not just solo); the cardId guard + server cardId guard make
+  // concurrent reports skip the card exactly once. reason:"unavailable" lets the
+  // server drop the bad cached id so the song can re-resolve later.
   useEffect(() => {
-    if (!state || state.phase !== "placing" || !trackUnavailable) return;
-    if (!state.players.some((p) => p.isBot)) return;
+    if (!state || state.phase !== "placing") return;
     const cardId = state.current?.cardId;
-    if (!cardId || autoSkipCardRef.current === cardId) return;
+    if (!cardId) return;
+    const unplayable = trackUnavailable || !state.current?.youtubeId;
+    if (!unplayable || autoSkipCardRef.current === cardId) return;
     autoSkipCardRef.current = cardId;
-    api<{ state?: PublicState }>("/api/game/skip-song", { code, cardId })
+    api<{ state?: PublicState }>("/api/game/skip-song", { code, cardId, reason: "unavailable" })
       .then((r) => r.state && apply(r.state))
       .catch(() => {
         autoSkipCardRef.current = null;
@@ -413,6 +417,19 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             countdownEl={countdownEl}
           />
 
+          {/* Free skip — open to ANY participant during placing (no token cost),
+              separate from the token skip. Lets anyone move past a song they
+              can't hear / don't want. */}
+          {state.phase === "placing" && state.current && (
+            <button
+              className="btn ghost block"
+              disabled={busy}
+              onClick={() => act("/api/game/skip-song", { cardId: state.current?.cardId })}
+            >
+              ⏭ {t("この曲をスキップ")}
+            </button>
+          )}
+
           {revealMode && <RevealCard state={state} googleToken={googleToken} />}
 
           {/* Skip the reveal — the song plays in full, so anyone can move on. */}
@@ -462,16 +479,6 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                       name: activePlayer?.name ?? "",
                     })}
               </div>
-              {/* Solo/NPC: let the human skip a bot's (long/unwanted) song for free. */}
-              {!isMultiplayer && state.current && (
-                <button
-                  className="btn secondary"
-                  disabled={busy}
-                  onClick={() => act("/api/game/skip-song", { cardId: state.current?.cardId })}
-                >
-                  ⏭ {t("この曲をスキップ")}
-                </button>
-              )}
               {me && <Timeline cards={me.timeline} compact />}
             </div>
           )}

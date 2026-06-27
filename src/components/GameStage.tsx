@@ -87,10 +87,7 @@ export function GameStage({
       </div>
       {trackUnavailable && (phase === "placing" || phase === "stealing") && (
         <div className="notice tiny" style={{ borderColor: "var(--gold)", color: "var(--gold)" }}>
-          ⚠️ {t("この曲は再生できないようです。")}
-          {isActive
-            ? t("スキップ🪙1で別の曲にできます。")
-            : t("出題者がスキップするまでお待ちください。")}
+          ⚠️ {t("この曲は再生できないようです。")} {t("次の曲へ")}
         </div>
       )}
     </div>

@@ -444,16 +444,9 @@ export function skipSong(game: FullGame, userId: string, songs: Song[], now: num
   return g;
 }
 
-/** Redraw the current mystery card in place (no token, same active player).
- *  Used to auto-replace an unfindable/unplayable track. Mutates g (no version
- *  bump — the caller persists the result). */
-export function redrawMystery(g: FullGame, songs: Song[], now: number): void {
-  beginTurn(g, songs, now);
-}
-
 /** Free "system" skip of the current song: redraw the mystery card with no
  *  token cost and no turn change. No-op outside the placing phase. Used for
- *  unplayable tracks and for skipping in solo/NPC play. */
+ *  unplayable tracks and for the free skip button (any participant). */
 export function systemSkip(game: FullGame, songs: Song[], now: number): FullGame {
   if (game.public.phase !== "placing") return game;
   const g = clone(game);
