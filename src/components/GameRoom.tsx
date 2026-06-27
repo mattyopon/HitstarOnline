@@ -59,6 +59,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
   const autoPassedRound = useRef<number | null>(null);
   const listenEndNudgedRound = useRef<number | null>(null);
+  const autoPlacedCardRef = useRef<string | null>(null);
   const entrySePlayed = useRef(false);
 
   const phase = state?.phase;
@@ -138,6 +139,36 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     }, delay);
     return () => clearTimeout(t);
   }, [version, state, meId, code, apply]);
+
+  // Active player: selecting a slot only STAGES the card; the player confirms with
+  // the 提出 button. If they don't, auto-submit the staged slot just before the
+  // placement deadline ("提出をせずに時間切れの場合はその位置で提出"). Fires once per
+  // card, and slightly before the server's no-placement timeout so the placement
+  // lands instead of being discarded.
+  useEffect(() => {
+    if (!state || state.phase !== "placing") return;
+    if (state.order[state.activeIndex] !== meId) return;
+    if (selectedSlot == null) return;
+    const cid = state.current?.cardId;
+    if (!cid || autoPlacedCardRef.current === cid) return;
+    const dl = state.placementDeadline ?? state.deadline;
+    if (!dl) return;
+    const slot = selectedSlot;
+    const delay = Math.max(0, dl - 400 - serverNow());
+    const timer = setTimeout(() => {
+      autoPlacedCardRef.current = cid;
+      api<{ state?: PublicState }>("/api/game/place", {
+        code,
+        slotIndex: slot,
+        guess: { title: gTitle, artist: gArtist },
+      })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {
+          autoPlacedCardRef.current = null;
+        });
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [version, state, meId, code, selectedSlot, gTitle, gArtist, apply]);
 
   // Auto-pass the steal decision when the player has "横取りしない" enabled,
   // so the steal phase can end without waiting the full 10s. Fires once/round.

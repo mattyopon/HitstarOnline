@@ -62,7 +62,7 @@ export function PlacementPanel({
           </span>
         )}
       </div>
-      {/* Optional guess FIRST, then tap a slot to place+submit instantly. */}
+      {/* Optional guess FIRST, then choose a slot and press 提出 to submit. */}
       <div className="row wrap" style={{ gap: 10 }}>
         <input
           type="text"
@@ -82,21 +82,23 @@ export function PlacementPanel({
       <PlacementArea
         cards={me.timeline}
         selectedSlot={selectedSlot}
-        hint={t("位置をタップ（またはドラッグ）すると、その場で提出します")}
-        onSelect={(slot) => {
-          // Tap-to-submit: selecting a slot places the card immediately.
-          if (busy) return;
-          const prev = selectedSlot;
-          setSelectedSlot(slot);
-          act("/api/game/place", {
-            slotIndex: slot,
-            guess: { title: gTitle, artist: gArtist },
-          }).then((ok) => {
-            // On failure, clear the ghost so it doesn't look placed.
-            if (!ok) setSelectedSlot(prev);
-          });
-        }}
+        hint="位置をタップまたはドラッグで選び、「提出」で確定"
+        onSelect={(slot) => setSelectedSlot(slot)}
       />
+      {/* Selecting a slot only stages the card; submit confirms it. On timeout the
+          staged slot is auto-submitted (handled in GameRoom). */}
+      <button
+        className="btn block"
+        disabled={busy || selectedSlot == null}
+        onClick={() =>
+          act("/api/game/place", {
+            slotIndex: selectedSlot,
+            guess: { title: gTitle, artist: gArtist },
+          })
+        }
+      >
+        ✅ {t("この位置で提出")}
+      </button>
       <div className="row wrap">
         {canExtend && (
           <button
