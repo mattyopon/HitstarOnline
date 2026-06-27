@@ -27,10 +27,10 @@ export function GameHeader({
       </div>
       <div className="row wrap" style={{ gap: 10 }}>
         <span className="pill">
-          部屋 <strong style={{ letterSpacing: 2 }}>{code}</strong>
+          {t("部屋")} <strong style={{ letterSpacing: 2 }}>{code}</strong>
         </span>
-        {inGame && <span className="pill">第{round}ターン</span>}
-        {inGame && <span className="pill">残り{deckRemaining}曲</span>}
+        {inGame && <span className="pill">{t("第{n}ターン", { n: round })}</span>}
+        {inGame && <span className="pill">{t("残り{n}曲", { n: deckRemaining })}</span>}
         <button className="btn ghost tiny" onClick={onSettings} title={t("設定")}>
           ⚙️
         </button>

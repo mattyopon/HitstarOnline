@@ -66,7 +66,7 @@ export function Lobby({ user }: { user: ClientUser }) {
       },
     });
     if (error) {
-      setErr("Googleログインを開始できませんでした");
+      setErr(t("Googleログインを開始できませんでした"));
       setBusy(null);
     }
   }
@@ -87,7 +87,7 @@ export function Lobby({ user }: { user: ClientUser }) {
       const { code } = await api<{ code: string }>("/api/room/create", body);
       router.push(`/room/${code}`);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "作成に失敗しました");
+      setErr(e instanceof Error ? e.message : t("作成に失敗しました"));
       setBusy(null);
     }
   }
@@ -104,7 +104,7 @@ export function Lobby({ user }: { user: ClientUser }) {
       const { code } = await api<{ code: string }>("/api/rank/matchmake", { name });
       router.push(`/room/${code}`);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "マッチメイキングに失敗しました");
+      setErr(e instanceof Error ? e.message : t("マッチメイキングに失敗しました"));
       setBusy(null);
     }
   }
@@ -121,7 +121,7 @@ export function Lobby({ user }: { user: ClientUser }) {
       });
       router.push(`/room/${code}`);
     } catch (e) {
-      setErr(e instanceof Error ? e.message : "作成に失敗しました");
+      setErr(e instanceof Error ? e.message : t("作成に失敗しました"));
       setBusy(null);
     }
   }
@@ -129,7 +129,7 @@ export function Lobby({ user }: { user: ClientUser }) {
   function join() {
     const c = code.trim().toUpperCase();
     if (!c) {
-      setErr("部屋コードを入力してください");
+      setErr(t("部屋コードを入力してください"));
       return;
     }
     saveName();
@@ -222,7 +222,7 @@ export function Lobby({ user }: { user: ClientUser }) {
                 color: on ? "#fff" : undefined,
               }}
             >
-              {c.labelJa}
+              {t(c.labelJa)}
             </button>
           );
         })}

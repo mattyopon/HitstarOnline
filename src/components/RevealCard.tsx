@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { PublicState } from "@/lib/protocol";
 import { addToFavorites, type FavoriteResult } from "@/lib/youtubeFavorites";
+import { useT } from "@/lib/i18n";
 
 export function RevealCard({
   state,
@@ -11,6 +12,7 @@ export function RevealCard({
   state: PublicState;
   googleToken?: string | null;
 }) {
+  const t = useT();
   const [fav, setFav] = useState<"idle" | "saving" | FavoriteResult>("idle");
   const r = state.reveal;
   if (!r) return null;
@@ -26,20 +28,28 @@ export function RevealCard({
   if (r.bought) {
     outcome = (
       <span className="tag-correct">
-        💳 {nameOf(r.awardedTo)} がカードを購入して獲得
+        💳 {t("{name} がカードを購入して獲得", { name: nameOf(r.awardedTo) ?? "?" })}
       </span>
     );
   } else if (r.awardedTo && r.activeCorrect) {
-    outcome = <span className="tag-correct">✅ {nameOf(r.awardedTo)} が正解！カード獲得</span>;
+    outcome = (
+      <span className="tag-correct">
+        ✅ {t("{name} が正解！カード獲得", { name: nameOf(r.awardedTo) ?? "?" })}
+      </span>
+    );
   } else if (r.awardedTo) {
-    outcome = <span className="tag-correct">🦹 {nameOf(r.awardedTo)} が横取り成功！</span>;
+    outcome = (
+      <span className="tag-correct">
+        🦹 {t("{name} が横取り成功！", { name: nameOf(r.awardedTo) ?? "?" })}
+      </span>
+    );
   } else {
-    outcome = <span className="tag-wrong">❌ 誰も当てられず…カードは捨て札に</span>;
+    outcome = <span className="tag-wrong">❌ {t("誰も当てられず…カードは捨て札に")}</span>;
   }
 
   return (
     <div className="card stack fade-in" style={{ alignItems: "center", textAlign: "center" }}>
-      <div className="muted tiny">正解は…</div>
+      <div className="muted tiny">{t("正解は…")}</div>
       <div className="reveal-year">{r.year}</div>
       <div style={{ fontSize: 20, fontWeight: 800 }}>{r.title}</div>
       <div className="muted">{r.artist}</div>
@@ -49,7 +59,12 @@ export function RevealCard({
         .filter((a) => a.tokensGained > 0)
         .map((a, i) => (
           <div key={`${a.userId}-${i}`} className="tiny token">
-            🪙 {nameOf(a.userId)} {a.reason ?? "曲名＋アーティスト正解"}で +{a.tokensGained}
+            🪙{" "}
+            {t("{name} {reason}で +{n}", {
+              name: nameOf(a.userId) ?? "?",
+              reason: a.reason ?? t("曲名＋アーティスト正解"),
+              n: a.tokensGained,
+            })}
           </div>
         ))}
       {r.youtubeId && (
@@ -59,7 +74,7 @@ export function RevealCard({
           target="_blank"
           rel="noreferrer"
         >
-          YouTubeで開く ↗
+          {t("YouTubeで開く ↗")}
         </a>
       )}
 
@@ -71,23 +86,25 @@ export function RevealCard({
             onClick={() => onFavorite(r.youtubeId!)}
           >
             {fav === "added"
-              ? "★ お気に入り追加済み"
+              ? t("★ お気に入り追加済み")
               : fav === "saving"
-                ? "追加中…"
-                : "★ お気に入りに追加"}
+                ? t("追加中…")
+                : t("★ お気に入りに追加")}
           </button>
           {fav === "added" && (
-            <span className="tiny muted">YouTubeの「{`Hitstar お気に入り`}」に追加しました</span>
+            <span className="tiny muted">{t("YouTubeの「Hitstar お気に入り」に追加しました")}</span>
           )}
           {fav === "scope" && (
             <span className="tiny tag-wrong">
-              連携の有効期限切れか権限不足です。一度ログアウトし、Googleで再ログインしてYouTube連携を許可してください。
+              {t(
+                "連携の有効期限切れか権限不足です。一度ログアウトし、Googleで再ログインしてYouTube連携を許可してください。",
+              )}
             </span>
           )}
           {fav === "quota" && (
-            <span className="tiny tag-wrong">YouTube APIの上限に達しました。しばらくしてからお試しください。</span>
+            <span className="tiny tag-wrong">{t("YouTube APIの上限に達しました。しばらくしてからお試しください。")}</span>
           )}
-          {fav === "error" && <span className="tiny tag-wrong">追加に失敗しました。もう一度お試しください。</span>}
+          {fav === "error" && <span className="tiny tag-wrong">{t("追加に失敗しました。もう一度お試しください。")}</span>}
         </div>
       )}
     </div>

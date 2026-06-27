@@ -2,6 +2,7 @@
 
 import { Fragment, useRef, useState } from "react";
 import type { TimelineCard } from "@/lib/protocol";
+import { useT } from "@/lib/i18n";
 
 /**
  * Interactive timeline placement with drag-and-drop (touch + pointer) AND
@@ -19,6 +20,7 @@ export function PlacementArea({
   onSelect: (slot: number) => void;
   hint?: string;
 }) {
+  const t = useT();
   const [dragging, setDragging] = useState(false);
   const [hover, setHover] = useState<number | null>(null);
   const ghost = useRef<HTMLDivElement>(null);
@@ -72,7 +74,7 @@ export function PlacementArea({
         data-slot={i}
         onClick={() => onSelect(i)}
         role="button"
-        aria-label={`位置 ${i}`}
+        aria-label={t("位置 {i}", { i })}
       >
         ＋
       </div>
@@ -92,7 +94,7 @@ export function PlacementArea({
         >
           <div className="q">?</div>
         </div>
-        <div className="placement-hint">{hint}</div>
+        <div className="placement-hint">{t(hint)}</div>
       </div>
 
       <div className={"timeline" + (dragging ? " dragging" : "")}>
@@ -121,10 +123,11 @@ export function PlacementArea({
 }
 
 function MysteryGhostCard() {
+  const t = useT();
   return (
     <div className="tl-card mystery" style={{ borderStyle: "solid", borderColor: "var(--accent)" }}>
       <div className="q" style={{ fontSize: 30 }}>★</div>
-      <div className="tiny" style={{ color: "var(--accent)" }}>ここ</div>
+      <div className="tiny" style={{ color: "var(--accent)" }}>{t("ここ")}</div>
     </div>
   );
 }

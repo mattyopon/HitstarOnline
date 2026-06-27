@@ -1,6 +1,7 @@
 "use client";
 
 import { CATEGORIES, type PublicState } from "@/lib/protocol";
+import { useT } from "@/lib/i18n";
 
 function modeLabel(mode: string): string {
   if (mode === "pro") return "プロ";
@@ -27,37 +28,41 @@ export function LobbyWaitingCard({
   actionErr: string | null;
   onStart: () => void;
 }) {
+  const t = useT();
   return (
     <div className="card stack">
-      <h2 style={{ marginTop: 0 }}>友達を待っています…</h2>
+      <h2 style={{ marginTop: 0 }}>{t("友達を待っています…")}</h2>
       <p className="muted" style={{ marginTop: 0 }}>
-        下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。
+        {t("下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。")}
       </p>
       <div className="row" style={{ justifyContent: "center", gap: 14 }}>
         <span className="code-pill">{state.code}</span>
         <button className="btn secondary" onClick={() => navigator.clipboard?.writeText(state.code)}>
-          コピー
+          {t("コピー")}
         </button>
         <button
           className="btn secondary"
           onClick={() => navigator.clipboard?.writeText(`${location.origin}/room/${state.code}`)}
         >
-          招待リンク
+          {t("招待リンク")}
         </button>
       </div>
       <div className="notice tiny">
-        ルール: {modeLabel(state.settings.mode)} ／ {state.settings.targetCards}枚で勝利 ／
-        開始トークン{state.settings.startingTokens}
+        {t("ルール: {mode} ／ {n}枚で勝利 ／ 開始トークン{tokens}", {
+          mode: t(modeLabel(state.settings.mode)),
+          n: state.settings.targetCards,
+          tokens: state.settings.startingTokens,
+        })}
         <br />
-        カテゴリ: {catLabels(state.settings.categories)}
+        {t("カテゴリ: {cats}", { cats: t(catLabels(state.settings.categories)) })}
       </div>
       {actionErr && <div className="error">{actionErr}</div>}
       {isHost ? (
         <button className="btn block" disabled={busy || state.players.length < 2} onClick={onStart}>
-          {state.players.length < 2 ? "2人以上で開始できます" : "🎶 ゲーム開始"}
+          {state.players.length < 2 ? t("2人以上で開始できます") : t("🎶 ゲーム開始")}
         </button>
       ) : (
-        <div className="notice">ホストの開始を待っています…</div>
+        <div className="notice">{t("ホストの開始を待っています…")}</div>
       )}
     </div>
   );

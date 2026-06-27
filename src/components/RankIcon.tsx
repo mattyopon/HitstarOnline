@@ -1,6 +1,7 @@
 "use client";
 
 import { isTier, tierColor, tierIndex, tierLabel, type Tier } from "@/lib/rank";
+import { useT } from "@/lib/i18n";
 
 export interface RankIconProps {
   tier?: string | null;
@@ -14,6 +15,7 @@ export interface RankIconProps {
  * sparkles). Renders nothing for guests/bots/casual (undefined/invalid tier).
  */
 export function RankIcon({ tier, size = 20 }: RankIconProps) {
+  const tr = useT();
   if (!isTier(tier)) return null;
   const t = tier as Tier;
   const idx = tierIndex(t); // 0..6
@@ -25,7 +27,7 @@ export function RankIcon({ tier, size = 20 }: RankIconProps) {
 
   return (
     <span
-      title={tierLabel(t)}
+      title={tr(tierLabel(t))}
       style={{
         display: "inline-flex",
         width: size,

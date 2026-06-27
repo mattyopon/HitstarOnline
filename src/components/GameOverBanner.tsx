@@ -28,7 +28,7 @@ export function GameOverBanner({
           .map((p, i) => (
             <div key={p.userId} className="row spread">
               <span>
-                {i + 1}位 {p.name}
+                {t("{n}位 {name}", { n: i + 1, name: p.name })}
               </span>
               <span className="muted">
                 🃏 {Math.max(0, p.timeline.length - 1)} ／ 🪙 {p.tokens}

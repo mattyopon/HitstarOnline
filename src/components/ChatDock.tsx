@@ -5,6 +5,7 @@ import { useChat, type SendResult } from "@/hooks/useChat";
 import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
 import { EMOTES, MAX_CHAT_LEN, browserLang, type ChatMessage } from "@/lib/chat";
+import { useT } from "@/lib/i18n";
 import type { PublicPlayer } from "@/lib/protocol";
 import { Avatar } from "./Avatar";
 import { RankIcon } from "./RankIcon";
@@ -23,6 +24,7 @@ interface FlyItem {
  * language on the fly. Mounted for multiplayer rooms only.
  */
 export function ChatDock({ code, players }: { code: string; players: PublicPlayer[] }) {
+  const t = useT();
   const { user } = useUser();
   const { messages, send } = useChat(code, user, !!user);
   const myLang = browserLang();
@@ -158,8 +160,8 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
   }
 
   function feedback(r: SendResult) {
-    if (r === "rate") flash("送信が早すぎます。少し待ってね");
-    else if (r === "offline") flash("接続中… 少し待ってね");
+    if (r === "rate") flash(t("送信が早すぎます。少し待ってね"));
+    else if (r === "offline") flash(t("接続中… 少し待ってね"));
   }
 
   function submit() {
@@ -201,14 +203,14 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
         {open ? (
           <div className="chat-card">
             <div className="row spread chat-head">
-              <strong>💬 チャット</strong>
+              <strong>{t("💬 チャット")}</strong>
               <div className="row" style={{ gap: 6 }}>
                 <button
                   className="btn ghost tiny"
                   onClick={toggleDanmaku}
-                  title="画面を流れるコメントの表示切替"
+                  title={t("画面を流れるコメントの表示切替")}
                 >
-                  {danmaku ? "弾幕ON" : "弾幕OFF"}
+                  {danmaku ? t("弾幕ON") : t("弾幕OFF")}
                 </button>
                 <button className="btn ghost tiny" onClick={() => setOpen(false)}>
                   ✕
@@ -219,7 +221,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
             <div className="chat-list" ref={listRef}>
               {messages.length === 0 ? (
                 <p className="tiny muted" style={{ textAlign: "center", margin: "auto" }}>
-                  まだメッセージはありません
+                  {t("まだメッセージはありません")}
                 </p>
               ) : (
                 messages.map((m) => {
@@ -236,7 +238,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                         </span>{" "}
                         <span className={m.emote ? "chat-emote" : ""}>{shown}</span>
                         {translated && (
-                          <span className="chat-orig tiny muted" title="原文">
+                          <span className="chat-orig tiny muted" title={t("原文")}>
                             🌐 {m.text}
                           </span>
                         )}
@@ -262,17 +264,17 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                 type="text"
                 value={text}
                 maxLength={MAX_CHAT_LEN}
-                placeholder="メッセージを入力（自動翻訳されます）"
+                placeholder={t("メッセージを入力（自動翻訳されます）")}
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && submit()}
               />
               <button className="btn secondary" onClick={submit} type="button">
-                送信
+                {t("送信")}
               </button>
             </div>
           </div>
         ) : (
-          <button className="chat-fab" onClick={() => setOpen(true)} aria-label="チャットを開く">
+          <button className="chat-fab" onClick={() => setOpen(true)} aria-label={t("チャットを開く")}>
             💬
             {unread > 0 && <span className="chat-badge">{unread}</span>}
           </button>

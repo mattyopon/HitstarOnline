@@ -230,7 +230,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       if (res.state) apply(res.state);
       return true;
     } catch (e) {
-      setActionErr(e instanceof Error ? e.message : "操作に失敗しました");
+      setActionErr(e instanceof Error ? e.message : t("操作に失敗しました"));
       return false;
     } finally {
       setBusy(false);
@@ -269,10 +269,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     return (
       <div className="center-screen">
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
-          <h2>接続できませんでした</h2>
+          <h2>{t("接続できませんでした")}</h2>
           <p className="muted">{error}</p>
           <button className="btn" onClick={() => router.push("/")}>
-            ホームに戻る
+            {t("ホームに戻る")}
           </button>
         </div>
       </div>
@@ -454,8 +454,13 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             <div className="card stack">
               <div className="muted">
                 {isListening
-                  ? `🎧 ${activePlayer?.name} が試聴中… 一緒に聞こう（${listenLeft}s）`
-                  : `${activePlayer?.name} が配置中… 配置されたら横取りのチャンス！`}
+                  ? t("🎧 {name} が試聴中… 一緒に聞こう（{s}s）", {
+                      name: activePlayer?.name ?? "",
+                      s: listenLeft,
+                    })
+                  : t("{name} が配置中… 配置されたら横取りのチャンス！", {
+                      name: activePlayer?.name ?? "",
+                    })}
               </div>
               {/* Solo/NPC: let the human skip a bot's (long/unwanted) song for free. */}
               {!isMultiplayer && state.current && (
@@ -492,7 +497,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {/* Your timeline reference during reveal */}
           {revealMode && me && state.phase === "reveal" && (
             <div className="card stack">
-              <div className="tiny muted">あなたの年表</div>
+              <div className="tiny muted">{t("あなたの年表")}</div>
               <Timeline cards={me.timeline} compact />
             </div>
           )}
@@ -504,7 +509,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           {me && (
             <div className="card stack" style={{ padding: 14 }}>
               <div className="row spread">
-                <span className="muted tiny">あなたの持ちトークン</span>
+                <span className="muted tiny">{t("あなたの持ちトークン")}</span>
                 <span className="token">🪙 {me.tokens}</span>
               </div>
               <div className="bar">
@@ -515,7 +520,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                 />
               </div>
               <div className="tiny muted">
-                獲得カード {Math.max(0, me.timeline.length - 1)} / {state.settings.targetCards}
+                {t("獲得カード {n} / {total}", {
+                  n: Math.max(0, me.timeline.length - 1),
+                  total: state.settings.targetCards,
+                })}
               </div>
             </div>
           )}

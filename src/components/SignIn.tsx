@@ -9,7 +9,7 @@ export function SignIn({ authError }: { authError?: string | null }) {
   const [name, setName] = useState("");
   const [busy, setBusy] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(
-    authError ? `ログインに失敗しました：${authError}` : null,
+    authError ? t("ログインに失敗しました：{error}", { error: authError }) : null,
   );
 
   async function google() {

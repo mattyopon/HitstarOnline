@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useT } from "@/lib/i18n";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -45,6 +46,7 @@ export function YouTubePlayer({
   /** Called when YouTube reports the video can't be embedded/played here. */
   onUnavailable?: () => void;
 }) {
+  const t = useT();
   const hostRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
   const ready = useRef(false);
@@ -169,7 +171,7 @@ export function YouTubePlayer({
           <div className="yt-cover">
             <div className={"vinyl" + (playing && videoId ? " spinning" : "")} />
             <div className="muted" style={{ fontWeight: 700 }}>
-              {videoId ? "♪ 再生中 — 曲名はナイショ！" : "音源を準備中…"}
+              {videoId ? t("♪ 再生中 — 曲名はナイショ！") : t("音源を準備中…")}
             </div>
           </div>
         )}
@@ -177,8 +179,8 @@ export function YouTubePlayer({
           type="button"
           className="yt-expand"
           onClick={() => setExpanded((e) => !e)}
-          title={expanded ? "閉じる" : "拡大表示"}
-          aria-label={expanded ? "閉じる" : "拡大表示"}
+          title={expanded ? t("閉じる") : t("拡大表示")}
+          aria-label={expanded ? t("閉じる") : t("拡大表示")}
         >
           {expanded ? "✕" : "⛶"}
         </button>

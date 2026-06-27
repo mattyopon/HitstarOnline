@@ -2,6 +2,7 @@
 
 import { Fragment } from "react";
 import type { TimelineCard } from "@/lib/protocol";
+import { useT } from "@/lib/i18n";
 
 export function Timeline({
   cards,
@@ -19,6 +20,7 @@ export function Timeline({
   mysterySlot?: number | null;
   compact?: boolean;
 }) {
+  const t = useT();
   const Slot = ({ i }: { i: number }) => {
     if (mysterySlot === i) {
       return (
@@ -33,7 +35,7 @@ export function Timeline({
         className={"slot interactive" + (selectedSlot === i ? " selected" : "")}
         onClick={() => onSelect?.(i)}
         role="button"
-        aria-label={`位置 ${i}`}
+        aria-label={t("位置 {i}", { i })}
       >
         ＋
       </div>
@@ -53,7 +55,7 @@ export function Timeline({
           <Slot i={idx + 1} />
         </Fragment>
       ))}
-      {cards.length === 0 && <span className="muted tiny">カードなし</span>}
+      {cards.length === 0 && <span className="muted tiny">{t("カードなし")}</span>}
     </div>
   );
 }

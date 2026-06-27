@@ -71,7 +71,7 @@ export function GameStage({
         />
       </div>
       <div className="row" style={{ gap: 10, alignItems: "center", justifyContent: "center" }}>
-        <span className="tiny muted">🔊 曲の音量</span>
+        <span className="tiny muted">{t("🔊 曲の音量")}</span>
         <input
           type="range"
           min={0}
@@ -79,7 +79,7 @@ export function GameStage({
           value={volume}
           onChange={(e) => onVolumeChange(Number(e.target.value))}
           style={{ width: 160 }}
-          aria-label="曲の音量"
+          aria-label={t("曲の音量")}
         />
         <span className="tiny muted" style={{ width: 32, textAlign: "right" }}>
           {volume}

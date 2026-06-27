@@ -56,9 +56,9 @@ export function PlacementPanel({
           <span
             className="pill"
             style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
-            title="開始10秒以内に正解配置でトークン2枚"
+            title={t("開始10秒以内に正解配置でトークン2枚")}
           >
-            ⚡早置き +{settings.earlyBonusTokens ?? 2}🪙 あと{earlyLeft}s
+            {t("⚡早置き +{n}🪙 あと{s}s", { n: settings.earlyBonusTokens ?? 2, s: earlyLeft })}
           </span>
         )}
       </div>
@@ -103,36 +103,36 @@ export function PlacementPanel({
             className="btn secondary"
             disabled={busy}
             onClick={() => act("/api/game/extend", {})}
-            title={`トークン${settings.extendCost ?? 1}枚で試聴を${settings.extendSeconds ?? 60}秒延長（1回のみ）`}
+            title={t("トークン{cost}枚で試聴を{sec}秒延長（1回のみ）", { cost: settings.extendCost ?? 1, sec: settings.extendSeconds ?? 60 })}
           >
-            ⏱ 延長 +{settings.extendSeconds ?? 60}s 🪙{settings.extendCost ?? 1}
+            {t("⏱ 延長 +{s}s 🪙{cost}", { s: settings.extendSeconds ?? 60, cost: settings.extendCost ?? 1 })}
           </button>
         )}
         <button
           className="btn secondary"
           disabled={busy || !canSkip}
           onClick={() => act("/api/game/skip", {})}
-          title="トークン1枚で別の曲に"
+          title={t("トークン1枚で別の曲に")}
         >
-          スキップ 🪙1
+          {t("スキップ 🪙1")}
         </button>
         <button
           className="btn gold"
           disabled={busy || !canBuy}
           onClick={() => act("/api/game/buy", {})}
-          title={`トークン${settings.buyCost}枚で自動的に正しい位置へ`}
+          title={t("トークン{cost}枚で自動的に正しい位置へ", { cost: settings.buyCost })}
         >
-          購入 🪙{settings.buyCost}
+          {t("購入 🪙{cost}", { cost: settings.buyCost })}
         </button>
       </div>
       {(settings.placementTokens ?? 1) > 0 && (
         <div className="tiny muted">
-          ✅ 正しい位置に置けば毎ターン 🪙+{settings.placementTokens ?? 1}
+          {t("✅ 正しい位置に置けば毎ターン 🪙+{n}", { n: settings.placementTokens ?? 1 })}
         </div>
       )}
       <div className="tiny muted">
-        あなたのトークン: <span className="token">🪙 {me.tokens}</span>
-        {listeningExtended && <span className="muted">　（延長済み）</span>}
+        {t("あなたのトークン:")} <span className="token">🪙 {me.tokens}</span>
+        {listeningExtended && <span className="muted">{t("　（延長済み）")}</span>}
       </div>
     </div>
   );

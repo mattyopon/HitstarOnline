@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { api } from "@/lib/clientApi";
+import { useT } from "@/lib/i18n";
 import type { UserStats, CategoryAccuracy } from "@/lib/stats";
 
 function pct(n: number): string {
@@ -9,6 +10,7 @@ function pct(n: number): string {
 }
 
 function CatRow({ c }: { c: CategoryAccuracy }) {
+  const t = useT();
   return (
     <div className="row spread" style={{ gap: 8 }}>
       <span className="tiny" style={{ flex: "0 0 96px" }}>
@@ -18,13 +20,14 @@ function CatRow({ c }: { c: CategoryAccuracy }) {
         <div style={{ width: pct(c.accuracy) }} />
       </div>
       <span className="tiny muted" style={{ width: 64, textAlign: "right" }}>
-        {pct(c.accuracy)}（{c.attempts}回）
+        {t("{p}（{n}回）", { p: pct(c.accuracy), n: c.attempts })}
       </span>
     </div>
   );
 }
 
 export function StatsPanel({ onClose }: { onClose: () => void }) {
+  const t = useT();
   const [stats, setStats] = useState<UserStats | null>(null);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
@@ -35,12 +38,12 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
       .then((d) => {
         if (active) setStats(d.stats);
       })
-      .catch((e) => active && setErr(e instanceof Error ? e.message : "取得に失敗しました"))
+      .catch((e) => active && setErr(e instanceof Error ? e.message : t("取得に失敗しました")))
       .finally(() => active && setLoading(false));
     return () => {
       active = false;
     };
-  }, []);
+  }, [t]);
 
   return (
     <div className="tap-overlay" onClick={onClose}>
@@ -50,7 +53,7 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="row spread">
-          <h2 style={{ margin: 0 }}>📊 戦績</h2>
+          <h2 style={{ margin: 0 }}>{t("📊 戦績")}</h2>
           <button className="btn ghost tiny" onClick={onClose}>
             ✕
           </button>
@@ -64,25 +67,25 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
           <div className="error">{err}</div>
         ) : !stats || stats.games === 0 ? (
           <p className="muted">
-            まだ対戦記録がありません。マルチプレイやランクマッチで遊ぶとここに戦績が貯まります！
+            {t("まだ対戦記録がありません。マルチプレイやランクマッチで遊ぶとここに戦績が貯まります！")}
           </p>
         ) : (
           <>
             <div className="stats-grid">
-              <Stat label="対戦数" value={String(stats.games)} />
-              <Stat label="1位回数" value={String(stats.wins)} />
-              <Stat label="勝率" value={pct(stats.winRate)} />
-              <Stat label="平均順位" value={stats.avgRank ? stats.avgRank.toFixed(1) : "-"} />
-              <Stat label="獲得カード" value={String(stats.totalCards)} />
+              <Stat label={t("対戦数")} value={String(stats.games)} />
+              <Stat label={t("1位回数")} value={String(stats.wins)} />
+              <Stat label={t("勝率")} value={pct(stats.winRate)} />
+              <Stat label={t("平均順位")} value={stats.avgRank ? stats.avgRank.toFixed(1) : "-"} />
+              <Stat label={t("獲得カード")} value={String(stats.totalCards)} />
               <Stat
-                label="ランク戦"
-                value={`${stats.rankedWins}勝 / ${stats.rankedGames}戦`}
+                label={t("ランク戦")}
+                value={t("{w}勝 / {g}戦", { w: stats.rankedWins, g: stats.rankedGames })}
               />
             </div>
 
             {stats.strong.length > 0 && (
               <div className="stack" style={{ gap: 6 }}>
-                <strong className="tiny">💪 得意なカテゴリ</strong>
+                <strong className="tiny">{t("💪 得意なカテゴリ")}</strong>
                 {stats.strong.map((c) => (
                   <CatRow key={c.category} c={c} />
                 ))}
@@ -90,7 +93,7 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
             )}
             {stats.weak.length > 0 && (
               <div className="stack" style={{ gap: 6 }}>
-                <strong className="tiny">😅 苦手なカテゴリ</strong>
+                <strong className="tiny">{t("😅 苦手なカテゴリ")}</strong>
                 {stats.weak.map((c) => (
                   <CatRow key={c.category} c={c} />
                 ))}
@@ -98,21 +101,21 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
             )}
             {stats.strong.length === 0 && stats.weak.length === 0 && (
               <p className="tiny muted">
-                カテゴリ別の得意/苦手は、もう少し遊ぶと表示されます（各3回以上）。
+                {t("カテゴリ別の得意/苦手は、もう少し遊ぶと表示されます（各3回以上）。")}
               </p>
             )}
 
             {stats.recent.length > 0 && (
               <div className="stack" style={{ gap: 4 }}>
-                <strong className="tiny">最近の対戦</strong>
+                <strong className="tiny">{t("最近の対戦")}</strong>
                 {stats.recent.map((r, i) => (
                   <div key={i} className="row spread tiny">
                     <span>
-                      {r.isWinner ? "🏆" : `${r.rank}位`} ／ {modeJa(r.mode)}
-                      {r.ranked && <span className="pill" style={{ marginLeft: 6 }}>ランク</span>}
+                      {r.isWinner ? "🏆" : t("{n}位", { n: r.rank })} ／ {t(modeJa(r.mode))}
+                      {r.ranked && <span className="pill" style={{ marginLeft: 6 }}>{t("ランク")}</span>}
                     </span>
                     <span className="muted">
-                      🃏{r.cardsWon}・{r.playerCount}人
+                      {t("🃏{c}・{p}人", { c: r.cardsWon, p: r.playerCount })}
                     </span>
                   </div>
                 ))}

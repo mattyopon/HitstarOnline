@@ -47,14 +47,14 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
               setSeVolume(v);
             }}
             style={{ flex: 1 }}
-            aria-label="SE音量"
+            aria-label={t("SE音量")}
           />
           <span className="tiny muted" style={{ width: 32, textAlign: "right" }}>
             {se}
           </span>
         </div>
         <p className="tiny muted" style={{ marginBottom: 0 }}>
-          入室時のランク演出などの効果音の音量です。曲（YouTube）の音量はゲーム画面で個別に調整できます。
+          {t("入室時のランク演出などの効果音の音量です。曲（YouTube）の音量はゲーム画面で個別に調整できます。")}
         </p>
       </div>
     </div>

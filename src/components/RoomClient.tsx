@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
+import { useT } from "@/lib/i18n";
 import { GameRoom } from "./GameRoom";
 import { Brand } from "./Brand";
 
@@ -13,6 +14,7 @@ function Centered({ children }: { children: React.ReactNode }) {
 
 export function RoomClient({ code }: { code: string }) {
   const CODE = code.toUpperCase();
+  const t = useT();
   const router = useRouter();
   const { user, loading } = useUser();
   const [joined, setJoined] = useState(false);
@@ -50,7 +52,7 @@ export function RoomClient({ code }: { code: string }) {
       .catch((e) => {
         if (!cancelled) {
           joinKey.current = null; // allow a retry on next render
-          setJoinErr(e instanceof Error ? e.message : "参加に失敗しました");
+          setJoinErr(e instanceof Error ? e.message : t("参加に失敗しました"));
         }
       });
     return () => {
@@ -72,10 +74,10 @@ export function RoomClient({ code }: { code: string }) {
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
           <Brand />
           <p className="muted">
-            部屋 <strong>{CODE}</strong> に参加するにはログインが必要です。
+            {t("部屋")} <strong>{CODE}</strong> {t("に参加するにはログインが必要です。")}
           </p>
           <button className="btn" onClick={() => router.push("/")}>
-            ログイン画面へ
+            {t("ログイン画面へ")}
           </button>
         </div>
       </Centered>
@@ -86,7 +88,7 @@ export function RoomClient({ code }: { code: string }) {
     return (
       <Centered>
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
-          <h2>参加できませんでした</h2>
+          <h2>{t("参加できませんでした")}</h2>
           <p className="muted">{joinErr}</p>
           <div className="row" style={{ gap: 10, justifyContent: "center" }}>
             <button
@@ -96,10 +98,10 @@ export function RoomClient({ code }: { code: string }) {
                 setRetry((r) => r + 1);
               }}
             >
-              再試行
+              {t("再試行")}
             </button>
             <button className="btn secondary" onClick={() => router.push("/")}>
-              ホームに戻る
+              {t("ホームに戻る")}
             </button>
           </div>
         </div>
