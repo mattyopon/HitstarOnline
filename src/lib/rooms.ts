@@ -15,6 +15,7 @@ import {
   listenMs,
   needsTrackResolution,
   placeMs,
+  redrawMystery,
   removePlayer,
 } from "./engine";
 
@@ -59,53 +60,71 @@ export async function loadByCode(code: string): Promise<LoadedRoom | null> {
   return { id: room.id, version: room.version, game };
 }
 
-/** Fill in current.youtubeId for the mystery card if needed (network + cache). */
+/** Fill in current.youtubeId for the mystery card if needed (network + cache).
+ *  If a song has NO playable source (search returns null), auto-skip to the next
+ *  song server-side so clients never get stuck on a silent, unplayable track. */
 async function ensureTrackResolved(game: FullGame): Promise<void> {
-  if (!needsTrackResolution(game)) return;
-  const songId = currentSongId(game);
-  if (songId === undefined || !game.public.current) return;
-  const song = getDeck()[songId];
-  if (!song) return;
-
   const admin = createAdminClient();
-  const key = deckKey(song);
-  const { data: cached } = await admin
-    .from("track_cache")
-    .select("youtube_id")
-    .eq("key", key)
-    .maybeSingle();
+  const songs = getDeck();
 
-  let ytId = cached?.youtube_id ?? null;
-  if (!ytId) {
-    ytId = await searchYouTubeId(searchQuery(song));
-    await admin
+  // Loop so an unfindable song is replaced before the state is ever persisted.
+  for (let attempt = 0; attempt < 6 && needsTrackResolution(game); attempt++) {
+    const songId = currentSongId(game);
+    if (songId === undefined || !game.public.current) return;
+    const song = songs[songId];
+    if (!song) return;
+
+    const key = deckKey(song);
+    const { data: cached } = await admin
       .from("track_cache")
-      .upsert({ key, youtube_id: ytId, updated_at: new Date().toISOString() });
-  }
-  game.public.current.youtubeId = ytId;
+      .select("youtube_id")
+      .eq("key", key)
+      .maybeSingle();
 
-  // Re-anchor the listening clock to the moment the song actually becomes
-  // playable. beginTurn() starts the clock at turn-begin, but resolving the
-  // YouTube id (this function — a network lookup) can take several seconds.
-  // Without re-anchoring, that latency is silently subtracted from the listening
-  // window AND from the 10s early-placement bonus window ("within 10s of song
-  // START"), so a player who places correctly and quickly still misses the bonus
-  // token because the server clock already passed 10s before they heard a note.
-  // Only on a fresh placing turn (no extension, still listening).
-  if (
-    ytId &&
-    game.public.phase === "placing" &&
-    game.public.listeningEndedAt == null &&
-    !game.public.listeningExtended
-  ) {
-    const s = game.public.settings;
-    const now = Date.now();
-    const listenDur = game.public.listenDurationMs ?? listenMs(s);
-    const placeDur = placeMs(s);
-    game.public.current.startedAt = now;
-    game.public.listenStartedAt = now;
-    game.public.placementDeadline = now + listenDur + placeDur;
-    game.public.deadline = game.public.placementDeadline;
+    let ytId = cached?.youtube_id ?? null;
+    if (!ytId) {
+      ytId = await searchYouTubeId(searchQuery(song));
+      await admin
+        .from("track_cache")
+        .upsert({ key, youtube_id: ytId, updated_at: new Date().toISOString() });
+    }
+    game.public.current.youtubeId = ytId;
+
+    if (ytId) {
+      // Re-anchor the listening clock to the moment the song actually becomes
+      // playable. beginTurn() starts the clock at turn-begin, but resolving the
+      // YouTube id (a network lookup) can take several seconds — without this,
+      // that latency is silently subtracted from the listening window AND the
+      // 10s early-placement bonus window. Only on a fresh placing turn.
+      if (
+        game.public.phase === "placing" &&
+        game.public.listeningEndedAt == null &&
+        !game.public.listeningExtended
+      ) {
+        const s = game.public.settings;
+        const now = Date.now();
+        const listenDur = game.public.listenDurationMs ?? listenMs(s);
+        const placeDur = placeMs(s);
+        game.public.current.startedAt = now;
+        game.public.listenStartedAt = now;
+        game.public.placementDeadline = now + listenDur + placeDur;
+        game.public.deadline = game.public.placementDeadline;
+      }
+      return;
+    }
+
+    // No source found → auto-skip to the next song (only mid-placing; a card
+    // that's already been placed/stealing can't be swapped). beginTurn handles
+    // deck exhaustion by ending the game.
+    if (
+      game.public.phase === "placing" &&
+      game.public.listeningEndedAt == null &&
+      !game.public.listeningExtended
+    ) {
+      redrawMystery(game, songs, Date.now());
+    } else {
+      return;
+    }
   }
 }
 

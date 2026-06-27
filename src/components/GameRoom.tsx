@@ -59,6 +59,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
   const autoPassedRound = useRef<number | null>(null);
   const listenEndNudgedRound = useRef<number | null>(null);
+  const autoSkipCardRef = useRef<string | null>(null);
   const entrySePlayed = useRef(false);
 
   const phase = state?.phase;
@@ -153,6 +154,22 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
         autoPassedRound.current = null;
       });
   }, [version, state, meId, code, dontSteal, apply]);
+
+  // Solo/NPC: if YouTube reports the current song is unplayable, auto-skip to the
+  // next one (free) instead of leaving the human waiting on a bot's dead track.
+  // Bot-room only; the server route is gated the same way. Once per card.
+  useEffect(() => {
+    if (!state || state.phase !== "placing" || !trackUnavailable) return;
+    if (!state.players.some((p) => p.isBot)) return;
+    const cardId = state.current?.cardId;
+    if (!cardId || autoSkipCardRef.current === cardId) return;
+    autoSkipCardRef.current = cardId;
+    api<{ state?: PublicState }>("/api/game/skip-song", { code, cardId })
+      .then((r) => r.state && apply(r.state))
+      .catch(() => {
+        autoSkipCardRef.current = null;
+      });
+  }, [trackUnavailable, state, code, apply]);
 
   // Ranked entry fanfare: play the local player's rank SE once, after the sound
   // gate unlocks (reuses the existing tap gate; no extra gesture listener).
@@ -440,6 +457,16 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                   ? `🎧 ${activePlayer?.name} が試聴中… 一緒に聞こう（${listenLeft}s）`
                   : `${activePlayer?.name} が配置中… 配置されたら横取りのチャンス！`}
               </div>
+              {/* Solo/NPC: let the human skip a bot's (long/unwanted) song for free. */}
+              {!isMultiplayer && state.current && (
+                <button
+                  className="btn secondary"
+                  disabled={busy}
+                  onClick={() => act("/api/game/skip-song", { cardId: state.current?.cardId })}
+                >
+                  ⏭ {t("この曲をスキップ")}
+                </button>
+              )}
               {me && <Timeline cards={me.timeline} compact />}
             </div>
           )}

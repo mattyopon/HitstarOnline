@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       const categories = clean.categories ?? [];
       const { code } = await createRoom(seed, {
         mode: "original",
-        listenSeconds: 42,
+        listenSeconds: 60, // listen 60s for solo too (matches multiplayer default)
         placementSeconds: 18,
         stealSeconds: 8,
         revealSeconds: 240, // play the song in full at reveal; skip with ▶ 次の曲へ
