@@ -1,10 +1,13 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import type { TimelineCard } from "@/lib/protocol";
 import { useT } from "@/lib/i18n";
 
-export function Timeline({
+// Memoized: the parent (GameRoom) re-renders every clock tick (~500ms); without
+// memo every player's timeline would re-render twice a second, which is what made
+// the board lag as cards pile up. Props are state-derived (stable between ticks).
+export const Timeline = memo(function Timeline({
   cards,
   interactive = false,
   selectedSlot = null,
@@ -58,4 +61,4 @@ export function Timeline({
       {cards.length === 0 && <span className="muted tiny">{t("カードなし")}</span>}
     </div>
   );
-}
+});

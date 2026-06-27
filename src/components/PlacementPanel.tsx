@@ -83,7 +83,7 @@ export function PlacementPanel({
         cards={me.timeline}
         selectedSlot={selectedSlot}
         hint="位置をタップまたはドラッグで選び、「提出」で確定"
-        onSelect={(slot) => setSelectedSlot(slot)}
+        onSelect={setSelectedSlot}
       />
       {/* Selecting a slot only stages the card; submit confirms it. On timeout the
           staged slot is auto-submitted (handled in GameRoom). */}

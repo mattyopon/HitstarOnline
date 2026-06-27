@@ -1,12 +1,16 @@
 "use client";
 
+import { memo } from "react";
 import type { PublicState } from "@/lib/protocol";
 import { Avatar } from "./Avatar";
 import { RankIcon } from "./RankIcon";
 import { Timeline } from "./Timeline";
 import { useT } from "@/lib/i18n";
 
-export function PlayerList({
+// Memoized: renders every player's full timeline, so without this it would
+// re-render (and re-paint all those cards) on every ~500ms clock tick. `state`
+// and `meId` are stable between ticks (only change on Realtime updates).
+export const PlayerList = memo(function PlayerList({
   state,
   meId,
 }: {
@@ -63,4 +67,4 @@ export function PlayerList({
       </div>
     </div>
   );
-}
+});

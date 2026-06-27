@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import type { PublicState } from "@/lib/protocol";
 import { addToFavorites, type FavoriteResult } from "@/lib/youtubeFavorites";
 import { useT } from "@/lib/i18n";
 
-export function RevealCard({
+// Memoized so the parent's ~500ms clock tick doesn't re-render the reveal card.
+export const RevealCard = memo(function RevealCard({
   state,
   googleToken,
 }: {
@@ -109,4 +110,4 @@ export function RevealCard({
       )}
     </div>
   );
-}
+});
