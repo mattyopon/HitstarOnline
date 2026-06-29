@@ -5692,7 +5692,8 @@
     "year": 1962,
     "country": "us",
     "categories": [
-      "jazz"
+      "jazz",
+      "bossa"
     ]
   },
   {
@@ -27966,7 +27967,8 @@
     "year": 1964,
     "country": "us",
     "categories": [
-      "jazz"
+      "jazz",
+      "bossa"
     ]
   },
   {
@@ -41677,7 +41679,8 @@
     "country": "us",
     "categories": [
       "uspop",
-      "rock"
+      "rock",
+      "blues"
     ]
   },
   {
@@ -59633,7 +59636,8 @@
     "year": 2020,
     "country": "pr",
     "categories": [
-      "latin"
+      "latin",
+      "reggaeton"
     ]
   },
   {
@@ -59741,7 +59745,8 @@
     "year": 2021,
     "country": "pr",
     "categories": [
-      "latin"
+      "latin",
+      "reggaeton"
     ]
   },
   {
@@ -76829,7 +76834,8 @@
     "year": 1987,
     "country": "us",
     "categories": [
-      "edm"
+      "edm",
+      "house"
     ]
   },
   {
@@ -77856,7 +77862,8 @@
     "year": 2005,
     "country": "fr",
     "categories": [
-      "edm"
+      "edm",
+      "house"
     ]
   },
   {
@@ -103219,6 +103226,249 @@
     "country": "us",
     "categories": [
       "punk"
+    ]
+  },
+  {
+    "title": "Downhearted Blues",
+    "artist": "Bessie Smith",
+    "year": 1923,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Goodnight Irene",
+    "artist": "Lead Belly",
+    "year": 1933,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Call It Stormy Monday",
+    "artist": "T-Bone Walker",
+    "year": 1947,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Smoking Gun",
+    "artist": "Robert Cray",
+    "year": 1986,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Still Got the Blues",
+    "artist": "Gary Moore",
+    "year": 1990,
+    "country": "gb",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "I Can't Make You Love Me",
+    "artist": "Bonnie Raitt",
+    "year": 1991,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Riding with the King",
+    "artist": "B.B. King & Eric Clapton",
+    "year": 2000,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "Sloe Gin",
+    "artist": "Joe Bonamassa",
+    "year": 2007,
+    "country": "us",
+    "categories": [
+      "blues"
+    ]
+  },
+  {
+    "title": "A Felicidade",
+    "artist": "Antônio Carlos Jobim",
+    "year": 1959,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ]
+  },
+  {
+    "title": "Berimbau",
+    "artist": "Baden Powell",
+    "year": 1963,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ]
+  },
+  {
+    "title": "Tarde em Itapuã",
+    "artist": "Toquinho & Vinicius de Moraes",
+    "year": 1971,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ]
+  },
+  {
+    "title": "Águas de Março",
+    "artist": "Elis Regina & Antônio Carlos Jobim",
+    "year": 1974,
+    "country": "br",
+    "categories": [
+      "bossa"
+    ]
+  },
+  {
+    "title": "Só Danço Samba",
+    "artist": "Stan Getz",
+    "year": 1962,
+    "country": "us",
+    "categories": [
+      "bossa"
+    ]
+  },
+  {
+    "title": "La Poupée qui fait non",
+    "artist": "Michel Polnareff",
+    "year": 1966,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Paroles, paroles",
+    "artist": "Dalida & Alain Delon",
+    "year": 1973,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "La Maladie d'amour",
+    "artist": "Michel Sardou",
+    "year": 1973,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Mademoiselle chante le blues",
+    "artist": "Patricia Kaas",
+    "year": 1987,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Ella, elle l'a",
+    "artist": "France Gall",
+    "year": 1987,
+    "country": "fr",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Balance ton quoi",
+    "artist": "Angèle",
+    "year": 2018,
+    "country": "be",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "Tout oublier",
+    "artist": "Angèle",
+    "year": 2018,
+    "country": "be",
+    "categories": [
+      "frenchpop"
+    ]
+  },
+  {
+    "title": "U Don't Know Me",
+    "artist": "Armand Van Helden",
+    "year": 1999,
+    "country": "us",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Need U (100%)",
+    "artist": "Duke Dumont",
+    "year": 2013,
+    "country": "gb",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "In My Mind",
+    "artist": "John Legend & Eric Prydz (Pryda)",
+    "year": 2016,
+    "country": "se",
+    "categories": [
+      "house"
+    ]
+  },
+  {
+    "title": "Tu Pum Pum",
+    "artist": "El General",
+    "year": 1991,
+    "country": "pa",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Oye Mi Canto",
+    "artist": "N.O.R.E.",
+    "year": 2004,
+    "country": "us",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Dura",
+    "artist": "Daddy Yankee",
+    "year": 2018,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
+    ]
+  },
+  {
+    "title": "Mia",
+    "artist": "Bad Bunny feat. Drake",
+    "year": 2018,
+    "country": "pr",
+    "categories": [
+      "reggaeton"
     ]
   }
 ]
