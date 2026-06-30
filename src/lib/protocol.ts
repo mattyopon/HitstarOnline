@@ -378,6 +378,14 @@ export const PACKS: PackDef[] = [
   { id: "pack:higedan", labelJa: "Official髭男dism縛り", labelEn: "Official HIGE DANdism", kind: "artist", accent: "#a87830" },
   { id: "pack:xjapan", labelJa: "X JAPAN縛り", labelEn: "X JAPAN", kind: "artist", accent: "#3d2e1a" },
   { id: "pack:arashi", labelJa: "嵐縛り", labelEn: "Arashi", kind: "artist", accent: "#c44a3a" },
+  // ── Anime franchise packs (>= 12 unique year-verified songs in the deck) ─────
+  { id: "pack:onepiece", labelJa: "ONE PIECE縛り", labelEn: "One Piece", kind: "franchise", accent: "#c44a3a" },
+  { id: "pack:conan", labelJa: "名探偵コナン縛り", labelEn: "Detective Conan", kind: "franchise", accent: "#3d2e1a" },
+  { id: "pack:naruto", labelJa: "NARUTO縛り", labelEn: "Naruto", kind: "franchise", accent: "#d4a330" },
+  { id: "pack:gundam", labelJa: "ガンダム縛り", labelEn: "Gundam", kind: "franchise", accent: "#3a6b4a" },
+  { id: "pack:pokemon", labelJa: "ポケモン縛り", labelEn: "Pokémon", kind: "franchise", accent: "#d4a330" },
+  { id: "pack:dragonball", labelJa: "ドラゴンボール縛り", labelEn: "Dragon Ball", kind: "franchise", accent: "#a87830" },
+  { id: "pack:kimetsu", labelJa: "鬼滅の刃縛り", labelEn: "Demon Slayer", kind: "franchise", accent: "#6b6a3a" },
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));

@@ -8050,7 +8050,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:gundam"
     ],
     "aliases": [
       "JUST COMMUNICATION"
@@ -8393,7 +8394,8 @@
       "karaoke",
       "jpop",
       "jrock",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:naruto"
     ],
     "aliases": [
       "GO!!!",
@@ -8410,7 +8412,8 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:onepiece"
     ],
     "aliases": [
       "ボン ボヤージュ!",
@@ -13178,7 +13181,9 @@
     "categories": [
       "karaoke",
       "jrock",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:gundam",
+      "jp-anime"
     ]
   },
   {
@@ -13263,7 +13268,8 @@
       "jpop",
       "movie-themes",
       "pack:utada",
-      "pack:superstar"
+      "pack:superstar",
+      "jp-anime"
     ]
   },
   {
@@ -13487,7 +13493,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:naruto",
+      "jp-anime"
     ]
   },
   {
@@ -14295,7 +14303,8 @@
       "karaoke",
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:onepiece"
     ]
   },
   {
@@ -14346,14 +14355,15 @@
   {
     "title": "残響散歌 (Zankyou Sanka)",
     "artist": "Aimer",
-    "year": 2022,
+    "year": 2021,
     "country": "jp",
     "categories": [
       "karaoke",
       "jp-anime",
       "jpop",
       "jrock",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:kimetsu"
     ]
   },
   {
@@ -14365,7 +14375,8 @@
       "karaoke",
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:kimetsu"
     ]
   },
   {
@@ -14380,7 +14391,8 @@
       "jrock",
       "pack:lisa",
       "pack:superstar",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:kimetsu"
     ]
   },
   {
@@ -14538,7 +14550,8 @@
     "categories": [
       "karaoke",
       "jp-anime",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:dragonball"
     ]
   },
   {
@@ -14548,7 +14561,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:dragonball"
     ]
   },
   {
@@ -15016,7 +15030,9 @@
     "categories": [
       "karaoke",
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:naruto",
+      "jp-anime"
     ]
   },
   {
@@ -16450,7 +16466,8 @@
       "jpop",
       "jp-anime",
       "karaoke",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:onepiece"
     ]
   },
   {
@@ -16695,7 +16712,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:onepiece"
     ]
   },
   {
@@ -26955,7 +26973,9 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:gundam",
+      "jp-anime"
     ]
   },
   {
@@ -27109,7 +27129,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:naruto",
+      "jp-anime"
     ]
   },
   {
@@ -30611,7 +30633,9 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "enka"
+      "enka",
+      "pack:dragonball",
+      "jp-anime"
     ]
   },
   {
@@ -35268,7 +35292,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:dragonball"
     ]
   },
   {
@@ -35279,7 +35304,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:dragonball"
     ]
   },
   {
@@ -35507,7 +35533,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:conan",
+      "jp-anime"
     ]
   },
   {
@@ -35517,7 +35545,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:conan",
+      "jp-anime"
     ]
   },
   {
@@ -35765,7 +35795,8 @@
       "jrock",
       "pack:yoasobi",
       "pack:superstar",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:gundam"
     ]
   },
   {
@@ -37142,7 +37173,9 @@
     "year": 1988,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:gundam",
+      "jp-anime"
     ]
   },
   {
@@ -38166,7 +38199,9 @@
       "jpop",
       "jrock",
       "pack:bz",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:conan",
+      "jp-anime"
     ]
   },
   {
@@ -39452,7 +39487,8 @@
       "jpop",
       "jp-anime",
       "pack:lisa",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:kimetsu"
     ]
   },
   {
@@ -39510,7 +39546,8 @@
     "categories": [
       "jpop",
       "pack:utada",
-      "pack:superstar"
+      "pack:superstar",
+      "jp-anime"
     ]
   },
   {
@@ -40089,7 +40126,8 @@
     "year": 1985,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:gundam"
     ]
   },
   {
@@ -40152,7 +40190,8 @@
     "year": 1986,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:dragonball"
     ]
   },
   {
@@ -40206,7 +40245,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:gundam"
     ]
   },
   {
@@ -40242,7 +40282,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:gundam"
     ]
   },
   {
@@ -40353,7 +40394,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:naruto"
     ]
   },
   {
@@ -40363,7 +40405,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:naruto"
     ]
   },
   {
@@ -40391,7 +40434,8 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:onepiece"
     ]
   },
   {
@@ -40716,7 +40760,8 @@
     "categories": [
       "jp-anime",
       "pack:lisa",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:kimetsu"
     ]
   },
   {
@@ -40727,7 +40772,8 @@
     "categories": [
       "jp-anime",
       "pack:lisa",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:kimetsu"
     ]
   },
   {
@@ -40737,7 +40783,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:kimetsu"
     ]
   },
   {
@@ -40747,7 +40794,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:kimetsu"
     ]
   },
   {
@@ -40800,7 +40848,8 @@
       "jp-anime",
       "jpop",
       "pack:superstar",
-      "pack:anime-op"
+      "pack:anime-op",
+      "pack:conan"
     ]
   },
   {
@@ -87052,7 +87101,9 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:naruto",
+      "jp-anime"
     ]
   },
   {
@@ -87269,7 +87320,9 @@
     "categories": [
       "jrock",
       "pack:bz",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:conan",
+      "jp-anime"
     ]
   },
   {
@@ -87481,7 +87534,9 @@
     "categories": [
       "jrock",
       "pack:bump",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:conan",
+      "jp-anime"
     ]
   },
   {
@@ -87553,7 +87608,9 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:onepiece",
+      "jp-anime"
     ]
   },
   {
@@ -137850,7 +137907,9 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:pokemon",
+      "jp-anime"
     ]
   },
   {
@@ -138479,7 +138538,8 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:kimetsu"
     ]
   },
   {
@@ -139380,7 +139440,9 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jrap"
+      "jrap",
+      "pack:naruto",
+      "jp-anime"
     ]
   },
   {
@@ -140994,7 +141056,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "pack:superstar"
+      "pack:superstar",
+      "pack:onepiece",
+      "jp-anime"
     ]
   },
   {
@@ -141194,7 +141258,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:gundam",
+      "jp-anime"
     ]
   },
   {
@@ -142936,6 +143002,1770 @@
     "country": "jp",
     "categories": [
       "vocaloid"
+    ]
+  },
+  {
+    "title": "胸がドキドキ",
+    "artist": "THE HIGH-LOWS",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "STEP BY STEP",
+    "artist": "ZIGGY",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "迷宮のラヴァーズ",
+    "artist": "heath",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "謎",
+    "artist": "小松未歩",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "君がいない夏",
+    "artist": "DEEN",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "光と影のロマン",
+    "artist": "宇徳敬子",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Happy Birthday",
+    "artist": "杏子",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "運命のルーレット廻して",
+    "artist": "ZARD",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "TRUTH 〜A Great Detective of Love〜",
+    "artist": "TWO-MIX",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "願い事ひとつだけ",
+    "artist": "小松未歩",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "少女の頃に戻ったみたいに",
+    "artist": "ZARD",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ONE",
+    "artist": "B'z",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Mysterious Eyes",
+    "artist": "GARNET CROW",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "恋はスリル、ショック、サスペンス",
+    "artist": "愛内里菜",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "あなたがいるから",
+    "artist": "小松未歩",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Start in my life",
+    "artist": "倉木麻衣",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "always",
+    "artist": "倉木麻衣",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Winter Bells",
+    "artist": "倉木麻衣",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "夢みたあとで",
+    "artist": "GARNET CROW",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "スパイラル",
+    "artist": "GARNET CROW",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Everlasting",
+    "artist": "B'z",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "君という光",
+    "artist": "GARNET CROW",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Dream×Dream",
+    "artist": "愛内里菜",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "夏を待つセイル(帆)のように",
+    "artist": "ZARD",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "100もの扉",
+    "artist": "愛内里菜 & 三枝夕夏",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "白い雪",
+    "artist": "倉木麻衣",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "七つの海を渡る風のように",
+    "artist": "愛内里菜 & 三枝夕夏",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "涙のイエスタデー",
+    "artist": "GARNET CROW",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "PUZZLE",
+    "artist": "倉木麻衣",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Over Drive",
+    "artist": "GARNET CROW",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Summer Time Gone",
+    "artist": "倉木麻衣",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Your Best Friend",
+    "artist": "倉木麻衣",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ハルウタ",
+    "artist": "いきものがかり",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ワンモアタイム",
+    "artist": "斉藤和義",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "謎 (La PomPon ver.)",
+    "artist": "La PomPon",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "羽",
+    "artist": "稲葉浩志",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "世界はあなたの色になる",
+    "artist": "B'z",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "カウントダウン",
+    "artist": "NormCore",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "BLUE SAPPHIRE",
+    "artist": "登坂広臣",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "相思相愛",
+    "artist": "aiko",
+    "year": 2024,
+    "country": "jp",
+    "categories": [
+      "pack:conan",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "魔訶不思議アドベンチャー！",
+    "artist": "高橋洋樹",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "でてこいとびきりZENKAIパワー！",
+    "artist": "MANNA",
+    "year": 1989,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "僕達は天使だった",
+    "artist": "影山ヒロノブ",
+    "year": 1993,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ひとりじゃない",
+    "artist": "DEEN",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Blue Velvet",
+    "artist": "工藤静香",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "錆びついたマシンガンで今を撃ち抜こう",
+    "artist": "WANDS",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Dragon Soul",
+    "artist": "谷本貴義",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "空・前・絶・後 〜Kuu-Zen-Zetsu-Go〜",
+    "artist": "谷本貴義",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "超絶☆ダイナミック！",
+    "artist": "吉井和哉",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ハローハローハロー",
+    "artist": "Good Morning America",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "薄紅",
+    "artist": "LACCO TOWER",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "遥",
+    "artist": "LACCO TOWER",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "70cm四方の窓辺",
+    "artist": "ROTTENGRAFFTY",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Boogie Back",
+    "artist": "井上実優",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Blizzard",
+    "artist": "三浦大知",
+    "year": 2018,
+    "country": "jp",
+    "categories": [
+      "pack:dragonball",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "THANATOS -IF I CAN'T BE YOURS-",
+    "artist": "LOREN & MASH",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Komm, süsser Tod",
+    "artist": "ARIANNE",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "桜流し",
+    "artist": "宇多田ヒカル",
+    "year": 2012,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "翔べ! ガンダム",
+    "artist": "池田鴻",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "永遠にアムロ",
+    "artist": "池田鴻",
+    "year": 1979,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "砂の十字架",
+    "artist": "やしきたかじん",
+    "year": 1981,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Ζ・刻をこえて",
+    "artist": "鮎川麻弥",
+    "year": 1985,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "星空のBelieve",
+    "artist": "鮎川麻弥",
+    "year": 1985,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "アニメじゃない〜夢を忘れた古い地球人よ〜",
+    "artist": "新井正人",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "サイレント・ヴォイス",
+    "artist": "ひろえ純",
+    "year": 1986,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "FLYING IN THE SKY",
+    "artist": "鵜島仁文",
+    "year": 1994,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "DREAMS",
+    "artist": "ROMANTIC MODE",
+    "year": 1996,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "月の繭",
+    "artist": "奥井亜紀",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "INVOKE -インヴォーク-",
+    "artist": "T.M.Revolution",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "moment",
+    "artist": "Vivian or Kazuma",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Realize",
+    "artist": "玉置成実",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ignited -イグナイテッド-",
+    "artist": "T.M.Revolution",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "PRIDE",
+    "artist": "HIGH and MIGHTY COLOR",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Reason",
+    "artist": "玉置成実",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "RE:I AM",
+    "artist": "Aimer",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Raise your flag",
+    "artist": "MAN WITH A MISSION",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "オルフェンズの涙",
+    "artist": "MISIA",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Survivor",
+    "artist": "BLUE ENCOUNT",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "slash",
+    "artist": "yama",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "pack:gundam",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "give it back",
+    "artist": "Cö shu Nie",
+    "year": 2021,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "燈",
+    "artist": "崎山蒼志",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "more than words",
+    "artist": "羊文学",
+    "year": 2023,
+    "country": "jp",
+    "categories": [
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "竈門炭治郎のうた (Kamado Tanjiro no Uta)",
+    "artist": "椎名豪 featuring 中川奈美",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:kimetsu",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "朝が来る (Asa ga Kuru)",
+    "artist": "Aimer",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "pack:kimetsu",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "永久 -トコシエ- (Tokoshie)",
+    "artist": "HYDE × MY FIRST STORY",
+    "year": 2024,
+    "country": "jp",
+    "categories": [
+      "pack:kimetsu",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "太陽が昇らない世界 (Taiyo ga Noboranai Sekai)",
+    "artist": "Aimer",
+    "year": 2025,
+    "country": "jp",
+    "categories": [
+      "pack:kimetsu",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "残酷な夜に輝け (Zankoku na Yoru ni Kagayake)",
+    "artist": "LiSA",
+    "year": 2025,
+    "country": "jp",
+    "categories": [
+      "pack:kimetsu",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "R★O★C★K★S",
+    "artist": "HOUND DOG",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Wind",
+    "artist": "Akeboshi",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ハルモニア (Harmonia)",
+    "artist": "RYTHEM",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ビバ★ロック 〜japanese side〜 (Viva★Rock)",
+    "artist": "ORANGE RANGE",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ALIVE",
+    "artist": "Raico",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Mountain a Go Go Two",
+    "artist": "Captain Straydum",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Hero's Come Back!!",
+    "artist": "nobodyknows+",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "closer",
+    "artist": "Joe Inoue",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Diver",
+    "artist": "NICO Touches the Walls",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ラヴァーズ (Lovers)",
+    "artist": "7!!",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "もしも (Moshimo)",
+    "artist": "Daisuke",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "風 (Kaze)",
+    "artist": "Yamazaru",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "LINE",
+    "artist": "Sukima Switch",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "カラノココロ (Kara no Kokoro)",
+    "artist": "Anly",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "道 〜to you all (Michi)",
+    "artist": "aluto",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Broken Youth",
+    "artist": "NICO Touches the Walls",
+    "year": 2008,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "BACCHIKOI!!!",
+    "artist": "DEV PARADE",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "U can do it!",
+    "artist": "DOMINO",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "真夜中のオーケストラ (Mayonaka no Orchestra)",
+    "artist": "Aqua Timez",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ニワカ雨ニモ負ケズ (Niwaka Ame ni mo Makezu)",
+    "artist": "NICO Touches the Walls",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "さよならメモリー (Sayonara Memory)",
+    "artist": "7!!",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "FLAME",
+    "artist": "DISH//",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Spinning World",
+    "artist": "Diana Garnet",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "バトンロード (Baton Road)",
+    "artist": "KANA-BOON",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "OVER",
+    "artist": "Little Glee Monster",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Lonely Go!",
+    "artist": "Brian the Sun",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ゴールデンタイム (Golden Time)",
+    "artist": "フジファブリック (Fujifabric)",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ドリーミージャーニー (Dreamy Journey)",
+    "artist": "the peggies",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "サヨナラムーンタウン (Sayonara Moon Town)",
+    "artist": "シナリオアート (Scenarioart)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:naruto",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "We Are!",
+    "artist": "きただにひろし (Hiroshi Kitadani)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ヒカリへ (Hikari e)",
+    "artist": "The Babystars",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ココロのちず (Kokoro no Chizu)",
+    "artist": "BOYSTYLE",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "BRAND NEW WORLD",
+    "artist": "D-51",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Crazy Rainbow",
+    "artist": "タッキー＆翼 (Tackey & Tsubasa)",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Jungle P",
+    "artist": "5050",
+    "year": 2007,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Share The World",
+    "artist": "東方神起 (TVXQ)",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "風をさがして (Kaze wo Sagashite)",
+    "artist": "矢口真里とストローハット (Mari Yaguchi with the Straw Hats)",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "One day",
+    "artist": "The ROOTLESS",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Fight Together",
+    "artist": "安室奈美恵 (Namie Amuro)",
+    "year": 2011,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "HANDS UP!",
+    "artist": "新里宏太 (Kota Shinzato)",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Wake up!",
+    "artist": "AAA",
+    "year": 2014,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Hard Knock Days",
+    "artist": "GENERATIONS from EXILE TRIBE",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "We Can!",
+    "artist": "きただにひろし & 氣志團 (Kishidan)",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Hope",
+    "artist": "安室奈美恵 (Namie Amuro)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Super Powers",
+    "artist": "V6",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "OVER THE TOP",
+    "artist": "きただにひろし (Hiroshi Kitadani)",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "PAINT",
+    "artist": "I Don't Like Mondays.",
+    "year": 2022,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "あーーっす! (Uuuuus!)",
+    "artist": "きただにひろし (Hiroshi Kitadani)",
+    "year": 2024,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "天使と悪魔 (Tenshi to Akuma)",
+    "artist": "GRe4N BOYZ",
+    "year": 2025,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "memories",
+    "artist": "大槻真希 (Maki Otsuki)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "RUN! RUN! RUN!",
+    "artist": "大槻真希 (Maki Otsuki)",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "私がいるよ (Watashi ga Iru Yo)",
+    "artist": "TOMATO CUBE",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "しょうちのすけ (Shōchi no suke)",
+    "artist": "推定少女 (Suitei Shoujo)",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "BEFORE DAWN",
+    "artist": "AI-SACHI",
+    "year": 2001,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "fish",
+    "artist": "The Kaleidoscope",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "GLORY -君がいるから- (GLORY -Kimi ga Iru Kara-)",
+    "artist": "上原多香子 (Takako Uehara)",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Shining ray",
+    "artist": "Janne Da Arc",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Free Will",
+    "artist": "ルッピーナ (Ruppina)",
+    "year": 2002,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "FAITH",
+    "artist": "ルッピーナ (Ruppina)",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "A to Z",
+    "artist": "ZZ",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "月と太陽 (Tsuki to Taiyou)",
+    "artist": "shela",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Dreamship",
+    "artist": "Aiko Ikuta (生田秋子)",
+    "year": 2004,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Eternal Pose",
+    "artist": "エイジアエンジニア (Asia Engineer)",
+    "year": 2005,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Dear friends",
+    "artist": "TRIPLANE",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "明日は来るから (Asu wa Kuru Kara)",
+    "artist": "東方神起 (TVXQ)",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "fanfare",
+    "artist": "Mr.Children",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "How You Remind Me",
+    "artist": "Avril Lavigne",
+    "year": 2012,
+    "country": "ca",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "怒りをくれよ (Ikari wo Kureyo)",
+    "artist": "GLIM SPANKY",
+    "year": 2016,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "GONG",
+    "artist": "WANIMA",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:onepiece",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ひゃくごじゅういち",
+    "artist": "オーキド博士(CV:石塚運昇) & ポケモンキッズ",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ポケモン言えるかな?",
+    "artist": "イマクニ?",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ニャースのうた",
+    "artist": "ニャース(犬山イヌコ)",
+    "year": 1997,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ポケットにファンタジー",
+    "artist": "さち&じゅり",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "風といっしょに",
+    "artist": "小林幸子",
+    "year": 1998,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ライバル!",
+    "artist": "松本梨香",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "タイプ:ワイルド",
+    "artist": "松本梨香",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ニャースのパーティ",
+    "artist": "ニャース(犬山イヌコ)",
+    "year": 1999,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "OK!",
+    "artist": "松本梨香",
+    "year": 2000,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "アドバンス・アドベンチャー〜Advanced Adventure〜",
+    "artist": "GARDEN",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ポルカ・オ・ドルカ",
+    "artist": "ニャース(犬山イヌコ)&ノルソル合唱団",
+    "year": 2003,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "Together",
+    "artist": "あきよしふみえ",
+    "year": 2006,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "心のアンテナ",
+    "artist": "中川翔子",
+    "year": 2009,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ベストウイッシュ!",
+    "artist": "松本梨香",
+    "year": 2010,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "V(ボルト)",
+    "artist": "遊助",
+    "year": 2013,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ドリドリ",
+    "artist": "中川翔子",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ゲッタバンバン",
+    "artist": "佐香智久",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "XY&Z",
+    "artist": "サトシ(松本梨香)",
+    "year": 2015,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "アローラ!!",
+    "artist": "サトシwithピカチュウ(松本梨香/大谷育江)",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "ポーズ",
+    "artist": "岡崎体育",
+    "year": 2017,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
+    ]
+  },
+  {
+    "title": "1・2・3",
+    "artist": "After the Rain(そらる×まふまふ)",
+    "year": 2019,
+    "country": "jp",
+    "categories": [
+      "pack:pokemon",
+      "jp-anime"
     ]
   }
 ]
