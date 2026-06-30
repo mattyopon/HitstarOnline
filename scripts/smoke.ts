@@ -29,7 +29,7 @@ import {
   setConnected,
   mulberry32,
 } from "../src/lib/engine";
-import { Song } from "../src/lib/protocol";
+import { Song, CATEGORIES } from "../src/lib/protocol";
 import { applyResult, defaultRank } from "../src/lib/rank";
 
 // 12 songs, years 1960,1965,...,2015 — distinct so placement is determinable.
@@ -503,12 +503,16 @@ console.log("Scenario M (vote tie / abstain / seed):");
   g = openVoting(g, 1000);
 
   // Tie: alice→rock, bob→jazz; voteWinner returns BOTH (max-count), in canonical
-  // CATEGORIES order (rock precedes jazz in the list), deterministically.
+  // CATEGORIES order, deterministically. The expected relative order is derived
+  // from CATEGORIES so this stays correct if the menu order changes.
   g = castVote(g, "alice", ["rock"], 1100);
   g = castVote(g, "bob", ["jazz"], 1200);
   const tie = voteWinner(g);
   ok("tie returns both max-count cats", tie.length === 2 && tie.includes("rock") && tie.includes("jazz"));
-  ok("tie order is canonical (rock before jazz)", tie.indexOf("rock") < tie.indexOf("jazz"));
+  const catOrder = CATEGORIES.map((c) => c.id);
+  const expectFirst = catOrder.indexOf("rock") < catOrder.indexOf("jazz") ? "rock" : "jazz";
+  const expectSecond = expectFirst === "rock" ? "jazz" : "rock";
+  ok("tie order is canonical (matches CATEGORIES order)", tie.indexOf(expectFirst) < tie.indexOf(expectSecond));
 
   // votesHashSeed deterministic for the same state, differs after a vote change.
   const seed1 = votesHashSeed(g);
