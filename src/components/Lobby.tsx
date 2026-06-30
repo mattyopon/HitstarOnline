@@ -6,10 +6,10 @@ import { api } from "@/lib/clientApi";
 import { createClient } from "@/lib/supabase/client";
 import { Avatar } from "./Avatar";
 import type { ClientUser } from "@/hooks/useUser";
-import { CATEGORIES } from "@/lib/protocol";
 import type { BotDifficulty, GameMode } from "@/lib/protocol";
 import { StatsPanel } from "./StatsPanel";
 import { SettingsPanel } from "./SettingsPanel";
+import { ThemeBrowser } from "./scope/ThemeBrowser";
 import { useT } from "@/lib/i18n";
 
 export function Lobby({ user }: { user: ClientUser }) {
@@ -43,10 +43,6 @@ export function Lobby({ user }: { user: ClientUser }) {
       /* ignore */
     }
   }, []);
-
-  function toggleCat(id: string) {
-    setCats((c) => (c.includes(id) ? c.filter((x) => x !== id) : [...c, id]));
-  }
 
   async function googleLogin() {
     setBusy("google");
@@ -226,22 +222,7 @@ export function Lobby({ user }: { user: ClientUser }) {
       <label className="section-eyebrow" style={{ marginBottom: 0 }}>
         {t("出題カテゴリ（未選択＝全ジャンル）")}
       </label>
-      <div className="cats">
-        {CATEGORIES.map((c) => {
-          const on = cats.includes(c.id);
-          return (
-            <button
-              key={c.id}
-              type="button"
-              className={"tag" + (on ? " on" : "")}
-              aria-pressed={on}
-              onClick={() => toggleCat(c.id)}
-            >
-              {t(c.labelJa)}
-            </button>
-          );
-        })}
-      </div>
+      <ThemeBrowser selected={cats} onChange={setCats} multi showPacks variant="lobby" />
 
       {(playMode === "solo" ? !practice : !ranked) && (
         <>

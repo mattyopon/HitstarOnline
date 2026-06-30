@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { CATEGORIES, type PublicState } from "@/lib/protocol";
+import { type PublicState } from "@/lib/protocol";
 import { useServerNow } from "@/hooks/useServerNow";
+import { ThemeBrowser } from "./scope/ThemeBrowser";
 import { useT } from "@/lib/i18n";
 
 /**
@@ -37,10 +38,6 @@ export function VotingPanel({
   useEffect(() => {
     if (myVote) setPicked(myVote);
   }, [myVote?.join(",")]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  function toggle(id: string) {
-    setPicked((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
-  }
 
   // Eligible voters = connected non-bot players (mirrors the server's
   // voteWinner/allVoted base). Stale ballots from departed/disconnected players
@@ -86,29 +83,7 @@ export function VotingPanel({
 
       {actionErr && <div className="error">{actionErr}</div>}
 
-      <div className="row wrap" style={{ gap: 6 }}>
-        {CATEGORIES.map((c) => {
-          const on = picked.includes(c.id);
-          const count = tally[c.id] ?? 0;
-          return (
-            <button
-              key={c.id}
-              type="button"
-              className={"pill" + (on ? " on" : "")}
-              onClick={() => toggle(c.id)}
-              disabled={busy}
-              style={{ cursor: "pointer" }}
-            >
-              {t(c.labelJa)}
-              {count > 0 && (
-                <span className="mono tiny" style={{ marginLeft: 6, opacity: 0.85 }}>
-                  {t("{n}票", { n: count })}
-                </span>
-              )}
-            </button>
-          );
-        })}
-      </div>
+      <ThemeBrowser selected={picked} onChange={setPicked} tally={tally} variant="vote" />
 
       <button className="btn block" disabled={busy} onClick={() => onVote(picked)}>
         {iVoted ? t("投票を変更する") : t("この内容で投票する")}
