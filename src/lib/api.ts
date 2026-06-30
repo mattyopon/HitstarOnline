@@ -1,11 +1,10 @@
 // Shared helpers for API route handlers (server only).
 import { getSessionUser, SessionUser } from "./auth";
 import { GameError, voteWinner, votesHashSeed } from "./engine";
-import { getDeck, shuffledDeckOrder } from "./deck";
+import { getDeck, sanitizeScope, shuffledDeckOrder } from "./deck";
 import { ConflictError, NotFoundError, mutateByCode } from "./rooms";
 import {
   BotDifficulty,
-  CATEGORY_IDS,
   FullGame,
   GameMode,
   GameSettings,
@@ -53,9 +52,9 @@ export function sanitizeSettings(input: unknown): Partial<GameSettings> {
     out.targetCards = Math.floor(s.targetCards);
   }
   if (Array.isArray(s.categories)) {
-    out.categories = [...new Set(s.categories)].filter(
-      (x): x is string => typeof x === "string" && CATEGORY_IDS.has(x),
-    );
+    // Scope accepts genre category ids AND theme-pack ids ("pack:<slug>"); a
+    // selected pack constrains the deck exclusively at deck-build time.
+    out.categories = sanitizeScope(s.categories);
   }
   return out;
 }

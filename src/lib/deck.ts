@@ -1,5 +1,5 @@
 import deckData from "../../data/deck.json";
-import { Song } from "./protocol";
+import { CATEGORY_IDS, PACK_IDS, Song, isPackId } from "./protocol";
 import { mulberry32 } from "./engine";
 
 const DECK: Song[] = deckData as Song[];
@@ -30,9 +30,43 @@ function inCategories(song: Song, set: Set<string> | null): boolean {
   return cats.some((c) => set.has(c));
 }
 
-/** How many songs the deck holds for a given category filter (empty = all). */
+/**
+ * Keep only scope ids the server recognizes: the 27 genre categories OR a
+ * registered theme pack. Unknown ids (stale/forged) are dropped. Order-stable,
+ * de-duplicated. Used by sanitizeSettings so packs and genres both pass through.
+ */
+export function sanitizeScope(ids: unknown): string[] {
+  if (!Array.isArray(ids)) return [];
+  const out: string[] = [];
+  const seen = new Set<string>();
+  for (const id of ids) {
+    if (typeof id !== "string" || seen.has(id)) continue;
+    if (CATEGORY_IDS.has(id) || PACK_IDS.has(id)) {
+      seen.add(id);
+      out.push(id);
+    }
+  }
+  return out;
+}
+
+/**
+ * Resolve a (already-sanitized) scope to the EXCLUSIVE deck filter ("縛り").
+ * If ANY pack id is selected, the deck is constrained to the pack(s) and genre
+ * ids are ignored — selecting a 縛り is a deliberate, dominant choice. Otherwise
+ * the genre ids pass through unchanged (empty = all). The returned list is fed
+ * to shuffledDeckOrder/deckSizeForCategories, which intersect against songs'
+ * categories[] tags (packs are tagged "pack:<slug>" in that same array).
+ */
+export function resolveScopeFilter(ids: string[]): string[] {
+  const packs = ids.filter(isPackId);
+  return packs.length ? packs : ids;
+}
+
+/** How many songs the deck holds for a given scope filter (empty = all).
+ *  A selected pack constrains the deck exclusively (resolveScopeFilter). */
 export function deckSizeForCategories(categories?: string[]): number {
-  const set = categories && categories.length ? new Set(categories) : null;
+  const scope = categories && categories.length ? resolveScopeFilter(categories) : [];
+  const set = scope.length ? new Set(scope) : null;
   let n = 0;
   for (const song of DECK) if (inCategories(song, set)) n++;
   return n;
@@ -48,7 +82,10 @@ export function deckSizeForCategories(categories?: string[]): number {
  * must produce the same deck on every re-run. Otherwise crypto RNG is used.
  */
 export function shuffledDeckOrder(categories?: string[], seed?: number): number[] {
-  const set = categories && categories.length ? new Set(categories) : null;
+  // A selected pack constrains the deck exclusively ("縛り"); otherwise genres
+  // pass through. The intersection algorithm below is unchanged.
+  const scope = categories && categories.length ? resolveScopeFilter(categories) : [];
+  const set = scope.length ? new Set(scope) : null;
   const arr = DECK.map((_, i) => i).filter((i) => inCategories(DECK[i], set));
   const rng = typeof seed === "number" && Number.isFinite(seed) ? mulberry32(seed) : null;
   for (let i = arr.length - 1; i > 0; i--) {

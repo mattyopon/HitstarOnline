@@ -5,7 +5,7 @@
 import { createAdminClient } from "./supabase/admin";
 import { getDeck } from "./deck";
 import { wonCards } from "./engine";
-import { CATEGORIES, type Phase, type PublicPlayer, type PublicState } from "./protocol";
+import { CATEGORIES, isPackId, type Phase, type PublicPlayer, type PublicState } from "./protocol";
 
 function isRealUser(p: PublicPlayer | undefined): p is PublicPlayer {
   return !!p && !p.isBot;
@@ -49,7 +49,9 @@ async function recordReveal(roomId: string, state: PublicState): Promise<void> {
     .insert({ room_id: roomId, version: state.version });
   if (guardErr) return; // 23505 (already recorded) or other → skip
 
-  const cats = categoriesOf(reveal.songId);
+  // Theme-pack tags ("pack:<slug>") live alongside genre categories in the
+  // song's categories[]; they must NOT create per-category stat buckets.
+  const cats = categoriesOf(reveal.songId).filter((c) => !isPackId(c));
   if (cats.length === 0) return;
 
   const byUser = state.players.reduce<Record<string, PublicPlayer>>((m, p) => {

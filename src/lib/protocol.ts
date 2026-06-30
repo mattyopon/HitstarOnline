@@ -324,3 +324,60 @@ export const CATEGORIES: CategoryDef[] = [
 ];
 
 export const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id));
+
+// ───────────────────────────────────────────────────────────────────────────
+// Theme packs ("縛り") — a SEPARATE axis from the 27 genre CATEGORIES above.
+// A pack is a curated subset of the SAME deck songs, tagged with a "pack:<slug>"
+// entry in their categories[] array. Packs piggyback on GameSettings.categories
+// (no new settings field): selecting a pack id constrains the deck to that pack.
+// CATEGORIES is never touched — packs live only in the PACKS registry below.
+// ───────────────────────────────────────────────────────────────────────────
+
+/** Tag/id prefix that distinguishes a theme pack from a genre category. */
+export const PACK_PREFIX = "pack:";
+
+/** True iff `id` is a theme-pack id (vs. one of the 27 genre categories). */
+export function isPackId(id: string): boolean {
+  return id.startsWith(PACK_PREFIX);
+}
+
+/** Kind of pack — drives grouping/labeling in the picker UI. */
+export type PackKind = "franchise" | "artist" | "anime-op";
+
+export interface PackDef {
+  /** MUST start with PACK_PREFIX ("pack:"). */
+  id: string;
+  labelJa: string;
+  labelEn: string;
+  kind: PackKind;
+  /** Optional Vinyl Lounge accent token (hex) for the pack chip/badge. */
+  accent?: string;
+}
+
+/**
+ * Registered theme packs. Each id MUST start with "pack:" and MUST NOT collide
+ * with any CATEGORIES id. Only packs with enough tagged songs in the deck
+ * (>= players + MIN_DECK_MARGIN; we register at the 12-song playable threshold)
+ * are listed here so a normal game always has a workable deck.
+ */
+export const PACKS: PackDef[] = [
+  // ── Theme / franchise-style packs ──────────────────────────────────────────
+  { id: "pack:anime-op", labelJa: "人気アニメOP", labelEn: "Popular Anime Openings", kind: "anime-op", accent: "#c44a3a" },
+  { id: "pack:superstar", labelJa: "超人気アーティスト", labelEn: "Superstars", kind: "artist", accent: "#d4a330" },
+  // ── Single-artist 縛り packs (>= 12 tagged songs in the deck) ───────────────
+  { id: "pack:bz", labelJa: "B'z縛り", labelEn: "B'z", kind: "artist", accent: "#a87830" },
+  { id: "pack:lisa", labelJa: "LiSA縛り", labelEn: "LiSA", kind: "artist", accent: "#c44a3a" },
+  { id: "pack:bump", labelJa: "BUMP OF CHICKEN縛り", labelEn: "BUMP OF CHICKEN", kind: "artist", accent: "#3a6b4a" },
+  { id: "pack:yonezu", labelJa: "米津玄師縛り", labelEn: "Kenshi Yonezu", kind: "artist", accent: "#6b6a3a" },
+  { id: "pack:utada", labelJa: "宇多田ヒカル縛り", labelEn: "Hikaru Utada", kind: "artist", accent: "#a87830" },
+  { id: "pack:mrchildren", labelJa: "Mr.Children縛り", labelEn: "Mr.Children", kind: "artist", accent: "#c44a3a" },
+  { id: "pack:oneokrock", labelJa: "ONE OK ROCK縛り", labelEn: "ONE OK ROCK", kind: "artist", accent: "#3d2e1a" },
+  { id: "pack:southern", labelJa: "サザンオールスターズ縛り", labelEn: "Southern All Stars", kind: "artist", accent: "#3a6b4a" },
+  { id: "pack:mrsgreenapple", labelJa: "Mrs. GREEN APPLE縛り", labelEn: "Mrs. GREEN APPLE", kind: "artist", accent: "#6b6a3a" },
+  { id: "pack:yoasobi", labelJa: "YOASOBI縛り", labelEn: "YOASOBI", kind: "artist", accent: "#d4a330" },
+  { id: "pack:higedan", labelJa: "Official髭男dism縛り", labelEn: "Official HIGE DANdism", kind: "artist", accent: "#a87830" },
+  { id: "pack:xjapan", labelJa: "X JAPAN縛り", labelEn: "X JAPAN", kind: "artist", accent: "#3d2e1a" },
+  { id: "pack:arashi", labelJa: "嵐縛り", labelEn: "Arashi", kind: "artist", accent: "#c44a3a" },
+];
+
+export const PACK_IDS = new Set(PACKS.map((p) => p.id));

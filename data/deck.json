@@ -710,7 +710,9 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -719,7 +721,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -737,7 +741,8 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -764,7 +769,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -782,7 +789,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -1368,7 +1377,8 @@
     "year": 1974,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1377,7 +1387,8 @@
     "year": 1979,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1395,7 +1406,8 @@
     "year": 1981,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1404,7 +1416,8 @@
     "year": 1986,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1413,7 +1426,8 @@
     "year": 1988,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1422,7 +1436,8 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1431,7 +1446,8 @@
     "year": 1992,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1449,7 +1465,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1458,7 +1475,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1467,7 +1485,8 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1476,7 +1495,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1485,7 +1505,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1496,7 +1517,9 @@
     "categories": [
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -1505,7 +1528,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1514,7 +1538,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1532,7 +1557,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1541,7 +1567,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -1550,7 +1577,10 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -1559,7 +1589,10 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -1568,7 +1601,9 @@
     "year": 1979,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -1696,7 +1731,8 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -1716,7 +1752,8 @@
     "categories": [
       "jpop",
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -1725,7 +1762,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -1734,7 +1772,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -1752,7 +1792,8 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -3115,7 +3156,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -3133,7 +3176,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -3170,7 +3215,9 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -3215,7 +3262,9 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -4849,7 +4898,9 @@
     "year": 1978,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ],
     "aliases": [
       "勝手にシンドバッド"
@@ -4864,7 +4915,9 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ],
     "aliases": [
       "紅"
@@ -4876,7 +4929,9 @@
     "year": 1992,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ],
     "aliases": [
       "涙のキッス"
@@ -4893,7 +4948,9 @@
     "categories": [
       "jrock",
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:bz",
+      "pack:superstar"
     ],
     "aliases": [
       "ウルトラソウル"
@@ -4905,7 +4962,9 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ],
     "aliases": [
       "愛のままにわがままに僕は君だけを傷つけない"
@@ -4920,7 +4979,9 @@
       "jrock",
       "karaoke",
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ],
     "aliases": [
       "トゥモロー・ネバー・ノウズ"
@@ -4951,7 +5012,9 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ],
     "aliases": [
       "名もなき詩"
@@ -4966,7 +5029,9 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ],
     "aliases": [
       "天体観測"
@@ -4981,7 +5046,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ],
     "aliases": [
       "カルマ"
@@ -5014,7 +5081,9 @@
     "categories": [
       "jrock",
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:oneokrock",
+      "pack:superstar"
     ],
     "aliases": [
       "ザ・ビギニング"
@@ -5032,7 +5101,9 @@
     "categories": [
       "jrock",
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:oneokrock",
+      "pack:superstar"
     ],
     "artistAliases": [
       "ワンオク"
@@ -5045,7 +5116,8 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ],
     "aliases": [
       "前前前世"
@@ -5062,7 +5134,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ],
     "aliases": [
       "オーダーメイド"
@@ -5108,7 +5181,9 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ],
     "aliases": [
       "エンドレス・レイン"
@@ -5165,7 +5240,9 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ],
     "aliases": [
       "花火",
@@ -6826,7 +6903,9 @@
     "categories": [
       "jpop",
       "karaoke",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ],
     "aliases": [
       "イノセントワールド"
@@ -6856,7 +6935,9 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ],
     "aliases": [
       "ファースト・ラヴ"
@@ -6933,7 +7014,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ],
     "aliases": [
       "恋するフォーチュンクッキー"
@@ -6963,7 +7045,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:aimyon",
+      "pack:superstar"
     ],
     "aliases": [
       "マリーゴールド"
@@ -6978,7 +7062,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yoasobi",
+      "pack:superstar"
     ],
     "aliases": [
       "夜に駆ける"
@@ -7607,7 +7693,8 @@
     "year": 1972,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "マジンガーZ"
@@ -7760,7 +7847,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jidol"
+      "jidol",
+      "pack:anime-op"
     ],
     "aliases": [
       "キャッツ・アイ"
@@ -7807,7 +7895,8 @@
     "year": 1985,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "タッチ"
@@ -7838,7 +7927,8 @@
     "year": 1990,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "おどるポンポコリン",
@@ -7873,7 +7963,8 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "君が好きだと叫びたい",
@@ -7907,7 +7998,8 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "WE GOTTA POWER"
@@ -7923,7 +8015,8 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "世界が終るまでは…",
@@ -7956,7 +8049,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "JUST COMMUNICATION"
@@ -7972,7 +8066,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "残酷な天使のテーゼ",
@@ -8024,7 +8119,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "HEART OF SWORD 〜夜明け前〜",
@@ -8043,7 +8139,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "DAN DAN 心魅かれてく",
@@ -8059,7 +8156,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "GIVE A REASON"
@@ -8106,7 +8204,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "冒険でしょでしょ?",
@@ -8138,7 +8237,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "Cagayake!GIRLS",
@@ -8159,7 +8259,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "もってけ!セーラーふく",
@@ -8180,7 +8281,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ],
     "aliases": [
       "Code Geass OP",
@@ -8194,7 +8296,8 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "メリッサ",
@@ -8212,7 +8315,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "アスタリスク",
@@ -8233,7 +8337,8 @@
     "categories": [
       "jp-anime",
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ],
     "aliases": [
       "D-technoLife",
@@ -8248,7 +8353,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ],
     "aliases": [
       "ROLLING STAR",
@@ -8265,7 +8371,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "桜キッス",
@@ -8285,7 +8392,8 @@
       "jp-anime",
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ],
     "aliases": [
       "GO!!!",
@@ -8320,7 +8428,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "karaoke"
+      "karaoke",
+      "pack:anime-op"
     ],
     "aliases": [
       "INVOKE -インヴォーク-",
@@ -8340,7 +8449,8 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "IGNITED -イグナイテッド-",
@@ -8407,7 +8517,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "君の知らない物語",
@@ -8454,7 +8565,8 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "スノーハレーション",
@@ -8488,7 +8600,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "コネクト",
@@ -8501,7 +8614,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "ハッキング・トゥ・ザ・ゲート"
@@ -8551,7 +8665,10 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:lisa",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "クロッシング・フィールド"
@@ -8598,7 +8715,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "光るなら"
@@ -8630,7 +8748,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "ディス・ゲーム"
@@ -8646,7 +8765,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "シュガーソングとビターステップ",
@@ -8679,7 +8799,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "ブレイブ・シャイン"
@@ -8694,7 +8815,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "シルエット"
@@ -8726,7 +8848,10 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yonezu",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "ピースサイン"
@@ -8743,7 +8868,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "心臓を捧げよ",
@@ -8778,7 +8904,10 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "炎",
@@ -8795,7 +8924,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jidol"
+      "jidol",
+      "pack:anime-op"
     ],
     "aliases": [
       "廻廻奇譚",
@@ -8811,7 +8941,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:higedan",
+      "pack:superstar"
     ],
     "aliases": [
       "クライベイビー"
@@ -8843,7 +8975,8 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "ザ・ランブリング"
@@ -8858,7 +8991,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:higedan",
+      "pack:superstar"
     ],
     "aliases": [
       "ミックスナッツ"
@@ -8875,7 +9010,8 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "青春コンプレックス",
@@ -8892,7 +9028,10 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yonezu",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "キックバック"
@@ -8924,7 +9063,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "新時代",
@@ -8941,7 +9082,10 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "勇者",
@@ -8963,7 +9107,10 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:kinggnu",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "スペシャルズ",
@@ -8979,7 +9126,8 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "青のすみか",
@@ -8996,7 +9144,8 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "メフィスト"
@@ -9013,7 +9162,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar",
+      "pack:anime-op"
     ],
     "aliases": [
       "ショウ"
@@ -9031,7 +9182,8 @@
       "jp-anime",
       "jrap",
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ],
     "aliases": [
       "ブリンバンバンボーン",
@@ -9047,7 +9199,8 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ],
     "aliases": [
       "オトノケ"
@@ -9100,7 +9253,8 @@
     "year": 1971,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ],
     "aliases": [
       "レッツゴー!! ライダーキック",
@@ -9204,7 +9358,8 @@
     "year": 1987,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ],
     "aliases": [
       "仮面ライダーBLACK"
@@ -9354,7 +9509,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ],
     "aliases": [
       "Climax Jump",
@@ -9390,7 +9546,8 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ],
     "aliases": [
       "Anything Goes!",
@@ -9424,7 +9581,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ],
     "aliases": [
       "EXCITE",
@@ -9658,7 +9816,8 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ],
     "aliases": [
       "夜空ノムコウ"
@@ -12626,7 +12785,8 @@
       "karaoke",
       "jpop",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -12637,7 +12797,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -12647,7 +12808,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -12657,7 +12819,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -12737,7 +12900,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -12749,7 +12914,9 @@
       "karaoke",
       "jpop",
       "christmas",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -12760,7 +12927,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -12784,7 +12953,9 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -12796,7 +12967,8 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -12808,7 +12980,8 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -12820,7 +12993,8 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -12882,7 +13056,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -12893,7 +13068,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -12904,7 +13080,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -12915,7 +13092,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -12926,7 +13104,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -12937,7 +13116,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -12997,7 +13177,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -13020,7 +13201,8 @@
       "karaoke",
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -13041,7 +13223,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -13051,7 +13235,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -13062,7 +13248,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -13073,7 +13261,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -13275,7 +13465,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -13285,7 +13476,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -13294,7 +13486,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:superstar"
     ]
   },
   {
@@ -13304,7 +13497,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -13358,7 +13552,9 @@
     "categories": [
       "karaoke",
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -13369,7 +13565,9 @@
     "categories": [
       "karaoke",
       "jrock",
-      "jp-anime"
+      "jp-anime",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -13450,7 +13648,8 @@
       "karaoke",
       "jpop",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -13462,7 +13661,9 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -13474,7 +13675,8 @@
       "karaoke",
       "jpop",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -13484,7 +13686,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -13495,7 +13698,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -13516,7 +13720,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -13527,7 +13732,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -13618,7 +13824,8 @@
       "karaoke",
       "jpop",
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -13630,7 +13837,8 @@
       "karaoke",
       "jpop",
       "jrock",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -13642,7 +13850,8 @@
       "karaoke",
       "jpop",
       "jrock",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -13653,7 +13862,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -13665,7 +13875,8 @@
       "karaoke",
       "jpop",
       "christmas",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -13675,7 +13886,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -13685,7 +13897,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -13694,7 +13907,8 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:superstar"
     ]
   },
   {
@@ -13716,7 +13930,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -13726,7 +13942,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -13735,7 +13953,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -13747,7 +13967,9 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -13758,7 +13980,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -13768,7 +13992,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -13780,7 +14006,9 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -13802,7 +14030,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -13813,7 +14043,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -13824,7 +14056,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -13836,7 +14070,9 @@
       "karaoke",
       "jpop",
       "jrock",
-      "jp-anime"
+      "jp-anime",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -13847,7 +14083,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -13856,7 +14094,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:superstar"
     ]
   },
   {
@@ -13867,7 +14106,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -13887,7 +14127,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -13897,7 +14138,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -13908,7 +14150,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -13955,7 +14198,9 @@
       "karaoke",
       "jpop",
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -13967,7 +14212,9 @@
       "karaoke",
       "jpop",
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -13979,7 +14226,10 @@
       "karaoke",
       "jpop",
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -13991,7 +14241,9 @@
       "karaoke",
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -14002,7 +14254,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -14015,7 +14269,9 @@
       "jrock",
       "jpop",
       "jp-anime",
-      "movie-themes"
+      "movie-themes",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -14026,7 +14282,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -14049,7 +14306,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -14094,7 +14352,8 @@
       "karaoke",
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -14118,7 +14377,10 @@
       "karaoke",
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:lisa",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -14162,7 +14424,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -14174,7 +14438,9 @@
       "karaoke",
       "jrock",
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -14185,7 +14451,9 @@
     "categories": [
       "karaoke",
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -14196,7 +14464,9 @@
     "categories": [
       "karaoke",
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -14267,7 +14537,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -14287,7 +14558,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -14297,7 +14569,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -14351,7 +14624,8 @@
     "categories": [
       "karaoke",
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ]
   },
   {
@@ -14362,7 +14636,8 @@
     "categories": [
       "karaoke",
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ]
   },
   {
@@ -14372,7 +14647,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -14392,7 +14668,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -14403,7 +14680,8 @@
     "categories": [
       "karaoke",
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ]
   },
   {
@@ -14414,7 +14692,8 @@
     "categories": [
       "karaoke",
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ]
   },
   {
@@ -14523,7 +14802,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -14562,7 +14843,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -14573,7 +14856,9 @@
     "categories": [
       "karaoke",
       "vocaloid",
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -14782,7 +15067,9 @@
       "karaoke",
       "jrock",
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -14792,7 +15079,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -15885,7 +16174,9 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -15995,7 +16286,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -16005,7 +16298,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -16015,7 +16310,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -16102,7 +16399,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "karaoke"
+      "karaoke",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -16114,7 +16413,9 @@
       "jpop",
       "karaoke",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -16148,7 +16449,8 @@
     "categories": [
       "jpop",
       "jp-anime",
-      "karaoke"
+      "karaoke",
+      "pack:superstar"
     ]
   },
   {
@@ -16279,7 +16581,8 @@
     "year": 1979,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16324,7 +16627,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16333,7 +16637,8 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16389,7 +16694,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16398,7 +16704,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16407,7 +16714,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16416,7 +16724,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16425,7 +16734,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16435,7 +16745,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "karaoke"
+      "karaoke",
+      "pack:anime-op"
     ]
   },
   {
@@ -16463,7 +16774,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "karaoke"
+      "karaoke",
+      "pack:anime-op"
     ]
   },
   {
@@ -16472,7 +16784,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16483,7 +16796,8 @@
     "categories": [
       "jp-anime",
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:anime-op"
     ]
   },
   {
@@ -16503,7 +16817,8 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16512,7 +16827,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16522,7 +16838,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -16531,7 +16848,8 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16549,7 +16867,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16603,7 +16922,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16641,7 +16961,8 @@
     "categories": [
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -16659,7 +16980,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16668,7 +16990,8 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16695,7 +17018,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16704,7 +17028,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16722,7 +17047,8 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -16875,7 +17201,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -16884,7 +17212,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "vocaloid"
+      "vocaloid",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -20124,7 +20454,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -20133,7 +20465,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -21821,7 +22155,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -21842,7 +22177,9 @@
     "categories": [
       "jpop",
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -26342,7 +26679,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -26351,7 +26690,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -26360,7 +26701,9 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -26369,7 +26712,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -26426,7 +26771,8 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -26436,7 +26782,8 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -26445,7 +26792,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26456,7 +26804,8 @@
     "categories": [
       "jrock",
       "karaoke",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -26466,7 +26815,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26475,7 +26826,9 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26484,7 +26837,9 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26493,7 +26848,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26502,7 +26859,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26511,7 +26870,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26520,7 +26881,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26774,7 +27137,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -26783,7 +27148,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -26792,7 +27159,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -26804,7 +27172,9 @@
       "jrock",
       "karaoke",
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -26813,7 +27183,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -26833,7 +27205,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jpop"
+      "jpop",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -29362,7 +29736,8 @@
     "year": 1971,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ]
   },
   {
@@ -29479,7 +29854,8 @@
     "year": 1982,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ]
   },
   {
@@ -34357,7 +34733,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -34367,7 +34745,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -34500,7 +34880,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -34718,7 +35100,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -34729,7 +35113,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -34740,7 +35126,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -34759,7 +35147,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:superstar"
     ]
   },
   {
@@ -34771,7 +35160,8 @@
       "karaoke",
       "jpop",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -34782,7 +35172,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -34793,7 +35184,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -34804,7 +35196,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -34815,7 +35209,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -35217,7 +35613,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:superstar"
     ]
   },
   {
@@ -35237,7 +35634,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -35338,7 +35736,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -35348,7 +35748,9 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -35360,7 +35762,10 @@
       "karaoke",
       "jpop",
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -35383,7 +35788,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -35395,7 +35802,10 @@
       "karaoke",
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrsgreenapple",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -35406,7 +35816,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -35440,7 +35852,8 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -35450,7 +35863,8 @@
     "country": "jp",
     "categories": [
       "karaoke",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -35473,7 +35887,9 @@
     "categories": [
       "karaoke",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -35482,7 +35898,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -35513,7 +35931,9 @@
     "categories": [
       "karaoke",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -35526,7 +35946,9 @@
       "jrock",
       "tokusatsu",
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -35538,7 +35960,9 @@
       "karaoke",
       "jpop",
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -35547,7 +35971,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "karaoke"
+      "karaoke",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -35587,7 +36013,9 @@
       "jpop",
       "jp-anime",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -36297,7 +36725,9 @@
     "year": 1985,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -36936,7 +37366,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -36945,7 +37377,9 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -36954,7 +37388,9 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -36963,7 +37399,9 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -36972,7 +37410,9 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -37027,7 +37467,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -37055,7 +37496,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37065,7 +37507,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37074,7 +37517,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -37120,7 +37564,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37129,7 +37574,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -37139,7 +37585,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37149,7 +37596,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37159,7 +37607,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37169,7 +37618,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -37458,7 +37908,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -37468,7 +37919,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -37627,7 +38080,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37637,7 +38092,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37647,7 +38104,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37657,7 +38116,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37667,7 +38128,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37677,7 +38140,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37687,7 +38152,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37697,7 +38164,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37707,7 +38176,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -37854,7 +38325,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -37882,7 +38355,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -37893,7 +38368,9 @@
     "categories": [
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -37921,7 +38398,9 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -37939,7 +38418,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -37948,7 +38429,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -37967,7 +38450,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -37978,7 +38463,9 @@
     "categories": [
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -37988,7 +38475,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -37998,7 +38487,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -38099,7 +38590,8 @@
     "categories": [
       "jpop",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -38108,7 +38600,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38117,7 +38611,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38127,7 +38623,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38137,7 +38635,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38147,7 +38647,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38193,7 +38695,8 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38333,7 +38836,9 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38342,7 +38847,9 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38351,7 +38858,9 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38360,7 +38869,9 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38369,7 +38880,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38378,7 +38891,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38397,7 +38912,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -38407,7 +38923,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -38491,7 +39008,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -38501,7 +39020,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -38511,7 +39032,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "movie-themes"
+      "movie-themes",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38520,7 +39043,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -38539,7 +39064,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -38549,7 +39075,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -38559,7 +39086,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -38569,7 +39097,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -38579,7 +39108,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -38644,7 +39175,9 @@
     "categories": [
       "jpop",
       "jidol",
-      "movie-themes"
+      "movie-themes",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38653,7 +39186,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38662,7 +39197,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38672,7 +39209,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -38699,7 +39238,9 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -38717,7 +39258,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38745,7 +39287,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38754,7 +39297,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38763,7 +39307,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38772,7 +39317,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38781,7 +39327,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -38791,7 +39338,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -38800,7 +39349,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -38809,7 +39360,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -38819,7 +39372,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -38828,7 +39383,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -38856,7 +39413,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -38867,7 +39426,9 @@
     "categories": [
       "jpop",
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -38877,7 +39438,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -38887,7 +39450,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -38933,7 +39498,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -38942,7 +39508,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -39465,7 +40033,8 @@
     "year": 1986,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -39474,7 +40043,8 @@
     "year": 1981,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -39717,7 +40287,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -39791,7 +40362,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -39800,7 +40372,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -39827,7 +40400,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -39964,7 +40538,9 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -39974,7 +40550,9 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -40029,7 +40607,9 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -40038,7 +40618,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -40047,7 +40629,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -40074,7 +40657,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -40110,7 +40694,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -40128,7 +40714,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -40137,7 +40725,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -40146,7 +40736,8 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -40155,7 +40746,8 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -40174,7 +40766,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -40194,7 +40787,8 @@
     "categories": [
       "jp-anime",
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -40204,7 +40798,9 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -40213,7 +40809,8 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -52141,7 +52738,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -52150,7 +52749,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -52897,7 +53498,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -52906,7 +53509,9 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:utada",
+      "pack:superstar"
     ]
   },
   {
@@ -53113,7 +53718,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "game-music"
+      "game-music",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -53357,7 +53964,9 @@
     "country": "jp",
     "categories": [
       "game-music",
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -59626,7 +60235,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -59671,7 +60282,9 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -59727,7 +60340,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -59799,7 +60413,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:superstar"
     ]
   },
   {
@@ -59913,7 +60528,9 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -59922,7 +60539,9 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -59932,7 +60551,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -59942,7 +60563,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -60229,7 +60852,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -60339,7 +60964,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -60358,7 +60984,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -60413,7 +61041,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -60450,7 +61080,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -60469,7 +61100,8 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -60478,7 +61110,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -85664,7 +86298,9 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85673,7 +86309,9 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85718,7 +86356,9 @@
     "year": 1985,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -85727,7 +86367,9 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85736,7 +86378,9 @@
     "year": 1989,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85763,7 +86407,9 @@
     "year": 1990,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85772,7 +86418,9 @@
     "year": 1990,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85781,7 +86429,9 @@
     "year": 1990,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85790,7 +86440,9 @@
     "year": 1990,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85799,7 +86451,9 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85808,7 +86462,9 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -85817,7 +86473,9 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85826,7 +86484,9 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85835,7 +86495,9 @@
     "year": 1991,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85844,7 +86506,9 @@
     "year": 1991,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85853,7 +86517,9 @@
     "year": 1991,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -85862,7 +86528,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85871,7 +86538,8 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85880,7 +86548,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85889,7 +86558,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85898,7 +86568,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85907,7 +86578,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85916,7 +86588,8 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85925,7 +86598,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85934,7 +86608,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85943,7 +86618,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85952,7 +86628,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -85962,7 +86639,8 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -86007,7 +86685,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86016,7 +86696,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86025,7 +86707,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86034,7 +86718,9 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86043,7 +86729,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86052,7 +86740,9 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86061,7 +86751,9 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86070,7 +86762,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86079,7 +86773,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86088,7 +86784,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86097,7 +86795,8 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86106,7 +86805,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86115,7 +86815,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86124,7 +86825,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86133,7 +86835,8 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86142,7 +86845,8 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86151,7 +86855,8 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86160,7 +86865,8 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86169,7 +86875,8 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86178,7 +86885,8 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86187,7 +86895,8 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86196,7 +86905,8 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86232,7 +86942,9 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86241,7 +86953,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86250,7 +86964,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86259,7 +86975,9 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86268,7 +86986,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86277,7 +86997,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86368,7 +87089,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86377,7 +87099,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86387,7 +87110,8 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -86396,7 +87120,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86405,7 +87130,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86414,7 +87140,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86423,7 +87151,9 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86432,7 +87162,9 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86441,7 +87173,9 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86450,7 +87184,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86459,7 +87195,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86468,7 +87206,9 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86477,7 +87217,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86504,7 +87246,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86513,7 +87256,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86522,7 +87267,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86531,7 +87278,9 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86540,7 +87289,9 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86549,7 +87300,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -86558,7 +87311,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86567,7 +87321,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86658,7 +87413,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86667,7 +87424,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86676,7 +87435,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86685,7 +87446,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86694,7 +87457,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86703,7 +87468,9 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86712,7 +87479,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86721,7 +87490,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86730,7 +87501,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86739,7 +87512,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -86748,7 +87523,8 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86757,7 +87533,8 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86766,7 +87543,8 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -86829,7 +87607,9 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -86847,7 +87627,8 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -95490,7 +96271,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ]
   },
   {
@@ -95634,7 +96416,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ]
   },
   {
@@ -96561,7 +97344,8 @@
     "year": 1992,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96570,7 +97354,8 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96579,7 +97364,8 @@
     "year": 1998,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96588,7 +97374,8 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96597,7 +97384,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96669,7 +97457,9 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -96714,7 +97504,8 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96723,7 +97514,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -96732,7 +97524,9 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -96813,7 +97607,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97047,7 +97842,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97056,7 +97852,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97065,7 +97862,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97074,7 +97872,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97083,7 +97882,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97092,7 +97892,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97101,7 +97902,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97110,7 +97912,8 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97119,7 +97922,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97128,7 +97932,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97137,7 +97942,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97146,7 +97952,8 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97155,7 +97962,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97164,7 +97973,9 @@
     "year": 2001,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97173,7 +97984,9 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97182,7 +97995,9 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97191,7 +98006,9 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97200,7 +98017,9 @@
     "year": 2003,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97209,7 +98028,9 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97218,7 +98039,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97227,7 +98050,9 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97236,7 +98061,9 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97245,7 +98072,9 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97254,7 +98083,9 @@
     "year": 2008,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97263,7 +98094,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97272,7 +98105,9 @@
     "year": 2009,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -97281,7 +98116,8 @@
     "year": 2002,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97290,7 +98126,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97299,7 +98136,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97362,7 +98200,8 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97371,7 +98210,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97380,7 +98220,8 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97389,7 +98230,8 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97398,7 +98240,8 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97407,7 +98250,8 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97416,7 +98260,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97425,7 +98270,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97434,7 +98280,8 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97443,7 +98290,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97452,7 +98300,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97461,7 +98310,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97470,7 +98320,8 @@
     "year": 2014,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97479,7 +98330,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97488,7 +98340,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97497,7 +98350,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97506,7 +98360,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97515,7 +98370,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97524,7 +98380,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97533,7 +98390,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97542,7 +98400,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97551,7 +98410,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97560,7 +98420,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97569,7 +98430,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97578,7 +98440,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97587,7 +98450,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97596,7 +98460,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97605,7 +98470,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97614,7 +98480,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97623,7 +98490,8 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -97632,7 +98500,8 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -98003,7 +98872,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98012,7 +98883,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98021,7 +98894,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98030,7 +98905,9 @@
     "year": 2011,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98039,7 +98916,9 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98048,7 +98927,9 @@
     "year": 2013,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98057,7 +98938,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98066,7 +98949,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98075,7 +98960,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98084,7 +98971,9 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98093,7 +98982,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {
@@ -98417,7 +99308,8 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -98426,7 +99318,8 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -98435,7 +99328,8 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jidol"
+      "jidol",
+      "pack:superstar"
     ]
   },
   {
@@ -114162,7 +115056,8 @@
     "year": 1971,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ]
   },
   {
@@ -114999,7 +115894,8 @@
     "year": 2012,
     "country": "jp",
     "categories": [
-      "tokusatsu"
+      "tokusatsu",
+      "pack:anime-op"
     ]
   },
   {
@@ -137332,7 +138228,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137341,7 +138238,8 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137359,7 +138257,8 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -137368,7 +138267,8 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137404,7 +138304,8 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137431,7 +138332,9 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -137440,7 +138343,8 @@
     "year": 2021,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -137449,7 +138353,8 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:superstar"
     ]
   },
   {
@@ -137458,7 +138363,10 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -137467,7 +138375,10 @@
     "year": 2022,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -137495,7 +138406,9 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "movie-themes"
+      "movie-themes",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -137504,7 +138417,9 @@
     "year": 2025,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -137513,7 +138428,9 @@
     "year": 2025,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -137540,7 +138457,8 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137549,7 +138467,10 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:higedan",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -137576,7 +138497,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:lisa",
+      "pack:superstar"
     ]
   },
   {
@@ -137621,7 +138544,8 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137630,7 +138554,9 @@
     "year": 2025,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -137640,7 +138566,9 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -137649,7 +138577,8 @@
     "year": 2025,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:anime-op"
     ]
   },
   {
@@ -137658,7 +138587,10 @@
     "year": 2025,
     "country": "jp",
     "categories": [
-      "jp-anime"
+      "jp-anime",
+      "pack:yoasobi",
+      "pack:superstar",
+      "pack:anime-op"
     ]
   },
   {
@@ -137677,7 +138609,8 @@
     "country": "jp",
     "categories": [
       "jp-anime",
-      "jrock"
+      "jrock",
+      "pack:anime-op"
     ]
   },
   {
@@ -137723,7 +138656,9 @@
     "year": 2024,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -137732,7 +138667,9 @@
     "year": 2025,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -137741,7 +138678,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -137795,7 +138734,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -137897,7 +138838,9 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -137906,7 +138849,9 @@
     "year": 2020,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:yoasobi",
+      "pack:superstar"
     ]
   },
   {
@@ -137915,7 +138860,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:higedan",
+      "pack:superstar"
     ]
   },
   {
@@ -137942,7 +138889,9 @@
     "year": 2017,
     "country": "jp",
     "categories": [
-      "jpop"
+      "jpop",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -137952,7 +138901,9 @@
     "country": "jp",
     "categories": [
       "jpop",
-      "jrock"
+      "jrock",
+      "pack:aimyon",
+      "pack:superstar"
     ]
   },
   {
@@ -139691,7 +140642,9 @@
     "year": 1993,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -139700,7 +140653,9 @@
     "year": 1996,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:xjapan",
+      "pack:superstar"
     ]
   },
   {
@@ -139709,7 +140664,9 @@
     "year": 1995,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -139718,7 +140675,9 @@
     "year": 1990,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:southern",
+      "pack:superstar"
     ]
   },
   {
@@ -139727,7 +140686,9 @@
     "year": 1992,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -139736,7 +140697,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -139746,7 +140709,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:mrchildren",
+      "pack:superstar"
     ]
   },
   {
@@ -139782,7 +140747,8 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139791,7 +140757,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139800,7 +140767,8 @@
     "year": 2006,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139809,7 +140777,8 @@
     "year": 2019,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139818,7 +140787,8 @@
     "year": 1997,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139827,7 +140797,8 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139836,7 +140807,8 @@
     "year": 1994,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139845,7 +140817,8 @@
     "year": 2005,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139854,7 +140827,8 @@
     "year": 2007,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139863,7 +140837,9 @@
     "year": 1992,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -139872,7 +140848,9 @@
     "year": 1999,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -139881,7 +140859,9 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bz",
+      "pack:superstar"
     ]
   },
   {
@@ -139971,7 +140951,9 @@
     "year": 2000,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:bump",
+      "pack:superstar"
     ]
   },
   {
@@ -139989,7 +140971,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -139998,7 +140982,9 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:oneokrock",
+      "pack:superstar"
     ]
   },
   {
@@ -140007,7 +140993,8 @@
     "year": 2023,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -140016,7 +141003,8 @@
     "year": 2018,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:superstar"
     ]
   },
   {
@@ -140125,7 +141113,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:kinggnu",
+      "pack:superstar"
     ]
   },
   {
@@ -140134,7 +141124,9 @@
     "year": 2015,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:mrsgreenapple",
+      "pack:superstar"
     ]
   },
   {
@@ -140152,7 +141144,9 @@
     "year": 2016,
     "country": "jp",
     "categories": [
-      "jrock"
+      "jrock",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -140162,7 +141156,9 @@
     "country": "jp",
     "categories": [
       "jrock",
-      "movie-themes"
+      "movie-themes",
+      "pack:yonezu",
+      "pack:superstar"
     ]
   },
   {
@@ -140369,7 +141365,8 @@
     "year": 2004,
     "country": "jp",
     "categories": [
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -140423,7 +141420,8 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "movie-themes"
+      "movie-themes",
+      "pack:superstar"
     ]
   },
   {
@@ -140450,7 +141448,9 @@
     "year": 2010,
     "country": "jp",
     "categories": [
-      "movie-themes"
+      "movie-themes",
+      "pack:arashi",
+      "pack:superstar"
     ]
   },
   {

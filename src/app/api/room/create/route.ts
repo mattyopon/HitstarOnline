@@ -1,5 +1,5 @@
 import { json, mapError, readBody, requireUser, sanitizeSettings, sanitizeSolo, seedFrom } from "@/lib/api";
-import { getDeck, shuffledDeckOrder } from "@/lib/deck";
+import { getDeck, resolveScopeFilter, shuffledDeckOrder } from "@/lib/deck";
 import { addBot, startGame } from "@/lib/engine";
 import { createRoom, mutateByCode } from "@/lib/rooms";
 
@@ -31,7 +31,8 @@ export async function POST(req: Request) {
         // the host's chosen win-card count (defaults to 10).
         targetCards: practice ? 999 : clean.targetCards ?? 10,
       });
-      const order = shuffledDeckOrder(categories);
+      // A selected theme pack ("縛り") constrains the deck exclusively.
+      const order = shuffledDeckOrder(resolveScopeFilter(categories));
       const songs = getDeck();
       const now = Date.now();
       await mutateByCode(code, (g) => {

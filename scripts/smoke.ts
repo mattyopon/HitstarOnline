@@ -29,7 +29,16 @@ import {
   setConnected,
   mulberry32,
 } from "../src/lib/engine";
-import { Song, CATEGORIES } from "../src/lib/protocol";
+import {
+  Song,
+  CATEGORIES,
+  CATEGORY_IDS,
+  PACKS,
+  PACK_IDS,
+  PACK_PREFIX,
+  isPackId,
+} from "../src/lib/protocol";
+import { resolveScopeFilter, sanitizeScope, deckSizeForCategories } from "../src/lib/deck";
 import { applyResult, defaultRank } from "../src/lib/rank";
 
 // 12 songs, years 1960,1965,...,2015 — distinct so placement is determinable.
@@ -627,6 +636,55 @@ console.log("Scenario P (late join + seeded shuffle):");
   };
   ok("seeded shuffle is deterministic", JSON.stringify(permute(seed)) === JSON.stringify(permute(seed)));
   ok("different seeds differ", JSON.stringify(permute(seed)) !== JSON.stringify(permute(seed + 1)));
+}
+
+// ── Scenario Q: theme packs — registry hygiene + scope helpers + playability ─
+// Asserts the data model + scope wiring AND that every registered pack has a
+// playable deck (>= the 12-song threshold, comfortably above players+MIN_DECK_MARGIN).
+console.log("Scenario Q (theme packs / scope):");
+{
+  // Registry hygiene: every pack id is prefixed and never collides with a genre.
+  ok("PACKS non-empty", PACKS.length > 0);
+  ok("every PACKS id starts with 'pack:'", PACKS.every((p) => p.id.startsWith(PACK_PREFIX)));
+  ok("isPackId agrees with the prefix", PACKS.every((p) => isPackId(p.id)));
+  ok("no PACKS id is a genre CATEGORY", PACKS.every((p) => !CATEGORY_IDS.has(p.id)));
+  ok("no genre CATEGORY is a pack id", CATEGORIES.every((c) => !isPackId(c.id)));
+  ok("PACK_IDS matches PACKS", PACK_IDS.size === PACKS.length && PACKS.every((p) => PACK_IDS.has(p.id)));
+  ok("pack ids are unique", new Set(PACKS.map((p) => p.id)).size === PACKS.length);
+
+  // isPackId basics.
+  ok("isPackId true for a pack id", isPackId("pack:bz"));
+  ok("isPackId false for a genre id", !isPackId("jpop"));
+
+  // resolveScopeFilter — EXCLUSIVE 縛り semantics.
+  ok("no pack → genres pass through unchanged",
+    JSON.stringify(resolveScopeFilter(["rock", "jazz"])) === JSON.stringify(["rock", "jazz"]));
+  ok("a selected pack overrides genres (pack-only)",
+    JSON.stringify(resolveScopeFilter(["rock", "pack:bz", "jazz"])) === JSON.stringify(["pack:bz"]));
+  ok("multiple packs → only packs kept",
+    JSON.stringify(resolveScopeFilter(["pack:bz", "jpop", "pack:lisa"])) === JSON.stringify(["pack:bz", "pack:lisa"]));
+  ok("empty scope stays empty (all categories)", resolveScopeFilter([]).length === 0);
+
+  // sanitizeScope — accepts genre + pack ids, drops unknowns, dedups, order-stable.
+  ok("sanitizeScope keeps genres", JSON.stringify(sanitizeScope(["rock", "jazz"])) === JSON.stringify(["rock", "jazz"]));
+  ok("sanitizeScope keeps pack ids", JSON.stringify(sanitizeScope(["pack:bz"])) === JSON.stringify(["pack:bz"]));
+  ok("sanitizeScope keeps mixed pack+genre",
+    JSON.stringify(sanitizeScope(["rock", "pack:bz"])) === JSON.stringify(["rock", "pack:bz"]));
+  ok("sanitizeScope drops unknown ids",
+    JSON.stringify(sanitizeScope(["rock", "pack:__nope__", "bogus", "pack:bz"])) === JSON.stringify(["rock", "pack:bz"]));
+  ok("sanitizeScope dedups", JSON.stringify(sanitizeScope(["rock", "rock", "pack:bz", "pack:bz"])) === JSON.stringify(["rock", "pack:bz"]));
+  ok("sanitizeScope tolerates non-arrays", sanitizeScope(undefined).length === 0 && sanitizeScope("rock").length === 0);
+  ok("sanitizeScope drops non-string entries",
+    JSON.stringify(sanitizeScope(["rock", 7, null, "pack:bz"])) === JSON.stringify(["rock", "pack:bz"]));
+
+  // Playability: every registered pack must hold a workable deck. The 12-song
+  // threshold sits comfortably above the hard minimum (players + MIN_DECK_MARGIN),
+  // so a normal game always has enough mystery cards under a 縛り.
+  const PACK_MIN_SONGS = 12;
+  for (const p of PACKS) {
+    const n = deckSizeForCategories(resolveScopeFilter([p.id]));
+    ok(`pack ${p.id} has >= ${PACK_MIN_SONGS} songs (deck=${n})`, n >= PACK_MIN_SONGS);
+  }
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);
