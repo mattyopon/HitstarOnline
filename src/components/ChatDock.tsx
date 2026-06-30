@@ -203,7 +203,9 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
         {open ? (
           <div className="chat-card">
             <div className="row spread chat-head">
-              <strong>{t("💬 チャット")}</strong>
+              <strong className="serif" style={{ fontStyle: "italic" }}>
+                {t("💬 チャット")}
+              </strong>
               <div className="row" style={{ gap: 6 }}>
                 <button
                   className="btn ghost tiny"
@@ -275,7 +277,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
           </div>
         ) : (
           <button className="chat-fab" onClick={() => setOpen(true)} aria-label={t("チャットを開く")}>
-            💬
+            <span aria-hidden>♪</span>
             {unread > 0 && <span className="chat-badge">{unread}</span>}
           </button>
         )}

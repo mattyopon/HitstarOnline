@@ -25,8 +25,10 @@ export const PlayerList = memo(function PlayerList({
   return (
     <div className="card stack" style={{ padding: 14 }}>
       <div className="row spread">
-        <strong>{t("プレイヤー（{n}）", { n: state.players.length })}</strong>
-        {inGame && <span className="tiny muted">{t("🏆 {n}枚で勝利", { n: target })}</span>}
+        <strong className="serif" style={{ fontStyle: "italic", fontSize: 18 }}>
+          {t("プレイヤー（{n}）", { n: state.players.length })}
+        </strong>
+        {inGame && <span className="mono tiny muted">{t("🏆 {n}枚で勝利", { n: target })}</span>}
       </div>
       <div className="stack" style={{ gap: 8 }}>
         {state.players.map((p) => {
@@ -46,7 +48,7 @@ export const PlayerList = memo(function PlayerList({
                 </span>
                 <span className="meta">
                   {inGame && (
-                    <span className="tiny">
+                    <span className="mono tiny" style={{ color: "var(--gold)", fontWeight: 700 }}>
                       🃏 {won}/{target}
                     </span>
                   )}

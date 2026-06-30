@@ -37,7 +37,9 @@ export function StealPanel({
   const t = useT();
   return (
     <div className="card stack fade-in">
-      <strong>{activePlayer?.name} {t("の配置はここ 👇")}</strong>
+      <strong className="serif" style={{ fontStyle: "italic", fontSize: 18 }}>
+        {activePlayer?.name} {t("の配置はここ 👇")}
+      </strong>
       {activePlayer && (
         <Timeline cards={activePlayer.timeline} mysterySlot={placementSlot} compact />
       )}
@@ -69,7 +71,9 @@ export function StealPanel({
         <div className="notice">{t("「横取りしない」設定のためスキップします…")}</div>
       ) : (
         <>
-          <strong>{t("違うと思う？正しい位置に置いて横取り！（🪙1・あと{s}s）", { s: secondsLeft ?? 0 })}</strong>
+          <strong className="serif" style={{ fontStyle: "italic", fontSize: 16 }}>
+            {t("違うと思う？正しい位置に置いて横取り！（🪙1・あと{s}s）", { s: secondsLeft ?? 0 })}
+          </strong>
           <PlacementArea
             cards={me.timeline}
             selectedSlot={selectedSlot}
@@ -78,7 +82,7 @@ export function StealPanel({
           />
           <div className="row wrap">
             <button
-              className="btn"
+              className="btn terra"
               disabled={busy || selectedSlot === null}
               onClick={() => act("/api/game/steal", { slotIndex: selectedSlot })}
             >

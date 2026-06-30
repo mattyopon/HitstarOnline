@@ -50,10 +50,14 @@ export const RevealCard = memo(function RevealCard({
 
   return (
     <div className="card stack fade-in" style={{ alignItems: "center", textAlign: "center" }}>
-      <div className="muted tiny">{t("正解は…")}</div>
+      <div className="section-eyebrow" style={{ marginBottom: 0 }}>{t("正解は…")}</div>
       <div className="reveal-year">{r.year}</div>
-      <div style={{ fontSize: 20, fontWeight: 800 }}>{r.title}</div>
-      <div className="muted">{r.artist}</div>
+      <div className="serif" style={{ fontSize: 22, fontStyle: "italic", fontWeight: 700, lineHeight: 1.2 }}>
+        {r.title}
+      </div>
+      <div className="mono tiny muted" style={{ letterSpacing: "0.04em", textTransform: "uppercase" }}>
+        {r.artist}
+      </div>
       <div style={{ marginTop: 6 }}>{outcome}</div>
       {r.reason && <div className="tiny muted">{r.reason}</div>}
       {r.tokenAwards

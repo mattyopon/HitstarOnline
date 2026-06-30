@@ -52,24 +52,15 @@ export function SignIn({ authError }: { authError?: string | null }) {
 
   return (
     <div className="stack">
-      <p className="muted" style={{ marginTop: 0 }}>
+      <div className="sleeve-corner mono" aria-hidden>
+        SIDE A · 33⅓ RPM · STEREO
+      </div>
+
+      <div className="stamp">{t("★ Online Edition ★")}</div>
+      <p className="lede serif">
         {t("曲を聴いて発売年を当て、年表に並べるパーティーゲーム。離れた友達と同じ部屋でリアルタイムに遊ぼう。")}
       </p>
       {err && <div className="error">{err}</div>}
-
-      {googleEnabled && (
-        <>
-          <button className="btn google block" onClick={google} disabled={!!busy}>
-            <GoogleMark />
-            {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
-          </button>
-          <div className="row" style={{ gap: 10 }}>
-            <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-            <span className="tiny muted">{t("または")}</span>
-            <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-          </div>
-        </>
-      )}
 
       <input
         type="text"
@@ -79,14 +70,58 @@ export function SignIn({ authError }: { authError?: string | null }) {
         onChange={(e) => setName(e.target.value)}
         onKeyDown={(e) => e.key === "Enter" && guest()}
       />
-      <button className="btn block" onClick={guest} disabled={!!busy}>
+      <button className="btn block gold" onClick={guest} disabled={!!busy}>
         {busy === "guest" ? t("参加中…") : t("▶ ゲストとして始める")}
       </button>
-      <p className="tiny muted" style={{ marginBottom: 0 }}>
+
+      {googleEnabled && (
+        <>
+          <div className="divider">{t("または")}</div>
+          <button className="btn google block outline" onClick={google} disabled={!!busy}>
+            <GoogleMark />
+            {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
+          </button>
+        </>
+      )}
+
+      <p className="fine serif">
         {googleEnabled
           ? t("※ ゲストはこの端末のみの一時アカウントです。")
           : t("※ いまはゲストですぐ遊べます（Googleログインは設定後に有効化）。")}
       </p>
+
+      <div className="track-listing">
+        <h4>{t("FEATURED TRACKS · 101 SIDES")}</h4>
+        <div className="row" aria-hidden>
+          <span className="num">01</span>
+          <span className="ttl">Take On Me</span>
+          <span className="yr">1985</span>
+        </div>
+        <div className="row" aria-hidden>
+          <span className="num">02</span>
+          <span className="ttl">Smells Like Teen Spirit</span>
+          <span className="yr">1991</span>
+        </div>
+        <div className="row" aria-hidden>
+          <span className="num">03</span>
+          <span className="ttl">残酷な天使のテーゼ</span>
+          <span className="yr">1995</span>
+        </div>
+        <div className="row" aria-hidden>
+          <span className="num">04</span>
+          <span className="ttl">Happy</span>
+          <span className="yr">2014</span>
+        </div>
+        <div className="row" aria-hidden>
+          <span className="num">⋯</span>
+          <span className="ttl" style={{ color: "var(--muted)" }}>
+            +97 more
+          </span>
+          <span className="yr" style={{ color: "var(--muted)" }}>
+            1954-2023
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

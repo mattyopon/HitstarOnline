@@ -169,7 +169,7 @@ export function YouTubePlayer({
         <div ref={hostRef} className="yt-frame" />
         {!reveal && (
           <div className="yt-cover">
-            <div className={"vinyl" + (playing && videoId ? " spinning" : "")} />
+            <div className={"vinyl" + (playing && videoId ? " spinning" : "")} aria-hidden="true" />
             <div className="muted" style={{ fontWeight: 700 }}>
               {videoId ? t("♪ 再生中 — 曲名はナイショ！") : t("音源を準備中…")}
             </div>

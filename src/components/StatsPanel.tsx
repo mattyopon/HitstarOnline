@@ -53,8 +53,11 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="row spread">
-          <h2 style={{ margin: 0 }}>{t("📊 戦績")}</h2>
-          <button className="btn ghost tiny" onClick={onClose}>
+          <div>
+            <div className="section-eyebrow">Side B · Record Sheet</div>
+            <h2 className="section-ttl" style={{ margin: 0 }}>{t("📊 戦績")}</h2>
+          </div>
+          <button className="btn outline sm" onClick={onClose}>
             ✕
           </button>
         </div>
@@ -85,7 +88,7 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
 
             {stats.strong.length > 0 && (
               <div className="stack" style={{ gap: 6 }}>
-                <strong className="tiny">{t("💪 得意なカテゴリ")}</strong>
+                <strong className="section-eyebrow" style={{ marginBottom: 0 }}>{t("💪 得意なカテゴリ")}</strong>
                 {stats.strong.map((c) => (
                   <CatRow key={c.category} c={c} />
                 ))}
@@ -93,7 +96,7 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
             )}
             {stats.weak.length > 0 && (
               <div className="stack" style={{ gap: 6 }}>
-                <strong className="tiny">{t("😅 苦手なカテゴリ")}</strong>
+                <strong className="section-eyebrow" style={{ marginBottom: 0 }}>{t("😅 苦手なカテゴリ")}</strong>
                 {stats.weak.map((c) => (
                   <CatRow key={c.category} c={c} />
                 ))}
@@ -107,7 +110,7 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
 
             {stats.recent.length > 0 && (
               <div className="stack" style={{ gap: 4 }}>
-                <strong className="tiny">{t("最近の対戦")}</strong>
+                <strong className="section-eyebrow" style={{ marginBottom: 0 }}>{t("最近の対戦")}</strong>
                 {stats.recent.map((r, i) => (
                   <div key={i} className="row spread tiny">
                     <span>

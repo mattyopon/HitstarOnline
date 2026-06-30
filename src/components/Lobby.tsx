@@ -148,28 +148,33 @@ export function Lobby({ user }: { user: ClientUser }) {
   }
 
   return (
-    <div className="stack">
+    <div className="card-frame stack">
       <div className="row spread">
         <span className="pill">
           <Avatar name={name} url={user.avatarUrl} size="xs" />
           {user.isAnonymous ? t("ゲスト") : "Google"}
         </span>
         <div className="row" style={{ gap: 6 }}>
-          <button className="btn ghost tiny" onClick={() => setShowStats(true)}>
-            📊 {t("戦績")}
+          <button className="btn ghost sm" onClick={() => setShowStats(true)}>
+            ♬ {t("戦績")}
           </button>
-          <button className="btn ghost tiny" onClick={() => setShowSettings(true)} title={t("設定")}>
-            ⚙️
+          <button className="btn ghost sm" onClick={() => setShowSettings(true)} title={t("設定")}>
+            ⚙
           </button>
           {/* Logout is only meaningful for real (Google) sign-ins. Guests are a
               throwaway anonymous session — signing them out just loses progress
               and re-creates a guest on reload, so we hide it for them. */}
           {!user.isAnonymous && (
-            <button className="btn ghost tiny" onClick={signOut}>
+            <button className="btn ghost sm" onClick={signOut}>
               {t("ログアウト")}
             </button>
           )}
         </div>
+      </div>
+
+      <div>
+        <div className="section-eyebrow">Side A · Set Up Your Session</div>
+        <h2 className="section-ttl">{t("あなたのセットリストを組もう")}</h2>
       </div>
 
       {showStats && <StatsPanel onClose={() => setShowStats(false)} />}
@@ -186,22 +191,30 @@ export function Lobby({ user }: { user: ClientUser }) {
         </button>
       )}
 
-      <div className="row" style={{ gap: 8 }}>
+      <div className="mode-row row" style={{ gap: 8 }}>
         <button
-          className={"btn block" + (playMode === "multi" ? "" : " secondary")}
+          type="button"
+          className={"mode-card" + (playMode === "multi" ? " featured" : "")}
+          style={{ flex: 1 }}
           onClick={() => setPlayMode("multi")}
         >
-          👥 {t("みんなで")}
+          <span className="badge">Online</span>
+          <div className="ttl">{t("みんなで")}</div>
+          <div className="desc">{t("部屋コードで仲間と")}</div>
         </button>
         <button
-          className={"btn block" + (playMode === "solo" ? "" : " secondary")}
+          type="button"
+          className={"mode-card" + (playMode === "solo" ? " featured" : "")}
+          style={{ flex: 1 }}
           onClick={() => setPlayMode("solo")}
         >
-          🧑‍💻 {t("ソロ(1人)")}
+          <span className="badge">Solo</span>
+          <div className="ttl">{t("ソロ(1人)")}</div>
+          <div className="desc">{t("NPC対戦・練習")}</div>
         </button>
       </div>
 
-      <label className="tiny muted">{t("表示名")}</label>
+      <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("表示名")}</label>
       <input
         type="text"
         value={name}
@@ -210,22 +223,19 @@ export function Lobby({ user }: { user: ClientUser }) {
         placeholder={t("あなたの名前")}
       />
 
-      <label className="tiny muted">{t("出題カテゴリ（未選択＝全ジャンル）")}</label>
-      <div className="row wrap" style={{ gap: 6 }}>
+      <label className="section-eyebrow" style={{ marginBottom: 0 }}>
+        {t("出題カテゴリ（未選択＝全ジャンル）")}
+      </label>
+      <div className="cats">
         {CATEGORIES.map((c) => {
           const on = cats.includes(c.id);
           return (
             <button
               key={c.id}
               type="button"
-              className="pill"
+              className={"tag" + (on ? " on" : "")}
+              aria-pressed={on}
               onClick={() => toggleCat(c.id)}
-              style={{
-                cursor: "pointer",
-                borderColor: on ? "var(--accent)" : undefined,
-                background: on ? "rgba(255,77,157,0.18)" : undefined,
-                color: on ? "#fff" : undefined,
-              }}
             >
               {t(c.labelJa)}
             </button>
@@ -235,16 +245,28 @@ export function Lobby({ user }: { user: ClientUser }) {
 
       {(playMode === "solo" ? !practice : !ranked) && (
         <>
-          <label className="tiny muted">{t("勝利に必要な枚数")}</label>
+          <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("勝利に必要な枚数")}</label>
           <div className="row" style={{ gap: 10, alignItems: "center" }}>
-            <button className="btn secondary" onClick={() => setTarget((n) => Math.max(1, n - 1))}>
+            <button className="btn sm outline" onClick={() => setTarget((n) => Math.max(1, n - 1))}>
               －
             </button>
-            <span style={{ minWidth: 28, textAlign: "center", fontWeight: 800 }}>{target}</span>
-            <button className="btn secondary" onClick={() => setTarget((n) => Math.min(50, n + 1))}>
+            <span
+              className="serif"
+              style={{
+                minWidth: 42,
+                textAlign: "center",
+                fontSize: 32,
+                fontStyle: "italic",
+                fontWeight: 900,
+                color: "var(--accent)",
+              }}
+            >
+              {target}
+            </span>
+            <button className="btn sm outline" onClick={() => setTarget((n) => Math.min(50, n + 1))}>
               ＋
             </button>
-            <span className="tiny muted">{t("枚で勝利")}</span>
+            <span className="section-eyebrow" style={{ marginBottom: 0 }}>{t("枚で勝利")}</span>
           </div>
         </>
       )}
@@ -260,7 +282,7 @@ export function Lobby({ user }: { user: ClientUser }) {
             </div>
           )}
 
-          <label className="tiny muted">{t("ルール")}</label>
+          <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("ルール")}</label>
           {ranked ? (
             <div className="notice tiny">
               {t("🏆 ランクマッチ＝エキスパートルール（年＋曲名＋アーティスト正解で獲得）。結果は戦績に記録されます。")}
@@ -293,16 +315,12 @@ export function Lobby({ user }: { user: ClientUser }) {
               </p>
             </>
           ) : (
-            <button className="btn block" onClick={create} disabled={!!busy}>
-              {busy === "create" ? t("作成中…") : t("🎵 部屋を作る")}
+            <button className="btn block gold" onClick={create} disabled={!!busy}>
+              {busy === "create" ? t("作成中…") : t("♪ 部屋を作る")}
             </button>
           )}
 
-          <div className="row" style={{ gap: 10 }}>
-            <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-            <span className="tiny muted">{t("友達の部屋に入る")}</span>
-            <div style={{ flex: 1, height: 1, background: "var(--line)" }} />
-          </div>
+          <div className="divider">{t("友達の部屋に入る")}</div>
 
           <div className="row">
             <input
@@ -310,11 +328,18 @@ export function Lobby({ user }: { user: ClientUser }) {
               value={code}
               placeholder={t("部屋コード（例: AB23）")}
               maxLength={6}
-              style={{ textTransform: "uppercase", letterSpacing: 3 }}
+              className="serif"
+              style={{
+                textTransform: "uppercase",
+                letterSpacing: 6,
+                textAlign: "center",
+                fontStyle: "italic",
+                fontWeight: 700,
+              }}
               onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && join()}
             />
-            <button className="btn secondary" onClick={join} disabled={!!busy}>
+            <button className="btn outline" onClick={join} disabled={!!busy}>
               {t("参加")}
             </button>
           </div>
@@ -333,18 +358,30 @@ export function Lobby({ user }: { user: ClientUser }) {
 
           {!practice && (
             <>
-              <label className="tiny muted">{t("NPC（CPU）の人数")}</label>
+              <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("NPC（CPU）の人数")}</label>
               <div className="row" style={{ gap: 10, alignItems: "center" }}>
-                <button className="btn secondary" onClick={() => setBotCount((c) => Math.max(1, c - 1))}>
+                <button className="btn sm outline" onClick={() => setBotCount((c) => Math.max(1, c - 1))}>
                   －
                 </button>
-                <span style={{ minWidth: 24, textAlign: "center", fontWeight: 800 }}>{botCount}</span>
-                <button className="btn secondary" onClick={() => setBotCount((c) => Math.min(3, c + 1))}>
+                <span
+                  className="serif"
+                  style={{
+                    minWidth: 42,
+                    textAlign: "center",
+                    fontSize: 32,
+                    fontStyle: "italic",
+                    fontWeight: 900,
+                    color: "var(--accent)",
+                  }}
+                >
+                  {botCount}
+                </span>
+                <button className="btn sm outline" onClick={() => setBotCount((c) => Math.min(3, c + 1))}>
                   ＋
                 </button>
               </div>
 
-              <label className="tiny muted">{t("NPCの強さ")}</label>
+              <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("NPCの強さ")}</label>
               <select
                 value={botDifficulty}
                 onChange={(e) => setBotDifficulty(e.target.value as BotDifficulty)}

@@ -37,44 +37,70 @@ export function GameStage({
   countdownEl: ReactNode;
 }) {
   const t = useT();
+  const phaseTitle =
+    (phase === "placing" &&
+      isListening &&
+      (isActive ? t("🎧 試聴中（聞いて配置）") : t("🎧 {name} が試聴中", { name: activeName }))) ||
+    (phase === "placing" &&
+      !isListening &&
+      (isActive ? t("⏳ 配置してOK！") : t("⏳ {name} が配置中", { name: activeName }))) ||
+    (phase === "stealing" && t("横取りチャンス！")) ||
+    (phase === "reveal" && t("結果発表")) ||
+    (phase === "gameover" && t("ゲーム終了")) ||
+    "";
+  // During reveal the YouTube video is shown in full; otherwise the answer is
+  // hidden behind the turntable visual while the song plays.
+  const showCountdown = (phase === "placing" || phase === "stealing") && !!countdownEl;
   return (
     <div className="card stack">
-      <div className="row spread">
-        <strong>
-          {phase === "placing" &&
-            isListening &&
-            (isActive ? t("🎧 試聴中（聞いて配置）") : t("🎧 {name} が試聴中", { name: activeName }))}
-          {phase === "placing" &&
-            !isListening &&
-            (isActive ? t("⏳ 配置してOK！") : t("⏳ {name} が配置中", { name: activeName }))}
-          {phase === "stealing" && t("横取りチャンス！")}
-          {phase === "reveal" && t("結果発表")}
-          {phase === "gameover" && t("ゲーム終了")}
-        </strong>
-        {/* Countdown is shown large over the record below; reveal plays in full. */}
-        {phase === "reveal" &&
-          (playVideoId ? (
-            <span className="pill">🎶 {t("フル再生中")}</span>
-          ) : (
-            <span className="pill">{t("音源を取得できませんでした")}</span>
-          ))}
-      </div>
-      <div className="row" style={{ justifyContent: "center", position: "relative" }}>
-        <YouTubePlayer
-          videoId={playVideoId}
-          startSeconds={startSeconds}
-          playing={playing}
-          reveal={revealMode}
-          volume={volume}
-          onUnavailable={onUnavailable}
-        />
-        {/* Big remaining-seconds overlay on top of the record (placing/stealing). */}
-        {(phase === "placing" || phase === "stealing") && countdownEl && (
-          <div className="yt-countdown" aria-hidden="true">
-            {countdownEl}
+      <div className="turntable">
+        {/* Decorative spinning record + tonearm (purely visual). */}
+        {!revealMode && <div className="big-vinyl" aria-hidden="true" />}
+        <div className="needle" aria-hidden="true" />
+
+        {/* The YouTube iframe (playback) — hidden behind the turntable while
+            playing, shown full-size at reveal. */}
+        <div
+          className="row"
+          style={{ justifyContent: "center", position: "relative", zIndex: 3 }}
+        >
+          <YouTubePlayer
+            videoId={playVideoId}
+            startSeconds={startSeconds}
+            playing={playing}
+            reveal={revealMode}
+            volume={volume}
+            onUnavailable={onUnavailable}
+          />
+        </div>
+
+        {/* Big remaining-seconds overlay centered over the record. */}
+        {showCountdown && (
+          <div className="countdown-over" aria-hidden="true">
+            <div className="yt-countdown" style={{ position: "static" }}>
+              {countdownEl}
+            </div>
+            <div className="sub">— Seconds Remaining —</div>
+          </div>
+        )}
+
+        {/* Now-playing strip with the pulsing live dot. */}
+        {!revealMode && phaseTitle && (
+          <div className="now-meta">
+            <span className="live-dot" aria-hidden="true" />
+            <span>{phaseTitle}</span>
+          </div>
+        )}
+        {phase === "reveal" && (
+          <div className="now-meta">
+            <span className="live-dot" aria-hidden="true" />
+            <span>
+              {playVideoId ? t("フル再生中") : t("音源を取得できませんでした")}
+            </span>
           </div>
         )}
       </div>
+
       <div className="row" style={{ gap: 10, alignItems: "center", justifyContent: "center" }}>
         <span className="tiny muted">{t("🔊 曲の音量")}</span>
         <input

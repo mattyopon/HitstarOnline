@@ -88,7 +88,8 @@ export function RoomClient({ code }: { code: string }) {
     return (
       <Centered>
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
-          <h2>{t("参加できませんでした")}</h2>
+          <span className="vinyl-mark" aria-hidden="true" style={{ margin: "0 auto" }} />
+          <h2 className="section-ttl">{t("参加できませんでした")}</h2>
           <p className="muted">{joinErr}</p>
           <div className="row" style={{ gap: 10, justifyContent: "center" }}>
             <button
@@ -100,7 +101,7 @@ export function RoomClient({ code }: { code: string }) {
             >
               {t("再試行")}
             </button>
-            <button className="btn secondary" onClick={() => router.push("/")}>
+            <button className="btn outline" onClick={() => router.push("/")}>
               {t("ホームに戻る")}
             </button>
           </div>

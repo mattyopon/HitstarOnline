@@ -35,17 +35,23 @@ export function LobbyWaitingCard({
   const startLabel = humans >= 2 ? t("🗳️ ジャンル投票を開始") : t("🎶 ゲーム開始");
   return (
     <div className="card stack">
-      <h2 style={{ marginTop: 0 }}>{t("友達を待っています…")}</h2>
+      <div className="row" style={{ gap: 14 }}>
+        <span className="vinyl-mark" aria-hidden="true" />
+        <div>
+          <div className="section-eyebrow">Side A · Waiting Room</div>
+          <h2 className="section-ttl" style={{ marginTop: 0 }}>{t("友達を待っています…")}</h2>
+        </div>
+      </div>
       <p className="muted" style={{ marginTop: 0 }}>
         {t("下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。")}
       </p>
       <div className="row" style={{ justifyContent: "center", gap: 14 }}>
         <span className="code-pill">{state.code}</span>
-        <button className="btn secondary" onClick={() => navigator.clipboard?.writeText(state.code)}>
+        <button className="btn sm outline" onClick={() => navigator.clipboard?.writeText(state.code)}>
           {t("コピー")}
         </button>
         <button
-          className="btn secondary"
+          className="btn sm outline"
           onClick={() => navigator.clipboard?.writeText(`${location.origin}/room/${state.code}`)}
         >
           {t("招待リンク")}

@@ -61,7 +61,7 @@ export function RankIcon({ tier, size = 20 }: RankIconProps) {
 }
 
 function Emblem({ tier, grad, color }: { tier: Tier; grad: string; color: string }) {
-  const stroke = "#2a2a2a";
+  const stroke = "#1a1208"; // espresso ink outline (Vinyl Lounge), harmonizes badge edges with paper UI
   switch (tier) {
     case "wood": // rough slab (octagon)
       return (

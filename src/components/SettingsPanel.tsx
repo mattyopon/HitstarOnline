@@ -18,13 +18,16 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="row spread">
-          <h2 style={{ margin: 0 }}>⚙️ {t("設定")}</h2>
-          <button className="btn ghost tiny" onClick={onClose}>
+          <div>
+            <div className="section-eyebrow">Liner Notes · Preferences</div>
+            <h2 className="section-ttl" style={{ margin: 0 }}>⚙️ {t("設定")}</h2>
+          </div>
+          <button className="btn outline sm" onClick={onClose}>
             ✕
           </button>
         </div>
 
-        <label className="tiny muted">{t("言語 / Language")}</label>
+        <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("言語 / Language")}</label>
         <select value={locale} onChange={(e) => setLoc(e.target.value)} aria-label="Language">
           {LOCALES.map((l) => (
             <option key={l.code} value={l.code}>
@@ -33,7 +36,7 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
           ))}
         </select>
 
-        <label className="tiny muted">{t("効果音（SE）の音量")}</label>
+        <label className="section-eyebrow" style={{ marginBottom: 0 }}>{t("効果音（SE）の音量")}</label>
         <div className="row" style={{ gap: 10, alignItems: "center" }}>
           <span className="tiny muted">🔈</span>
           <input

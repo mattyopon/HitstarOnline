@@ -68,7 +68,7 @@ export function VotingPanel({
 
   return (
     <div className="card stack">
-      <h2 style={{ marginTop: 0 }}>🗳️ {t("ジャンル投票")}</h2>
+      <h2 className="section-ttl" style={{ marginTop: 0 }}>🗳️ {t("ジャンル投票")}</h2>
       <p className="muted" style={{ marginTop: 0 }}>
         {t("みんなで遊ぶジャンルを決めよう。投票してください（複数選択可・未選択＝全ジャンル）")}
       </p>
@@ -94,19 +94,14 @@ export function VotingPanel({
             <button
               key={c.id}
               type="button"
-              className="pill"
+              className={"pill" + (on ? " on" : "")}
               onClick={() => toggle(c.id)}
               disabled={busy}
-              style={{
-                cursor: "pointer",
-                borderColor: on ? "var(--accent)" : undefined,
-                background: on ? "var(--accent)" : undefined,
-                color: on ? "#fff" : undefined,
-              }}
+              style={{ cursor: "pointer" }}
             >
               {t(c.labelJa)}
               {count > 0 && (
-                <span className="tiny" style={{ marginLeft: 6, opacity: 0.85 }}>
+                <span className="mono tiny" style={{ marginLeft: 6, opacity: 0.85 }}>
                   {t("{n}票", { n: count })}
                 </span>
               )}

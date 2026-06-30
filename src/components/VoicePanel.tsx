@@ -24,7 +24,9 @@ export function VoicePanel({ code, players }: { code: string; players: PublicPla
   return (
     <div className="card stack voice-panel" style={{ padding: 14 }}>
       <div className="row spread">
-        <strong>{t("🎙️ ボイスチャット")}</strong>
+        <strong className="serif" style={{ fontStyle: "italic" }}>
+          {t("🎙️ ボイスチャット")}
+        </strong>
         {v.joined && (
           <button className="btn ghost tiny" onClick={v.leave}>
             {t("退室")}
