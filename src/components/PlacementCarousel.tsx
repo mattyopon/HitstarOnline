@@ -372,14 +372,16 @@ export const PlacementCarousel = memo(function PlacementCarousel({
     if (want === curIndex && rafRef.current == null) {
       // Already centered & at rest — just repaint aria/transforms, no settle.
       aimingIndex.current = want;
-      lastSettled.current = selectedSlot == null ? null : want;
+      lastSettled.current = want;
       paint();
       return;
     }
     targetOffset.current = offsetForIndex(want);
     aimingIndex.current = want;
-    // Suppress a settle callback for an externally-driven value we already know.
-    lastSettled.current = selectedSlot == null ? null : want;
+    // Suppress a settle callback for an externally-driven value we already know
+    // (including a null reset that re-centers to slot 0). A subsequent genuine
+    // user gesture resets lastSettled to null, so real selections still fire.
+    lastSettled.current = want;
     if (reducedRef.current) {
       scrollOffset.current = targetOffset.current;
       velocity.current = 0;
