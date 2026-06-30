@@ -59,7 +59,7 @@ export const RevealCard = memo(function RevealCard({
         {r.artist}
       </div>
       <div style={{ marginTop: 6 }}>{outcome}</div>
-      {r.reason && <div className="tiny muted">{r.reason}</div>}
+      {r.reason && <div className="tiny muted">{t(r.reason)}</div>}
       {r.tokenAwards
         .filter((a) => a.tokensGained > 0)
         .map((a, i) => (
@@ -67,7 +67,7 @@ export const RevealCard = memo(function RevealCard({
             🪙{" "}
             {t("{name} {reason}で +{n}", {
               name: nameOf(a.userId) ?? "?",
-              reason: a.reason ?? t("曲名＋アーティスト正解"),
+              reason: a.reason ? t(a.reason) : t("曲名＋アーティスト正解"),
               n: a.tokensGained,
             })}
           </div>
