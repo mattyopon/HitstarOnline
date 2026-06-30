@@ -549,13 +549,16 @@ console.log("Scenario O (vote cleanup on leave):");
   g = castVote(g, "alice", ["rock"], 1100);
   g = castVote(g, "carol", ["rock"], 1150);
   ok("carol vote present before leave", "carol" in (g.public.votes ?? {}));
-  // Carol leaves mid-vote → her vote is removed.
+  // Carol leaves mid-vote → voting is pre-game, so she is SPLICED OUT entirely
+  // (not merely marked disconnected) and her vote is removed.
   g = removePlayer(g, "carol");
   ok("carol vote deleted on removePlayer", !("carol" in (g.public.votes ?? {})));
-  ok("carol marked disconnected (mid-game branch)", g.public.players.find((p) => p.userId === "carol")!.connected === false);
+  ok("carol removed from players (voting splices like lobby)", !g.public.players.some((p) => p.userId === "carol"));
+  ok("carol removed from order", !g.public.order.includes("carol"));
+  ok("remaining players re-seated 0..n", g.public.players.every((p, i) => p.seat === i));
 
-  // Now eligible voters = alice + bob (carol disconnected). Alice voted; bob has
-  // not → not complete. After bob votes, complete (tally ignores carol).
+  // Now eligible voters = alice + bob (carol gone). Alice voted; bob has not →
+  // not complete. After bob votes, complete (tally ignores departed carol).
   ok("not all voted (bob pending)", allVoted(g.public) === false);
   g = castVote(g, "bob", ["rock"], 1200);
   ok("complete once present voters voted", allVoted(g.public) === true);
@@ -569,6 +572,22 @@ console.log("Scenario O (vote cleanup on leave):");
   ok("not complete with bob connected & not voted", allVoted(h.public) === false);
   h = setConnected(h, "bob", false);
   ok("complete once only-remaining voter (alice) has voted", allVoted(h.public) === true);
+
+  // If EVERY human voter leaves during voting, the deadline path (startFromVote)
+  // must recover to the lobby — not start a zombie game with no connected humans.
+  let z = createLobby("ROOMOZ", { userId: "alice", name: "Alice" }, {});
+  z = addPlayer(z, { userId: "bob", name: "Bob" });
+  z = openVoting(z, 1000);
+  z = castVote(z, "alice", ["rock"], 1100);
+  z = removePlayer(z, "alice");
+  z = removePlayer(z, "bob");
+  ok("all humans gone during voting", z.public.players.length === 0);
+  // A non-empty deck is supplied; the no-connected-humans guard must win anyway.
+  const zStarted = startFromVote(z, [0, 1, 2, 3, 4, 5], songs, 2000);
+  ok("startFromVote recovers to lobby (no zombie game)", zStarted.public.phase === "lobby");
+  ok("votes cleared on zombie recovery", zStarted.public.votes === undefined);
+  ok("deadline cleared on zombie recovery", zStarted.public.deadline === undefined);
+  ok("no cards dealt on zombie recovery", zStarted.public.players.every((p) => p.timeline.length === 0));
 }
 
 // ── Scenario P: late join during voting + seeded-shuffle determinism ────────

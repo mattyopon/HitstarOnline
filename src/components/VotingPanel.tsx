@@ -42,16 +42,25 @@ export function VotingPanel({
     setPicked((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
   }
 
-  // Per-category vote tallies across all present ballots.
+  // Eligible voters = connected non-bot players (mirrors the server's
+  // voteWinner/allVoted base). Stale ballots from departed/disconnected players
+  // are ignored so the panel's tally and counts match the server exactly.
+  const voters = state.players.filter((p) => p.connected && !p.isBot);
+  const eligibleIds = useMemo(
+    () => new Set(voters.map((p) => p.userId)),
+    [voters.map((p) => p.userId).join(",")], // eslint-disable-line react-hooks/exhaustive-deps
+  );
+
+  // Per-category vote tallies across eligible ballots only.
   const tally = useMemo(() => {
     const m: Record<string, number> = {};
-    for (const cats of Object.values(votes)) {
+    for (const [uid, cats] of Object.entries(votes)) {
+      if (!eligibleIds.has(uid)) continue;
       for (const c of cats) m[c] = (m[c] ?? 0) + 1;
     }
     return m;
-  }, [votes]);
+  }, [votes, eligibleIds]);
 
-  const voters = state.players.filter((p) => p.connected && !p.isBot);
   const votedCount = voters.filter((p) => p.userId in votes).length;
 
   const secondsLeft =

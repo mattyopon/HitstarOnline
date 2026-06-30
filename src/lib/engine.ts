@@ -243,7 +243,11 @@ export function removePlayer(game: FullGame, userId: string): FullGame {
   // A departing player's genre vote must not keep counting (or block completion).
   if (g.public.votes && userId in g.public.votes) delete g.public.votes[userId];
 
-  if (g.public.phase === "lobby") {
+  // Pre-game (lobby OR the genre vote): fully remove the player and re-seat the
+  // rest. During "voting" no hands are dealt and no turns rotate, so there is no
+  // reason to keep a disconnected ghost around — leaving them in would also let
+  // the vote-deadline backstop start a "zombie" game with no connected humans.
+  if (g.public.phase === "lobby" || g.public.phase === "voting") {
     g.public.players.splice(idx, 1);
     g.public.players.forEach((p, i) => (p.seat = i));
     g.public.order = g.public.players.map((p) => p.userId);
@@ -492,6 +496,19 @@ export function voteWinner(g: FullGame): string[] {
  */
 export function startFromVote(game: FullGame, deckOrder: number[], songs: Song[], now: number): FullGame {
   if (game.public.phase !== "voting") return game; // already started / not voting
+
+  // Everyone left during the vote (only bots / disconnected remain) → there is
+  // nobody to play, so recover to the lobby instead of starting a zombie game.
+  // No connected non-bot human → return-to-lobby recovery (same as the M7 path).
+  if (humanVoters(game.public).length === 0) {
+    const g = clone(game);
+    g.public.phase = "lobby";
+    delete g.public.votes;
+    g.public.deadline = undefined;
+    g.public.version++;
+    return g;
+  }
+
   const n = game.public.players.length;
   if (deckOrder.length < n + 1) {
     // Even the fallback deck can't seat everyone → recover to lobby.
