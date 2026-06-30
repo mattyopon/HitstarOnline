@@ -6,7 +6,15 @@
 
 import type { Tier } from "./rank";
 
-export type Phase = "lobby" | "placing" | "stealing" | "reveal" | "gameover";
+export type Phase = "lobby" | "voting" | "placing" | "stealing" | "reveal" | "gameover";
+
+/** Shared deck-size margin: a deck must hold at least players + this many songs
+ *  to start (1 starting card each + a comfortable supply of mystery cards). Used
+ *  by the start route, the vote-start fallback, and votable-category eligibility. */
+export const MIN_DECK_MARGIN = 6;
+
+/** Seconds the genre majority-vote stays open before the deadline backstop fires. */
+export const VOTE_DURATION_SECONDS = 30;
 
 /** Difficulty mode (changes what it takes to keep/steal a card). */
 export type GameMode = "original" | "pro" | "expert";
@@ -236,6 +244,9 @@ export interface PublicState {
   winnerId?: string | null;
   /** Number of cards remaining in the deck (for UI). */
   deckRemaining: number;
+  /** Genre majority-vote (phase "voting"): userId -> chosen category ids.
+   *  Only present during/while resolving voting; cleared when the game starts. */
+  votes?: Record<string, string[]>;
 }
 
 export interface SecretState {

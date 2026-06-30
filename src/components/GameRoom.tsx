@@ -20,6 +20,7 @@ import { PlacementPanel } from "./PlacementPanel";
 import { StealPanel } from "./StealPanel";
 import { GameOverBanner } from "./GameOverBanner";
 import { LobbyWaitingCard } from "./LobbyWaitingCard";
+import { VotingPanel } from "./VotingPanel";
 import { DEFAULT_SETTINGS, type PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
 import { playRankEntrySound } from "@/lib/rankSound";
@@ -388,6 +389,31 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             busy={busy}
             actionErr={actionErr}
             onStart={() => act("/api/game/start", {})}
+          />
+          <div className="stack">
+            <PlayerList state={state} meId={meId} />
+            {showVoice && <VoicePanel code={code} players={state.players} />}
+          </div>
+        </div>
+        {isMultiplayer && <ChatDock code={code} players={state.players} />}
+      </div>
+    );
+  }
+
+  // ── Genre vote ───────────────────────────────────────────────────────────--
+  if (state.phase === "voting") {
+    return (
+      <div className="container">
+        {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+        {settingsModal}
+        {headerEl}
+        <div className="grid-2">
+          <VotingPanel
+            state={state}
+            meId={meId}
+            busy={busy}
+            actionErr={actionErr}
+            onVote={(categories) => act("/api/game/vote", { categories })}
           />
           <div className="stack">
             <PlayerList state={state} meId={meId} />

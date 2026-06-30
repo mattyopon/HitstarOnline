@@ -1,6 +1,6 @@
-import { json } from "@/lib/api";
+import { buildVoteStartOrder, json } from "@/lib/api";
 import { getDeck } from "@/lib/deck";
-import { advance } from "@/lib/engine";
+import { advance, startFromVote } from "@/lib/engine";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { ConflictError, mutateByCode } from "@/lib/rooms";
 
@@ -25,7 +25,7 @@ async function run(req: Request): Promise<Response> {
   const { data, error } = await admin
     .from("rooms")
     .select("code, state")
-    .in("status", ["placing", "stealing", "reveal"])
+    .in("status", ["voting", "placing", "stealing", "reveal"])
     .limit(200);
   if (error) return json({ error: error.message }, 500);
 
@@ -46,7 +46,15 @@ async function run(req: Request): Promise<Response> {
   let advanced = 0;
   for (const r of due) {
     try {
-      await mutateByCode(r.code as string, (g) => advance(g, songs, Date.now()));
+      await mutateByCode(r.code as string, (g) => {
+        // Voting deadline backstop: resolve the genre vote and start (idempotent,
+        // deterministic per state → safe under CAS). Other phases use advance.
+        if (g.public.phase === "voting") {
+          if ((g.public.deadline ?? Infinity) > Date.now()) return g;
+          return startFromVote(g, buildVoteStartOrder(g), songs, Date.now());
+        }
+        return advance(g, songs, Date.now());
+      });
       advanced++;
     } catch (e) {
       if (!(e instanceof ConflictError)) {

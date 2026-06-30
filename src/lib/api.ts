@@ -1,7 +1,7 @@
 // Shared helpers for API route handlers (server only).
 import { getSessionUser, SessionUser } from "./auth";
-import { GameError } from "./engine";
-import { getDeck } from "./deck";
+import { GameError, voteWinner, votesHashSeed } from "./engine";
+import { getDeck, shuffledDeckOrder } from "./deck";
 import { ConflictError, NotFoundError, mutateByCode } from "./rooms";
 import {
   BotDifficulty,
@@ -9,6 +9,7 @@ import {
   FullGame,
   GameMode,
   GameSettings,
+  MIN_DECK_MARGIN,
   PlayerSeed,
   Song,
 } from "./protocol";
@@ -135,6 +136,26 @@ export function withRoomAction(
       return mapError(e);
     }
   };
+}
+
+/**
+ * Build the seeded deck draw order for the vote-start path. Computes the genre
+ * majority winner, derives a deterministic seed from room state, and shuffles
+ * the matching deck. Falls back to ALL categories (the all-abstain default and
+ * the too-small-deck recovery) so a winning genre can't leave the deck short.
+ * DETERMINISTIC for a given game state → safe to recompute on each CAS retry.
+ */
+export function buildVoteStartOrder(g: FullGame): number[] {
+  const seed = votesHashSeed(g);
+  const winner = voteWinner(g); // [] = all categories
+  const n = g.public.players.length;
+  const order = shuffledDeckOrder(winner, seed);
+  if (winner.length > 0 && order.length < n + MIN_DECK_MARGIN) {
+    // The democratic winner is too small → fall back to all categories so the
+    // game still starts. (startFromVote returns to lobby if even this is short.)
+    return shuffledDeckOrder([], seed);
+  }
+  return order;
 }
 
 /** Validate a solo request body: { bots: [{difficulty}], ... }. */

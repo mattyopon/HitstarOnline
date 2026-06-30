@@ -15,6 +15,8 @@ import {
   BOT_PROFILES,
   BotDifficulty,
   BotProfile,
+  CATEGORIES,
+  CATEGORY_IDS,
   DEFAULT_SETTINGS,
   FullGame,
   GameSettings,
@@ -25,6 +27,7 @@ import {
   SecretState,
   Song,
   TimelineCard,
+  VOTE_DURATION_SECONDS,
   defaultSettings,
 } from "./protocol";
 import { looseMatch } from "./matching";
@@ -167,7 +170,10 @@ export function addPlayer(game: FullGame, seed: PlayerSeed): FullGame {
   }
 
   const g = clone(game);
-  if (g.public.phase !== "lobby") {
+  // Brand-new joins are allowed only while pre-game (lobby OR the genre vote);
+  // mid-game only existing members may reconnect.
+  const joinable = g.public.phase === "lobby" || g.public.phase === "voting";
+  if (!joinable) {
     // Allow rejoin if already a member (reconnect); otherwise reject.
     const existing = g.public.players.find((p) => p.userId === seed.userId);
     if (existing) {
@@ -233,6 +239,9 @@ export function removePlayer(game: FullGame, userId: string): FullGame {
   const g = clone(game);
   const idx = g.public.players.findIndex((p) => p.userId === userId);
   if (idx === -1) return game;
+
+  // A departing player's genre vote must not keep counting (or block completion).
+  if (g.public.votes && userId in g.public.votes) delete g.public.votes[userId];
 
   if (g.public.phase === "lobby") {
     g.public.players.splice(idx, 1);
@@ -315,10 +324,16 @@ function beginTurn(g: FullGame, _songs: Song[], now: number): void {
 
 export function startGame(game: FullGame, deckOrder: number[], songs: Song[], now: number): FullGame {
   const g = clone(game);
-  if (g.public.phase !== "lobby") throw new GameError("ゲームは既に開始されています");
+  // Startable from the lobby OR from the genre-vote phase (vote → game).
+  if (g.public.phase !== "lobby" && g.public.phase !== "voting") {
+    throw new GameError("ゲームは既に開始されています");
+  }
   const n = g.public.players.length;
   if (n < 1) throw new GameError("プレイヤーがいません");
   if (deckOrder.length < n + 1) throw new GameError("曲が足りません");
+
+  // Genre votes only matter pre-game; never leak them into in-game state.
+  delete g.public.votes;
 
   g.secret.deck = [...deckOrder];
   g.secret.drawPos = 0;
@@ -350,6 +365,144 @@ export function createGame(
   let g = createLobby(code, seeds[0], settings);
   for (const s of seeds.slice(1)) g = addPlayer(g, s);
   return startGame(g, deckOrder, songs, now);
+}
+
+// ─── Genre majority-vote (phase "voting") ─────────────────────────────────--
+// When 2+ humans are in a room the host opens a vote instead of starting the
+// game directly; every connected human votes for genre categories and the
+// majority winner builds the deck. Everything here is pure: the deck shuffle
+// (which needs the server-only deck) is built by the route from voteWinner +
+// votesHashSeed and handed to startFromVote, so CAS retries stay deterministic.
+
+/** Connected, present, non-bot players — the only eligible voters/tally base. */
+function humanVoters(state: PublicState): PublicPlayer[] {
+  return state.players.filter((p) => p.connected && !isBot(p));
+}
+
+/**
+ * Open the genre vote (lobby → voting). Precondition: at least 2 CONNECTED
+ * non-bot humans (M4) — bots never vote. Idempotent-ish: throws on misuse so
+ * the host route surfaces a clear error.
+ */
+export function openVoting(game: FullGame, now: number): FullGame {
+  const g = clone(game);
+  if (g.public.phase !== "lobby") throw new GameError("今は投票を開始できません");
+  if (humanVoters(g.public).length < 2) {
+    throw new GameError("投票には2人以上の参加者が必要です");
+  }
+  g.public.phase = "voting";
+  g.public.votes = {};
+  g.public.deadline = now + VOTE_DURATION_SECONDS * 1000;
+  g.public.version++;
+  return g;
+}
+
+/** Filter a raw category-id list to valid ids, de-duplicated, order-stable. */
+function sanitizeVote(cats: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const c of cats) {
+    if (CATEGORY_IDS.has(c) && !seen.has(c)) {
+      seen.add(c);
+      out.push(c);
+    }
+  }
+  return out;
+}
+
+/**
+ * Cast (or change) a player's vote. No-op (no version bump) when not in the
+ * voting phase (M1/late tap) or when the vote is unchanged (S2). Only present,
+ * connected, non-bot members may vote.
+ */
+export function castVote(game: FullGame, userId: string, cats: string[], _now: number): FullGame {
+  if (game.public.phase !== "voting") return game; // late/duplicate tap → benign
+  const voter = game.public.players.find((p) => p.userId === userId);
+  if (!voter || isBot(voter) || !voter.connected) {
+    throw new GameError("投票できません");
+  }
+  const next = sanitizeVote(cats);
+  const cur = game.public.votes?.[userId];
+  // Identical re-vote → no-op (avoid realtime churn). Order is significant here
+  // only as a stable signal; sanitizeVote keeps caller order.
+  if (cur && cur.length === next.length && cur.every((c, i) => c === next[i])) {
+    return game;
+  }
+  const g = clone(game);
+  if (!g.public.votes) g.public.votes = {};
+  g.public.votes[userId] = next;
+  g.public.version++;
+  return g;
+}
+
+/** True once every eligible (connected, non-bot) voter has cast a vote AND at
+ *  least one vote exists. Pure optimization for early start; the deadline is the
+ *  authoritative backstop (M6). */
+export function allVoted(state: PublicState): boolean {
+  const voters = humanVoters(state);
+  if (voters.length === 0) return false;
+  const votes = state.votes ?? {};
+  let any = false;
+  for (const p of voters) {
+    if (!(p.userId in votes)) return false;
+    any = true;
+  }
+  return any;
+}
+
+/** Deterministic seed for the vote-driven shuffle and tie-break. Folds version
+ *  so retries within one transition agree but successive votes/rematches differ
+ *  (S4). Evaluated on the PRE-start game (round is still 0 during voting). */
+export function votesHashSeed(g: FullGame): number {
+  return hash32(`${g.public.code}:${g.public.round}:${g.public.version}`);
+}
+
+/**
+ * Tally the votes (only from present, connected, non-bot players) and return the
+ * winning category ids. Each player's ballot is a list; every listed category
+ * gets one point. Returns:
+ *   - the set of categories tied for the most points (deterministically chosen
+ *     winner list), or
+ *   - [] when nobody voted → "all categories" (M8), NOT settings.categories.
+ */
+export function voteWinner(g: FullGame): string[] {
+  const voters = new Set(humanVoters(g.public).map((p) => p.userId));
+  const votes = g.public.votes ?? {};
+  const tally = new Map<string, number>();
+  for (const [uid, cats] of Object.entries(votes)) {
+    if (!voters.has(uid)) continue; // ignore departed/bot/disconnected voters
+    for (const c of cats) {
+      if (CATEGORY_IDS.has(c)) tally.set(c, (tally.get(c) ?? 0) + 1);
+    }
+  }
+  if (tally.size === 0) return []; // all-abstain → all categories
+  let max = 0;
+  for (const v of tally.values()) if (v > max) max = v;
+  // Stable, deterministic order: canonical CATEGORIES order, max-count only.
+  return CATEGORIES.map((c) => c.id).filter((id) => tally.get(id) === max);
+}
+
+/**
+ * Start the game from the voting phase using a deck order the CALLER built from
+ * voteWinner + votesHashSeed (deck access is server-only). Idempotent and
+ * phase-guarded (M1): a no-op if not in voting, so the double-start race
+ * (last-voter vs. deadline-advance) is benign under CAS. If the supplied deck is
+ * too small even after the caller's all-categories fallback, return to the lobby
+ * (clearing votes) rather than throwing an unrecoverable error (M7).
+ */
+export function startFromVote(game: FullGame, deckOrder: number[], songs: Song[], now: number): FullGame {
+  if (game.public.phase !== "voting") return game; // already started / not voting
+  const n = game.public.players.length;
+  if (deckOrder.length < n + 1) {
+    // Even the fallback deck can't seat everyone → recover to lobby.
+    const g = clone(game);
+    g.public.phase = "lobby";
+    delete g.public.votes;
+    g.public.deadline = undefined;
+    g.public.version++;
+    return g;
+  }
+  return startGame(game, deckOrder, songs, now);
 }
 
 // ─── Turn actions ─────────────────────────────────────────────────────────--
@@ -807,7 +960,7 @@ export function currentSongId(g: FullGame): number | undefined {
 // mutateByCode CAS retry re-derives the SAME decision. Bots run only here,
 // server-side; their difficulty never enters public state.
 
-function hash32(str: string): number {
+export function hash32(str: string): number {
   let h = 2166136261 >>> 0;
   for (let i = 0; i < str.length; i++) {
     h ^= str.charCodeAt(i);
@@ -816,7 +969,7 @@ function hash32(str: string): number {
   return h >>> 0;
 }
 
-function mulberry32(seed: number): () => number {
+export function mulberry32(seed: number): () => number {
   let a = seed >>> 0;
   return function () {
     a = (a + 0x6d2b79f5) | 0;

@@ -29,6 +29,10 @@ export function LobbyWaitingCard({
   onStart: () => void;
 }) {
   const t = useT();
+  // With 2+ connected humans, "start" opens a genre majority-vote instead of
+  // dealing immediately — relabel the button so the host knows.
+  const humans = state.players.filter((p) => p.connected && !p.isBot).length;
+  const startLabel = humans >= 2 ? t("🗳️ ジャンル投票を開始") : t("🎶 ゲーム開始");
   return (
     <div className="card stack">
       <h2 style={{ marginTop: 0 }}>{t("友達を待っています…")}</h2>
@@ -59,7 +63,7 @@ export function LobbyWaitingCard({
       {actionErr && <div className="error">{actionErr}</div>}
       {isHost ? (
         <button className="btn block" disabled={busy || state.players.length < 2} onClick={onStart}>
-          {state.players.length < 2 ? t("2人以上で開始できます") : t("🎶 ゲーム開始")}
+          {state.players.length < 2 ? t("2人以上で開始できます") : startLabel}
         </button>
       ) : (
         <div className="notice">{t("ホストの開始を待っています…")}</div>

@@ -19,6 +19,15 @@ import {
   passSteal,
   advance,
   isPlacementCorrect,
+  openVoting,
+  castVote,
+  allVoted,
+  voteWinner,
+  votesHashSeed,
+  startFromVote,
+  removePlayer,
+  setConnected,
+  mulberry32,
 } from "../src/lib/engine";
 import { Song } from "../src/lib/protocol";
 import { applyResult, defaultRank } from "../src/lib/rank";
@@ -427,6 +436,174 @@ console.log("Scenario K (rank LP):");
 
   r = loss({ tier: "diamond", lp: 40, games: 0, wins: 0 });
   ok("diamond 40 −loss → diamond 20 (no demote)", r.tier === "diamond" && r.lp === 20);
+}
+
+// ── Scenario L: genre majority-vote (voting phase) ─────────────────────────
+console.log("Scenario L (genre vote):");
+{
+  // openVoting precondition: needs >= 2 connected non-bot humans.
+  let solo = createLobby("ROOMLA", { userId: "alice", name: "Alice" }, {});
+  solo = addBot(solo, "normal"); // 1 human + 1 bot → still < 2 humans
+  let threw = false;
+  try {
+    openVoting(solo, 1000);
+  } catch {
+    threw = true;
+  }
+  ok("openVoting rejects < 2 humans (1 human + bot)", threw);
+
+  let g = createLobby("ROOMLB", { userId: "alice", name: "Alice" }, {});
+  g = addPlayer(g, { userId: "bob", name: "Bob" });
+  g = addPlayer(g, { userId: "carol", name: "Carol" });
+  const vBefore = g.public.version;
+  g = openVoting(g, 1000);
+  ok("openVoting → voting phase", g.public.phase === "voting");
+  ok("voting bumps version", g.public.version > vBefore);
+  ok("votes initialized empty", !!g.public.votes && Object.keys(g.public.votes).length === 0);
+  ok("voting deadline set", typeof g.public.deadline === "number" && g.public.deadline! > 1000);
+
+  // castVote tallies; not everyone voted yet.
+  g = castVote(g, "alice", ["rock", "jazz"], 1100);
+  ok("alice vote recorded", JSON.stringify(g.public.votes!.alice) === JSON.stringify(["rock", "jazz"]));
+  ok("not all voted yet", allVoted(g.public) === false);
+
+  // Idempotent re-vote: identical → no version bump (S2).
+  const vSame = g.public.version;
+  g = castVote(g, "alice", ["rock", "jazz"], 1150);
+  ok("identical re-vote is a no-op", g.public.version === vSame);
+
+  // Changed vote bumps version.
+  g = castVote(g, "alice", ["rock"], 1160);
+  ok("changed vote bumps version", g.public.version > vSame);
+
+  g = castVote(g, "bob", ["rock"], 1200);
+  g = castVote(g, "carol", ["jazz"], 1300);
+  ok("all eligible voted → allVoted true", allVoted(g.public) === true);
+
+  // voteWinner: rock has 2, jazz has 1 → rock wins.
+  ok("voteWinner = [rock]", JSON.stringify(voteWinner(g)) === JSON.stringify(["rock"]));
+
+  // Atomic all-voted start (engine-level): supply a sufficient deck order.
+  const order = [0, 1, 2, 5, 8, 9, 10, 11];
+  const started = startFromVote(g, order, songs, 1400);
+  ok("startFromVote → placing", started.public.phase === "placing");
+  ok("votes cleared on start", started.public.votes === undefined);
+  ok("each player seeded one card", started.public.players.every((p) => p.timeline.length === 1));
+
+  // Idempotency / phase guard (M1): calling again on the started game is a no-op.
+  const again = startFromVote(started, order, songs, 1500);
+  ok("startFromVote idempotent (already placing → no-op)", again.public.version === started.public.version);
+}
+
+// ── Scenario M: vote deadline timeout via advance-style start + tie-break ───
+console.log("Scenario M (vote tie / abstain / seed):");
+{
+  let g = createLobby("ROOMMA", { userId: "alice", name: "Alice" }, {});
+  g = addPlayer(g, { userId: "bob", name: "Bob" });
+  g = openVoting(g, 1000);
+
+  // Tie: alice→rock, bob→jazz; voteWinner returns BOTH (max-count), in canonical
+  // CATEGORIES order (rock precedes jazz in the list), deterministically.
+  g = castVote(g, "alice", ["rock"], 1100);
+  g = castVote(g, "bob", ["jazz"], 1200);
+  const tie = voteWinner(g);
+  ok("tie returns both max-count cats", tie.length === 2 && tie.includes("rock") && tie.includes("jazz"));
+  ok("tie order is canonical (rock before jazz)", tie.indexOf("rock") < tie.indexOf("jazz"));
+
+  // votesHashSeed deterministic for the same state, differs after a vote change.
+  const seed1 = votesHashSeed(g);
+  const seed1b = votesHashSeed(g);
+  ok("votesHashSeed deterministic", seed1 === seed1b);
+  const g2 = castVote(g, "bob", ["rock"], 1300); // changes version
+  ok("votesHashSeed changes when state changes", votesHashSeed(g2) !== seed1);
+
+  // All-abstain → voteWinner is [] (all categories), NOT settings.categories (M8).
+  let h = createLobby("ROOMMB", { userId: "alice", name: "Alice" }, { categories: ["rock"] });
+  h = addPlayer(h, { userId: "bob", name: "Bob" });
+  h = openVoting(h, 1000);
+  ok("all-abstain winner is [] (all)", JSON.stringify(voteWinner(h)) === JSON.stringify([]));
+}
+
+// ── Scenario N: too-small deck → return to lobby (no throw) ─────────────────
+console.log("Scenario N (vote recovery to lobby):");
+{
+  let g = createLobby("ROOMNN", { userId: "alice", name: "Alice" }, {});
+  g = addPlayer(g, { userId: "bob", name: "Bob" });
+  g = addPlayer(g, { userId: "carol", name: "Carol" });
+  g = openVoting(g, 1000);
+  g = castVote(g, "alice", ["rock"], 1100);
+  // Deck of only 2 songs < players(3) + 1 → cannot seat everyone.
+  const recovered = startFromVote(g, [0, 1], songs, 1200);
+  ok("too-small deck → back to lobby", recovered.public.phase === "lobby");
+  ok("votes cleared on recovery", recovered.public.votes === undefined);
+  ok("recovery clears deadline", recovered.public.deadline === undefined);
+}
+
+// ── Scenario O: vote cleanup on leave + disconnect completion ───────────────
+console.log("Scenario O (vote cleanup on leave):");
+{
+  let g = createLobby("ROOMOO", { userId: "alice", name: "Alice" }, {});
+  g = addPlayer(g, { userId: "bob", name: "Bob" });
+  g = addPlayer(g, { userId: "carol", name: "Carol" });
+  g = openVoting(g, 1000);
+  g = castVote(g, "alice", ["rock"], 1100);
+  g = castVote(g, "carol", ["rock"], 1150);
+  ok("carol vote present before leave", "carol" in (g.public.votes ?? {}));
+  // Carol leaves mid-vote → her vote is removed.
+  g = removePlayer(g, "carol");
+  ok("carol vote deleted on removePlayer", !("carol" in (g.public.votes ?? {})));
+  ok("carol marked disconnected (mid-game branch)", g.public.players.find((p) => p.userId === "carol")!.connected === false);
+
+  // Now eligible voters = alice + bob (carol disconnected). Alice voted; bob has
+  // not → not complete. After bob votes, complete (tally ignores carol).
+  ok("not all voted (bob pending)", allVoted(g.public) === false);
+  g = castVote(g, "bob", ["rock"], 1200);
+  ok("complete once present voters voted", allVoted(g.public) === true);
+  ok("voteWinner ignores departed carol", JSON.stringify(voteWinner(g)) === JSON.stringify(["rock"]));
+
+  // A disconnected non-bot is excluded from the eligible set too.
+  let h = createLobby("ROOMOP", { userId: "alice", name: "Alice" }, {});
+  h = addPlayer(h, { userId: "bob", name: "Bob" });
+  h = openVoting(h, 1000);
+  h = castVote(h, "alice", ["rock"], 1100);
+  ok("not complete with bob connected & not voted", allVoted(h.public) === false);
+  h = setConnected(h, "bob", false);
+  ok("complete once only-remaining voter (alice) has voted", allVoted(h.public) === true);
+}
+
+// ── Scenario P: late join during voting + seeded-shuffle determinism ────────
+console.log("Scenario P (late join + seeded shuffle):");
+{
+  let g = createLobby("ROOMPP", { userId: "alice", name: "Alice" }, {});
+  g = addPlayer(g, { userId: "bob", name: "Bob" });
+  g = openVoting(g, 1000);
+  // Late joiner is allowed during voting (M5) — no throw.
+  let joinThrew = false;
+  try {
+    g = addPlayer(g, { userId: "dave", name: "Dave" });
+  } catch {
+    joinThrew = true;
+  }
+  ok("late join allowed during voting", !joinThrew && g.public.players.some((p) => p.userId === "dave"));
+  // The late joiner raises the denominator: previously-complete can become not.
+  g = castVote(g, "alice", ["rock"], 1100);
+  g = castVote(g, "bob", ["rock"], 1150);
+  ok("not complete while late joiner (dave) hasn't voted", allVoted(g.public) === false);
+
+  // Seeded shuffle determinism (the property buildVoteStartOrder relies on):
+  // mulberry32(seed) gives an identical permutation on every run.
+  const seed = votesHashSeed(g);
+  const permute = (s: number) => {
+    const arr = Array.from({ length: 30 }, (_, i) => i);
+    const rng = mulberry32(s);
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(rng() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  };
+  ok("seeded shuffle is deterministic", JSON.stringify(permute(seed)) === JSON.stringify(permute(seed)));
+  ok("different seeds differ", JSON.stringify(permute(seed)) !== JSON.stringify(permute(seed + 1)));
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);
