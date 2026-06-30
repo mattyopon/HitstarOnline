@@ -638,6 +638,97 @@ select:focus {
   color: var(--muted);
 }
 
+/* ── Placement carousel (Destiny-Child-style coverflow position picker) ──────
+   A fixed-height, full-width, overflow-hidden viewport. Items are absolutely
+   positioned and driven entirely by JS transforms (translateX/Z, rotateY,
+   scale) + opacity — compositor-only, no layout thrash. Decoupled from the
+   timeline fan-fit so it never widens the page. */
+.pc-viewport {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  touch-action: pan-y;
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.pc-viewport:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent);
+  border-radius: 14px;
+}
+.pc-track {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  /* perspective set inline from PERSPECTIVE_PX */
+}
+.pc-item {
+  position: absolute;
+  /* centered: left = 50%, then a negative half-width margin so translateX(0)
+     of item 0 lands its center on the viewport center. */
+  left: 50%;
+  top: 50%;
+  margin-left: calc(-140px / 2); /* -BASE_WIDTH / 2 */
+  margin-top: -90px; /* roughly half the card height for vertical centering */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-origin: center center;
+  cursor: pointer;
+}
+.pc-card {
+  width: 100%;
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.pc-card .q {
+  font-size: 40px;
+}
+.pc-label {
+  color: var(--accent-2);
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: normal;
+}
+/* Chosen-highlight: the explicitly SELECTED slot (derived solely from the
+   selectedSlot prop, never from the position-function "centered" visual). This
+   is deliberately distinct from being centered/largest so a fresh turn — where
+   nothing is chosen — shows a centered-but-unhighlighted card. */
+.pc-item.pc-chosen .pc-card {
+  border-color: var(--accent);
+  box-shadow:
+    0 0 0 2px var(--accent),
+    0 8px 24px rgba(255, 77, 157, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-viewport.pc-reduced {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    height: auto;
+  }
+  .pc-viewport.pc-reduced .pc-track {
+    position: static;
+    display: flex;
+    gap: 16px;
+    perspective: none !important;
+    padding: 6px 50%;
+  }
+  .pc-viewport.pc-reduced .pc-item {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0;
+    scroll-snap-align: center;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 /* sound-unlock overlay */
 .tap-overlay {
   position: fixed;

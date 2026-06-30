@@ -1,7 +1,7 @@
 "use client";
 
 import type { GameSettings, PublicPlayer } from "@/lib/protocol";
-import { PlacementArea } from "./PlacementArea";
+import { PlacementCarousel } from "./PlacementCarousel";
 import { useT } from "@/lib/i18n";
 
 /** The active player's placement controls: optional guess, tap-to-place, and
@@ -79,12 +79,14 @@ export function PlacementPanel({
           style={{ flex: 1, minWidth: 160 }}
         />
       </div>
-      <PlacementArea
+      <PlacementCarousel
         cards={me.timeline}
         selectedSlot={selectedSlot}
-        hint="位置をタップまたはドラッグで選び、「提出」で確定"
         onSelect={setSelectedSlot}
       />
+      <div className="placement-hint">
+        {t("カードを回して中央で位置を選び、「提出」で確定")}
+      </div>
       {/* Selecting a slot only stages the card; submit confirms it. On timeout the
           staged slot is auto-submitted (handled in GameRoom). */}
       <button
