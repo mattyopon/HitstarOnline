@@ -8,6 +8,10 @@ import type { Tier } from "./rank";
 
 export type Phase = "lobby" | "voting" | "placing" | "stealing" | "reveal" | "gameover";
 
+/** Playback provider for a mystery card. Absent provider = "youtube" (the
+ *  15,431 existing deck songs are all implicitly YouTube). */
+export type Provider = "youtube" | "bilibili";
+
 /** Shared deck-size margin: a deck must hold at least players + this many songs
  *  to start (1 starting card each + a comfortable supply of mystery cards). Used
  *  by the start route, the vote-start fallback, and votable-category eligibility. */
@@ -157,6 +161,15 @@ export interface CurrentTrack {
   startSeconds: number;
   /** Epoch ms when listening started (lets clients sync playback). */
   startedAt: number;
+  /** Playback provider; absent = "youtube" (backward-compatible default). */
+  provider?: Provider;
+  /** Bilibili video id (BV…), set only for bilibili cards. Resolved server-side
+   *  like youtubeId. NEVER carries the answer. */
+  bvid?: string;
+  /** True when this is a cover (歌ってみた): guess the ORIGINAL song's year.
+   *  A non-answer flavor hint only — the original's year/title/artist stay
+   *  server-side until reveal. */
+  isCover?: boolean;
 }
 
 export interface StealEntry {
@@ -187,6 +200,15 @@ export interface RevealInfo {
   artist: string;
   year: number;
   youtubeId: string | null;
+  /** Playback provider for the revealed card; absent = "youtube". Lets the
+   *  reveal play the full clip with the right player after `current` is cleared. */
+  provider?: Provider;
+  /** Bilibili video id (BV…) for a bilibili card, so reveal can play it in full. */
+  bvid?: string;
+  /** True for a cover (歌ってみた) card. */
+  isCover?: boolean;
+  /** The cover singer (歌い手) — flavor shown ONLY at reveal. */
+  coverArtist?: string;
   /** Active player's placement, or null if they timed out. */
   placementSlot: number | null;
   activeCorrect: boolean;
@@ -283,6 +305,17 @@ export interface Song {
   /** Alternate titles/scripts/romanizations for cross-language matching. */
   aliases?: string[];
   artistAliases?: string[];
+  /** Playback provider; absent = YouTube (all 15,431 existing songs). Only
+   *  "bilibili" is set explicitly for the cover/歌ってみた cards. */
+  provider?: "bilibili";
+  /** Bilibili video id (BV…), baked into the deck for bilibili cards (no network
+   *  resolution — egress is blocked). */
+  bvid?: string;
+  /** The cover singer (歌い手). Flavor shown ONLY at reveal — the year/title/
+   *  artist answer is always the ORIGINAL song's. */
+  coverArtist?: string;
+  /** True for cover (歌ってみた) cards: guess the ORIGINAL song's release year. */
+  isCover?: boolean;
 }
 
 export interface CategoryDef {
@@ -386,6 +419,10 @@ export const PACKS: PackDef[] = [
   { id: "pack:pokemon", labelJa: "ポケモン縛り", labelEn: "Pokémon", kind: "franchise", accent: "#d4a330" },
   { id: "pack:dragonball", labelJa: "ドラゴンボール縛り", labelEn: "Dragon Ball", kind: "franchise", accent: "#a87830" },
   { id: "pack:kimetsu", labelJa: "鬼滅の刃縛り", labelEn: "Demon Slayer", kind: "franchise", accent: "#6b6a3a" },
+  // ── Cover / 歌ってみた quiz (Bilibili playback) ──────────────────────────────
+  // Hear a Bilibili cover, guess the ORIGINAL song's release year. Cards are
+  // provider:"bilibili" + isCover and tagged ONLY "pack:utattemita" (never a genre).
+  { id: "pack:utattemita", labelJa: "歌ってみたクイズ", labelEn: "Cover Song Quiz (Bilibili)", kind: "anime-op", accent: "#4a7fb5" },
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));

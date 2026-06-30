@@ -1,23 +1,27 @@
 "use client";
 
 import type { ReactNode } from "react";
-import type { Phase } from "@/lib/protocol";
+import type { Phase, Provider } from "@/lib/protocol";
 import { YouTubePlayer } from "./YouTubePlayer";
+import { BilibiliPlayer } from "./BilibiliPlayer";
 import { useT } from "@/lib/i18n";
 
-/** The "stage": phase title + countdown, the YouTube player, volume, and the
- *  unavailable-track notice. Pure presentation driven by props. */
+/** The "stage": phase title + countdown, the playback player (YouTube or
+ *  Bilibili by provider), volume, and the unavailable-track notice. Pure
+ *  presentation driven by props. */
 export function GameStage({
   phase,
   isActive,
   isListening,
   activeName,
+  provider,
   playVideoId,
   playing,
   startSeconds,
   volume,
   onVolumeChange,
   revealMode,
+  isCover,
   trackUnavailable,
   onUnavailable,
   countdownEl,
@@ -26,12 +30,17 @@ export function GameStage({
   isActive: boolean;
   isListening: boolean;
   activeName: string;
+  /** Playback provider for the current card (default "youtube"). */
+  provider: Provider;
+  /** The playable id for the active provider (YouTube video id OR bilibili BV). */
   playVideoId: string | null;
   playing: boolean;
   startSeconds: number;
   volume: number;
   onVolumeChange: (v: number) => void;
   revealMode: boolean;
+  /** True for a cover (歌ってみた) card — show the "guess the original" hint. */
+  isCover: boolean;
   trackUnavailable: boolean;
   onUnavailable: () => void;
   countdownEl: ReactNode;
@@ -58,20 +67,30 @@ export function GameStage({
         {!revealMode && <div className="big-vinyl" aria-hidden="true" />}
         <div className="needle" aria-hidden="true" />
 
-        {/* The YouTube iframe (playback) — hidden behind the turntable while
-            playing, shown full-size at reveal. */}
+        {/* The playback iframe (YouTube or Bilibili by provider) — hidden behind
+            the turntable while playing, shown full-size at reveal. */}
         <div
           className="row"
           style={{ justifyContent: "center", position: "relative", zIndex: 3 }}
         >
-          <YouTubePlayer
-            videoId={playVideoId}
-            startSeconds={startSeconds}
-            playing={playing}
-            reveal={revealMode}
-            volume={volume}
-            onUnavailable={onUnavailable}
-          />
+          {provider === "bilibili" ? (
+            <BilibiliPlayer
+              videoId={playVideoId}
+              playing={playing}
+              reveal={revealMode}
+              volume={volume}
+              onUnavailable={onUnavailable}
+            />
+          ) : (
+            <YouTubePlayer
+              videoId={playVideoId}
+              startSeconds={startSeconds}
+              playing={playing}
+              reveal={revealMode}
+              volume={volume}
+              onUnavailable={onUnavailable}
+            />
+          )}
         </div>
 
         {/* Big remaining-seconds overlay centered over the record. */}
@@ -116,6 +135,18 @@ export function GameStage({
           {volume}
         </span>
       </div>
+      {/* Cover (歌ってみた) hint: guess the ORIGINAL song's release year. */}
+      {isCover && phase !== "reveal" && phase !== "gameover" && (
+        <div className="notice tiny" style={{ borderColor: "var(--gold)", color: "var(--gold)" }}>
+          {t("🎤 これはカバー（歌ってみた）です。原曲の発売年を当ててね")}
+        </div>
+      )}
+      {/* Bilibili may need region/login to play in some places. */}
+      {provider === "bilibili" && phase !== "gameover" && (
+        <div className="notice tiny muted">
+          {t("Bilibiliの再生には地域/ログインが必要な場合があります")}
+        </div>
+      )}
       {((phase === "placing" && (trackUnavailable || !playVideoId)) ||
         (phase === "stealing" && trackUnavailable)) && (
         <div className="notice tiny" style={{ borderColor: "var(--gold)", color: "var(--gold)" }}>

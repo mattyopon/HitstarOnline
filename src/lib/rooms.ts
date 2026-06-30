@@ -72,6 +72,17 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
   const song = songs[songId];
   if (!song) return;
 
+  // Bilibili cards: the playable id (bvid) is baked into the deck — there is NO
+  // network resolution (egress is blocked). Set the public playback hints (still
+  // NEVER the answer) and re-anchor the listening clock like the YouTube path.
+  if (song.provider === "bilibili") {
+    game.public.current.provider = "bilibili";
+    game.public.current.bvid = song.bvid;
+    game.public.current.isCover = true;
+    reanchorListenClock(game, !!song.bvid);
+    return;
+  }
+
   const key = deckKey(song);
   const { data: cached } = await admin
     .from("track_cache")
@@ -92,27 +103,34 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
     }
   }
   game.public.current.youtubeId = ytId;
+  reanchorListenClock(game, !!ytId);
+}
 
-  // Re-anchor the listening clock to the moment the song actually becomes
-  // playable. beginTurn() starts the clock at turn-begin, but resolving the
-  // YouTube id (a network lookup) can take several seconds — without this, that
-  // latency is silently subtracted from the listening window AND the 10s
-  // early-placement bonus window. Only on a fresh placing turn.
+/** Re-anchor the listening clock to the moment the song actually becomes
+ *  playable. beginTurn() starts the clock at turn-begin, but resolving the
+ *  playable id (YouTube network lookup, or the bilibili bvid lookup) can add
+ *  latency — without this, that latency is silently subtracted from the
+ *  listening window AND the 10s early-placement bonus window. Only re-anchors on
+ *  a fresh placing turn (not extended / not yet ended) and only when actually
+ *  resolved. */
+function reanchorListenClock(game: FullGame, resolved: boolean): void {
   if (
-    ytId &&
-    game.public.phase === "placing" &&
-    game.public.listeningEndedAt == null &&
-    !game.public.listeningExtended
+    !resolved ||
+    !game.public.current ||
+    game.public.phase !== "placing" ||
+    game.public.listeningEndedAt != null ||
+    game.public.listeningExtended
   ) {
-    const s = game.public.settings;
-    const now = Date.now();
-    const listenDur = game.public.listenDurationMs ?? listenMs(s);
-    const placeDur = placeMs(s);
-    game.public.current.startedAt = now;
-    game.public.listenStartedAt = now;
-    game.public.placementDeadline = now + listenDur + placeDur;
-    game.public.deadline = game.public.placementDeadline;
+    return;
   }
+  const s = game.public.settings;
+  const now = Date.now();
+  const listenDur = game.public.listenDurationMs ?? listenMs(s);
+  const placeDur = placeMs(s);
+  game.public.current.startedAt = now;
+  game.public.listenStartedAt = now;
+  game.public.placementDeadline = now + listenDur + placeDur;
+  game.public.deadline = game.public.placementDeadline;
 }
 
 /** Drop a song's cached YouTube id so it gets re-resolved next time. Called when

@@ -28,6 +28,7 @@ import {
   removePlayer,
   setConnected,
   mulberry32,
+  needsTrackResolution,
 } from "../src/lib/engine";
 import {
   Song,
@@ -685,6 +686,67 @@ console.log("Scenario Q (theme packs / scope):");
     const n = deckSizeForCategories(resolveScopeFilter([p.id]));
     ok(`pack ${p.id} has >= ${PACK_MIN_SONGS} songs (deck=${n})`, n >= PACK_MIN_SONGS);
   }
+}
+
+// ── Scenario R: provider plumbing (bilibili cover card) ─────────────────────
+// A song with provider:"bilibili" makes needsTrackResolution true until its bvid
+// is set, and beginTurn carries provider/isCover into public `current` (never the
+// answer). YouTube cards (absent provider) keep their byte-for-byte behavior.
+console.log("Scenario R (provider plumbing / bilibili cover):");
+{
+  // Deck: 0,1 start cards (youtube); index 2 is a BILIBILI cover card.
+  const provSongs: Song[] = [
+    { title: "Song0", artist: "Artist0", year: 1960 },
+    { title: "Song1", artist: "Artist1", year: 1965 },
+    {
+      title: "OriginalSong",
+      artist: "OriginalArtist",
+      year: 1985,
+      provider: "bilibili",
+      bvid: "BV1xx411c7mD",
+      coverArtist: "歌い手さん",
+      isCover: true,
+    },
+  ];
+  const g = createGame(
+    "ROOMRR",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 2],
+    provSongs,
+    1000,
+    { startingTokens: 0 },
+  );
+
+  const cur = g.public.current!;
+  ok("beginTurn carries provider=bilibili", cur.provider === "bilibili");
+  ok("beginTurn carries isCover=true", cur.isCover === true);
+  ok("no playable id yet (bvid unset)", cur.bvid === undefined && cur.youtubeId === null);
+  ok("needsTrackResolution true until bvid set", needsTrackResolution(g) === true);
+
+  // Anti-cheat: the ORIGINAL answer must NOT be in public state before reveal.
+  const pubStr = JSON.stringify(g.public);
+  ok("answer year not leaked into public", !pubStr.includes("1985"));
+  ok("answer title not leaked into public", !pubStr.includes("OriginalSong"));
+  ok("cover singer not leaked into public", !pubStr.includes("歌い手さん"));
+
+  // Server-side resolution would set bvid (mirrored here): then no longer needed.
+  cur.bvid = "BV1xx411c7mD";
+  ok("needsTrackResolution false once bvid set", needsTrackResolution(g) === false);
+
+  // YouTube path unchanged: a default (absent-provider) card resolves via youtubeId.
+  const yt = createGame(
+    "ROOMRY",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 2],
+    songs, // the original all-YouTube fixture
+    1000,
+    { startingTokens: 0 },
+  );
+  ok("youtube card has no provider field (default)", yt.public.current!.provider === undefined);
+  ok("youtube card not flagged as cover", yt.public.current!.isCover === undefined);
+  ok("youtube needsTrackResolution true (no youtubeId)", needsTrackResolution(yt) === true);
+  yt.public.current!.youtubeId = "dQw4w9WgXcQ";
+  ok("youtube needsTrackResolution false once id set", needsTrackResolution(yt) === false);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

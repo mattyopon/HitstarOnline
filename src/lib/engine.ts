@@ -289,20 +289,27 @@ function drawNext(secret: SecretState): number | null {
 }
 
 /** Begin a turn: draw the mystery card and open the placing phase.
- *  (`_songs` is unused here — kept for call-site symmetry with the other
- *  transitions; the mystery card is materialized lazily at reveal.) */
-function beginTurn(g: FullGame, _songs: Song[], now: number): void {
+ *  The mystery card's answer (title/artist/year) is materialized lazily at
+ *  reveal; only non-answer playback hints (provider/isCover) are copied here so
+ *  the right player can be selected and the cover banner shown. */
+function beginTurn(g: FullGame, songs: Song[], now: number): void {
   const songId = drawNext(g.secret);
   if (songId === null) {
     endGame(g);
     return;
   }
   g.secret.currentSongId = songId;
+  const drawn = songs[songId];
+  const provider = drawn?.provider ?? "youtube";
   g.public.current = {
     cardId: cardId(songId),
     youtubeId: null,
     startSeconds: g.public.settings.startSeconds,
     startedAt: now,
+    // Carry the (non-answer) playback hints. For a bilibili card the playable id
+    // (bvid) is left null/absent here and resolved server-side, mirroring how the
+    // YouTube id is resolved later — engine purity is preserved.
+    ...(provider === "bilibili" ? { provider, isCover: drawn?.isCover ?? true } : {}),
   };
   g.public.placement = undefined;
   g.public.guess = undefined;
@@ -651,6 +658,17 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
     artist: song.artist,
     year: song.year,
     youtubeId: g.public.current?.youtubeId ?? null,
+    // Carry playback provider/ids + cover flavor so reveal can play in full
+    // (current is cleared just below). Never adds an answer beyond what reveal
+    // already exposes.
+    ...(g.public.current?.provider === "bilibili"
+      ? {
+          provider: "bilibili" as const,
+          bvid: g.public.current?.bvid,
+          isCover: g.public.current?.isCover,
+          coverArtist: song.coverArtist,
+        }
+      : {}),
     placementSlot: slot,
     activeCorrect: true,
     awardedTo: active.userId,
@@ -837,6 +855,17 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     artist: song.artist,
     year: song.year,
     youtubeId: g.public.current?.youtubeId ?? null,
+    // Carry playback provider/ids + cover flavor so reveal can play in full
+    // (current is cleared just below). Never adds an answer beyond what reveal
+    // already exposes.
+    ...(g.public.current?.provider === "bilibili"
+      ? {
+          provider: "bilibili" as const,
+          bvid: g.public.current?.bvid,
+          isCover: g.public.current?.isCover,
+          coverArtist: song.coverArtist,
+        }
+      : {}),
     placementSlot,
     activeCorrect: activeKeeps,
     awardedTo,
@@ -958,13 +987,15 @@ export function advanceReveal(game: FullGame, songs: Song[], now: number): FullG
 
 // ─── Sanity helpers for the server ────────────────────────────────────────--
 
-/** Does the current state need a YouTube id resolved for its mystery card? */
+/** Does the current state need a playable id resolved for its mystery card?
+ *  YouTube cards need a youtubeId; bilibili cards need a bvid. */
 export function needsTrackResolution(g: FullGame): boolean {
-  return (
-    (g.public.phase === "placing" || g.public.phase === "stealing") &&
-    !!g.public.current &&
-    !g.public.current.youtubeId
-  );
+  const cur = g.public.current;
+  if ((g.public.phase !== "placing" && g.public.phase !== "stealing") || !cur) {
+    return false;
+  }
+  // Absent provider = "youtube" (backward-compatible default).
+  return cur.provider === "bilibili" ? !cur.bvid : !cur.youtubeId;
 }
 
 /** The songId of the card currently being played (server-side use only). */

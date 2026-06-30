@@ -58,6 +58,11 @@ export const RevealCard = memo(function RevealCard({
       <div className="mono tiny muted" style={{ letterSpacing: "0.04em", textTransform: "uppercase" }}>
         {r.artist}
       </div>
+      {r.coverArtist && (
+        <div className="tiny" style={{ color: "var(--gold)" }}>
+          🎤 {t("カバー: {name}", { name: r.coverArtist })}
+        </div>
+      )}
       <div style={{ marginTop: 6 }}>{outcome}</div>
       {r.reason && <div className="tiny muted">{t(r.reason)}</div>}
       {r.tokenAwards

@@ -341,9 +341,22 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     : Math.max(0, Math.ceil((listenEndAt - now) / 1000));
   const earlyLeft = Math.max(0, Math.ceil((earlyCutoff - now) / 1000));
 
+  // Playback provider for the current card (absent = "youtube"). At reveal the
+  // public `current` is cleared, so the provider/playable-id come from the reveal
+  // info (which carries provider/bvid for bilibili); while the card is live
+  // (placing/stealing) they come from `current`.
+  const provider = revealMode
+    ? state.reveal?.provider ?? "youtube"
+    : state.current?.provider ?? "youtube";
+  const isCover = revealMode ? !!state.reveal?.isCover : !!state.current?.isCover;
+  // The playable id for the active provider (YouTube video id OR bilibili BV).
   const playVideoId = revealMode
-    ? state.reveal?.youtubeId ?? null
-    : state.current?.youtubeId ?? null;
+    ? provider === "bilibili"
+      ? state.reveal?.bvid ?? null
+      : state.reveal?.youtubeId ?? null
+    : provider === "bilibili"
+      ? state.current?.bvid ?? null
+      : state.current?.youtubeId ?? null;
   // Music plays only while the song is "on": the listening window, or at reveal.
   const playing = soundOn && !!playVideoId && (isListening || state.phase === "reveal");
 
@@ -451,12 +464,14 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             isActive={isActive}
             isListening={isListening}
             activeName={activePlayer?.name ?? ""}
+            provider={provider}
             playVideoId={playVideoId}
             playing={playing}
             startSeconds={state.settings.startSeconds}
             volume={ytVolume}
             onVolumeChange={onVolumeChange}
             revealMode={revealMode}
+            isCover={isCover}
             trackUnavailable={trackUnavailable}
             onUnavailable={() => setTrackUnavailable(true)}
             countdownEl={countdownEl}
