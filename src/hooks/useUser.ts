@@ -27,6 +27,18 @@ function toUser(u: any): ClientUser | null {
   };
 }
 
+// Bootstrap the gacha layer's per-player rows (starter gems/characters/party)
+// via the SECURITY DEFINER seed_new_player() RPC (0006_gacha.sql). Every
+// insert inside it is ON CONFLICT DO NOTHING, so calling this on EVERY auth
+// resolution (fresh sign-in, page-load session restore, token refresh) is
+// intentionally safe/idempotent — returning players just no-op. Best-effort:
+// a failure here must never block the auth flow itself.
+function seedGachaPlayer(supabase: ReturnType<typeof createClient>) {
+  supabase.rpc("seed_new_player").then(({ error }) => {
+    if (error) console.error("[useUser] seed_new_player failed:", error.message);
+  });
+}
+
 export function useUser() {
   const [user, setUser] = useState<ClientUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,11 +51,13 @@ export function useUser() {
       if (!mounted) return;
       setUser(toUser(data.user));
       setLoading(false);
+      if (data.user) seedGachaPlayer(supabase);
     });
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(toUser(session?.user));
       setLoading(false);
+      if (session?.user) seedGachaPlayer(supabase);
     });
 
     return () => {

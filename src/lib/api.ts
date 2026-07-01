@@ -3,6 +3,7 @@ import { getSessionUser, SessionUser } from "./auth";
 import { GameError, voteWinner, votesHashSeed } from "./engine";
 import { getDeck, sanitizeScope, shuffledDeckOrder } from "./deck";
 import { ConflictError, NotFoundError, mutateByCode } from "./rooms";
+import { DailyPullCooldownError, InsufficientGemsError } from "./gacha";
 import {
   BotDifficulty,
   FullGame,
@@ -21,6 +22,8 @@ export function mapError(e: unknown) {
   if (e instanceof GameError) return json({ error: e.message }, 400);
   if (e instanceof ConflictError) return json({ error: e.message }, 409);
   if (e instanceof NotFoundError) return json({ error: e.message }, 404);
+  if (e instanceof InsufficientGemsError) return json({ error: e.message }, 400);
+  if (e instanceof DailyPullCooldownError) return json({ error: e.message }, 400);
   console.error("[api] unexpected error:", e);
   return json({ error: "サーバーエラーが発生しました" }, 500);
 }
