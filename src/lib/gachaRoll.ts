@@ -19,19 +19,21 @@ export interface Banner {
   pickupCharacterId: string;
 }
 
-// Single default banner. Per handoff-gacha/mocks/index.html's Gacha screen
-// (`<h2>Showa Genesis</h2>`), the banner id/name is unambiguous. The mock's
-// displayed "banner-name" pill text reads "★★★★ Velvet Lin ピックアップ"
-// (an SR, 4-star character) as the hero art — but data-model.md's
-// pickCharacter() only applies the 50/50 boost to SSR rolls, so a pickup
-// must itself be SSR for that algorithm to mean anything. We resolve this
-// mock/spec mismatch by picking the SSR whose era best matches "Showa"
-// (Japan's Shōwa era, 1926–1989): Synthea Neon (1980s). See report for
-// details — flagged as `// TODO: designer confirm`.
+// Single default banner. The pickup character (and thus its rarity) is
+// configurable here via `pickupCharacterId` — swapping banners is just a
+// matter of pointing this at a different character id and updating `name`.
+//
+// IMPORTANT: the pickup MUST be an SSR character. pickCharacter() only applies
+// the 50/50 PICKUP_RATE boost on SSR rolls, so a non-SSR pickup would never be
+// boosted and the "pickup" would be meaningless. We use "synthea" (Synthea
+// Neon, SSR, 1980s) — a Shōwa-era SSR that fits the "Showa Genesis" banner.
+// GachaScreen.tsx derives all featured/pickup art, the banner name, and the
+// SSR-star pill from this same DEFAULT_BANNER, so the screen and roll algorithm
+// always agree on which character is being pushed.
 export const DEFAULT_BANNER: Banner = {
   id: "showa_genesis",
   name: "Showa Genesis",
-  pickupCharacterId: "synthea", // TODO: designer confirm (mock shows Velvet Lin/SR as hero art; SSR pickup required by 50/50 algorithm)
+  pickupCharacterId: "synthea", // must be an SSR id (see note above)
 };
 
 export interface RollResult {

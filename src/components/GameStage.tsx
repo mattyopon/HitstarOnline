@@ -4,7 +4,18 @@ import type { ReactNode } from "react";
 import type { Phase, Provider } from "@/lib/protocol";
 import { YouTubePlayer } from "./YouTubePlayer";
 import { BilibiliPlayer } from "./BilibiliPlayer";
+import { GACHA_CHARS } from "@/lib/gachaChars";
 import { useT } from "@/lib/i18n";
+
+// Pick a purely-decorative muse to frame the vinyl. Deterministic from a seed
+// string (the active player's name) so it stays stable within a turn and feels
+// "assigned" — but it is DECORATION ONLY (no server-side character data exists
+// per player). Falls back to the first muse for an empty seed.
+function decoMuse(seed: string) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0;
+  return GACHA_CHARS[Math.abs(h) % GACHA_CHARS.length];
+}
 
 /** The "stage": phase title + countdown, the playback player (YouTube or
  *  Bilibili by provider), volume, and the unavailable-track notice. Pure
@@ -60,11 +71,21 @@ export function GameStage({
   // During reveal the YouTube video is shown in full; otherwise the answer is
   // hidden behind the turntable visual while the song plays.
   const showCountdown = (phase === "placing" || phase === "stealing") && !!countdownEl;
+  // Decorative half-body muse framing the vinyl (mock .vinyl-char). Purely
+  // cosmetic; there is no per-player character on the server, so it is derived
+  // from the active player's name only and never carries answer/game data.
+  const muse = decoMuse(activeName || phaseTitle || "hitstar");
   return (
     <div className="card stack">
       <div className="turntable">
         {/* Decorative spinning record + tonearm (purely visual). */}
         {!revealMode && <div className="big-vinyl" aria-hidden="true" />}
+        {/* Decorative muse rising behind the disc — framing only, aria-hidden.
+            Hidden at reveal so the full-size player is never obstructed. */}
+        {!revealMode && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="vinyl-char" src={muse.img} alt="" aria-hidden="true" />
+        )}
         <div className="needle" aria-hidden="true" />
 
         {/* The playback iframe (YouTube or Bilibili by provider) — hidden behind

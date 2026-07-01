@@ -1656,6 +1656,8 @@ select:focus {
   justify-content: center;
   flex-direction: column;
   pointer-events: none;
+  /* Above the decorative .vinyl-char (z-index:1) so the seconds stay legible. */
+  z-index: 4;
 }
 .countdown-over .num {
   font-family: "Bebas Neue", ui-monospace, monospace;
@@ -1705,6 +1707,122 @@ select:focus {
   50% {
     transform: scale(1.3);
   }
+}
+
+/* Decorative half-body muse rising behind the disc (mock .vinyl-char).
+   Purely cosmetic framing: sits above the halo/disc but below the countdown
+   and player iframe (z-index below the .row zIndex:3 in GameStage), fades in
+   from the bottom so the record label still reads through. */
+.vinyl-char {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: 90%;
+  width: auto;
+  max-width: 78%;
+  object-fit: contain;
+  object-position: 50% 0;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 18px 34px rgba(251, 114, 153, 0.5));
+  -webkit-mask: linear-gradient(180deg, #000 62%, transparent 98%);
+  mask: linear-gradient(180deg, #000 62%, transparent 98%);
+  opacity: 0.92;
+}
+
+/* ── "Now Spinning" muse side card (mock .enemy-card) ─────────────────────── */
+.enemy-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid var(--accent);
+  border-radius: 18px;
+  padding: 14px;
+  min-height: 300px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 30px -12px rgba(251, 114, 153, 0.4);
+  backdrop-filter: blur(6px);
+}
+.enemy-card .head {
+  position: relative;
+  z-index: 2;
+}
+.enemy-card .head .ttl {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Bebas Neue", ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--cyan);
+  letter-spacing: 0.24em;
+}
+.enemy-card .head .nm {
+  font-family: "ZCOOL KuaiLe", "Quicksand", sans-serif;
+  font-size: 20px;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  margin-top: 4px;
+}
+.enemy-card .era {
+  display: inline-block;
+  padding: 3px 9px;
+  background: linear-gradient(180deg, var(--cyan), #1989c4);
+  color: #fff;
+  border-radius: var(--radius-pill);
+  font-family: "Bebas Neue", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  margin-top: 6px;
+}
+.enemy-card .stars {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  margin-top: 6px;
+  position: relative;
+  z-index: 2;
+}
+.enemy-card .portrait {
+  position: absolute;
+  right: -20px;
+  bottom: 0;
+  height: 82%;
+  width: auto;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.18));
+  -webkit-mask: linear-gradient(180deg, #000 78%, transparent 100%);
+  mask: linear-gradient(180deg, #000 78%, transparent 100%);
+}
+.enemy-card .stats-mini {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+.enemy-card .stat-mini {
+  flex: 1;
+  padding: 6px 8px;
+  background: linear-gradient(180deg, var(--pink-soft), rgba(255, 255, 255, 0.7));
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.enemy-card .stat-mini .k {
+  font-size: 9px;
+  color: var(--ink-2);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+.enemy-card .stat-mini .v {
+  font-family: "Bebas Neue", ui-monospace, monospace;
+  color: var(--accent);
+  font-size: 18px;
+  line-height: 1.1;
 }
 
 /* ── Track listing (mock .track-listing) ─────────────────────────────────── */
@@ -4219,54 +4337,171 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 }
 
 /* Roll result reveal (simple list, no elaborate pull animation per task). */
-.gacha-results {
-  width: 100%;
-  max-width: 780px;
-  margin-top: 16px;
+/* ─── Gacha reveal overlay (flip-and-burst summon reveal) ──────────────────
+   Full-screen overlay shown after POST /api/gacha/roll returns. Cards start
+   face-down and flip open one-by-one in a staggered cascade, each with a
+   rarity-colored glow/burst (SSR gold-orange / SR purple / R blue via the
+   --ssr/--sr/--r tokens). Everything below is disabled under
+   prefers-reduced-motion (see the reduce block near the end of this section)
+   so reduced-motion users get an instant, animation-free reveal. */
+.gacha-reveal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center when the content fits, but never clip the OK/Skip actions on short
+     viewports (e.g. x10 pull on a small/landscape phone): allow the overlay to
+     scroll and fall back to top-alignment so the actions stay reachable. */
+  justify-content: safe center;
+  gap: 18px;
+  padding: 24px;
+  overflow-y: auto;
+  animation: gacha-reveal-in 0.25s ease-out;
 }
-.gacha-results h4 {
-  margin: 0 0 10px;
+.gacha-reveal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      70% 60% at 50% 35%,
+      rgba(255, 214, 227, 0.96),
+      rgba(191, 240, 255, 0.94) 60%,
+      rgba(255, 248, 251, 0.97)
+    );
+  backdrop-filter: blur(6px);
+}
+.gacha-reveal-head {
+  position: relative;
+  z-index: 2;
   text-align: center;
+}
+.gacha-reveal-head .eb {
+  font-family: "Bebas Neue", sans-serif;
   color: var(--accent);
+  font-size: 13px;
+  letter-spacing: 0.4em;
 }
-.gacha-results-grid {
+.gacha-reveal-head h3 {
+  margin: 4px 0 0;
+  font-family: "ZCOOL KuaiLe", sans-serif;
+  font-size: 30px;
+  color: var(--text);
+  text-shadow: 3px 3px 0 var(--pink-soft), -2px -2px 0 var(--cyan-soft);
+}
+.gacha-reveal-cards {
+  position: relative;
+  z-index: 2;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 12px;
+  width: 100%;
+  max-width: 760px;
 }
-.gacha-result-tile {
+.gacha-reveal-cards.single {
+  grid-template-columns: minmax(0, 220px);
+  justify-content: center;
+}
+.gacha-reveal-cards.multi {
+  grid-template-columns: repeat(5, 1fr);
+}
+.gacha-reveal-card {
   position: relative;
   aspect-ratio: 3 / 4;
+  perspective: 800px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
 }
-.gacha-result-tile .portrait {
+.gacha-reveal-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: rotateY(180deg);
+}
+.gacha-reveal-card.is-face .gacha-reveal-inner {
+  transform: rotateY(0deg);
+  animation: gacha-card-pop 0.5s ease-out;
+}
+.gacha-reveal-back,
+.gacha-reveal-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.gacha-reveal-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--accent), var(--accent-2));
+  border: 2px solid var(--gold);
+  box-shadow: 0 8px 22px -8px rgba(251, 114, 153, 0.6);
+}
+.gacha-reveal-back .q {
+  font-family: "ZCOOL KuaiLe", sans-serif;
+  font-size: 48px;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.gacha-reveal-front {
+  transform: rotateY(180deg);
+  border: 2px solid var(--line);
+  background: #fff;
+}
+.gacha-reveal-card.ssr .gacha-reveal-front {
+  border-color: var(--ssr-a);
+  box-shadow: 0 0 24px -2px var(--ssr-a), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+.gacha-reveal-card.sr .gacha-reveal-front {
+  border-color: var(--sr-a);
+  box-shadow: 0 0 22px -3px var(--sr-a), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+.gacha-reveal-card.r .gacha-reveal-front {
+  border-color: var(--r-a);
+  box-shadow: 0 0 18px -4px var(--r-a), inset 0 0 0 2px rgba(255, 255, 255, 0.4);
+}
+.gacha-reveal-front .portrait {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center top;
 }
-.gacha-result-tile .info {
+.gacha-reveal-front .ctile-rarity-tag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 3;
+}
+.gacha-reveal-front .info {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  padding: 6px 6px;
+  z-index: 3;
+  padding: 8px 8px 7px;
   color: #fff;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), transparent);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.72), transparent);
 }
-.gacha-result-tile .info .nm {
-  font-size: 10px;
+.gacha-reveal-front .info .nm {
+  font-size: 11px;
   font-weight: 700;
   line-height: 1.15;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 }
-.gacha-result-tile .info .stars {
+.gacha-reveal-front .info .stars {
   color: var(--gold);
-  font-size: 8px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
 }
-.gacha-result-new {
+.gacha-reveal-new {
   position: absolute;
   top: 6px;
   right: 6px;
+  z-index: 3;
   padding: 2px 6px;
   background: var(--bad);
   color: #fff;
@@ -4274,7 +4509,87 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   font-weight: 800;
   border-radius: 6px;
   letter-spacing: 0.06em;
+}
+/* Rarity burst: a colored radial flare that blooms behind the portrait the
+   moment the card turns face-up. Kept behind (z-index 1) the portrait so it
+   reads as a glow-through, stronger for the best pull. */
+.gacha-reveal-burst {
+  position: absolute;
+  inset: -40%;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 45%, var(--_burst, var(--accent)) 0%, transparent 62%);
+}
+.gacha-reveal-card.ssr {
+  --_burst: var(--ssr-a);
+}
+.gacha-reveal-card.sr {
+  --_burst: var(--sr-a);
+}
+.gacha-reveal-card.r {
+  --_burst: var(--r-a);
+}
+.gacha-reveal-card.is-face .gacha-reveal-burst {
+  animation: gacha-burst 0.7s ease-out 0.12s;
+}
+.gacha-reveal-card.is-face.is-best .gacha-reveal-burst {
+  animation: gacha-burst-best 0.9s ease-out 0.12s;
+}
+@keyframes gacha-reveal-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes gacha-card-pop {
+  0% {
+    transform: rotateY(0deg) scale(0.82);
+  }
+  60% {
+    transform: rotateY(0deg) scale(1.06);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+  }
+}
+@keyframes gacha-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  40% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+@keyframes gacha-burst-best {
+  0% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  35% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.55) rotate(25deg);
+  }
+}
+.gacha-reveal-actions {
+  position: relative;
   z-index: 2;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.gacha-reveal-ok {
+  min-width: 120px;
 }
 
 .pulls {
@@ -4398,7 +4713,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   .pulls {
     flex-direction: column;
   }
-  .gacha-results-grid {
+  .gacha-reveal-cards.multi {
     grid-template-columns: repeat(3, 1fr);
   }
   .gacha-head h2 {
@@ -4410,5 +4725,172 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   .screen-gacha-inner::before,
   .feat-display::before {
     animation: none !important;
+  }
+  /* Instant, animation-free reveal: no flip, no burst, no pop. The JS hook
+     also skips the cascade timing so every card renders face-up immediately. */
+  .gacha-reveal-overlay,
+  .gacha-reveal-card.is-face .gacha-reveal-inner,
+  .gacha-reveal-card.is-face .gacha-reveal-burst {
+    animation: none !important;
+  }
+  .gacha-reveal-inner {
+    transition: none !important;
+    transform: rotateY(0deg) !important;
+  }
+  .gacha-reveal-back {
+    display: none !important;
+  }
+  .gacha-reveal-front {
+    transform: none !important;
+  }
+  .gacha-reveal-burst {
+    display: none !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Friends screen (FriendsScreen.tsx) & Shop screen (ShopScreen.tsx)
+   Both reuse the full-bleed .screen-roster-inner wrapper + .roster-hero header
+   + .panel cards, so only the screen-specific bits live here. BILIBILI palette
+   only; no new images. Added animations (shop-toast slide-in) are disabled
+   under prefers-reduced-motion at the bottom of this block.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Friends: two-column layout (list + join-by-code) ────────────────────── */
+.friends-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+  align-items: start;
+}
+.friends-layout .panel {
+  min-height: 0;
+}
+.friend-list.friends-screen-list {
+  margin-top: 12px;
+  gap: 6px;
+}
+.friend.friends-screen-row {
+  padding: 8px 10px;
+  border: 1.5px solid var(--line);
+  background: rgba(255, 255, 255, 0.6);
+}
+.friend.friends-screen-row.off {
+  opacity: 0.6;
+}
+.friend.friends-screen-row .av {
+  width: 36px;
+  height: 36px;
+}
+.friend .st.off {
+  color: var(--muted);
+}
+
+/* ── Shop: pack grid + display-only pack cards + coming-soon toast ────────── */
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.shop-pack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 18px 12px 14px;
+  text-align: center;
+}
+.shop-pack-tag {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, var(--gold), #ffaa3d);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 10px -4px rgba(255, 170, 61, 0.6);
+}
+.shop-pack-icon {
+  font-size: 40px;
+  line-height: 1;
+  filter: drop-shadow(0 6px 12px rgba(251, 114, 153, 0.35));
+}
+.shop-pack-amount {
+  font-family: "Bebas Neue", ui-monospace, monospace;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.shop-pack-amount small {
+  display: block;
+  font-family: "Quicksand", sans-serif;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--muted);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+.shop-pack-bonus {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--good);
+}
+.shop-pack-bonus.placeholder {
+  min-height: 15px;
+}
+.shop-buy-btn {
+  margin-top: 6px;
+  min-width: 88px;
+  font-family: "Bebas Neue", "Quicksand", sans-serif;
+  letter-spacing: 0.06em;
+}
+
+.shop-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 50;
+  max-width: min(90vw, 420px);
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  text-align: center;
+  box-shadow:
+    0 0 0 3px #fff inset,
+    0 0 0 5px var(--pink-soft) inset,
+    0 14px 30px -10px rgba(251, 114, 153, 0.6);
+  animation: shop-toast-in 0.28s ease-out;
+}
+@keyframes shop-toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (max-width: 880px) {
+  .friends-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shop-toast {
+    animation: none;
   }
 }

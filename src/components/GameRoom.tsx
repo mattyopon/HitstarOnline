@@ -21,6 +21,7 @@ import { StealPanel } from "./StealPanel";
 import { GameOverBanner } from "./GameOverBanner";
 import { LobbyWaitingCard } from "./LobbyWaitingCard";
 import { VotingPanel } from "./VotingPanel";
+import { NowSpinningCard } from "./NowSpinningCard";
 import { DEFAULT_SETTINGS, type PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
 import { playRankEntrySound } from "@/lib/rankSound";
@@ -582,6 +583,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           </div>
 
           <div className="stack">
+            {/* Decorative "Now Spinning" muse card (mock .enemy-card). Purely
+                cosmetic framing — no per-player character exists server-side, so
+                the muse is derived from the active player's name only. */}
+            <NowSpinningCard seed={activePlayer?.name ?? state.code} live={playing} />
             <PlayerList state={state} meId={meId} />
             {showVoice && <VoicePanel code={code} players={state.players} />}
             {me && (

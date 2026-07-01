@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useT } from "@/lib/i18n";
 import { GACHA_CHARS, type Rarity } from "@/lib/gachaChars";
 import { RARITY_STARS, RARITY_RATES, PITY_THRESHOLD, PICKUP_RATE } from "@/lib/rarity";
@@ -56,23 +56,189 @@ function useGems() {
 
 const CHAR_BY_ID = new Map(GACHA_CHARS.map((c) => [c.id, c]));
 
+// Rarity ordering so the reveal knows which pull is the "best" one (used to
+// stamp the strongest burst on the highest-rarity card).
+const RARITY_RANK: Record<Rarity, number> = { R: 0, SR: 1, SSR: 2 };
+
+/**
+ * Detect the "reduce motion" accessibility preference once on mount so the
+ * reveal can fall back to an instant, animation-free presentation. CSS already
+ * disables the keyframes under `@media (prefers-reduced-motion: reduce)`; this
+ * hook mirrors that in JS so the sequential *timing* (setTimeout cascade) is
+ * skipped too — otherwise reduced-motion users would still wait out the delays.
+ */
+function usePrefersReducedMotion(): boolean {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener?.("change", apply);
+    return () => mq.removeEventListener?.("change", apply);
+  }, []);
+  return reduced;
+}
+
+/**
+ * Full-screen gacha reveal overlay (DESIGN_SPEC.md "Gacha" — upgrades the plain
+ * result list into a proper summon reveal). Each pulled card starts face-down
+ * and flips open one-by-one in a staggered cascade, each with a rarity-colored
+ * glow/burst (SSR gold-orange / SR purple / R blue via the --ssr/--sr/--r
+ * tokens). Skip reveals everything at once; OK/Close returns to the gacha screen
+ * with the (already-updated) gem count. Under prefers-reduced-motion the cascade
+ * timing and flip animation are both skipped — every card renders instantly.
+ */
+function RevealOverlay({
+  results,
+  onClose,
+  reduced,
+}: {
+  results: GachaRollResultItem[];
+  onClose: () => void;
+  reduced: boolean;
+}) {
+  const t = useT();
+  const stars = (r: Rarity) => "★".repeat(RARITY_STARS[r]);
+  const rarityLabel = (r: Rarity) => (r === "SSR" ? t("SSR") : r === "SR" ? t("SR") : t("R"));
+
+  // How many cards have been flipped face-up so far. Under reduced motion we
+  // reveal all at once; otherwise a cascade advances one card at a time.
+  const [revealed, setRevealed] = useState(reduced ? results.length : 0);
+  const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const clearTimers = useCallback(() => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+  }, []);
+
+  const revealAll = useCallback(() => {
+    clearTimers();
+    setRevealed(results.length);
+  }, [clearTimers, results.length]);
+
+  useEffect(() => {
+    if (reduced) return; // instant reveal, no cascade
+    // Stagger: first card lands quickly, then ~230ms between each. Total for a
+    // x10 stays comfortably under ~2.5s so "Skip" is a shortcut, not a rescue.
+    const step = 230;
+    for (let i = 0; i < results.length; i++) {
+      timers.current.push(
+        setTimeout(() => setRevealed((n) => Math.max(n, i + 1)), 120 + i * step),
+      );
+    }
+    return clearTimers;
+  }, [reduced, results.length, clearTimers]);
+
+  // Index of the highest-rarity pull — gets the amplified burst treatment.
+  const bestIndex = useMemo(() => {
+    let best = 0;
+    for (let i = 1; i < results.length; i++) {
+      if (RARITY_RANK[results[i].rarity] > RARITY_RANK[results[best].rarity]) best = i;
+    }
+    return best;
+  }, [results]);
+
+  const allRevealed = revealed >= results.length;
+  const multi = results.length > 1;
+
+  return (
+    <div
+      className="gacha-reveal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label={t("召喚結果")}
+    >
+      <div className="gacha-reveal-backdrop" aria-hidden />
+      <div className="gacha-reveal-head">
+        <div className="eb">★ {t("SUMMON")} ★</div>
+        <h3>{t("召喚結果")}</h3>
+      </div>
+
+      <div
+        className={"gacha-reveal-cards" + (multi ? " multi" : " single")}
+        role="list"
+        aria-live="polite"
+      >
+        {results.map((r, i) => {
+          const c = CHAR_BY_ID.get(r.characterId);
+          const isFace = i < revealed;
+          const cls =
+            "gacha-reveal-card ctile " +
+            r.rarity.toLowerCase() +
+            (isFace ? " is-face" : "") +
+            (i === bestIndex ? " is-best" : "");
+          const label = `${c?.nm ?? r.characterId} — ${rarityLabel(r.rarity)}${
+            r.isNew ? `, ${t("NEW")}` : ""
+          }`;
+          return (
+            <div key={`${r.characterId}-${i}`} className={cls} role="listitem" aria-label={label}>
+              <div className="gacha-reveal-inner">
+                <div className="gacha-reveal-back" aria-hidden>
+                  <span className="q">?</span>
+                </div>
+                <div className="gacha-reveal-front" aria-hidden={!isFace}>
+                  <span className="gacha-reveal-burst" aria-hidden />
+                  {c && (
+                    <div
+                      className="portrait"
+                      style={{ backgroundImage: `url(${c.img})`, backgroundPosition: c.focus }}
+                    />
+                  )}
+                  <span className="ctile-rarity-tag">{r.rarity}</span>
+                  {r.isNew && <span className="gacha-reveal-new">{t("NEW")}</span>}
+                  <div className="info">
+                    <div className="nm">{c?.nm ?? r.characterId}</div>
+                    <div className="stars" aria-hidden>
+                      {stars(r.rarity)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="gacha-reveal-actions">
+        {!allRevealed && (
+          <button type="button" className="btn outline sm" onClick={revealAll}>
+            {t("スキップ")}
+          </button>
+        )}
+        <button
+          type="button"
+          className="btn sm gacha-reveal-ok"
+          onClick={onClose}
+          disabled={!allRevealed}
+        >
+          {t("OK")}
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /**
  * Gacha screen (DESIGN_SPEC.md "Gacha" / mock `.screen-gacha`): banner header,
  * center pickup art with flanking mini cards, a rates panel, and the
  * ×1 / ×10 / FREE pull buttons wired to POST /api/gacha/roll and
- * POST /api/gacha/daily-pull. Pull animation is intentionally minimal (a
- * simple result list/reveal) per the task's lowest-priority note — the
- * important part is the buttons working end-to-end against the real API
- * shape and degrading gracefully before migration 0006 is applied.
+ * POST /api/gacha/daily-pull. On a successful roll the results are handed to a
+ * full-screen {@link RevealOverlay} (flip-and-burst summon reveal). Everything
+ * degrades gracefully before migration 0006 is applied (errors surface inline
+ * and never crash the screen).
  */
 export function GachaScreen({ onClose }: { onClose?: () => void }) {
   const t = useT();
   const { gems, setGems, loading: gemsLoading } = useGems();
+  const reduced = usePrefersReducedMotion();
   const [busy, setBusy] = useState<"single" | "multi" | "daily" | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [results, setResults] = useState<GachaRollResultItem[] | null>(null);
+  // Monotonic pull id → forces the reveal overlay to remount (fresh cascade)
+  // for each successful roll, even back-to-back.
+  const [pullSeq, setPullSeq] = useState(0);
 
-  const rarityLabel = (r: Rarity) => (r === "SSR" ? t("SSR") : r === "SR" ? t("SR") : t("R"));
   const stars = (r: Rarity) => "★".repeat(RARITY_STARS[r]);
   const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
@@ -88,8 +254,11 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
               count: kind === "multi" ? 10 : 1,
               banner: DEFAULT_BANNER.id,
             });
-      setResults(res.results);
       setGems((prev) => (prev ? { ...prev, gems: res.gemsRemaining } : prev));
+      if (res.results.length > 0) {
+        setResults(res.results);
+        setPullSeq((n) => n + 1);
+      }
     } catch (e) {
       setErr(e instanceof Error ? e.message : t("ガチャに失敗しました"));
     } finally {
@@ -171,38 +340,13 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
         </p>
       )}
 
-      {results && results.length > 0 && (
-        <div className="gacha-results panel" role="status" aria-live="polite">
-          <h4>{t("ガチャ結果")}</h4>
-          <div className="gacha-results-grid">
-            {results.map((r, i) => {
-              const c = CHAR_BY_ID.get(r.characterId);
-              const label = `${c?.nm ?? r.characterId} — ${rarityLabel(r.rarity)}${r.isNew ? `, ${t("NEW")}` : ""}`;
-              return (
-                <div
-                  key={`${r.characterId}-${i}`}
-                  className={"gacha-result-tile ctile " + r.rarity.toLowerCase()}
-                  aria-label={label}
-                >
-                  {c && (
-                    <div
-                      className="portrait"
-                      style={{ backgroundImage: `url(${c.img})`, backgroundPosition: c.focus }}
-                    />
-                  )}
-                  <span className="ctile-rarity-tag">{r.rarity}</span>
-                  {r.isNew && <span className="gacha-result-new">{t("NEW")}</span>}
-                  <div className="info">
-                    <div className="nm">{c?.nm ?? r.characterId}</div>
-                    <div className="stars" aria-hidden>
-                      {stars(r.rarity)}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      {results && (
+        <RevealOverlay
+          key={pullSeq}
+          results={results}
+          reduced={reduced}
+          onClose={() => setResults(null)}
+        />
       )}
 
       <div className="pulls">

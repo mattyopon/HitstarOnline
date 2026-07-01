@@ -15,16 +15,18 @@ import { PartyStrip } from "./PartyStrip";
 import { DanmuStrip } from "./DanmuStrip";
 import { Roster } from "./Roster";
 import { GachaScreen } from "./GachaScreen";
+import { FriendsScreen } from "./FriendsScreen";
+import { ShopScreen } from "./ShopScreen";
 import { GACHA_CHARS } from "@/lib/gachaChars";
 import type { CharacterListResponse } from "@/lib/gachaTypes";
 import { useT } from "@/lib/i18n";
 
-// Lobby's own local sub-screens (Roster/Gacha). This is intentionally a tiny
-// client-side view switch, not a router: both screens are reached from the
-// bottom nav / party-strip edit affordance and render as an overlay above the
-// Lobby's normal content so the existing room-create/join flow underneath is
-// left completely untouched.
-type LobbyView = "home" | "roster" | "gacha";
+// Lobby's own local sub-screens (Roster/Gacha/Friends/Shop). This is
+// intentionally a tiny client-side view switch, not a router: each screen is
+// reached from the bottom nav / party-strip edit affordance and renders as a
+// full-bleed sibling above the Lobby's normal content so the existing
+// room-create/join flow underneath is left completely untouched.
+type LobbyView = "home" | "roster" | "gacha" | "friends" | "shop";
 
 // Featured character shown in the center stage speech-bubble ("today's
 // pickup"). Fixed pick for now — a real banner/rotation can replace this
@@ -228,6 +230,12 @@ export function Lobby({ user }: { user: ClientUser }) {
   }
   if (view === "gacha") {
     return <GachaScreen onClose={closeSubScreen} />;
+  }
+  if (view === "friends") {
+    return <FriendsScreen onClose={closeSubScreen} />;
+  }
+  if (view === "shop") {
+    return <ShopScreen onClose={closeSubScreen} />;
   }
 
   return (
@@ -513,10 +521,21 @@ export function Lobby({ user }: { user: ClientUser }) {
                 {t("フレンド")}
                 <small>{t("Coming Soon")}</small>
               </h3>
-              {/* TODO: designer confirm — Friends is not yet backed by a
-                  friends-list API; showing a minimal placeholder panel per the
-                  task's guidance ("stub panels ... if not otherwise specified"). */}
-              <p className="tiny muted">{t("フレンド機能は準備中です。近日公開！")}</p>
+              {/* Friends is not yet backed by a real friends-list API. The
+                  FriendsScreen renders a styled sample list + a working
+                  join-by-room-code affordance; this panel is just the home-view
+                  entry point into it (the bottom-nav "仲間" tab opens Roster). */}
+              <p className="tiny muted" style={{ marginBottom: 10 }}>
+                {t("フレンド機能は準備中です。近日公開！")}
+              </p>
+              <button
+                type="button"
+                className="btn outline block"
+                style={{ marginTop: "auto" }}
+                onClick={() => setView("friends")}
+              >
+                {t("フレンドを見る")}
+              </button>
             </div>
           </div>
         </div>
@@ -541,7 +560,7 @@ export function Lobby({ user }: { user: ClientUser }) {
           <button type="button" className="nav-tab" onClick={() => setView("gacha")}>
             💎 {t("ガチャ")}
           </button>
-          <button type="button" className="nav-tab" disabled title={t("準備中")}>
+          <button type="button" className="nav-tab" onClick={() => setView("shop")}>
             🛒 {t("ショップ")}
           </button>
         </div>
