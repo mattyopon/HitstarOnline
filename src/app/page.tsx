@@ -6,7 +6,7 @@ import { useUser } from "@/hooks/useUser";
 import { createClient } from "@/lib/supabase/client";
 import { initLocale } from "@/lib/i18n";
 import { Brand } from "@/components/Brand";
-import { SignIn } from "@/components/SignIn";
+import { Title } from "@/components/Title";
 import { Lobby } from "@/components/Lobby";
 
 function HomeInner() {
@@ -41,19 +41,27 @@ function HomeInner() {
 
   const showSignIn = !user && (!!authError || anonFailed);
 
+  // Title is a full-bleed hero screen (own background/layout), so it renders
+  // outside the centered `.card` shell that the loading spinner uses.
+  if (!user && showSignIn) {
+    return <Title authError={authError} />;
+  }
+
+  // Lobby (DESIGN_SPEC.md "Lobby" / mock .screen-lobby) is a full-bleed,
+  // multi-column home screen — like Title/Battle it renders outside the
+  // narrow `.center-screen > .card` shell (that shell remains only for the
+  // brief pre-auth loading spinner below).
+  if (user) {
+    return <Lobby user={user} />;
+  }
+
   return (
     <div className="center-screen">
       <div className="card stack fade-in" style={{ width: "min(480px, 100%)" }}>
         <Brand />
-        {user ? (
-          <Lobby user={user} />
-        ) : showSignIn ? (
-          <SignIn authError={authError} />
-        ) : (
-          <div className="row" style={{ justifyContent: "center", padding: 20 }}>
-            <span className="spin-loader" />
-          </div>
-        )}
+        <div className="row" style={{ justifyContent: "center", padding: 20 }}>
+          <span className="spin-loader" />
+        </div>
       </div>
     </div>
   );
