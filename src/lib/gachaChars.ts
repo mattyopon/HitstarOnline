@@ -45,3 +45,25 @@ export const GACHA_CHARS: Character[] = [
   { id: "lilac", nm: "Lilac Yua", jp: "ライラック優亜", era: "2020s", attr: "DREAM", rarity: "R", lv: 15, img: "/img/gacha/char-lilac.jpg", quote: "え？私を…選んでくれるの…？", atk: 1020, def: 1240, spd: 104, focus: "50% 10%" },
   { id: "aria", nm: "Aria Iki", jp: "アリア粋", era: "2000s", attr: "LIGHT", rarity: "R", lv: 18, img: "/img/gacha/char-aria.jpg", quote: "ターンテーブル、回しちゃう？", atk: 1220, def: 980, spd: 148, focus: "50% 8%" },
 ] as const satisfies Character[];
+
+/** id → Character lookup (shared; several screens build this map). */
+export const CHAR_BY_ID: ReadonlyMap<string, Character> = new Map(
+  GACHA_CHARS.map((c) => [c.id, c]),
+);
+
+/**
+ * Portrait URL for the caller's own equipped party leader (slot 0), or null
+ * when there's no party / no leader / the id is unknown. Used to render the
+ * CURRENT USER's own avatar as their equipped muse on non-battle screens
+ * (Lobby player card). Never used for other players — that would require the
+ * server-authoritative room state, which is out of scope here.
+ *
+ * `party` is the (string|null)[5] shape from GET /api/character/list; slot 0
+ * is the leader by convention (migration 0006). Safe on client (data only).
+ */
+export function leaderPortrait(
+  party: readonly (string | null)[] | null | undefined,
+): string | null {
+  const id = party?.[0];
+  return id ? (CHAR_BY_ID.get(id)?.img ?? null) : null;
+}

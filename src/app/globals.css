@@ -4786,6 +4786,45 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   color: var(--muted);
 }
 
+/* Friend rows now render real profile avatars (Avatar .avatar) + action
+   buttons; the name flexes and pushes the online/status + actions to the end. */
+.friend.friends-screen-row .avatar {
+  flex: 0 0 auto;
+}
+.friend-actions {
+  display: inline-flex;
+  gap: 6px;
+  flex: none;
+  margin-left: auto;
+}
+.friend.friends-screen-row .st {
+  flex: none;
+  white-space: nowrap;
+}
+
+/* My-friend-code card: the shareable code + a copy button. */
+.friend-code-card {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px dashed var(--accent);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+}
+.friend-code-value {
+  flex: 1;
+  min-width: 0;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* ── Shop: pack grid + display-only pack cards + coming-soon toast ────────── */
 .shop-grid {
   display: grid;

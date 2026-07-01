@@ -17,8 +17,9 @@ import { Roster } from "./Roster";
 import { GachaScreen } from "./GachaScreen";
 import { FriendsScreen } from "./FriendsScreen";
 import { ShopScreen } from "./ShopScreen";
-import { GACHA_CHARS } from "@/lib/gachaChars";
+import { GACHA_CHARS, leaderPortrait } from "@/lib/gachaChars";
 import type { CharacterListResponse } from "@/lib/gachaTypes";
+import { useFriends } from "@/hooks/useFriends";
 import { useT } from "@/lib/i18n";
 
 // Lobby's own local sub-screens (Roster/Gacha/Friends/Shop). This is
@@ -107,6 +108,18 @@ export function Lobby({ user }: { user: ClientUser }) {
     }
   }, []);
 
+  // Presence heartbeat: bump the caller's last_seen_at on Lobby mount and every
+  // 60s while the Lobby is open, so friends see an accurate online dot. Purely
+  // best-effort — failures (e.g. migration 0007 not yet applied) are swallowed.
+  useEffect(() => {
+    const beat = () => {
+      fetch("/api/friends/heartbeat", { method: "POST" }).catch(() => {});
+    };
+    beat();
+    const id = setInterval(beat, 60_000);
+    return () => clearInterval(id);
+  }, []);
+
   // Local sub-screen switch (see LobbyView above) — Roster/Gacha render as an
   // overlay above the rest of Lobby's markup; the room create/join flow below
   // is unaffected. `gachaRefreshKey` bumps to re-fetch gems/party whenever the
@@ -120,6 +133,8 @@ export function Lobby({ user }: { user: ClientUser }) {
   }
 
   const { gems, party, loading: gachaLoading } = useGachaSummary(gachaRefreshKey);
+  // Lightweight friend-count summary for the home-view "フレンド" panel entry.
+  const { data: friendsData } = useFriends();
 
   async function googleLogin() {
     setBusy("google");
@@ -248,7 +263,12 @@ export function Lobby({ user }: { user: ClientUser }) {
 
         <div className="lobby-top">
           <div className="player-card">
-            <Avatar name={name} url={user.avatarUrl} image={FEATURED_CHAR.img} />
+            {/* The player's own avatar = their equipped party leader (slot 0)
+                portrait, read from GET /api/character/list. Falls back to the
+                Google avatar / name-letter chip when there's no party/leader
+                (guest, empty slot, or the gacha fetch failed). Client-only —
+                never published to rooms.state or shown for other players. */}
+            <Avatar name={name} url={user.avatarUrl} image={leaderPortrait(party) ?? undefined} />
             <div className="player-info">
               <div className="nm">{name || t("ゲスト")}</div>
               <div className="meta">{user.isAnonymous ? t("ゲスト") : "Google"}</div>
@@ -519,14 +539,15 @@ export function Lobby({ user }: { user: ClientUser }) {
             <div className="panel" style={{ display: "flex", flexDirection: "column" }}>
               <h3>
                 {t("フレンド")}
-                <small>{t("Coming Soon")}</small>
+                <small>{t("{n}人がオンライン", { n: friendsData.friends.filter((f) => f.online).length })}</small>
               </h3>
-              {/* Friends is not yet backed by a real friends-list API. The
-                  FriendsScreen renders a styled sample list + a working
-                  join-by-room-code affordance; this panel is just the home-view
-                  entry point into it (the bottom-nav "仲間" tab opens Roster). */}
+              {/* Home-view entry point into the real FriendsScreen (add by code,
+                  requests, presence, invite). The bottom-nav "仲間" tab opens
+                  Roster; this panel opens Friends. */}
               <p className="tiny muted" style={{ marginBottom: 10 }}>
-                {t("フレンド機能は準備中です。近日公開！")}
+                {friendsData.incoming.length > 0
+                  ? t("{n}件のフレンド申請が届いています。", { n: friendsData.incoming.length })
+                  : t("{n}人のフレンド。コードを共有して増やそう！", { n: friendsData.friends.length })}
               </p>
               <button
                 type="button"
