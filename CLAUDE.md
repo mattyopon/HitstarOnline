@@ -101,8 +101,11 @@ npm run build        # next build（本番ビルド検証）
   `GOOGLE_TRANSLATE_API_KEY`（チャット翻訳）/ `NEXT_PUBLIC_VOICE_ENABLED=true`（VC有効化）/
   `NEXT_PUBLIC_TURN_URLS` `NEXT_PUBLIC_TURN_USERNAME` `NEXT_PUBLIC_TURN_CREDENTIAL`（metered TURN）/
   `METERED_API_KEY`（+任意 `METERED_HOST` で動的TURN）。
-- **デプロイ**: `NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt npx vercel --prod --token "$VERCEL_TOKEN" --yes`
-  （TLS無効化は禁止。必ず CA bundle を使う。CLIは2分で打ち切られるが裏で完走するので API/ログで確認）。
+- **デプロイ（現行フロー）**: ブランチへ `git push` → Vercel の Git 連携が自動ビルド。
+  ただしボット作者コミットは **STAGED 止まり（本番エイリアス未昇格）** になるため、
+  READY 後に `scripts/vercel-promote.sh` で昇格する（READY待ち→promote→alias検証まで自動）。
+  旧 `npx vercel --prod` CLI デプロイは「Git author noreply@anthropic.com must have access
+  to the team」で **BLOCKED になるので使わない**（TLS無効化は禁止。必ず CA bundle）。
 - マイグレーション適用は Management API `/database/query`（UA必須）に SQL を POST。
   - `0002_atomic_apply.sql` = 原子的CAS RPC `apply_room_state`
   - `0003_realtime_authz.sql` = `realtime.messages` の RLS（private channel `chat:`/`voice:`/`presence:` を部屋メンバー限定）
