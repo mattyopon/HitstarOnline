@@ -29,6 +29,7 @@ export function GameStage({
   playVideoId,
   playing,
   startSeconds,
+  listenStartMs,
   volume,
   onVolumeChange,
   revealMode,
@@ -47,6 +48,9 @@ export function GameStage({
   playVideoId: string | null;
   playing: boolean;
   startSeconds: number;
+  /** Server epoch-ms when listening began (0 = no drift-compensation, e.g.
+   *  reveal). Forwarded to both players so late loaders seek into alignment. */
+  listenStartMs: number;
   volume: number;
   onVolumeChange: (v: number) => void;
   revealMode: boolean;
@@ -97,6 +101,8 @@ export function GameStage({
           {provider === "bilibili" ? (
             <BilibiliPlayer
               videoId={playVideoId}
+              startSeconds={startSeconds}
+              listenStartMs={listenStartMs}
               playing={playing}
               reveal={revealMode}
               volume={volume}
@@ -106,6 +112,7 @@ export function GameStage({
             <YouTubePlayer
               videoId={playVideoId}
               startSeconds={startSeconds}
+              listenStartMs={listenStartMs}
               playing={playing}
               reveal={revealMode}
               volume={volume}

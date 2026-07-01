@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useT } from "@/lib/i18n";
+import { serverNow } from "@/lib/serverClock";
 
 // Bilibili embedded player. Mirrors YouTubePlayer's props/contract (videoId is
 // the BV id here, plus playing/reveal/volume/onUnavailable) but plays through a
@@ -21,6 +22,8 @@ const LOAD_TIMEOUT_MS = 8000;
 
 export function BilibiliPlayer({
   videoId,
+  startSeconds,
+  listenStartMs,
   playing,
   reveal,
   volume,
@@ -28,6 +31,11 @@ export function BilibiliPlayer({
 }: {
   /** Bilibili BV id (named videoId to mirror YouTubePlayer's contract). */
   videoId: string | null;
+  /** In-song base offset (seconds) baked into the embed's &t= param. */
+  startSeconds?: number;
+  /** Server epoch-ms when listening began (0/undefined = no drift-compensation).
+   *  Used to compute the wall-clock-aligned &t= start offset for late loaders. */
+  listenStartMs?: number;
   playing: boolean;
   reveal: boolean;
   volume?: number;
@@ -53,12 +61,36 @@ export function BilibiliPlayer({
   const active = !!videoId && (playing || reveal);
   const muted = (volume ?? 70) <= 0;
 
+  // Bilibili's <iframe> exposes NO JS seek API, so we cannot re-seek to correct
+  // drift the way YouTubePlayer does. Best equivalent: at (re)load time compute the
+  // correct wall-clock-aligned start offset from serverNow()-listenStartMs and bake
+  // it into the &t= query param, so a late loader still starts at the RIGHT position
+  // instead of at 0. LIMITATION: no mid-song drift correction — if the iframe
+  // buffers after load it can drift, and there is no API to pull it back.
+  //
+  // CRITICAL: sample serverNow() only ONCE per genuine (re)load session (keyed on
+  // the session identity below), NOT on every render. GameRoom re-renders ~2×/s via
+  // useServerNow, so if we recomputed this each render the &t= value (and thus src
+  // / the iframe key) would change ~every second and continuously remount/reload
+  // the iframe. useMemo pins the offset for the life of one listening/reveal
+  // session; a late loader still lands at the right position on its single mount.
+  const startOffset = useMemo(
+    () =>
+      listenStartMs && playing
+        ? Math.max(0, Math.round((startSeconds ?? 0) + (serverNow() - listenStartMs) / 1000))
+        : Math.max(0, Math.round(startSeconds ?? 0)),
+    // serverNow() intentionally excluded — resampling it every tick is the bug
+    // this memo prevents; recompute only when the session identity changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [videoId, playing, reveal, muted, listenStartMs, startSeconds],
+  );
+
   // Build the embed src. autoplay + danmaku off + high quality; muted reflects
-  // the volume slider's "is it audible at all" state.
+  // the volume slider's "is it audible at all" state; &t= sets the start offset.
   const src =
     videoId && active
       ? `https://player.bilibili.com/player.html?bvid=${encodeURIComponent(videoId)}` +
-        `&autoplay=1&danmaku=0&high_quality=1&muted=${muted ? 1 : 0}`
+        `&autoplay=1&danmaku=0&high_quality=1&muted=${muted ? 1 : 0}&t=${startOffset}`
       : null;
 
   // Reset the loaded flag whenever the src changes (new card / play state).

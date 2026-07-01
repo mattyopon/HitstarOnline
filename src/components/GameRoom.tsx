@@ -361,6 +361,17 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // Music plays only while the song is "on": the listening window, or at reveal.
   const playing = soundOn && !!playVideoId && (isListening || state.phase === "reveal");
 
+  // Drift-compensation anchor: only apply while actually listening to the mystery
+  // clip, so a late loader seeks to the same wall-clock-aligned position everyone
+  // else hears. At reveal the full clip plays from the base offset with no
+  // elapsed catch-up, so pass 0 there.
+  // NOTE (ready-barrier): the bounded ready-barrier from the plan (Part B) is
+  // DEFERRED. Its fixed-lead variant would set listenStartedAt = now + LEAD in the
+  // pure engine, but scripts/smoke.ts asserts exact deadline equality to the
+  // injected `now` (e.g. "steal deadline = +10s"), so the lead would break the
+  // "194 assertions UNCHANGED" constraint. Drift-correction below is self-sufficient.
+  const listenStartMs = isListening ? listenStart : 0;
+
   const secondsLeft = state.deadline
     ? Math.max(0, Math.ceil((state.deadline - now) / 1000))
     : null;
@@ -474,6 +485,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               playVideoId={playVideoId}
               playing={playing}
               startSeconds={state.settings.startSeconds}
+              listenStartMs={listenStartMs}
               volume={ytVolume}
               onVolumeChange={onVolumeChange}
               revealMode={revealMode}

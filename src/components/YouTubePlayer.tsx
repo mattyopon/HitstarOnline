@@ -2,6 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useT } from "@/lib/i18n";
+import { serverNow } from "@/lib/serverClock";
+
+/** Re-check drift every this many ms during the listening window. */
+const DRIFT_CHECK_MS = 3500;
+/** Re-seek only when the player is off the expected position by more than this. */
+const DRIFT_THRESHOLD_S = 1.2;
+
+// Expected in-song position (seconds) right now. When listenStartMs is set
+// (the listening window), compensate for however late this client loaded/started
+// so every device converges on the same wall-clock-aligned position; otherwise
+// (reveal / full-play / lobby) just use the base offset.
+function expectedPos(startSeconds: number, listenStartMs?: number): number {
+  const base = startSeconds || 0;
+  if (!listenStartMs) return base;
+  return base + Math.max(0, (serverNow() - listenStartMs) / 1000);
+}
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -33,6 +49,7 @@ function loadYT(): Promise<any> {
 export function YouTubePlayer({
   videoId,
   startSeconds,
+  listenStartMs,
   playing,
   reveal,
   volume,
@@ -40,6 +57,10 @@ export function YouTubePlayer({
 }: {
   videoId: string | null;
   startSeconds: number;
+  /** Server epoch-ms when listening began (0/undefined = no drift-compensation,
+   *  e.g. reveal/full-play or lobby). Used to seek late loaders to the correct
+   *  wall-clock-aligned position so all players hear the same moment. */
+  listenStartMs?: number;
   playing: boolean;
   reveal: boolean;
   volume?: number;
@@ -63,8 +84,8 @@ export function YouTubePlayer({
   }, [expanded]);
 
   // Keep latest props for the onReady callback.
-  const propsRef = useRef({ videoId, startSeconds, playing, volume, onUnavailable });
-  propsRef.current = { videoId, startSeconds, playing, volume, onUnavailable };
+  const propsRef = useRef({ videoId, startSeconds, playing, volume, onUnavailable, listenStartMs });
+  propsRef.current = { videoId, startSeconds, playing, volume, onUnavailable, listenStartMs };
 
   function applyVolume(p: any) {
     const v = propsRef.current.volume ?? 70;
@@ -83,17 +104,25 @@ export function YouTubePlayer({
   function sync() {
     const p = playerRef.current;
     if (!p || !ready.current) return;
-    const { videoId: vid, startSeconds: ss, playing: pl } = propsRef.current;
+    const { videoId: vid, startSeconds: ss, playing: pl, listenStartMs: ls } = propsRef.current;
     if (vid && pl) {
+      // Seek to the wall-clock-aligned position so a late loader catches up to
+      // everyone else instead of starting behind at a fixed offset.
+      const target = expectedPos(ss, ls);
       if (currentId.current !== vid) {
         currentId.current = vid;
         try {
-          p.loadVideoById({ videoId: vid, startSeconds: ss || 0 });
+          p.loadVideoById({ videoId: vid, startSeconds: target });
         } catch {
           /* ignore */
         }
       } else {
+        // Same video already loaded: correct any accumulated drift, then play.
         try {
+          if (ls) {
+            const cur = p.getCurrentTime?.() ?? 0;
+            if (Math.abs(cur - target) > DRIFT_THRESHOLD_S) p.seekTo(target, true);
+          }
           p.playVideo();
         } catch {
           /* ignore */
@@ -160,7 +189,27 @@ export function YouTubePlayer({
   useEffect(() => {
     sync();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoId, playing, startSeconds, volume]);
+  }, [videoId, playing, startSeconds, volume, listenStartMs]);
+
+  // Periodic drift correction during the listening window. Handles MID-SONG drift
+  // (buffer stalls) without waiting for a prop change. Re-seek only when the
+  // player has drifted past the threshold so we don't audibly stutter every tick.
+  useEffect(() => {
+    if (!playing || !videoId || !listenStartMs) return;
+    const id = window.setInterval(() => {
+      const p = playerRef.current;
+      if (!p || !ready.current || currentId.current !== videoId) return;
+      try {
+        const target = expectedPos(propsRef.current.startSeconds, propsRef.current.listenStartMs);
+        const cur = p.getCurrentTime?.() ?? 0;
+        if (Math.abs(cur - target) > DRIFT_THRESHOLD_S) p.seekTo(target, true);
+      } catch {
+        /* ignore */
+      }
+    }, DRIFT_CHECK_MS);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing, videoId, listenStartMs]);
 
   return (
     <>
