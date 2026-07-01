@@ -1,0 +1,36 @@
+こんにちは！`mattyopon/HitstarOnline` リポジトリのデザイン全面リニューアルをお願いします。
+
+## 📌 状況
+
+このリポジトリは **Hitster風の音楽年代当てオンラインパーティーゲーム**（Next.js 15 + Supabase）です。本番: hitstar-online.vercel.app
+
+これから **BILIBILI風かわいい中華ACG × 15人ミューズ美少女ガチャゲーム** に全面リニューアルします。
+
+## 📁 準備済みリソース
+
+リポジトリ直下の `handoff-gacha/` フォルダに、必要な資料と素材（15キャラ画像 + 3背景 + モックHTML + 各種仕様書）が揃っています。
+
+## 🚀 最初にやること
+
+1. **必ずまず `handoff-gacha/CLAUDE_CODE_ONBOARDING.md` を全文読んでください**
+   → 状況・制約・作業手順・完了条件がすべて書いてあります
+2. その後、`handoff-gacha/` 内の他のドキュメントも順に読む：
+   - README.md → 全体案内
+   - PROMPT.md → 詳細な実装指示
+   - DESIGN_SPEC.md → デザイントークン正本
+   - target-files.md → 改修対象ファイル
+   - data-model.md → DB/API 追加設計
+   - mocks/index.html → **ブラウザで開いて確認** ピクセル参照モック
+3. 既存の主要ファイル（globals.css, Lobby.tsx, GameRoom.tsx など）も読む
+4. **TodoWrite で作業計画を立ててから「これで進めます」と宣言**してください
+5. `design/gacha-renewal` ブランチを切って実装開始
+
+## ✅ 完了条件
+
+- typecheck / test:engine / build すべてPass
+- `npm run dev` で全画面表示OK
+- 既存の対戦フロー（部屋作成→タイムライン配置→リビール）が壊れていない
+- `git push -u origin design/gacha-renewal` まで完了
+- **PRは作らないで**ください（ユーザーが手動で作成）
+
+準備できたら、まず `handoff-gacha/CLAUDE_CODE_ONBOARDING.md` を読んで、その指示に従って作業を進めてください。
