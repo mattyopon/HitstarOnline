@@ -391,24 +391,26 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // ── Lobby ──────────────────────────────────────────────────────────────────
   if (state.phase === "lobby") {
     return (
-      <div className="container">
-        {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
-        {settingsModal}
-        {headerEl}
-        <div className="grid-2">
-          <LobbyWaitingCard
-            state={state}
-            isHost={state.hostId === meId}
-            busy={busy}
-            actionErr={actionErr}
-            onStart={() => act("/api/game/start", {})}
-          />
-          <div className="stack">
-            <PlayerList state={state} meId={meId} />
-            {showVoice && <VoicePanel code={code} players={state.players} />}
+      <div className="screen-battle-inner">
+        <div className="container">
+          {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+          {settingsModal}
+          {headerEl}
+          <div className="grid-2">
+            <LobbyWaitingCard
+              state={state}
+              isHost={state.hostId === meId}
+              busy={busy}
+              actionErr={actionErr}
+              onStart={() => act("/api/game/start", {})}
+            />
+            <div className="stack">
+              <PlayerList state={state} meId={meId} />
+              {showVoice && <VoicePanel code={code} players={state.players} />}
+            </div>
           </div>
+          {isMultiplayer && <ChatDock code={code} players={state.players} />}
         </div>
-        {isMultiplayer && <ChatDock code={code} players={state.players} />}
       </div>
     );
   }
@@ -416,24 +418,26 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   // ── Genre vote ───────────────────────────────────────────────────────────--
   if (state.phase === "voting") {
     return (
-      <div className="container">
-        {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
-        {settingsModal}
-        {headerEl}
-        <div className="grid-2">
-          <VotingPanel
-            state={state}
-            meId={meId}
-            busy={busy}
-            actionErr={actionErr}
-            onVote={(categories) => act("/api/game/vote", { categories })}
-          />
-          <div className="stack">
-            <PlayerList state={state} meId={meId} />
-            {showVoice && <VoicePanel code={code} players={state.players} />}
+      <div className="screen-battle-inner">
+        <div className="container">
+          {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+          {settingsModal}
+          {headerEl}
+          <div className="grid-2">
+            <VotingPanel
+              state={state}
+              meId={meId}
+              busy={busy}
+              actionErr={actionErr}
+              onVote={(categories) => act("/api/game/vote", { categories })}
+            />
+            <div className="stack">
+              <PlayerList state={state} meId={meId} />
+              {showVoice && <VoicePanel code={code} players={state.players} />}
+            </div>
           </div>
+          {isMultiplayer && <ChatDock code={code} players={state.players} />}
         </div>
-        {isMultiplayer && <ChatDock code={code} players={state.players} />}
       </div>
     );
   }
@@ -448,161 +452,163 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   );
 
   return (
-    <div className="container">
-      {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
-      {settingsModal}
-      {headerEl}
-      {actionErr && (
-        <div className="error" style={{ marginBottom: 12 }}>
-          {actionErr}
-        </div>
-      )}
-      <div className="grid-2">
-        <div className="stack">
-          <GameStage
-            phase={state.phase}
-            isActive={isActive}
-            isListening={isListening}
-            activeName={activePlayer?.name ?? ""}
-            provider={provider}
-            playVideoId={playVideoId}
-            playing={playing}
-            startSeconds={state.settings.startSeconds}
-            volume={ytVolume}
-            onVolumeChange={onVolumeChange}
-            revealMode={revealMode}
-            isCover={isCover}
-            trackUnavailable={trackUnavailable}
-            onUnavailable={() => setTrackUnavailable(true)}
-            countdownEl={countdownEl}
-          />
-
-          {/* Free skip — open to ANY participant during placing (no token cost),
-              separate from the token skip. Lets anyone move past a song they
-              can't hear / don't want. reason:"unavailable" (only when this client
-              detected an embed error) lets the server re-resolve a bad cached id. */}
-          {state.phase === "placing" && state.current && (
-            <button
-              className="btn ghost block"
-              disabled={busy}
-              onClick={() =>
-                act("/api/game/skip-song", {
-                  cardId: state.current?.cardId,
-                  reason: trackUnavailable ? "unavailable" : "manual",
-                })
-              }
-            >
-              ⏭ {t("この曲をスキップ")}
-            </button>
-          )}
-
-          {revealMode && <RevealCard state={state} googleToken={googleToken} />}
-
-          {/* Skip the reveal — the song plays in full, so anyone can move on. */}
-          {state.phase === "reveal" && (
-            <button className="btn block" disabled={busy} onClick={() => act("/api/game/next", {})}>
-              ▶ {t("次の曲へ")}
-            </button>
-          )}
-
-          {state.phase === "gameover" && (
-            <GameOverBanner players={state.players} winnerId={state.winnerId} onHome={goHome} />
-          )}
-
-          {/* Active player's placement controls */}
-          {state.phase === "placing" && isActive && me && (
-            <PlacementPanel
-              settings={state.settings}
-              me={me}
-              isListening={isListening}
-              inEarlyWindow={inEarlyWindow}
-              earlyLeft={earlyLeft}
-              selectedSlot={selectedSlot}
-              setSelectedSlot={setSelectedSlot}
-              gTitle={gTitle}
-              setGTitle={setGTitle}
-              gArtist={gArtist}
-              setGArtist={setGArtist}
-              busy={busy}
-              canExtend={canExtend}
-              canSkip={canSkip}
-              canBuy={canBuy}
-              listeningExtended={!!state.listeningExtended}
-              act={act}
-            />
-          )}
-
-          {/* Non-active waiting during placing */}
-          {state.phase === "placing" && !isActive && (
-            <div className="card stack">
-              <div className="muted">
-                {isListening
-                  ? t("🎧 {name} が試聴中… 一緒に聞こう（{s}s）", {
-                      name: activePlayer?.name ?? "",
-                      s: listenLeft,
-                    })
-                  : t("{name} が配置中… 配置されたら横取りのチャンス！", {
-                      name: activePlayer?.name ?? "",
-                    })}
-              </div>
-              {me && <Timeline cards={me.timeline} compact />}
-            </div>
-          )}
-
-          {/* Stealing */}
-          {state.phase === "stealing" && (
-            <StealPanel
-              me={me}
+    <div className="screen-battle-inner">
+      <div className="container">
+        {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+        {settingsModal}
+        {headerEl}
+        {actionErr && (
+          <div className="error" style={{ marginBottom: 12 }}>
+            {actionErr}
+          </div>
+        )}
+        <div className="grid-2">
+          <div className="stack">
+            <GameStage
+              phase={state.phase}
               isActive={isActive}
-              activePlayer={activePlayer}
-              placementSlot={state.placement?.slotIndex ?? null}
-              selectedSlot={selectedSlot}
-              setSelectedSlot={setSelectedSlot}
-              dontSteal={dontSteal}
-              setDontSteal={setDontSteal}
-              myStealDecided={myStealDecided}
-              secondsLeft={secondsLeft}
-              busy={busy}
-              act={act}
+              isListening={isListening}
+              activeName={activePlayer?.name ?? ""}
+              provider={provider}
+              playVideoId={playVideoId}
+              playing={playing}
+              startSeconds={state.settings.startSeconds}
+              volume={ytVolume}
+              onVolumeChange={onVolumeChange}
+              revealMode={revealMode}
+              isCover={isCover}
+              trackUnavailable={trackUnavailable}
+              onUnavailable={() => setTrackUnavailable(true)}
+              countdownEl={countdownEl}
             />
-          )}
 
-          {/* Your timeline reference during reveal */}
-          {revealMode && me && state.phase === "reveal" && (
-            <div className="card stack">
-              <div className="tiny muted">{t("あなたの年表")}</div>
-              <Timeline cards={me.timeline} compact />
-            </div>
-          )}
-        </div>
+            {/* Free skip — open to ANY participant during placing (no token cost),
+                separate from the token skip. Lets anyone move past a song they
+                can't hear / don't want. reason:"unavailable" (only when this client
+                detected an embed error) lets the server re-resolve a bad cached id. */}
+            {state.phase === "placing" && state.current && (
+              <button
+                className="btn ghost block"
+                disabled={busy}
+                onClick={() =>
+                  act("/api/game/skip-song", {
+                    cardId: state.current?.cardId,
+                    reason: trackUnavailable ? "unavailable" : "manual",
+                  })
+                }
+              >
+                ⏭ {t("この曲をスキップ")}
+              </button>
+            )}
 
-        <div className="stack">
-          <PlayerList state={state} meId={meId} />
-          {showVoice && <VoicePanel code={code} players={state.players} />}
-          {me && (
-            <div className="card stack" style={{ padding: 14 }}>
-              <div className="row spread">
-                <span className="muted tiny">{t("あなたの持ちトークン")}</span>
-                <span className="token">🪙 {me.tokens}</span>
+            {revealMode && <RevealCard state={state} googleToken={googleToken} />}
+
+            {/* Skip the reveal — the song plays in full, so anyone can move on. */}
+            {state.phase === "reveal" && (
+              <button className="btn block" disabled={busy} onClick={() => act("/api/game/next", {})}>
+                ▶ {t("次の曲へ")}
+              </button>
+            )}
+
+            {state.phase === "gameover" && (
+              <GameOverBanner players={state.players} winnerId={state.winnerId} onHome={goHome} />
+            )}
+
+            {/* Active player's placement controls */}
+            {state.phase === "placing" && isActive && me && (
+              <PlacementPanel
+                settings={state.settings}
+                me={me}
+                isListening={isListening}
+                inEarlyWindow={inEarlyWindow}
+                earlyLeft={earlyLeft}
+                selectedSlot={selectedSlot}
+                setSelectedSlot={setSelectedSlot}
+                gTitle={gTitle}
+                setGTitle={setGTitle}
+                gArtist={gArtist}
+                setGArtist={setGArtist}
+                busy={busy}
+                canExtend={canExtend}
+                canSkip={canSkip}
+                canBuy={canBuy}
+                listeningExtended={!!state.listeningExtended}
+                act={act}
+              />
+            )}
+
+            {/* Non-active waiting during placing */}
+            {state.phase === "placing" && !isActive && (
+              <div className="card stack">
+                <div className="muted">
+                  {isListening
+                    ? t("🎧 {name} が試聴中… 一緒に聞こう（{s}s）", {
+                        name: activePlayer?.name ?? "",
+                        s: listenLeft,
+                      })
+                    : t("{name} が配置中… 配置されたら横取りのチャンス！", {
+                        name: activePlayer?.name ?? "",
+                      })}
+                </div>
+                {me && <Timeline cards={me.timeline} compact />}
               </div>
-              <div className="bar">
-                <div
-                  style={{
-                    width: `${Math.min(100, (Math.max(0, me.timeline.length - 1) / state.settings.targetCards) * 100)}%`,
-                  }}
-                />
+            )}
+
+            {/* Stealing */}
+            {state.phase === "stealing" && (
+              <StealPanel
+                me={me}
+                isActive={isActive}
+                activePlayer={activePlayer}
+                placementSlot={state.placement?.slotIndex ?? null}
+                selectedSlot={selectedSlot}
+                setSelectedSlot={setSelectedSlot}
+                dontSteal={dontSteal}
+                setDontSteal={setDontSteal}
+                myStealDecided={myStealDecided}
+                secondsLeft={secondsLeft}
+                busy={busy}
+                act={act}
+              />
+            )}
+
+            {/* Your timeline reference during reveal */}
+            {revealMode && me && state.phase === "reveal" && (
+              <div className="card stack">
+                <div className="tiny muted">{t("あなたの年表")}</div>
+                <Timeline cards={me.timeline} compact />
               </div>
-              <div className="tiny muted">
-                {t("獲得カード {n} / {total}", {
-                  n: Math.max(0, me.timeline.length - 1),
-                  total: state.settings.targetCards,
-                })}
+            )}
+          </div>
+
+          <div className="stack">
+            <PlayerList state={state} meId={meId} />
+            {showVoice && <VoicePanel code={code} players={state.players} />}
+            {me && (
+              <div className="card stack" style={{ padding: 14 }}>
+                <div className="row spread">
+                  <span className="muted tiny">{t("あなたの持ちトークン")}</span>
+                  <span className="token">🪙 {me.tokens}</span>
+                </div>
+                <div className="bar">
+                  <div
+                    style={{
+                      width: `${Math.min(100, (Math.max(0, me.timeline.length - 1) / state.settings.targetCards) * 100)}%`,
+                    }}
+                  />
+                </div>
+                <div className="tiny muted">
+                  {t("獲得カード {n} / {total}", {
+                    n: Math.max(0, me.timeline.length - 1),
+                    total: state.settings.targetCards,
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
+        {isMultiplayer && <ChatDock code={code} players={state.players} />}
       </div>
-      {isMultiplayer && <ChatDock code={code} players={state.players} />}
     </div>
   );
 }
