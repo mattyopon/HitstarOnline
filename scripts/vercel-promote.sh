@@ -32,10 +32,10 @@ DEADLINE=$(( $(date +%s) + 1500 ))  # 25 min cap
 DPL=""
 while :; do
   LIST="$("${CURL[@]}" "$API/v6/deployments?projectId=$PROJECT_ID&limit=20")"
-  read -r DPL STATE SHA < <(python3 - "$TARGET" <<'PY' <<<"$LIST"
-import sys, json
-target = sys.argv[1]
-data = json.load(sys.stdin)
+  read -r DPL STATE SHA < <(LIST="$LIST" TARGET="$TARGET" python3 <<'PY'
+import os, json
+target = os.environ.get("TARGET", "")
+data = json.loads(os.environ["LIST"])
 for d in data.get("deployments", []):
     uid = d.get("uid", "")
     sha = (d.get("meta", {}) or {}).get("githubCommitSha", "") or ""
@@ -65,18 +65,41 @@ PY
   esac
 done
 
-echo "promoting $DPL to production…"
-"${CURL[@]}" -X POST -H "Content-Type: application/json" \
-  "$API/v10/projects/$PROJECT_ID/promote/$DPL" >/dev/null
+# Git deployments here are previews (target=None). The dashboard's "Promote to
+# Production" actually REDEPLOYS them with target=production (source:"redeploy"),
+# so do the same: create a production redeploy from the source deployment. The
+# /v10 promote endpoint returns unprocessable_entity for preview deployments.
+echo "redeploying $DPL as production…"
+NEW="$("${CURL[@]}" -X POST -H "Content-Type: application/json" \
+  -d "{\"name\":\"hitstar-online\",\"deploymentId\":\"$DPL\",\"target\":\"production\",\"meta\":{\"action\":\"redeploy\"}}" \
+  "$API/v13/deployments?forceNew=1" | python3 -c 'import sys,json
+d = json.load(sys.stdin)
+if "error" in d:
+    sys.stderr.write("API error: %s\n" % d["error"].get("message", d["error"]))
+    sys.exit(1)
+print(d.get("id", ""))')"
+[ -n "$NEW" ] || { echo "ERROR: redeploy request failed" >&2; exit 1; }
+echo "production deployment $NEW created; waiting for READY + alias…"
 
-# Verify the production alias now serves the promoted deployment.
-for _ in $(seq 1 40); do
+# Wait for the production redeploy to go READY and take over the alias.
+DEADLINE=$(( $(date +%s) + 1500 ))
+while :; do
+  STATE="$("${CURL[@]}" "$API/v13/deployments/$NEW" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("readyState","?"))')"
+  echo "  $NEW state=$STATE"
+  case "$STATE" in
+    READY) break ;;
+    ERROR|CANCELED|BLOCKED|DELETED) echo "ERROR: production redeploy is $STATE" >&2; exit 1 ;;
+  esac
+  [ "$(date +%s)" -ge "$DEADLINE" ] && { echo "ERROR: timed out waiting for production redeploy" >&2; exit 1; }
+  sleep 15
+done
+for _ in $(seq 1 24); do
   CUR="$("${CURL[@]}" "$API/v13/deployments/$PROD_HOST" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("id",""))')"
-  if [ "$CUR" = "$DPL" ]; then
-    echo "OK: https://$PROD_HOST now serves $DPL"
+  if [ "$CUR" = "$NEW" ]; then
+    echo "OK: https://$PROD_HOST now serves $NEW (from $DPL, commit $SHA)"
     exit 0
   fi
   sleep 5
 done
-echo "WARN: promote requested but alias still shows $CUR — check the Vercel dashboard" >&2
+echo "WARN: redeploy READY but alias still shows $CUR — check the Vercel dashboard" >&2
 exit 2
