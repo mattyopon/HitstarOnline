@@ -1,0 +1,34 @@
+{
+  "_comment": "keywords = 検索クエリ（『VUP名 翻唱』形式が効きます）。vups の mid は UP主のユーザーID = space.bilibili.com/【この数字】。ブラウザでそのVUPのページを開いてURLの数字をコピーして埋めると、そのUP主の投稿一覧も再生数順で収集します（mid が null の行はスキップ）。自由に追加・削除してください。",
+  "pagesPerKeyword": 2,
+  "maxPerSpace": 100,
+  "keywords": [
+    "泠鸢yousa 翻唱",
+    "阿梓 翻唱",
+    "永雏塔菲 翻唱",
+    "东爱璃 翻唱",
+    "星瞳 翻唱",
+    "七海Nana7mi 翻唱",
+    "嘉然 翻唱",
+    "贝拉 翻唱",
+    "向晚 翻唱",
+    "乃琳 翻唱",
+    "露早GOGO 翻唱",
+    "莞儿 翻唱",
+    "米诺 翻唱",
+    "柚恩 翻唱",
+    "虞莫 翻唱",
+    "VirtuaReal 翻唱",
+    "虚拟主播 日语翻唱",
+    "新人虚拟主播 翻唱 日语",
+    "VUP 歌ってみた",
+    "虚拟歌手 カバー 日本語"
+  ],
+  "vups": [
+    { "name": "泠鸢yousa", "mid": null },
+    { "name": "阿梓从小就很可爱", "mid": null },
+    { "name": "永雏塔菲", "mid": null },
+    { "name": "七海Nana7mi", "mid": null },
+    { "name": "(お好きなVUPを追加)", "mid": null }
+  ]
+}
