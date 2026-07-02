@@ -63,13 +63,15 @@ export function resolveScopeFilter(ids: string[]): string[] {
 }
 
 /** How many songs the deck holds for a given scope filter (empty = all).
- *  A selected pack constrains the deck exclusively (resolveScopeFilter). */
+ *  A selected pack constrains the deck exclusively (resolveScopeFilter).
+ *  Counts UNIQUE originals (deckKey), matching shuffledDeckOrder's dedupe —
+ *  cover packs hold multiple covers of one song but a game only draws one. */
 export function deckSizeForCategories(categories?: string[]): number {
   const scope = categories && categories.length ? resolveScopeFilter(categories) : [];
   const set = scope.length ? new Set(scope) : null;
-  let n = 0;
-  for (const song of DECK) if (inCategories(song, set)) n++;
-  return n;
+  const seen = new Set<string>();
+  for (const song of DECK) if (inCategories(song, set)) seen.add(deckKey(song));
+  return seen.size;
 }
 
 /**
@@ -92,5 +94,18 @@ export function shuffledDeckOrder(categories?: string[], seed?: number): number[
     const j = rng ? Math.floor(rng() * (i + 1)) : randInt(i + 1);
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
-  return arr;
+  // One card per ORIGINAL song per game: cover packs carry several covers of the
+  // same original (different VUPs), and a game must never quiz the same song
+  // twice. Keep the FIRST occurrence in the shuffled order — which cover
+  // survives is random per game (deterministic under a seed, as required by the
+  // vote-start CAS retry path).
+  const seen = new Set<string>();
+  const out: number[] = [];
+  for (const i of arr) {
+    const k = deckKey(DECK[i]);
+    if (seen.has(k)) continue;
+    seen.add(k);
+    out.push(i);
+  }
+  return out;
 }
