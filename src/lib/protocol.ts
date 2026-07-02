@@ -422,9 +422,12 @@ export const PACKS: PackDef[] = [
   // ── Bilibili quiz trio (Bilibili playback) ──────────────────────────────────
   // Hear a Bilibili cover, guess the ORIGINAL song's release year. Cards are
   // provider:"bilibili" + isCover and tagged ONLY "pack:utattemita" (never a genre).
-  // Trio plan: 配信者ヒット (this one, VUP covers) / ビリビリヒット (pack:bili-hits) /
-  // 日本ヒット (pack:jp-hits) — the other two get registered once >=12 songs land.
+  // Trio plan: 配信者ヒット (VUP covers) / ビリビリヒット (site-legendary songs) /
+  // 日本ヒット (pack:jp-hits, registered once >=12 songs land).
   { id: "pack:utattemita", labelJa: "ビリビリ配信者ヒットソングクイズ", labelEn: "Bilibili Streamer Hits Quiz", kind: "anime-op", accent: "#4a7fb5" },
+  // B站の镇站神曲・伝説曲そのもの（カバーではない）。provider:"bilibili" + bvid、
+  // 中国曲は country:"cn"。回答年はその曲自体の発表年。
+  { id: "pack:bili-hits", labelJa: "ビリビリヒットソングクイズ", labelEn: "Bilibili Hit Songs Quiz", kind: "anime-op", accent: "#23ade5" },
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));

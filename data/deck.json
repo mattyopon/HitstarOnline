@@ -145213,7 +145213,7 @@
  {
   "title": "恋愛サーキュレーション",
   "artist": "千石撫子（CV:花澤香菜）",
-  "year": 2009,
+  "year": 2010,
   "country": "jp",
   "categories": [
    "pack:utattemita"
@@ -145274,5 +145274,654 @@
   "bvid": "BV1mV41177i6",
   "isCover": true,
   "coverArtist": "Tacitly_麟犀"
+ },
+ {
+  "title": "普通DISCO",
+  "artist": "ilem feat. 洛天依・言和",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1zs411S7sz"
+ },
+ {
+  "title": "达拉崩吧",
+  "artist": "ilem feat. 洛天依・言和",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1sx411k7ug"
+ },
+ {
+  "title": "权御天下",
+  "artist": "乌龟Sui feat. 洛天依",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1fx411A7hz"
+ },
+ {
+  "title": "千年食谱颂",
+  "artist": "H.K.君 feat. 洛天依",
+  "year": 2012,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Jx411F7tf"
+ },
+ {
+  "title": "極楽浄土",
+  "artist": "GARNiDELiA",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1knSVY6EBQ"
+ },
+ {
+  "title": "好想爱这个世界啊 (Live)",
+  "artist": "华晨宇",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1gJ411S7Zg"
+ },
+ {
+  "title": "念诗之王（改革春风吹满地）",
+  "artist": "赵本山 鬼畜リミックス",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1bW411n7fY"
+ },
+ {
+  "title": "Bad Apple!!",
+  "artist": "Alstroemeria Records feat. nomico",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xx411c79H"
+ },
+ {
+  "title": "千本桜",
+  "artist": "黒うさP feat. 初音ミク",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1U64y1v73V"
+ },
+ {
+  "title": "万神纪",
+  "artist": "写歌的海鲜面 feat. 星尘",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Sx41117dD"
+ },
+ {
+  "title": "九九八十一",
+  "artist": "乌龟Sui feat. 乐正绫",
+  "year": 2016,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1es41197ai"
+ },
+ {
+  "title": "勾指起誓",
+  "artist": "ilem feat. 洛天依",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Jb411U7u2"
+ },
+ {
+  "title": "大氿歌",
+  "artist": "ilem feat. 洛天依",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV14b411b7Vr"
+ },
+ {
+  "title": "起风了",
+  "artist": "买辣椒也用券（原曲: 高橋優ヤキモチ2012）",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1zb411z7Si"
+ },
+ {
+  "title": "我的一个道姑朋友",
+  "artist": "以冬（原曲: 一番星）",
+  "year": 2016,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xU4y177E9"
+ },
+ {
+  "title": "红昭愿",
+  "artist": "音阙诗听 feat. 洛天依",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1px411C7Me"
+ },
+ {
+  "title": "芒种",
+  "artist": "音阙诗听 & 赵方婧",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1k64y1u7jq"
+ },
+ {
+  "title": "恋愛サーキュレーション",
+  "artist": "花澤香菜",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1K34112713"
+ },
+ {
+  "title": "甩葱歌（Ievan Polkka）",
+  "artist": "Otomania feat. 初音ミク",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ls411w7r7"
+ },
+ {
+  "title": "only my railgun",
+  "artist": "fripSide",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1os411D7be"
+ },
+ {
+  "title": "66CCFF",
+  "artist": "杉田朗 feat. 洛天依",
+  "year": 2012,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ix411F7TB"
+ },
+ {
+  "title": "世末歌者",
+  "artist": "COP feat. 乐正绫・洛天依",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Qs411k7Qv"
+ },
+ {
+  "title": "霜雪千年",
+  "artist": "COP feat. 洛天依・乐正绫",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1es41127Fd"
+ },
+ {
+  "title": "东京不太热",
+  "artist": "Z新豪 feat. 洛天依",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV17s411D731"
+ },
+ {
+  "title": "卡路里",
+  "artist": "火箭少女101",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ms411T7X6"
+ },
+ {
+  "title": "学猫叫",
+  "artist": "小潘潘・小峰峰",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV16s411L7X6"
+ },
+ {
+  "title": "生僻字",
+  "artist": "陈柯宇",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ex411L7f1"
+ },
+ {
+  "title": "野狼disco",
+  "artist": "宝石Gem",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1GJ411Q7Ck"
+ },
+ {
+  "title": "大碗宽面",
+  "artist": "吴亦凡",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1WA4m157xd"
+ },
+ {
+  "title": "寄明月",
+  "artist": "SING女团",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1zx411G7nm"
+ },
+ {
+  "title": "琵琶行",
+  "artist": "奇然・沈谧仁",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1z4411c7Ny"
+ },
+ {
+  "title": "牵丝戏",
+  "artist": "银临・Aki阿杰",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1a54y1v7UZ"
+ },
+ {
+  "title": "出山",
+  "artist": "花粥・王胜男",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ob411n7yp"
+ },
+ {
+  "title": "你的答案",
+  "artist": "阿冗",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1tJ411h7e3"
+ },
+ {
+  "title": "离人愁",
+  "artist": "李袁杰",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ws411u715"
+ },
+ {
+  "title": "热爱105°C的你",
+  "artist": "阿肆",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Y541137VV"
+ },
+ {
+  "title": "新宝島",
+  "artist": "サカナクション",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xE411v7WN"
+ },
+ {
+  "title": "PPAP",
+  "artist": "ピコ太郎",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1hs411x7no"
+ },
+ {
+  "title": "白金ディスコ",
+  "artist": "井口裕香",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV19t411v7B8"
+ },
+ {
+  "title": "病名は愛だった",
+  "artist": "Neru & z'5 feat. 鏡音リン・レン",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Zx411s7hg"
+ },
+ {
+  "title": "命に嫌われている",
+  "artist": "カンザキイオリ feat. 初音ミク",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Jt411r7Sc"
+ },
+ {
+  "title": "シャルル",
+  "artist": "バルーン feat. flower",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1bs41147av"
+ },
+ {
+  "title": "アスノヨゾラ哨戒班",
+  "artist": "Orangestar feat. IA",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV12q4y197vw"
+ },
+ {
+  "title": "いーあるふぁんくらぶ",
+  "artist": "みきとP feat. GUMI・鏡音リン",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xx411F7DA"
+ },
+ {
+  "title": "ハッピーシンセサイザ",
+  "artist": "EasyPop feat. 巡音ルカ・GUMI",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1P7411j7yX"
+ },
+ {
+  "title": "Sweet Devil",
+  "artist": "八王子P feat. 初音ミク",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1QJ41137T2"
+ },
+ {
+  "title": "メランコリック",
+  "artist": "Junky feat. 鏡音リン",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ps411k77c"
+ },
+ {
+  "title": "金曜日のおはよう",
+  "artist": "HoneyWorks feat. GUMI",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ux411T7GM"
+ },
+ {
+  "title": "いけないボーダーライン",
+  "artist": "ワルキューレ",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Mt411J7Pq"
+ },
+ {
+  "title": "残酷な天使のテーゼ",
+  "artist": "高橋洋子",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1is411m7AH"
+ },
+ {
+  "title": "unravel",
+  "artist": "TK from 凛として時雨",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1av411M7nM"
+ },
+ {
+  "title": "紅蓮華",
+  "artist": "LiSA",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1yT4y1M7vS"
+ },
+ {
+  "title": "Lemon",
+  "artist": "米津玄師",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1WW411G7dE"
+ },
+ {
+  "title": "打上花火",
+  "artist": "DAOKO × 米津玄師",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1L441167fv"
+ },
+ {
+  "title": "夜に駆ける",
+  "artist": "YOASOBI",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ph411C7S5"
+ },
+ {
+  "title": "チルノのパーフェクトさんすう教室",
+  "artist": "IOSYS",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1rs41197Xn"
+ },
+ {
+  "title": "マトリョシカ",
+  "artist": "ハチ feat. 初音ミク・GUMI",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Hh411t7uW"
+ },
+ {
+  "title": "六兆年と一夜物語",
+  "artist": "kemu feat. IA",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1PX4y1c7RJ"
+ },
+ {
+  "title": "God knows...",
+  "artist": "平野綾",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV17A411V72Y"
  }
 ]
