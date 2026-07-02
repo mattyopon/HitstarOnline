@@ -138,6 +138,13 @@ export function GameStage({
             <span>{phaseTitle}</span>
           </div>
         )}
+        {/* Bilibili embeds honor the viewer's own bilibili.com session; some
+            videos require login, so nudge (playback still auto-skips if not). */}
+        {provider === "bilibili" && !revealMode && (
+          <div className="muted" style={{ fontSize: 12, textAlign: "center" }}>
+            {t("Bilibiliにログインしておくと再生できる曲が増えます")}
+          </div>
+        )}
         {phase === "reveal" && (
           <div className="now-meta">
             <span className="live-dot" aria-hidden="true" />

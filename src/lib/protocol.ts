@@ -419,10 +419,12 @@ export const PACKS: PackDef[] = [
   { id: "pack:pokemon", labelJa: "ポケモン縛り", labelEn: "Pokémon", kind: "franchise", accent: "#d4a330" },
   { id: "pack:dragonball", labelJa: "ドラゴンボール縛り", labelEn: "Dragon Ball", kind: "franchise", accent: "#a87830" },
   { id: "pack:kimetsu", labelJa: "鬼滅の刃縛り", labelEn: "Demon Slayer", kind: "franchise", accent: "#6b6a3a" },
-  // ── Cover / 歌ってみた quiz (Bilibili playback) ──────────────────────────────
+  // ── Bilibili quiz trio (Bilibili playback) ──────────────────────────────────
   // Hear a Bilibili cover, guess the ORIGINAL song's release year. Cards are
   // provider:"bilibili" + isCover and tagged ONLY "pack:utattemita" (never a genre).
-  { id: "pack:utattemita", labelJa: "歌ってみたクイズ", labelEn: "Cover Song Quiz (Bilibili)", kind: "anime-op", accent: "#4a7fb5" },
+  // Trio plan: 配信者ヒット (this one, VUP covers) / ビリビリヒット (pack:bili-hits) /
+  // 日本ヒット (pack:jp-hits) — the other two get registered once >=12 songs land.
+  { id: "pack:utattemita", labelJa: "ビリビリ配信者ヒットソングクイズ", labelEn: "Bilibili Streamer Hits Quiz", kind: "anime-op", accent: "#4a7fb5" },
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));
