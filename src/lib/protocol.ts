@@ -424,6 +424,9 @@ export const PACKS: PackDef[] = [
   // B站の镇站神曲・伝説曲そのもの（カバーではない）。provider:"bilibili" + bvid、
   // 中国曲は country:"cn"。回答年はその曲自体の発表年。
   { id: "pack:bili-hits", labelJa: "ビリビリヒットソングクイズ", labelEn: "Bilibili Hit Songs Quiz", kind: "anime-op", accent: "#23ade5" },
+  // オリコン/Billboard JAPAN等の実チャート実績・ミリオンセラー・タイアップ実績を
+  // 持つ日本のヒット曲（YouTube再生・通常のジャンルとは別軸）。トリオ最後の1つ。
+  { id: "pack:jp-hits", labelJa: "日本ヒットソングクイズ", labelEn: "Japan Hit Songs Quiz", kind: "anime-op", accent: "#e0507a" },
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));
