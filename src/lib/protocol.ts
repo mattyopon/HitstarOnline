@@ -340,20 +340,16 @@ export const CATEGORIES: CategoryDef[] = [
   { id: "us-cartoon", labelJa: "アニメ・キッズ(海外)", labelEn: "Cartoons & Kids (Intl.)" },
   { id: "movie-themes", labelJa: "映画・ドラマ主題歌", labelEn: "Movie & Drama Themes" },
   { id: "christmas", labelJa: "クリスマス", labelEn: "Christmas" },
-  { id: "classical", labelJa: "クラシック", labelEn: "Classical" },
   { id: "jazz", labelJa: "ジャズ・ブルース", labelEn: "Jazz & Blues" },
-  { id: "bossa", labelJa: "ボサノヴァ", labelEn: "Bossa Nova" },
   { id: "kpop", labelJa: "K-POP", labelEn: "K-POP" },
   { id: "uspop", labelJa: "洋楽POPS", labelEn: "Western Pop" },
   { id: "rock", labelJa: "洋楽ROCK", labelEn: "Western Rock" },
   { id: "edm", labelJa: "洋楽ダンス", labelEn: "Dance & EDM" },
   { id: "hiphop", labelJa: "洋楽ヒップホップ", labelEn: "Hip-Hop" },
   { id: "rnb", labelJa: "洋楽R&B・ソウル", labelEn: "R&B & Soul" },
-  { id: "latin", labelJa: "ラテン", labelEn: "Latin" },
-  { id: "country", labelJa: "カントリー", labelEn: "Country" },
-  { id: "reggae", labelJa: "レゲエ", labelEn: "Reggae" },
-  { id: "bollywood", labelJa: "ボリウッド", labelEn: "Bollywood" },
   { id: "karaoke", labelJa: "カラオケ定番", labelEn: "Karaoke Hits" },
+  // 廃止: classical(作曲年が曖昧で年当てゲームと相性が悪い) / bossa・latin・country・
+  // reggae・bollywood(日本のパーティー参加者には認知度が低いニッチジャンルと判断し削除)
 ];
 
 export const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id));
