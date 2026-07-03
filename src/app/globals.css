@@ -667,7 +667,7 @@ select:focus {
 /* .year = the big stamped year (mock .stamp-yr). */
 .tl-card .year {
   font-family: "Bebas Neue", ui-monospace, monospace;
-  font-size: 38px;
+  font-size: 46px;
   font-weight: 400;
   color: var(--accent);
   line-height: 0.9;
@@ -1198,8 +1198,12 @@ select:focus {
   border: 2px solid #fff;
 }
 .chat-card {
-  width: min(92vw, 340px);
-  height: min(70vh, 460px);
+  width: min(92vw, 440px);
+  height: min(78vh, 620px);
+  min-width: 280px;
+  min-height: 320px;
+  max-width: 92vw;
+  max-height: 90vh;
   display: flex;
   flex-direction: column;
   background: var(--panel);
@@ -1207,7 +1211,10 @@ select:focus {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   backdrop-filter: blur(8px);
-  overflow: hidden;
+  overflow: auto;
+  /* User-resizable: drag the bottom-right corner to make the panel bigger or
+     smaller than the (also increased) default above. */
+  resize: both;
 }
 .chat-head {
   padding: 10px 12px;
@@ -2009,7 +2016,7 @@ select:focus {
   right: 4px;
   top: 4px;
 }
-.player-block .tl-card .year { font-size: 19px; }
+.player-block .tl-card .year { font-size: 25px; }
 .player-block .tl-card .ttl { font-size: 9px; -webkit-line-clamp: 1; }
 .player-block .tl-card .art { font-size: 8px; }
 .player-block .slot { width: 10px; }
