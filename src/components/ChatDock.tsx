@@ -37,6 +37,9 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
 
   // msgId -> translated text (in viewer's language). Set even on failure (= original).
   const [translations, setTranslations] = useState<Record<string, string>>({});
+  // Ids already requested (in-flight or done) — a ref so marking one doesn't
+  // itself re-trigger the effect below (see the bug note there).
+  const requestedIds = useRef<Set<string>>(new Set());
   const [fly, setFly] = useState<FlyItem[]>([]);
   const flown = useRef<Set<string>>(new Set());
   const listRef = useRef<HTMLDivElement>(null);
@@ -66,18 +69,24 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
   );
 
   // Translate foreign-language, non-emote messages into the viewer's language.
+  //
+  // BUG HISTORY: this used to mark "in-flight" by calling setTranslations()
+  // synchronously with the original text as a placeholder, and included
+  // `translations` in this effect's own dependency array. That placeholder
+  // write changed `translations`, which re-triggered this very effect, whose
+  // cleanup then set `cancelled = true` on the in-flight closure — so by the
+  // time the /api/translate response arrived, `if (cancelled) return` always
+  // fired and the real translation was discarded every time (translations
+  // silently never appeared). Track "already requested" in a ref instead, so
+  // marking a message doesn't cause a re-render/re-run at all, and drop
+  // `translations` from the deps so this effect only reacts to new messages.
   useEffect(() => {
     const pending = messages.filter(
-      (m) => !m.emote && m.lang !== myLang && translations[m.id] === undefined,
+      (m) => !m.emote && m.lang !== myLang && !requestedIds.current.has(m.id),
     );
     if (!pending.length) return;
+    for (const m of pending) requestedIds.current.add(m.id);
     let cancelled = false;
-    // Mark as in-flight (original as placeholder) so we don't double-request.
-    setTranslations((prev) => {
-      const next = { ...prev };
-      for (const m of pending) if (next[m.id] === undefined) next[m.id] = m.text;
-      return next;
-    });
     (async () => {
       try {
         const { translations: out } = await api<{ translations: string[] }>("/api/translate", {
@@ -88,18 +97,25 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
         setTranslations((prev) => {
           const next = { ...prev };
           pending.forEach((m, i) => {
-            if (typeof out[i] === "string") next[m.id] = out[i];
+            next[m.id] = typeof out[i] === "string" ? out[i] : m.text;
           });
           return next;
         });
       } catch {
-        /* keep originals */
+        if (cancelled) return;
+        // Network/API failure: fall back to originals so the danmaku "wait
+        // for translation" gate below doesn't stall on this message forever.
+        setTranslations((prev) => {
+          const next = { ...prev };
+          for (const m of pending) next[m.id] = m.text;
+          return next;
+        });
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [messages, myLang, translations]);
+  }, [messages, myLang]);
 
   // Spawn danmaku once a message's final (translated) text is available.
   useEffect(() => {
