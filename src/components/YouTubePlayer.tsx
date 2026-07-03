@@ -172,7 +172,19 @@ export function YouTubePlayer({
               retried.current.add(vid);
               currentId.current = null;
               sync();
-            } else if (e?.data === 100 || e?.data === 101 || e?.data === 150) {
+            } else if (
+              vid &&
+              propsRef.current.playing &&
+              (e?.data === 100 || e?.data === 101 || e?.data === 150)
+            ) {
+              // Guard against STALE error events: sync() (line ~132) resets
+              // currentId.current to null and stops the player as soon as `playing`
+              // goes false (listening window ended / turn moved on) — completely
+              // normal, every turn. Without this guard, a delayed onError for a
+              // video we've already stopped wanting to play would still spuriously
+              // flag the (possibly perfectly fine) CURRENT song as unavailable,
+              // prompting an unwarranted free skip for the whole room — this was
+              // the reported "songs sometimes get skipped on their own" bug.
               console.warn("[yt] video not embeddable/available:", e?.data, vid);
               propsRef.current.onUnavailable?.();
             }

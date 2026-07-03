@@ -11,6 +11,8 @@
 // ───────────────────────────────────────────────────────────────────────────
 
 import {
+  ANIME_QUIZ_BONUS_TOKENS,
+  AnimeQuizInfo,
   BOT_NAMES,
   BOT_PROFILES,
   BotDifficulty,
@@ -18,6 +20,7 @@ import {
   CATEGORIES,
   CATEGORY_IDS,
   DEFAULT_SETTINGS,
+  FRANCHISE_PACK_NAMES,
   FullGame,
   GameSettings,
   MODE_START_TOKENS,
@@ -29,6 +32,7 @@ import {
   TimelineCard,
   VOTE_DURATION_SECONDS,
   defaultSettings,
+  franchiseForCategories,
 } from "./protocol";
 import { looseMatch } from "./matching";
 
@@ -646,6 +650,7 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
   const songId = g.secret.currentSongId;
   if (songId === undefined) throw new GameError("購入できる曲がありません");
   const song = songs[songId];
+  const animeQuiz = buildAnimeQuiz(song, g.public);
 
   active.tokens -= cost;
   const slot = correctSlot(active.timeline, song.year);
@@ -675,6 +680,7 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
     bought: true,
     steals: [],
     tokenAwards: [],
+    ...(animeQuiz ? { animeQuiz } : {}),
     reason: "カード購入",
   };
   g.public.current = undefined;
@@ -756,10 +762,32 @@ function checkWin(g: FullGame, userId: string): void {
   }
 }
 
+/** Build the optional bonus quiz for a reveal, or undefined if `song` isn't in
+ *  exactly one single-franchise pack. Pure & deterministic — seeded from
+ *  (code, round) so a mutateByCode CAS retry reconstructs the SAME quiz. */
+function buildAnimeQuiz(song: Song, state: PublicState): AnimeQuizInfo | undefined {
+  const correct = franchiseForCategories(song.categories);
+  if (!correct) return undefined;
+  const rng = mulberry32(hash32(`${state.code}|${state.round}|animequiz`));
+  const decoyPool = Object.values(FRANCHISE_PACK_NAMES).filter((n) => n !== correct);
+  for (let i = decoyPool.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [decoyPool[i], decoyPool[j]] = [decoyPool[j], decoyPool[i]];
+  }
+  const decoyCount = Math.min(decoyPool.length, 2 + Math.floor(rng() * 2)); // 2 or 3
+  const choices = [correct, ...decoyPool.slice(0, decoyCount)];
+  for (let i = choices.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [choices[i], choices[j]] = [choices[j], choices[i]];
+  }
+  return { choices, correct, answers: {}, solvedBy: null };
+}
+
 function resolve(g: FullGame, songs: Song[], now: number): void {
   const songId = g.secret.currentSongId;
   if (songId === undefined) throw new GameError("解決できる曲がありません");
   const song = songs[songId];
+  const animeQuiz = buildAnimeQuiz(song, g.public);
   const mode = g.public.settings.mode;
   const active = activePlayer(g.public);
   const placementSlot = g.public.placement?.slotIndex ?? null;
@@ -873,6 +901,7 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     extendUsed: g.public.listeningExtended ?? false,
     steals,
     tokenAwards,
+    ...(animeQuiz ? { animeQuiz } : {}),
     reason,
   };
   g.public.current = undefined;
@@ -980,6 +1009,48 @@ export function advanceReveal(game: FullGame, songs: Song[], now: number): FullG
     g.public.deadline = undefined;
   } else {
     nextTurn(g, songs, now);
+  }
+  g.public.version++;
+  return g;
+}
+
+/**
+ * Answer the OPTIONAL "このアニメは？" bonus quiz at reveal. 100% optional and
+ * side-channel: never gates advanceReveal/advance, never touches placement/
+ * steal scoring or the win condition — only tokens. Awards
+ * ANIME_QUIZ_BONUS_TOKENS (capped at maxTokens) to the FIRST correct guesser;
+ * later guesses (right or wrong) are recorded for the UI but earn nothing more
+ * (mirrors stealCard's "first correct wins" pattern). No-op (idempotent, no
+ * version bump) when there's no active quiz for this reveal or this player
+ * already answered — safe for a racing/late client.
+ * ANTI-CHEAT: the correct answer is re-derived here from `songs` (server-only
+ * deck data) — never trusted from the client's `choice`, and not read back
+ * from the public `reveal.animeQuiz.correct` field either.
+ */
+export function answerAnimeQuiz(
+  game: FullGame,
+  userId: string,
+  choice: string,
+  songs: Song[],
+): FullGame {
+  const quiz = game.public.reveal?.animeQuiz;
+  if (game.public.phase !== "reveal" || !quiz) return game;
+  if (!game.public.players.some((p) => p.userId === userId)) {
+    throw new GameError("この部屋のメンバーではありません");
+  }
+  if (quiz.answers[userId] !== undefined) return game; // one guess per player
+  if (!quiz.choices.includes(choice)) throw new GameError("不正な選択肢です");
+
+  const g = clone(game);
+  const q = g.public.reveal!.animeQuiz!;
+  q.answers[userId] = choice;
+
+  const song = songs[g.public.reveal!.songId];
+  const correctName = franchiseForCategories(song?.categories);
+  if (correctName && choice === correctName && q.solvedBy == null) {
+    q.solvedBy = userId;
+    const p = getPlayer(g.public, userId);
+    p.tokens = Math.min(g.public.settings.maxTokens, p.tokens + ANIME_QUIZ_BONUS_TOKENS);
   }
   g.public.version++;
   return g;

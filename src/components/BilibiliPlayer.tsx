@@ -17,8 +17,12 @@ import { serverNow } from "@/lib/serverClock";
 //    Mute is applied via the &muted= query param, so it only changes when the
 //    iframe is (re)loaded with a new src — fine for the listen → reveal flow.
 
-/** Seconds to wait for the iframe to load before declaring it unavailable. */
-const LOAD_TIMEOUT_MS = 8000;
+/** Seconds to wait for the iframe to load before declaring it unavailable.
+ *  Generous on purpose: this is a flat heuristic (no real "is it playing"
+ *  signal), for a foreign CDN that's occasionally slow to respond, not
+ *  actually broken — too short a timeout causes false "unavailable" reports
+ *  that trigger an unwarranted free skip for the whole room. */
+const LOAD_TIMEOUT_MS = 15000;
 
 export function BilibiliPlayer({
   videoId,

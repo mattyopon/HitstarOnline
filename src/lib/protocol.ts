@@ -223,6 +223,11 @@ export interface RevealInfo {
   steals: StealResult[];
   tokenAwards: TokenAward[];
   reason?: string;
+  /** Optional "このアニメは？" bonus question (single-franchise packs only).
+   *  100% optional/bonus: never gates advanceReveal and never affects
+   *  placement/steal scoring — only awards a small token bonus. Absent when
+   *  the song isn't in exactly one single-franchise pack. */
+  animeQuiz?: AnimeQuizInfo;
 }
 
 export interface PublicState {
@@ -433,3 +438,52 @@ export const PACKS: PackDef[] = [
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));
+
+// ───────────────────────────────────────────────────────────────────────────
+// Anime-quiz bonus: an OPTIONAL "このアニメは？" multiple-choice question shown
+// alongside the normal reveal for songs in a SINGLE-franchise pack. The
+// franchise name is derivable directly from the pack id — no new per-song
+// data. Client-importable (types/constants only, no logic that needs
+// server-only deck/answer data).
+// ───────────────────────────────────────────────────────────────────────────
+
+/** Single-franchise packs whose anime/franchise name is a static 1:1 mapping
+ *  from the pack id. `pack:shoujo-anime` is deliberately OMITTED — it's a
+ *  mixed-franchise pack (少女漫画/アニメ全般), so there's no single correct
+ *  answer to derive; songs in it simply never get the bonus question. */
+export const FRANCHISE_PACK_NAMES: Record<string, string> = {
+  "pack:onepiece": "ONE PIECE",
+  "pack:naruto": "NARUTO",
+  "pack:conan": "名探偵コナン",
+  "pack:gundam": "ガンダム",
+  "pack:pokemon": "ポケモン",
+  "pack:dragonball": "ドラゴンボール",
+  "pack:kimetsu": "鬼滅の刃",
+};
+
+/** The single franchise name for a song's categories, or null if the song
+ *  doesn't belong to EXACTLY ONE of the packs above (0 matches = not a
+ *  franchise song; 2+ matches = ambiguous — skip the bonus either way). */
+export function franchiseForCategories(categories?: string[]): string | null {
+  if (!categories) return null;
+  const matches = categories.filter((c) => c in FRANCHISE_PACK_NAMES);
+  return matches.length === 1 ? FRANCHISE_PACK_NAMES[matches[0]] : null;
+}
+
+/** Modest bonus for the FIRST correct "このアニメは？" guess at reveal — a
+ *  side bonus, not a core scoring mechanic, so it's kept small on purpose. */
+export const ANIME_QUIZ_BONUS_TOKENS = 1;
+
+export interface AnimeQuizInfo {
+  /** Shuffled candidates: the correct franchise + 2–3 decoys from the other
+   *  single-franchise packs. Order carries no signal about which is correct. */
+  choices: string[];
+  /** The correct answer. Safe to reveal alongside title/artist/year — derived
+   *  from PUBLIC pack/category data, not a hidden game answer (see engine.ts
+   *  answerAnimeQuiz for why this is still never TRUSTED for scoring). */
+  correct: string;
+  /** userId → their submitted choice (one guess per player per reveal). */
+  answers: Record<string, string>;
+  /** userId of the first correct guesser this reveal, or null. */
+  solvedBy: string | null;
+}

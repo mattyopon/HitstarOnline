@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useState } from "react";
-import type { PublicState } from "@/lib/protocol";
+import { ANIME_QUIZ_BONUS_TOKENS, type PublicState } from "@/lib/protocol";
 import { addToFavorites, type FavoriteResult } from "@/lib/youtubeFavorites";
 import { useT } from "@/lib/i18n";
 
@@ -9,9 +9,16 @@ import { useT } from "@/lib/i18n";
 export const RevealCard = memo(function RevealCard({
   state,
   googleToken,
+  meId,
+  act,
+  busy,
 }: {
   state: PublicState;
   googleToken?: string | null;
+  meId: string;
+  /** Fire a room action (POST to a /api/game/* route + apply the resulting state). */
+  act: (path: string, body: Record<string, unknown>) => Promise<boolean>;
+  busy: boolean;
 }) {
   const t = useT();
   const [fav, setFav] = useState<"idle" | "saving" | FavoriteResult>("idle");
@@ -77,6 +84,40 @@ export const RevealCard = memo(function RevealCard({
             })}
           </div>
         ))}
+      {r.animeQuiz && (() => {
+        const quiz = r.animeQuiz!;
+        const myAnswer = quiz.answers[meId];
+        const answered = myAnswer !== undefined;
+        const revealAnswer = answered || quiz.solvedBy != null;
+        return (
+          <div className="stack" style={{ gap: 8, marginTop: 8, alignItems: "center" }}>
+            <div className="tiny muted">{t("🎬 ボーナス問題：このアニメは？")}</div>
+            <div className="row wrap" style={{ gap: 8, justifyContent: "center" }}>
+              {quiz.choices.map((choice) => {
+                const isCorrectChoice = revealAnswer && choice === quiz.correct;
+                const isMine = myAnswer === choice;
+                return (
+                  <button
+                    key={choice}
+                    className={"btn secondary" + (isCorrectChoice ? " gold" : "")}
+                    disabled={answered || busy}
+                    onClick={() => act("/api/game/anime-guess", { choice })}
+                  >
+                    {choice}
+                    {isMine && (choice === quiz.correct ? " ✅" : " ❌")}
+                  </button>
+                );
+              })}
+            </div>
+            {quiz.solvedBy && (
+              <div className="tiny token">
+                🪙 {t("{name} が正解！+{n}", { name: nameOf(quiz.solvedBy) ?? "?", n: ANIME_QUIZ_BONUS_TOKENS })}
+              </div>
+            )}
+          </div>
+        );
+      })()}
+
       {r.youtubeId && (
         <a
           className="tiny"

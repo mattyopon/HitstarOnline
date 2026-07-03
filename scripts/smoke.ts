@@ -29,6 +29,8 @@ import {
   setConnected,
   mulberry32,
   needsTrackResolution,
+  answerAnimeQuiz,
+  advanceReveal,
 } from "../src/lib/engine";
 import {
   Song,
@@ -747,6 +749,139 @@ console.log("Scenario R (provider plumbing / bilibili cover):");
   ok("youtube needsTrackResolution true (no youtubeId)", needsTrackResolution(yt) === true);
   yt.public.current!.youtubeId = "dQw4w9WgXcQ";
   ok("youtube needsTrackResolution false once id set", needsTrackResolution(yt) === false);
+}
+
+// ── Scenario S: anime-quiz bonus (Item 2) ───────────────────────────────────
+// Own self-contained Song[] (with categories) so the shared 12-song fixture
+// (no categories) — and therefore every assertion above — is entirely unaffected.
+console.log("Scenario S (anime-quiz bonus):");
+{
+  const q: Song[] = [
+    { title: "Seed0", artist: "A0", year: 1990 },
+    { title: "Seed1", artist: "A1", year: 1991 },
+    { title: "Seed2", artist: "A2", year: 1992 },
+    { title: "OP", artist: "AOP", year: 2000, categories: ["pack:onepiece"] },
+    { title: "NA", artist: "AN", year: 2001, categories: ["pack:naruto"] },
+    { title: "MIX", artist: "AM", year: 2002, categories: ["pack:onepiece", "pack:naruto"] },
+    { title: "PLAIN", artist: "AP", year: 2003, categories: ["jpop"] },
+    { title: "SHOUJO", artist: "AS", year: 2004, categories: ["pack:shoujo-anime"] },
+  ];
+  let g = createLobby("ROOMQZ", { userId: "alice", name: "Alice" }, {
+    startingTokens: 0, allowSkip: false, revealSeconds: 240, earlyBonusMs: 0, placementTokens: 0,
+  });
+  g = addPlayer(g, { userId: "bob", name: "Bob" });
+  g = addPlayer(g, { userId: "carol", name: "Carol" });
+  g = startGame(g, [0, 1, 2, 3, 4, 5, 6, 7], q, 1000);
+  ok("3 players seeded, no reveal yet", g.public.phase === "placing" && !g.public.reveal);
+
+  // No active quiz yet (no reveal) → answerAnimeQuiz is a pure no-op.
+  const prePlacingVersion = g.public.version;
+  const noopOutsideReveal = answerAnimeQuiz(g, "alice", "ONE PIECE", q);
+  ok("answerAnimeQuiz no-op outside reveal phase", noopOutsideReveal.public.version === prePlacingVersion);
+
+  // Turn1 (alice active, mystery = OP / pack:onepiece): correct placement, no
+  // eligible stealers (everyone at 0 tokens) → resolves straight to reveal.
+  g = placeCard(g, "alice", 1, undefined, q, 2000);
+  ok("turn1 resolved to reveal", g.public.phase === "reveal");
+  ok("animeQuiz present for single-franchise pack", !!g.public.reveal!.animeQuiz);
+  ok("correct answer is ONE PIECE", g.public.reveal!.animeQuiz!.correct === "ONE PIECE");
+  ok("choices include the correct answer", g.public.reveal!.animeQuiz!.choices.includes("ONE PIECE"));
+  {
+    const n = g.public.reveal!.animeQuiz!.choices.length;
+    ok("3-4 choices total", n >= 3 && n <= 4);
+    ok("no duplicate choices", new Set(g.public.reveal!.animeQuiz!.choices).size === n);
+  }
+
+  // Bob is first to answer correctly → solves it, earns the bonus token.
+  g = answerAnimeQuiz(g, "bob", "ONE PIECE", q);
+  ok("first correct guesser solves it", g.public.reveal!.animeQuiz!.solvedBy === "bob");
+  ok("bob earns the bonus token", g.public.players.find((p) => p.userId === "bob")!.tokens === 1);
+
+  // Alice guesses correctly SECOND → recorded, but no additional bonus.
+  const aliceBefore = g.public.players.find((p) => p.userId === "alice")!.tokens;
+  g = answerAnimeQuiz(g, "alice", "ONE PIECE", q);
+  ok(
+    "second correct guess gets no extra bonus",
+    g.public.players.find((p) => p.userId === "alice")!.tokens === aliceBefore,
+  );
+  ok("second guess still recorded", g.public.reveal!.animeQuiz!.answers["alice"] === "ONE PIECE");
+
+  // Carol submits a WRONG (but valid) choice → recorded, no bonus, solvedBy unchanged.
+  const wrongChoice = g.public.reveal!.animeQuiz!.choices.find((c) => c !== "ONE PIECE")!;
+  g = answerAnimeQuiz(g, "carol", wrongChoice, q);
+  ok("wrong guess recorded", g.public.reveal!.animeQuiz!.answers["carol"] === wrongChoice);
+  ok("wrong guess doesn't steal solvedBy", g.public.reveal!.animeQuiz!.solvedBy === "bob");
+  ok("wrong guess earns no token", g.public.players.find((p) => p.userId === "carol")!.tokens === 0);
+
+  // Re-guessing (already answered) is a no-op (idempotent, no version bump).
+  const v = g.public.version;
+  g = answerAnimeQuiz(g, "bob", "ONE PIECE", q);
+  ok("re-guessing is a no-op", g.public.version === v);
+
+  // Manual "▶ 次の曲へ" (advanceReveal) → turn2 (bob active, mystery = NA / pack:naruto).
+  g = advanceReveal(g, q, 300000);
+  ok("turn2: bob active", g.public.order[g.public.activeIndex] === "bob");
+  g = placeCard(g, "bob", 1, undefined, q, 300100); // bob [1991] + NA(2001) after → correct
+  ok("turn2 resolved to reveal (no eligible stealers)", g.public.phase === "reveal");
+  ok("turn2 animeQuiz correct is NARUTO", g.public.reveal!.animeQuiz!.correct === "NARUTO");
+
+  // Invalid choice throws for a player who hasn't answered THIS reveal yet.
+  let threw = false;
+  try {
+    answerAnimeQuiz(g, "alice", "NOT_A_REAL_CHOICE", q);
+  } catch {
+    threw = true;
+  }
+  ok("invalid choice throws", threw);
+
+  // Non-member guess throws.
+  let memberThrew = false;
+  try {
+    answerAnimeQuiz(g, "mallory", "NARUTO", q);
+  } catch {
+    memberThrew = true;
+  }
+  ok("non-member guess throws", memberThrew);
+
+  // Turn3 (carol active, mystery = MIX / TWO franchise packs → ambiguous, no quiz).
+  g = advanceReveal(g, q, 400000);
+  ok("turn3: carol active", g.public.order[g.public.activeIndex] === "carol");
+  g = placeCard(g, "carol", 1, undefined, q, 400100); // carol [1992] + MIX(2002) after → correct
+  ok("turn3 opens stealing (bob holds a token)", g.public.phase === "stealing");
+  g = passSteal(g, "bob", q, 400200);
+  ok("turn3 resolved to reveal", g.public.phase === "reveal");
+  ok("ambiguous (2-pack) song has no animeQuiz", g.public.reveal!.animeQuiz === undefined);
+
+  // Turn4 (alice active again, mystery = PLAIN / no franchise pack).
+  g = advanceReveal(g, q, 500000);
+  ok("turn4: alice active", g.public.order[g.public.activeIndex] === "alice");
+  g = placeCard(g, "alice", 2, undefined, q, 500100); // alice [1990,2000] + PLAIN(2003) after → correct
+  ok("turn4 opens stealing (bob holds a token)", g.public.phase === "stealing");
+  g = passSteal(g, "bob", q, 500200);
+  ok("turn4 resolved to reveal", g.public.phase === "reveal");
+  ok("non-franchise song has no animeQuiz", g.public.reveal!.animeQuiz === undefined);
+
+  // Turn5 (bob active again, mystery = SHOUJO / pack:shoujo-anime — deliberately
+  // excluded from FRANCHISE_PACK_NAMES → no quiz even though it's a single-pack match).
+  g = advanceReveal(g, q, 600000);
+  ok("turn5: bob active", g.public.order[g.public.activeIndex] === "bob");
+  g = placeCard(g, "bob", 2, undefined, q, 600100); // bob [1991,2001] + SHOUJO(2004) after → correct
+  ok("turn5 resolved to reveal (no eligible stealers)", g.public.phase === "reveal");
+  ok("pack:shoujo-anime has no animeQuiz (mixed-franchise pack)", g.public.reveal!.animeQuiz === undefined);
+
+  // Placement/win-condition bookkeeping is entirely unaffected by the bonus quiz.
+  ok(
+    "alice's timeline grew normally (turns 1 & 4)",
+    g.public.players.find((p) => p.userId === "alice")!.timeline.length === 3,
+  );
+  ok(
+    "bob's timeline grew normally (turns 2 & 5)",
+    g.public.players.find((p) => p.userId === "bob")!.timeline.length === 3,
+  );
+  ok(
+    "carol's timeline grew normally (turn 3)",
+    g.public.players.find((p) => p.userId === "carol")!.timeline.length === 2,
+  );
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

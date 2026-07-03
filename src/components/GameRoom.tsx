@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRoom } from "@/hooks/useRoom";
 import { useServerNow } from "@/hooks/useServerNow";
@@ -245,22 +245,28 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     };
   }, [code, apply]);
 
-  async function act(path: string, body: Record<string, unknown>): Promise<boolean> {
-    setBusy(true);
-    setActionErr(null);
-    try {
-      // Apply the server's returned state immediately so the acting player sees
-      // their move without waiting for the Realtime round-trip.
-      const res = await api<{ ok?: boolean; state?: PublicState }>(path, { code, ...body });
-      if (res.state) apply(res.state);
-      return true;
-    } catch (e) {
-      setActionErr(e instanceof Error ? e.message : t("操作に失敗しました"));
-      return false;
-    } finally {
-      setBusy(false);
-    }
-  }
+  // Stable across renders (deps are themselves stable) so passing it as a prop
+  // to RevealCard doesn't defeat its memoization (its whole purpose is to avoid
+  // re-rendering on the ~500ms clock tick).
+  const act = useCallback(
+    async (path: string, body: Record<string, unknown>): Promise<boolean> => {
+      setBusy(true);
+      setActionErr(null);
+      try {
+        // Apply the server's returned state immediately so the acting player sees
+        // their move without waiting for the Realtime round-trip.
+        const res = await api<{ ok?: boolean; state?: PublicState }>(path, { code, ...body });
+        if (res.state) apply(res.state);
+        return true;
+      } catch (e) {
+        setActionErr(e instanceof Error ? e.message : t("操作に失敗しました"));
+        return false;
+      } finally {
+        setBusy(false);
+      }
+    },
+    [code, apply, t],
+  );
 
   function forgetLastRoom() {
     try {
@@ -514,7 +520,9 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               </button>
             )}
 
-            {revealMode && <RevealCard state={state} googleToken={googleToken} />}
+            {revealMode && (
+              <RevealCard state={state} googleToken={googleToken} meId={meId} act={act} busy={busy} />
+            )}
 
             {/* Skip the reveal — the song plays in full, so anyone can move on. */}
             {state.phase === "reveal" && (
