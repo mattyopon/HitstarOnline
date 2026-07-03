@@ -145923,5 +145923,389 @@
   ],
   "provider": "bilibili",
   "bvid": "BV17A411V72Y"
+ },
+ {
+  "title": "君の知らない物語",
+  "artist": "supercell",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ua4y1E7Lz",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "ダーリンダンス",
+  "artist": "かいりきベア feat. 初音ミク",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1t64y1F767",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "空奏列車",
+  "artist": "Orangestar feat. IA",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1hz421i7Jt",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "ダイヤモンドクレバス",
+  "artist": "シェリル・ノーム starring May'n（マクロスF ED）",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1T64y117m3",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "クラゲ、流れ星",
+  "artist": "大塚愛",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1sg411w7t5",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "おちゃめ機能",
+  "artist": "ゴジマジP feat. 重音テト",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1fM7FzZE1H",
+  "isCover": true,
+  "coverArtist": "七海Nana7mi"
+ },
+ {
+  "title": "ラビットホール",
+  "artist": "DECO*27 feat. 初音ミク",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ai421D7Dt",
+  "isCover": true,
+  "coverArtist": "永雏塔菲"
+ },
+ {
+  "title": "前前前世",
+  "artist": "RADWIMPS",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xt411N7Bm",
+  "isCover": true,
+  "coverArtist": "泠鸢yousa"
+ },
+ {
+  "title": "カタオモイ",
+  "artist": "Aimer",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV14v411Y7HR",
+  "isCover": true,
+  "coverArtist": "向晚 (A-SOUL)"
+ },
+ {
+  "title": "Together",
+  "artist": "あきよしふみえ",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1YL4y1i7RW",
+  "isCover": true,
+  "coverArtist": "眞白花音 (四禧丸子)"
+ },
+ {
+  "title": "春を告げる",
+  "artist": "yama",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1o9RgBtEak",
+  "isCover": true,
+  "coverArtist": "鹿乃"
+ },
+ {
+  "title": "グッバイ宣言",
+  "artist": "Chinozo feat. flower",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1m54y1L7wh",
+  "isCover": true,
+  "coverArtist": "鹿乃"
+ },
+ {
+  "title": "神っぽいな",
+  "artist": "ピノキオピー feat. 初音ミク",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Yo4y1P7hz",
+  "isCover": true,
+  "coverArtist": "鹿乃"
+ },
+ {
+  "title": "コネクト",
+  "artist": "ClariS",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1rx411c7L8",
+  "isCover": true,
+  "coverArtist": "鹿乃"
+ },
+ {
+  "title": "メルティランドナイトメア",
+  "artist": "はるまきごはん feat. 初音ミク",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1gs411p7rs",
+  "isCover": true,
+  "coverArtist": "鹿乃"
+ },
+ {
+  "title": "クリスマスソング",
+  "artist": "back number",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1WJ411h7D2",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "秒針を噛む",
+  "artist": "ずっと真夜中でいいのに。",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1a64y1C7zH",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "エンヴィーベイビー",
+  "artist": "Kanaria feat. GUMI",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1cv411E7pC",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "小夜子",
+  "artist": "みきとP feat. 初音ミク",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1QW4y1r71J",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "ふたりごと",
+  "artist": "RADWIMPS",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1v741177Tb",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "愛をこめて花束を",
+  "artist": "Superfly",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xV41167FY",
+  "isCover": true,
+  "coverArtist": "湊あくあ"
+ },
+ {
+  "title": "グッバイ宣言",
+  "artist": "Chinozo feat. flower",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ty4y1x7sS",
+  "isCover": true,
+  "coverArtist": "キズナアイ (绊爱)"
+ },
+ {
+  "title": "KING",
+  "artist": "Kanaria feat. GUMI",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Za4y1W7fH",
+  "isCover": true,
+  "coverArtist": "キズナアイ (绊爱)"
+ },
+ {
+  "title": "ベノム",
+  "artist": "かいりきベア feat. flower",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1e7411s72h",
+  "isCover": true,
+  "coverArtist": "ときのそら (时乃空)"
+ },
+ {
+  "title": "少女レイ",
+  "artist": "みきとP feat. 初音ミク",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1dB4y187xT",
+  "isCover": true,
+  "coverArtist": "ときのそら (时乃空)"
+ },
+ {
+  "title": "腐れ外道とチョコレゐト",
+  "artist": "ピノキオピー feat. 初音ミク",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1914y187kx",
+  "isCover": true,
+  "coverArtist": "白上フブキ (白上吹雪)"
+ },
+ {
+  "title": "暁の車",
+  "artist": "FictionJunction YUUKA",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ZV411h7a9",
+  "isCover": true,
+  "coverArtist": "ときのそら×AZKi (SorAZ)"
+ },
+ {
+  "title": "阴阳先生",
+  "artist": "ilem feat. 洛天依・言和",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1tx411A71m"
+ },
+ {
+  "title": "万古生香",
+  "artist": "litterzy feat. 洛天依",
+  "year": 2020,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1KJ411C7CW"
+ },
+ {
+  "title": "葬歌",
+  "artist": "ilem feat. 洛天依・言和",
+  "year": 2015,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ts411S7KC"
  }
 ]
