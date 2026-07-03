@@ -755,15 +755,6 @@
   ]
  },
  {
-  "title": "Zenzenzense",
-  "artist": "RADWIMPS",
-  "year": 2016,
-  "country": "jp",
-  "categories": [
-   "jpop"
-  ]
- },
- {
   "title": "Lemon",
   "artist": "Kenshi Yonezu",
   "year": 2018,
@@ -1679,15 +1670,6 @@
   ]
  },
  {
-  "title": "Tomorrow Never Knows",
-  "artist": "Mr. Children",
-  "year": 1994,
-  "country": "jp",
-  "categories": [
-   "jpop"
-  ]
- },
- {
   "title": "Sakura",
   "artist": "Ikimonogakari",
   "year": 2006,
@@ -2443,15 +2425,6 @@
    "rock",
    "karaoke",
    "uspop"
-  ]
- },
- {
-  "title": "Bitter Sweet Symphony",
-  "artist": "The Verve",
-  "year": 1997,
-  "country": "gb",
-  "categories": [
-   "rock"
   ]
  },
  {
@@ -4700,21 +4673,6 @@
   ]
  },
  {
-  "title": "Innocent World",
-  "artist": "Mr.Children",
-  "year": 1994,
-  "country": "jp",
-  "categories": [
-   "jrock"
-  ],
-  "aliases": [
-   "イノセントワールド"
-  ],
-  "artistAliases": [
-   "ミスチル"
-  ]
- },
- {
   "title": "Namonaki Uta",
   "artist": "Mr.Children",
   "year": 1996,
@@ -4950,7 +4908,10 @@
   "categories": [
    "jrock",
    "pack:mrchildren",
-   "pack:superstar"
+   "pack:superstar",
+   "jpop",
+   "karaoke",
+   "movie-themes"
   ],
   "aliases": [
    "花火",
@@ -5773,7 +5734,8 @@
    "karaoke",
    "movie-themes",
    "pack:mrchildren",
-   "pack:superstar"
+   "pack:superstar",
+   "jrock"
   ],
   "aliases": [
    "イノセントワールド"
@@ -5857,23 +5819,6 @@
   ],
   "artistAliases": [
    "森山直太朗"
-  ]
- },
- {
-  "title": "Hanabi",
-  "artist": "Mr. Children",
-  "year": 2008,
-  "country": "jp",
-  "categories": [
-   "jpop",
-   "karaoke",
-   "movie-themes"
-  ],
-  "aliases": [
-   "HANABI"
-  ],
-  "artistAliases": [
-   "ミスチル"
   ]
  },
  {
@@ -11153,7 +11098,8 @@
   "country": "jp",
   "categories": [
    "karaoke",
-   "jpop"
+   "jpop",
+   "pack:jp-hits"
   ]
  },
  {
@@ -11302,7 +11248,8 @@
   "country": "jp",
   "categories": [
    "karaoke",
-   "jpop"
+   "jpop",
+   "pack:jp-hits"
   ]
  },
  {
@@ -15986,7 +15933,8 @@
   "country": "jp",
   "categories": [
    "vocaloid",
-   "jp-anime"
+   "jp-anime",
+   "pack:bili-hits"
   ]
  },
  {
@@ -31566,7 +31514,8 @@
    "jp-anime",
    "jrock",
    "pack:yonezu",
-   "pack:superstar"
+   "pack:superstar",
+   "pack:jp-hits"
   ]
  },
  {
@@ -33355,7 +33304,8 @@
   "year": 1998,
   "country": "jp",
   "categories": [
-   "jpop"
+   "jpop",
+   "movie-themes"
   ]
  },
  {
@@ -33465,7 +33415,8 @@
   "country": "jp",
   "categories": [
    "jpop",
-   "jrock"
+   "jrock",
+   "pack:jp-hits"
   ]
  },
  {
@@ -33475,7 +33426,8 @@
   "country": "jp",
   "categories": [
    "jpop",
-   "jrock"
+   "jrock",
+   "pack:jp-hits"
   ]
  },
  {
@@ -33504,7 +33456,8 @@
   "country": "jp",
   "categories": [
    "jpop",
-   "jrock"
+   "jrock",
+   "pack:jp-hits"
   ]
  },
  {
@@ -33806,7 +33759,8 @@
   "country": "jp",
   "categories": [
    "jpop",
-   "movie-themes"
+   "movie-themes",
+   "jrock"
   ]
  },
  {
@@ -33935,7 +33889,8 @@
   "categories": [
    "jpop",
    "pack:utada",
-   "pack:superstar"
+   "pack:superstar",
+   "pack:jp-hits"
   ]
  },
  {
@@ -34369,7 +34324,8 @@
   "year": 2000,
   "country": "jp",
   "categories": [
-   "jpop"
+   "jpop",
+   "karaoke"
   ]
  },
  {
@@ -34662,7 +34618,8 @@
   "year": 2010,
   "country": "jp",
   "categories": [
-   "jpop"
+   "jpop",
+   "pack:bili-hits"
   ]
  },
  {
@@ -34772,7 +34729,8 @@
   "year": 2012,
   "country": "jp",
   "categories": [
-   "jpop"
+   "jpop",
+   "pack:bili-hits"
   ]
  },
  {
@@ -34906,7 +34864,8 @@
   "country": "jp",
   "categories": [
    "jpop",
-   "pack:superstar"
+   "pack:superstar",
+   "pack:jp-hits"
   ]
  },
  {
@@ -35515,15 +35474,6 @@
   "title": "草原のマルコ",
   "artist": "大杉久美子",
   "year": 1976,
-  "country": "jp",
-  "categories": [
-   "jp-anime"
-  ]
- },
- {
-  "title": "アルプスの少女ハイジ おしえて",
-  "artist": "伊集加代子",
-  "year": 1974,
   "country": "jp",
   "categories": [
    "jp-anime"
@@ -36658,7 +36608,8 @@
   "year": 2019,
   "country": "jp",
   "categories": [
-   "vocaloid"
+   "vocaloid",
+   "pack:bili-hits"
   ]
  },
  {
@@ -36739,7 +36690,8 @@
   "year": 2010,
   "country": "jp",
   "categories": [
-   "vocaloid"
+   "vocaloid",
+   "pack:bili-hits"
   ]
  },
  {
@@ -36829,7 +36781,8 @@
   "year": 2014,
   "country": "jp",
   "categories": [
-   "vocaloid"
+   "vocaloid",
+   "pack:bili-hits"
   ]
  },
  {
@@ -40462,15 +40415,6 @@
   ]
  },
  {
-  "title": "The Smurfs (Theme)",
-  "artist": "Hoyt Curtin",
-  "year": 1981,
-  "country": "us",
-  "categories": [
-   "us-cartoon"
-  ]
- },
- {
   "title": "G.I. Joe (Theme)",
   "artist": "Ford Kinder",
   "year": 1985,
@@ -40492,15 +40436,6 @@
   "title": "Teenage Mutant Ninja Turtles (Theme)",
   "artist": "Chuck Lorre",
   "year": 1987,
-  "country": "us",
-  "categories": [
-   "us-cartoon"
-  ]
- },
- {
-  "title": "Thundercats (Theme)",
-  "artist": "Bernard Hoffer",
-  "year": 1985,
   "country": "us",
   "categories": [
    "us-cartoon"
@@ -47780,36 +47715,9 @@
   ]
  },
  {
-  "title": "Castlevania (Vampire Killer)",
-  "artist": "Kinuyo Yamashita",
-  "year": 1986,
-  "country": "jp",
-  "categories": [
-   "game-music"
-  ]
- },
- {
   "title": "Castlevania III: Dracula's Curse (Beginning)",
   "artist": "Konami Kukeiha Club",
   "year": 1989,
-  "country": "jp",
-  "categories": [
-   "game-music"
-  ]
- },
- {
-  "title": "Metroid (Brinstar Theme)",
-  "artist": "Hirokazu Tanaka",
-  "year": 1986,
-  "country": "jp",
-  "categories": [
-   "game-music"
-  ]
- },
- {
-  "title": "Final Fantasy (Prelude)",
-  "artist": "Nobuo Uematsu",
-  "year": 1987,
   "country": "jp",
   "categories": [
    "game-music"
@@ -49295,15 +49203,6 @@
   "artist": "Christopher Larkin",
   "year": 2017,
   "country": "au",
-  "categories": [
-   "game-music"
-  ]
- },
- {
-  "title": "Celeste (Resurrections)",
-  "artist": "Lena Raine",
-  "year": 2018,
-  "country": "us",
   "categories": [
    "game-music"
   ]
@@ -57297,24 +57196,6 @@
   ]
  },
  {
-  "title": "夜来香 (Yelaixiang)",
-  "artist": "李香兰 (Li Xianglan)",
-  "year": 1944,
-  "country": "cn",
-  "categories": [
-   "cnpop"
-  ]
- },
- {
-  "title": "何日君再来 (He Ri Jun Zai Lai)",
-  "artist": "周璇 (Zhou Xuan)",
-  "year": 1937,
-  "country": "cn",
-  "categories": [
-   "cnpop"
-  ]
- },
- {
   "title": "夜上海 (Ye Shanghai)",
   "artist": "周璇 (Zhou Xuan)",
   "year": 1947,
@@ -57614,24 +57495,6 @@
   "artist": "李香兰 (Li Xianglan)",
   "year": 1940,
   "country": "cn",
-  "categories": [
-   "cnpop"
-  ]
- },
- {
-  "title": "甜蜜蜜 (Tian Mi Mi)",
-  "artist": "邓丽君 (Teresa Teng)",
-  "year": 1979,
-  "country": "tw",
-  "categories": [
-   "cnpop"
-  ]
- },
- {
-  "title": "小城故事 (Xiao Cheng Gu Shi)",
-  "artist": "邓丽君 (Teresa Teng)",
-  "year": 1979,
-  "country": "tw",
   "categories": [
    "cnpop"
   ]
@@ -60082,7 +59945,8 @@
   "year": 2021,
   "country": "cn",
   "categories": [
-   "cnpop"
+   "cnpop",
+   "pack:bili-hits"
   ]
  },
  {
@@ -62872,15 +62736,6 @@
   "title": "Stranglehold",
   "artist": "Ted Nugent",
   "year": 1975,
-  "country": "us",
-  "categories": [
-   "rock"
-  ]
- },
- {
-  "title": "(Don't Fear) The Reaper",
-  "artist": "Blue Öyster Cult",
-  "year": 1976,
   "country": "us",
   "categories": [
    "rock"
@@ -74277,7 +74132,8 @@
   "year": 1983,
   "country": "jp",
   "categories": [
-   "jpop"
+   "jpop",
+   "pack:jp-hits"
   ]
  },
  {
@@ -80185,7 +80041,8 @@
   "year": 1984,
   "country": "jp",
   "categories": [
-   "jidol"
+   "jidol",
+   "pack:jp-hits"
   ]
  },
  {
@@ -80302,7 +80159,8 @@
   "year": 1981,
   "country": "jp",
   "categories": [
-   "jidol"
+   "jidol",
+   "pack:jp-hits"
   ]
  },
  {
@@ -81829,7 +81687,8 @@
   "year": 2018,
   "country": "jp",
   "categories": [
-   "jidol"
+   "jidol",
+   "pack:jp-hits"
   ]
  },
  {
@@ -81920,7 +81779,8 @@
   "year": 2012,
   "country": "jp",
   "categories": [
-   "jidol"
+   "jidol",
+   "pack:jp-hits"
   ]
  },
  {
@@ -98631,27 +98491,9 @@
   ]
  },
  {
-  "title": "DuckTales (Theme)",
-  "artist": "Jeff Pescetto",
-  "year": 1987,
-  "country": "us",
-  "categories": [
-   "us-cartoon"
-  ]
- },
- {
   "title": "The Transformers (Theme)",
   "artist": "Lion (Robert J. Walsh / Anne Bryant)",
   "year": 1984,
-  "country": "us",
-  "categories": [
-   "us-cartoon"
-  ]
- },
- {
-  "title": "G.I. Joe (Theme)",
-  "artist": "Ford Kinder & Spencer Michlin",
-  "year": 1985,
   "country": "us",
   "categories": [
    "us-cartoon"
@@ -98670,15 +98512,6 @@
   "title": "Teenage Mutant Ninja Turtles (Theme)",
   "artist": "Chuck Lorre & Dennis C. Brown",
   "year": 1987,
-  "country": "us",
-  "categories": [
-   "us-cartoon"
-  ]
- },
- {
-  "title": "Inspector Gadget (Theme)",
-  "artist": "Shuki Levy & Haim Saban",
-  "year": 1983,
   "country": "us",
   "categories": [
    "us-cartoon"
@@ -99831,15 +99664,6 @@
   "title": "American Dragon: Jake Long Theme (The Chosen One)",
   "artist": "Jonas Brothers",
   "year": 2006,
-  "country": "us",
-  "categories": [
-   "us-cartoon"
-  ]
- },
- {
-  "title": "Kim Possible (Call Me, Beep Me!)",
-  "artist": "Christina Milian",
-  "year": 2002,
   "country": "us",
   "categories": [
    "us-cartoon"
@@ -103577,7 +103401,8 @@
   "year": 1999,
   "country": "gb",
   "categories": [
-   "us-cartoon"
+   "us-cartoon",
+   "movie-themes"
   ]
  },
  {
@@ -110106,7 +109931,8 @@
   "year": 2008,
   "country": "jp",
   "categories": [
-   "game-music"
+   "game-music",
+   "pack:bili-hits"
   ]
  },
  {
@@ -110124,7 +109950,8 @@
   "year": 2007,
   "country": "jp",
   "categories": [
-   "game-music"
+   "game-music",
+   "pack:bili-hits"
   ]
  },
  {
@@ -110680,7 +110507,8 @@
   "year": 2021,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:jp-hits"
   ]
  },
  {
@@ -113375,7 +113203,8 @@
   "year": 2015,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:bili-hits"
   ]
  },
  {
@@ -114552,7 +114381,8 @@
   "year": 2010,
   "country": "jp",
   "categories": [
-   "vocaloid"
+   "vocaloid",
+   "pack:bili-hits"
   ]
  },
  {
@@ -117536,17 +117366,6 @@
   "bvid": "BV1k64y1u7jq"
  },
  {
-  "title": "恋愛サーキュレーション",
-  "artist": "花澤香菜",
-  "year": 2010,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1K34112713"
- },
- {
   "title": "甩葱歌（Ievan Polkka）",
   "artist": "Otomania feat. 初音ミク",
   "year": 2007,
@@ -117745,17 +117564,6 @@
   "bvid": "BV1Y541137VV"
  },
  {
-  "title": "新宝島",
-  "artist": "サカナクション",
-  "year": 2015,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1xE411v7WN"
- },
- {
   "title": "PPAP",
   "artist": "ピコ太郎",
   "year": 2016,
@@ -117765,17 +117573,6 @@
   ],
   "provider": "bilibili",
   "bvid": "BV1hs411x7no"
- },
- {
-  "title": "白金ディスコ",
-  "artist": "井口裕香",
-  "year": 2012,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV19t411v7B8"
  },
  {
   "title": "病名は愛だった",
@@ -117842,39 +117639,6 @@
   ],
   "provider": "bilibili",
   "bvid": "BV1P7411j7yX"
- },
- {
-  "title": "Sweet Devil",
-  "artist": "八王子P feat. 初音ミク",
-  "year": 2010,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1QJ41137T2"
- },
- {
-  "title": "メランコリック",
-  "artist": "Junky feat. 鏡音リン",
-  "year": 2010,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1Ps411k77c"
- },
- {
-  "title": "金曜日のおはよう",
-  "artist": "HoneyWorks feat. GUMI",
-  "year": 2014,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1Ux411T7GM"
  },
  {
   "title": "いけないボーダーライン",
@@ -117952,17 +117716,6 @@
   ],
   "provider": "bilibili",
   "bvid": "BV1Ph411C7S5"
- },
- {
-  "title": "チルノのパーフェクトさんすう教室",
-  "artist": "IOSYS",
-  "year": 2008,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1rs41197Xn"
  },
  {
   "title": "マトリョシカ",
@@ -118503,17 +118256,6 @@
   "bvid": "BV1ZJ411A7p3"
  },
  {
-  "title": "白月光与朱砂痣",
-  "artist": "大籽",
-  "year": 2021,
-  "country": "cn",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1CGeEzdEKR"
- },
- {
   "title": "踏山河",
   "artist": "是七叔呢",
   "year": 2021,
@@ -118580,17 +118322,6 @@
   "bvid": "BV1pL4y1h7Ke"
  },
  {
-  "title": "KING",
-  "artist": "Kanaria feat. GUMI",
-  "year": 2020,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1Ya4y1E7pk"
- },
- {
   "title": "ヴァンパイア",
   "artist": "DECO*27 feat. 初音ミク",
   "year": 2021,
@@ -118611,17 +118342,6 @@
   ],
   "provider": "bilibili",
   "bvid": "BV1ms411z7Uq"
- },
- {
-  "title": "乙女解剖",
-  "artist": "DECO*27 feat. 初音ミク",
-  "year": 2019,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1rb41137jR"
  },
  {
   "title": "ロキ",
@@ -118699,17 +118419,6 @@
   ],
   "provider": "bilibili",
   "bvid": "BV17b411B7hF"
- },
- {
-  "title": "最終鬼畜妹フランドール・S",
-  "artist": "ビートまりお (COOL&CREATE)",
-  "year": 2004,
-  "country": "jp",
-  "categories": [
-   "pack:bili-hits"
-  ],
-  "provider": "bilibili",
-  "bvid": "BV1Us411v74A"
  },
  {
   "title": "只因你太美",
@@ -126549,7 +126258,8 @@
   "year": 1961,
   "country": "jp",
   "categories": [
-   "enka"
+   "enka",
+   "pack:jp-hits"
   ]
  },
  {
@@ -126648,7 +126358,8 @@
   "year": 1968,
   "country": "jp",
   "categories": [
-   "enka"
+   "enka",
+   "karaoke"
   ]
  },
  {
@@ -143775,7 +143486,8 @@
   "year": 1994,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:jp-hits"
   ]
  },
  {
@@ -143997,15 +143709,6 @@
  {
   "title": "HEART OF SWORD ~騎士の心~",
   "artist": "T.M.Revolution",
-  "year": 1996,
-  "country": "jp",
-  "categories": [
-   "jrock"
-  ]
- },
- {
-  "title": "バンザイ ~好きでよかった~",
-  "artist": "ウルフルズ",
   "year": 1996,
   "country": "jp",
   "categories": [
@@ -145309,15 +145012,6 @@
   ]
  },
  {
-  "title": "ブルー・ライト・ヨコハマ",
-  "artist": "いしだあゆみ",
-  "year": 1968,
-  "country": "jp",
-  "categories": [
-   "karaoke"
-  ]
- },
- {
   "title": "ブーメランストリート",
   "artist": "西城秀樹",
   "year": 1977,
@@ -145651,15 +145345,6 @@
   ]
  },
  {
-  "title": "つつみ込むように",
-  "artist": "MISIA",
-  "year": 1998,
-  "country": "jp",
-  "categories": [
-   "karaoke"
-  ]
- },
- {
   "title": "悲しい気持ち(JUST A MAN IN LOVE)",
   "artist": "桑田佳祐",
   "year": 1994,
@@ -145962,7 +145647,8 @@
   "year": 2008,
   "country": "jp",
   "categories": [
-   "karaoke"
+   "karaoke",
+   "pack:jp-hits"
   ]
  },
  {
@@ -147595,15 +147281,6 @@
   ]
  },
  {
-  "title": "Trashin' the Camp",
-  "artist": "Phil Collins & 'N Sync",
-  "year": 1999,
-  "country": "us",
-  "categories": [
-   "movie-themes"
-  ]
- },
- {
   "title": "True to Your Heart",
   "artist": "Stevie Wonder & 98 Degrees",
   "year": 1998,
@@ -147975,15 +147652,6 @@
  {
   "title": "白いカラス",
   "artist": "福山雅治",
-  "year": 1997,
-  "country": "jp",
-  "categories": [
-   "movie-themes"
-  ]
- },
- {
-  "title": "POISON ~言いたい事も言えないこんな世の中は~",
-  "artist": "反町隆史",
   "year": 1997,
   "country": "jp",
   "categories": [
@@ -154453,15 +154121,6 @@
   ]
  },
  {
-  "title": "Got Boost?",
-  "artist": "FANTASTICS from EXILE TRIBE",
-  "year": 2024,
-  "country": "jp",
-  "categories": [
-   "tokusatsu"
-  ]
- },
- {
   "title": "男の名は仮面ライダー",
   "artist": "水木一郎",
   "year": 1980,
@@ -154609,15 +154268,6 @@
   "title": "月光仮面は誰でしょう",
   "artist": "近藤よし子、キング子鳩会",
   "year": 1958,
-  "country": "jp",
-  "categories": [
-   "tokusatsu"
-  ]
- },
- {
-  "title": "牙狼~SAVIOR IN THE DARK~",
-  "artist": "JAM Project",
-  "year": 2005,
   "country": "jp",
   "categories": [
    "tokusatsu"
@@ -157792,15 +157442,6 @@
   ]
  },
  {
-  "title": "チュルリラ・チュルリラ・ダッダッダ!",
-  "artist": "和田たけあき(くらげP) feat. 鏡音リン",
-  "year": 2016,
-  "country": "jp",
-  "categories": [
-   "vocaloid"
-  ]
- },
- {
   "title": "Blessing",
   "artist": "halyosy feat. VOCALOIDS",
   "year": 2013,
@@ -158055,15 +157696,6 @@
  {
   "title": "王将",
   "artist": "村田英雄",
-  "year": 1961,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "コーヒー・ルンバ",
-  "artist": "西田佐知子",
   "year": 1961,
   "country": "jp",
   "categories": [
@@ -159547,15 +159179,6 @@
   ]
  },
  {
-  "title": "ウォンテッド(指名手配)",
-  "artist": "ピンク・レディー",
-  "year": 1977,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "氷雨",
   "artist": "佳山明生",
   "year": 1977,
@@ -159739,15 +159362,6 @@
   "title": "MONEY",
   "artist": "浜田省吾",
   "year": 1982,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "サマーサスピション",
-  "artist": "杉山清貴&オメガトライブ",
-  "year": 1983,
   "country": "jp",
   "categories": [
    "pack:jp-hits"
@@ -160141,15 +159755,6 @@
   ]
  },
  {
-  "title": "サザンウインド",
-  "artist": "中森明菜",
-  "year": 1983,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "時をかける少女",
   "artist": "原田知世",
   "year": 1983,
@@ -160474,15 +160079,6 @@
   ]
  },
  {
-  "title": "モーニング・ムーン",
-  "artist": "チャゲ&飛鳥",
-  "year": 1986,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "M",
   "artist": "プリンセス プリンセス",
   "year": 1989,
@@ -160664,15 +160260,6 @@
  },
  {
   "title": "哀愁でいと",
-  "artist": "近藤真彦",
-  "year": 1981,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "ブルージーンズメモリー",
   "artist": "近藤真彦",
   "year": 1981,
   "country": "jp",
@@ -161212,15 +160799,6 @@
   ]
  },
  {
-  "title": "survival dAnce ~no no cry more~",
-  "artist": "TRF",
-  "year": 1994,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "GO TO THE TOP",
   "artist": "TRF",
   "year": 1994,
@@ -161527,15 +161105,6 @@
   ]
  },
  {
-  "title": "世界が終るまでは…",
-  "artist": "WANDS",
-  "year": 1994,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "LADY NAVIGATION",
   "artist": "B'z",
   "year": 1991,
@@ -161716,25 +161285,7 @@
   ]
  },
  {
-  "title": "Snow Drop",
-  "artist": "L'Arc~en~Ciel",
-  "year": 1997,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "winter fall",
-  "artist": "L'Arc~en~Ciel",
-  "year": 1997,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "DIVE TO BLUE",
   "artist": "L'Arc~en~Ciel",
   "year": 1997,
   "country": "jp",
@@ -162078,15 +161629,6 @@
  {
   "title": "口唇",
   "artist": "GLAY",
-  "year": 1997,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "虹",
-  "artist": "L'Arc~en~Ciel",
   "year": 1997,
   "country": "jp",
   "categories": [
@@ -162994,15 +162536,6 @@
   ]
  },
  {
-  "title": "secret base ~君がくれたもの~",
-  "artist": "ZONE",
-  "year": 2001,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "Good Days",
   "artist": "ZONE",
   "year": 2001,
@@ -163498,15 +163031,6 @@
   ]
  },
  {
-  "title": "Time after time ～花舞う街で～",
-  "artist": "倉木麻衣",
-  "year": 2000,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "forever ...",
   "artist": "浜崎あゆみ",
   "year": 2001,
@@ -163598,15 +163122,6 @@
  },
  {
   "title": "For You",
-  "artist": "宇多田ヒカル",
-  "year": 2000,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "WAIT & SEE ～リスク～",
   "artist": "宇多田ヒカル",
   "year": 2000,
   "country": "jp",
@@ -163816,24 +163331,6 @@
   "title": "HEAVENLY ～日々、旅人～",
   "artist": "L'Arc～en～Ciel",
   "year": 2002,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "READY STEADY GO",
-  "artist": "L'Arc～en～Ciel",
-  "year": 2004,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "NEO UNIVERSE",
-  "artist": "L'Arc～en～Ciel",
-  "year": 2000,
   "country": "jp",
   "categories": [
    "pack:jp-hits"
@@ -164920,15 +164417,6 @@
   ]
  },
  {
-  "title": "Alright!",
-  "artist": "Superfly",
-  "year": 2008,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "Shangri-La",
   "artist": "チャットモンチー",
   "year": 2006,
@@ -165595,15 +165083,6 @@
   ]
  },
  {
-  "title": "Wanna Beeee!!!",
-  "artist": "Kis-My-Ft2",
-  "year": 2012,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "涙の答え",
   "artist": "関ジャニ∞",
   "year": 2012,
@@ -165928,15 +165407,6 @@
   ]
  },
  {
-  "title": "猛烈宇宙交響曲第七楽章「無限の愛」",
-  "artist": "ももいろクローバーZ",
-  "year": 2013,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "やさしさで溢れるように",
   "artist": "JUJU",
   "year": 2010,
@@ -166216,15 +165686,6 @@
   ]
  },
  {
-  "title": "FLASH",
-  "artist": "Perfume",
-  "year": 2016,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "ヒカリノアトリエ",
   "artist": "Mr.Children",
   "year": 2016,
@@ -166434,15 +165895,6 @@
  {
   "title": "阿修羅",
   "artist": "GENERATIONS from EXILE TRIBE",
-  "year": 2018,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "ガラスを割れ！",
-  "artist": "欅坂46",
   "year": 2018,
   "country": "jp",
   "categories": [
@@ -167440,15 +166892,6 @@
   ]
  },
  {
-  "title": "CITRUS",
-  "artist": "Da iCE",
-  "year": 2019,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
   "title": "ダンスホール",
   "artist": "Mrs. GREEN APPLE",
   "year": 2019,
@@ -167468,15 +166911,6 @@
  },
  {
   "title": "KICK BACK",
-  "artist": "米津玄師",
-  "year": 2022,
-  "country": "jp",
-  "categories": [
-   "pack:jp-hits"
-  ]
- },
- {
-  "title": "さよーならまたいつか!",
   "artist": "米津玄師",
   "year": 2022,
   "country": "jp",
