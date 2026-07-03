@@ -1436,7 +1436,8 @@
   "country": "jp",
   "categories": [
    "jp-anime",
-   "pack:anime-op"
+   "pack:anime-op",
+   "pack:shoujo-anime"
   ]
  },
  {
@@ -6845,7 +6846,8 @@
   "year": 1994,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ],
   "aliases": [
    "ゆずれない願い",
@@ -6899,7 +6901,8 @@
   "year": 1996,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ],
   "aliases": [
    "セーラースターソング"
@@ -6987,7 +6990,8 @@
   "year": 1998,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ],
   "aliases": [
    "キャッチ・ユー・キャッチ・ミー"
@@ -7002,7 +7006,8 @@
   "year": 1999,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ],
   "aliases": [
    "プラチナ"
@@ -7186,7 +7191,8 @@
   "country": "jp",
   "categories": [
    "jp-anime",
-   "pack:anime-op"
+   "pack:anime-op",
+   "pack:shoujo-anime"
   ],
   "aliases": [
    "桜キッス",
@@ -43623,7 +43629,8 @@
   "year": 2005,
   "country": "gb",
   "categories": [
-   "rock"
+   "rock",
+   "pack:shoujo-anime"
   ]
  },
  {
@@ -168050,6 +168057,987 @@
   "country": "jp",
   "categories": [
    "pack:jp-hits"
+  ]
+ },
+ {
+  "title": "Heart Moving",
+  "artist": "Misae Takamatsu",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Otome no Policy",
+  "artist": "Yoko Ishida",
+  "year": 1993,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Tuxedo Mirage",
+  "artist": "Peach Hips",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Watashitachi ni Naritakute",
+  "artist": "Miwako Fujitani",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Rashiku Ikimasho",
+  "artist": "Meu (Miyuki Kajitani)",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kaze mo Sora mo Kitto...",
+  "artist": "Alisa Mizuki",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Groovy!",
+  "artist": "Kohmi Hirose",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Tobira wo Akete",
+  "artist": "ANZA",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Honey",
+  "artist": "Chihiro",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "FRUITS CANDY",
+  "artist": "Megumi Kojima",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Ojamajo Carnival!!",
+  "artist": "MAHO堂",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kitto Ashita wa",
+  "artist": "Saeko Shuu",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Ojamajo wa Koko ni Iru",
+  "artist": "MAHO堂",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Koe wo Kikasete",
+  "artist": "MAHO堂",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Ojamajo de BAN2",
+  "artist": "MAHO堂",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Takaramono",
+  "artist": "Yui Komuro",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "DANCE! Ojamajo",
+  "artist": "MAHO堂",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Watashi no Tsubasa",
+  "artist": "Masami Nakaji",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Yumemiru Ai Tenshi",
+  "artist": "FURIL",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "21-seiki no Juliet",
+  "artist": "FURIL",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Wedding Wars -Ai wa Honoo-",
+  "artist": "Erina Nakajima",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Virgin Love",
+  "artist": "FURIL",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Ashita e no Yuuki",
+  "artist": "Keiko Yoshinari",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Lullaby ~Yasashiku Dakasete~",
+  "artist": "Minako Honda",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Hikari to Kage wo Idakishimetamama",
+  "artist": "Naomi Tamura",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Itsuka Kagayaku",
+  "artist": "Keiko Yoshinari",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "I♥U",
+  "artist": "THE★SCANTY",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "New Future",
+  "artist": "Changin' My Life",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Myself",
+  "artist": "Changin' My Life",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ETERNAL SNOW",
+  "artist": "Changin' My Life",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "my sweet heart",
+  "artist": "Rika Komatsu",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "PIECE OF LOVE",
+  "artist": "SHAZNA",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Dive into Shine",
+  "artist": "Lastier",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Haruka...",
+  "artist": "Pierrot",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Princess wa Akiramenai",
+  "artist": "FLIP-FLAP",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "DANZEN!ふたりはプリキュア",
+  "artist": "五條真由美",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ゲッチュウ！らぶらぶぅ？！",
+  "artist": "五條真由美",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ムリムリ?! ありあり!! INじゃぁな～い?!",
+  "artist": "五條真由美",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ワンダー☆ウィンター☆ヤッター！！",
+  "artist": "五條真由美",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "まかせて★スプラッシュ☆スター★",
+  "artist": "うちやえゆか",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "『笑うが勝ち!』でGO!",
+  "artist": "五條真由美",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "プリキュア5、スマイルgo go！",
+  "artist": "工藤真由",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "きらきらしちゃってMY True Love！",
+  "artist": "宮本佳那子",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "プリキュア5、フル・スロットルGo Go!",
+  "artist": "工藤真由",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "手と手つないでハートもリンク!!",
+  "artist": "宮本佳那子",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Let's! フレッシュプリキュア!",
+  "artist": "茂家瑞季",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "H@ppy Together!!!",
+  "artist": "林桃子",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Alright! ハートキャッチプリキュア!",
+  "artist": "池田彩",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ハートキャッチ☆パラダイス!",
+  "artist": "工藤真由",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ラ♪ラ♪ラ♪スイートプリキュア♪",
+  "artist": "工藤真由",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ワンダフル↑パワフル↑ミュージック!!",
+  "artist": "池田彩",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "＃キボウレインボウ＃",
+  "artist": "池田彩",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Let's go! スマイルプリキュア！",
+  "artist": "池田彩",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "イェイ！イェイ！イェイ！",
+  "artist": "吉田仁美",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "満開*スマイル!",
+  "artist": "吉田仁美",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Happy Go Lucky！ドキドキ！プリキュア",
+  "artist": "黒沢ともよ",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "この空の向こう",
+  "artist": "吉田仁美",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ラブリンク",
+  "artist": "吉田仁美",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ハピネスチャージプリキュア！WOW！",
+  "artist": "仲谷明香",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "プリキュア・メモリ",
+  "artist": "吉田仁美",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Miracle Go！プリンセスプリキュア",
+  "artist": "礒部花凛",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "夢は未来への道",
+  "artist": "北川理恵",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Dokkin♢魔法つかいプリキュア！",
+  "artist": "北川理恵",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "CURE UP↑RA♡PA☆PA！～ほほえみになる魔法～",
+  "artist": "キュアミラクル(高橋李依)/キュアマジカル(堀江由衣)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "魔法アラ・ドーモ！",
+  "artist": "高橋李依・堀江由衣・早見沙織",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "SHINE!! キラキラ☆プリキュアアラモード",
+  "artist": "駒形友梨",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "レッツ・ラ・クッキン☆ショータイム",
+  "artist": "宮本佳那子",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "We can!! HUGっと！プリキュア",
+  "artist": "宮本佳那子",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "HUGっと！未来☆ドリーマー",
+  "artist": "引坂理絵・本泉莉奈・小倉唯",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "キラリ☆彡スター☆トゥインクルプリキュア",
+  "artist": "北川理恵",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "パぺピプ☆ロマンチック",
+  "artist": "吉武千颯",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ヒーリングっど♥プリキュア Touch!!",
+  "artist": "北川理恵",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ミラクルっと♥Link Ring！",
+  "artist": "Machico",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "エビバディ☆ヒーリングッデイ！",
+  "artist": "宮本佳那子",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Viva! Spark! トロピカル～ジュ！プリキュア",
+  "artist": "Machico",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "トロピカI・N・G",
+  "artist": "吉武千颯",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Cheers！デリシャスパーティ♡プリキュア",
+  "artist": "Machico",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "DELICIOUS HAPPY DAYS♪",
+  "artist": "吉武千颯",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ひろがるスカイ！プリキュア～Hero Girls～",
+  "artist": "石井あみ",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ヒロガリズム",
+  "artist": "石井あみ・吉武千颯",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "For Fruits Basket",
+  "artist": "岡崎律子 (Ritsuko Okazaki)",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "小さな祈り (Chiisana Inori)",
+  "artist": "岡崎律子 (Ritsuko Okazaki)",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Cage",
+  "artist": "Nano.RIPE",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kimi no Yukue",
+  "artist": "Kaya",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Tenshi ja Nai",
+  "artist": "Suzuki Konomi",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kimi Iro Omoi",
+  "artist": "Nao",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Koi no Screw",
+  "artist": "Da Pump",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kimi ni Todoke",
+  "artist": "Nakagawa Shoko",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Again",
+  "artist": "Toshiki Masuda",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Reason",
+  "artist": "Ai Furihata",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Reunion",
+  "artist": "Toshiki Masuda",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Reboot",
+  "artist": "Ai Furihata",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Chime",
+  "artist": "Toshiki Masuda",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Hikari",
+  "artist": "Ai Furihata",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Datsu. Kokoro no Sekai",
+  "artist": "Masayoshi Oishi",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Haruka",
+  "artist": "Ratel",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Introduction",
+  "artist": "Q;indivi",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Yasashisa no Riyuu",
+  "artist": "Chiaki Ito",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kishunfuugetsu",
+  "artist": "Nano.RIPE",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kizuna ni Nosete",
+  "artist": "Saori Codaira",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Yasashii Kibou",
+  "artist": "Nano.RIPE",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kagayaki",
+  "artist": "Ceui",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "For Fruits Basket",
+  "artist": "Ritsuko Okazaki",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Chiisana Inori",
+  "artist": "Ritsuko Okazaki",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Shissou",
+  "artist": "Last Alliance",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Rose",
+  "artist": "Anna Tsuchiya inspi' Nana (BLACK STONES)",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Kuroi Namida",
+  "artist": "Anna Tsuchiya inspi' Nana (BLACK STONES)",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "A Little Pain",
+  "artist": "Olivia Inspi' Reira",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Lonely in Gorgeous",
+  "artist": "Tommy february6",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
   ]
  }
 ]

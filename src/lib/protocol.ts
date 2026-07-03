@@ -427,6 +427,9 @@ export const PACKS: PackDef[] = [
   // オリコン/Billboard JAPAN等の実チャート実績・ミリオンセラー・タイアップ実績を
   // 持つ日本のヒット曲（YouTube再生・通常のジャンルとは別軸）。トリオ最後の1つ。
   { id: "pack:jp-hits", labelJa: "日本ヒットソングクイズ", labelEn: "Japan Hit Songs Quiz", kind: "anime-op", accent: "#e0507a" },
+  // 少女向けアニメのOP/ED限定（魔法少女/プリキュアシリーズ/少女漫画原作の恋愛系/
+  // 少女向けファンタジー等）。特定作品に縛らないため kind は anime-op。
+  { id: "pack:shoujo-anime", labelJa: "少女アニメソングクイズ", labelEn: "Girls' Anime Songs Quiz", kind: "anime-op", accent: "#d982b5" },
 ];
 
 export const PACK_IDS = new Set(PACKS.map((p) => p.id));
