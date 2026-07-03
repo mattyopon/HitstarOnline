@@ -1386,7 +1386,8 @@
   "year": 1979,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -1538,7 +1539,8 @@
   "year": 2009,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -4730,7 +4732,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:anime-op"
   ],
   "aliases": [
    "リライト"
@@ -4877,7 +4880,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:anime-op"
   ],
   "aliases": [
    "遥か彼方"
@@ -5701,7 +5705,8 @@
   "categories": [
    "jpop",
    "jp-anime",
-   "jrock"
+   "jrock",
+   "pack:anime-op"
   ],
   "aliases": [
    "ゲット・ワイルド"
@@ -6760,7 +6765,8 @@
   "year": 1992,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ],
   "aliases": [
    "微笑みの爆弾",
@@ -6991,7 +6997,8 @@
   "country": "jp",
   "categories": [
    "jp-anime",
-   "pack:shoujo-anime"
+   "pack:shoujo-anime",
+   "pack:anime-op"
   ],
   "aliases": [
    "キャッチ・ユー・キャッチ・ミー"
@@ -7007,7 +7014,8 @@
   "country": "jp",
   "categories": [
    "jp-anime",
-   "pack:shoujo-anime"
+   "pack:shoujo-anime",
+   "pack:anime-op"
   ],
   "aliases": [
    "プラチナ"
@@ -7373,7 +7381,8 @@
   "year": 2000,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ],
   "aliases": [
    "ひかりへ",
@@ -7406,7 +7415,8 @@
   "year": 2010,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ],
   "aliases": [
    "裏切りの夕焼け",
@@ -7453,7 +7463,8 @@
   "year": 2011,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ],
   "aliases": [
    "青い栞",
@@ -7522,7 +7533,8 @@
   "country": "jp",
   "categories": [
    "jp-anime",
-   "jpop"
+   "jpop",
+   "pack:anime-op"
   ],
   "aliases": [
    "シスターズ・ノイズ"
@@ -13424,7 +13436,8 @@
   "country": "jp",
   "categories": [
    "karaoke",
-   "jrock"
+   "jrock",
+   "pack:anime-op"
   ]
  },
  {
@@ -35784,7 +35797,8 @@
   "year": 1997,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:gundam"
   ]
  },
  {
@@ -36002,7 +36016,8 @@
   "year": 2002,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -36057,7 +36072,8 @@
   "year": 2008,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -36084,7 +36100,8 @@
   "year": 2010,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -115031,7 +115048,8 @@
   "country": "jp",
   "categories": [
    "pack:conan",
-   "jp-anime"
+   "jp-anime",
+   "pack:bz"
   ]
  },
  {
@@ -115121,7 +115139,8 @@
   "country": "jp",
   "categories": [
    "pack:conan",
-   "jp-anime"
+   "jp-anime",
+   "pack:bz"
   ]
  },
  {
@@ -115488,7 +115507,8 @@
   "year": 2012,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:utada"
   ]
  },
  {
@@ -115795,7 +115815,8 @@
   "country": "jp",
   "categories": [
    "pack:naruto",
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -115865,7 +115886,8 @@
   "country": "jp",
   "categories": [
    "pack:naruto",
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -141090,7 +141112,8 @@
   "year": 1999,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -141702,7 +141725,8 @@
   "year": 2008,
   "country": "jp",
   "categories": [
-   "jrap"
+   "jrap",
+   "pack:naruto"
   ]
  },
  {
@@ -143421,7 +143445,8 @@
   "year": 1979,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:southern"
   ]
  },
  {
@@ -144016,7 +144041,8 @@
   "year": 2005,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:anime-op"
   ]
  },
  {
@@ -144169,7 +144195,8 @@
   "year": 2002,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrchildren"
   ]
  },
  {
@@ -144178,7 +144205,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrchildren"
   ]
  },
  {
@@ -144187,7 +144215,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrchildren"
   ]
  },
  {
@@ -144205,7 +144234,8 @@
   "year": 2006,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrchildren"
   ]
  },
  {
@@ -144214,7 +144244,8 @@
   "year": 2007,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrchildren"
   ]
  },
  {
@@ -144223,7 +144254,8 @@
   "year": 2009,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrchildren"
   ]
  },
  {
@@ -144421,7 +144453,8 @@
   "year": 2016,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:xjapan"
   ]
  },
  {
@@ -144439,7 +144472,8 @@
   "year": 2015,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:bz"
   ]
  },
  {
@@ -144466,7 +144500,8 @@
   "year": 2017,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:bz"
   ]
  },
  {
@@ -144475,7 +144510,8 @@
   "year": 2018,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:bz"
   ]
  },
  {
@@ -144484,7 +144520,8 @@
   "year": 2019,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:bz"
   ]
  },
  {
@@ -144529,7 +144566,8 @@
   "year": 2013,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:oneokrock"
   ]
  },
  {
@@ -144547,7 +144585,8 @@
   "year": 2018,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:oneokrock"
   ]
  },
  {
@@ -144556,7 +144595,8 @@
   "year": 2014,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:oneokrock"
   ]
  },
  {
@@ -144583,7 +144623,8 @@
   "year": 2017,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:oneokrock"
   ]
  },
  {
@@ -144592,7 +144633,8 @@
   "year": 2018,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:oneokrock"
   ]
  },
  {
@@ -144871,7 +144913,8 @@
   "year": 2016,
   "country": "jp",
   "categories": [
-   "jrock"
+   "jrock",
+   "pack:mrsgreenapple"
   ]
  },
  {
@@ -145564,7 +145607,8 @@
   "year": 2002,
   "country": "jp",
   "categories": [
-   "karaoke"
+   "karaoke",
+   "pack:bump"
   ]
  },
  {
@@ -145591,7 +145635,8 @@
   "year": 2008,
   "country": "jp",
   "categories": [
-   "karaoke"
+   "karaoke",
+   "pack:anime-op"
   ]
  },
  {
@@ -145736,7 +145781,8 @@
   "year": 2006,
   "country": "jp",
   "categories": [
-   "karaoke"
+   "karaoke",
+   "pack:anime-op"
   ]
  },
  {
@@ -145745,7 +145791,8 @@
   "year": 2000,
   "country": "jp",
   "categories": [
-   "karaoke"
+   "karaoke",
+   "pack:anime-op"
   ]
  },
  {
@@ -159974,7 +160021,8 @@
   "year": 1988,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:southern"
   ]
  },
  {
@@ -160973,7 +161021,8 @@
   "year": 1991,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:bz"
   ]
  },
  {
@@ -161117,7 +161166,8 @@
   "year": 1991,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:bz"
   ]
  },
  {
@@ -161198,7 +161248,8 @@
   "year": 1997,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:bz"
   ]
  },
  {
@@ -161261,7 +161312,8 @@
   "year": 1998,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -162026,7 +162078,8 @@
   "year": 2000,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:utada"
   ]
  },
  {
@@ -162116,7 +162169,8 @@
   "year": 2000,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -162368,7 +162422,8 @@
   "year": 2003,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:pokemon"
   ]
  },
  {
@@ -162935,7 +162990,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -163142,7 +163198,8 @@
   "year": 2000,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:utada"
   ]
  },
  {
@@ -163160,7 +163217,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:utada"
   ]
  },
  {
@@ -163484,7 +163542,8 @@
   "year": 2002,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -163502,7 +163561,8 @@
   "year": 2004,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -163646,7 +163706,8 @@
   "year": 2007,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:bump"
   ]
  },
  {
@@ -165230,7 +165291,8 @@
   "year": 2011,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:anime-op"
   ]
  },
  {
@@ -165284,7 +165346,8 @@
   "year": 2010,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:pokemon"
   ]
  },
  {
@@ -165302,7 +165365,8 @@
   "year": 2011,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -165671,7 +165735,8 @@
   "year": 2016,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:utada"
   ]
  },
  {
@@ -165698,7 +165763,8 @@
   "year": 2016,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -166067,7 +166133,8 @@
   "year": 2018,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:bump"
   ]
  },
  {
@@ -166202,7 +166269,8 @@
   "year": 2018,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:yonezu"
   ]
  },
  {
@@ -166337,7 +166405,8 @@
   "year": 2016,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrsgreenapple"
   ]
  },
  {
@@ -166454,7 +166523,8 @@
   "year": 2016,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -166463,7 +166533,8 @@
   "year": 2019,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:mrchildren"
   ]
  },
  {
@@ -166769,7 +166840,8 @@
   "year": 2017,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:yonezu"
   ]
  },
  {
@@ -166778,7 +166850,8 @@
   "year": 2017,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:yonezu"
   ]
  },
  {
@@ -166931,7 +167004,8 @@
   "year": 2023,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:yonezu"
   ]
  },
  {
@@ -168983,7 +169057,8 @@
   "year": 2001,
   "country": "jp",
   "categories": [
-   "pack:shoujo-anime"
+   "pack:shoujo-anime",
+   "pack:anime-op"
   ]
  },
  {
@@ -169038,6 +169113,3066 @@
   "country": "jp",
   "categories": [
    "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Ginga Tetsudou 999",
+  "artist": "Godiego",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "You Wa Shock",
+  "artist": "Crystal King",
+  "year": 1984,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Jajouma ni Sasenaide",
+  "artist": "Ninja",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Itoshisa to Setsunasa to Kokorozuyosa to",
+  "artist": "Miho Morikawa",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "1/3 no Junjou na Kanjou",
+  "artist": "Siam Shade",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "The Real Folk Blues",
+  "artist": "The Seatbelts",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Catch You Catch Me",
+  "artist": "Maaya Sakamoto",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "My Will",
+  "artist": "dream",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Life is Like a Boat",
+  "artist": "Rie fu",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Rose",
+  "artist": "Anna Tsuchiya",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Kuroi Namida",
+  "artist": "Anna Tsuchiya inspi' NANA",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "WORLD END",
+  "artist": "FLOW",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Mag Mell",
+  "artist": "Eufonius",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Guns & Roses",
+  "artist": "Paradise Lunch",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Pre Parade",
+  "artist": "Rythem",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Vanilla Salt",
+  "artist": "Yui Horie",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Snow Fairy",
+  "artist": "FUNKIST",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "INNOCENCE",
+  "artist": "Eir Aoi",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Rage On",
+  "artist": "OLDCODEX",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Imagination",
+  "artist": "SPYAIR",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Blue Bird",
+  "artist": "Ikimono-gakari",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Dango Daikazoku",
+  "artist": "Chata",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Renai Circulation",
+  "artist": "Kana Hanazawa",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Super Driver",
+  "artist": "Aya Hirano",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "LEVEL5 -judgelight-",
+  "artist": "fripSide",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "The Everlasting Guilty Crown",
+  "artist": "EGOIST",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "My Dearest",
+  "artist": "supercell",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Ignite",
+  "artist": "Eir Aoi",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Overfly",
+  "artist": "Aimer",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Fly High!!",
+  "artist": "BURNOUT SYNDROMES",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "The Real Folk Blues",
+  "artist": "The Seatbelts (Mai Yamane)",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Mune ga Doki Doki",
+  "artist": "B'z",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Detekoi Tobikiri Zenkai Power!",
+  "artist": "Manna",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "Utsukushiki Zankoku na Sekai",
+  "artist": "Yoko Hikasa",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "What's up, people?!",
+  "artist": "MAXIMUM THE HORMONE",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:anime-op"
+  ]
+ },
+ {
+  "title": "A Day in Our Life",
+  "artist": "嵐 (Arashi)",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "風の向こうへ",
+  "artist": "嵐 (Arashi)",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Beautiful days",
+  "artist": "嵐 (Arashi)",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Bittersweet",
+  "artist": "嵐 (Arashi)",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Endless Game",
+  "artist": "嵐 (Arashi)",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "誰も知らない",
+  "artist": "嵐 (Arashi)",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "復活LOVE",
+  "artist": "嵐 (Arashi)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Daylight",
+  "artist": "嵐 (Arashi)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "素晴らしき世界",
+  "artist": "嵐 (Arashi)",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Typhoon Generation",
+  "artist": "嵐 (Arashi)",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "エナジーソング~絶好調超!!!!~",
+  "artist": "嵐 (Arashi)",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Sakura Sake",
+  "artist": "嵐 (Arashi)",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Sirius",
+  "artist": "嵐 (Arashi)",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Don't You Get It",
+  "artist": "嵐 (Arashi)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Turning Up",
+  "artist": "嵐 (Arashi)",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "Whenever You Call",
+  "artist": "嵐 (Arashi)",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:arashi"
+  ]
+ },
+ {
+  "title": "ダイヤモンド",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "ラフ・メイカー",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "Stage of the ground",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "才悩人応援歌",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "ホリデイ",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "話がしたいよ",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "くだらない唄",
+  "artist": "BUMP OF CHICKEN",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "Smile",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "グロリアスレボリューション",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "オンリー ロンリー グローリー",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "記念撮影",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "望遠のマーチ",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "ファイター",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "リボン",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "アルエ",
+  "artist": "BUMP OF CHICKEN",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "リトルブレイバー",
+  "artist": "BUMP OF CHICKEN",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "ギルド",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "リリィ",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "アリア",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "ハンマーソングと痛みの塔",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "宇宙飛行士への手紙",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "Aurora",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "シリウス",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:bump"
+  ]
+ },
+ {
+  "title": "だからその手を離して",
+  "artist": "B'z",
+  "year": 1988,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "恋心 -Koigokoro-",
+  "artist": "B'z",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "Easy Come, Easy Go!",
+  "artist": "B'z",
+  "year": 1990,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "MY LONELY TOWN",
+  "artist": "B'z",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "MOVE",
+  "artist": "B'z",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "兵、走る",
+  "artist": "B'z",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "さよならなんかは言わせない",
+  "artist": "B'z",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "Wolf",
+  "artist": "B'z",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "野性のENERGY",
+  "artist": "B'z",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "パーフェクトライフ",
+  "artist": "B'z",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "恋心",
+  "artist": "B'z",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "MAGIC",
+  "artist": "B'z",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "光芒",
+  "artist": "B'z",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "BURN -Fumetsu no Face-",
+  "artist": "B'z",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:bz"
+  ]
+ },
+ {
+  "title": "Last Impression",
+  "artist": "TWO-MIX",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:gundam"
+  ]
+ },
+ {
+  "title": "Stand By You",
+  "artist": "Official髭男dism",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:higedan"
+  ]
+ },
+ {
+  "title": "Laughter",
+  "artist": "Official髭男dism",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:higedan"
+  ]
+ },
+ {
+  "title": "Universe",
+  "artist": "Official髭男dism (Official HIGE DANdism)",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:higedan"
+  ]
+ },
+ {
+  "title": "Editorial",
+  "artist": "Official髭男dism (Official HIGE DANdism)",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:higedan"
+  ]
+ },
+ {
+  "title": "TATTOO",
+  "artist": "Official髭男dism",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:higedan"
+  ]
+ },
+ {
+  "title": "Chessboard",
+  "artist": "Official髭男dism (Official HIGE DANdism)",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:higedan"
+  ]
+ },
+ {
+  "title": "ROCK-mode",
+  "artist": "LiSA",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "Rally Go Round",
+  "artist": "LiSA",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "Best Day, Best Way",
+  "artist": "LiSA",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "Datte Atashino Hero",
+  "artist": "LiSA",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "Believe in Myself",
+  "artist": "LiSA",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "Unlasting",
+  "artist": "LiSA",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "REALiZE",
+  "artist": "LiSA",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:lisa"
+  ]
+ },
+ {
+  "title": "君がいた夏",
+  "artist": "Mr.Children",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "光の射す方へ",
+  "artist": "Mr.Children",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "四次元",
+  "artist": "Mr.Children",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "靴ひも",
+  "artist": "Mr.Children",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "箒星",
+  "artist": "Mr.Children",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "フェイク",
+  "artist": "Mr.Children",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "擬態",
+  "artist": "Mr.Children",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "祈り ~涙の軌道~",
+  "artist": "Mr.Children",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "Marshmallow day",
+  "artist": "Mr.Children",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "足音 -Be Strong-",
+  "artist": "Mr.Children",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "幻聴",
+  "artist": "Mr.Children",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "addiction",
+  "artist": "Mr.Children",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "Birthday",
+  "artist": "Mr.Children",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "Documentary film",
+  "artist": "Mr.Children",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "losstime",
+  "artist": "Mr.Children",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "turn over?",
+  "artist": "Mr.Children",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "Over",
+  "artist": "Mr.Children",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "Asia (エイジア)",
+  "artist": "Mr.Children",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "and I love you",
+  "artist": "Mr.Children",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "傘の下の君に告ぐ",
+  "artist": "Mr.Children",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "ALIVE",
+  "artist": "Mr.Children",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "友とコーヒーと嘘と胃袋",
+  "artist": "Mr.Children",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "深海",
+  "artist": "Mr.Children",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "forever",
+  "artist": "Mr.Children",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "BOLERO",
+  "artist": "Mr.Children",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "DISCOVERY",
+  "artist": "Mr.Children",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "シーラカンス",
+  "artist": "Mr.Children",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "IT'S A WONDERFUL WORLD",
+  "artist": "Mr.Children",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "ラララ",
+  "artist": "Mr.Children",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "インマイタウン",
+  "artist": "Mr.Children",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "君が好き",
+  "artist": "Mr.Children",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "Simple",
+  "artist": "Mr.Children",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "CENTER OF UNIVERSE",
+  "artist": "Mr.Children",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "未来",
+  "artist": "Mr.Children",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "隔たり",
+  "artist": "Mr.Children",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "少年",
+  "artist": "Mr.Children",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "星になれたら",
+  "artist": "Mr.Children",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "かぞえうた",
+  "artist": "Mr.Children",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "祈り～涙の軌道",
+  "artist": "Mr.Children",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "未完",
+  "artist": "Mr.Children",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "僕らの音",
+  "artist": "Mr.Children",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "ハル",
+  "artist": "Mr.Children",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "reflection",
+  "artist": "Mr.Children",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "足音 ～Be Strong",
+  "artist": "Mr.Children",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "REM",
+  "artist": "Mr.Children",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "つよがり",
+  "artist": "Mr.Children",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "SINGLES",
+  "artist": "Mr.Children",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "here comes my love",
+  "artist": "Mr.Children",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:mrchildren"
+  ]
+ },
+ {
+  "title": "私は最強",
+  "artist": "Mrs. GREEN APPLE",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:mrsgreenapple"
+  ]
+ },
+ {
+  "title": "雨傘",
+  "artist": "Mrs. GREEN APPLE",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:mrsgreenapple"
+  ]
+ },
+ {
+  "title": "Attitude",
+  "artist": "Mrs. GREEN APPLE",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:mrsgreenapple"
+  ]
+ },
+ {
+  "title": "悲しみをやさしさに (Kanashimi wo Yasashisa ni)",
+  "artist": "little by little",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:naruto"
+  ]
+ },
+ {
+  "title": "青春狂騒曲 (Seishun Kyousoukyoku)",
+  "artist": "サンボマスター (Sambomaster)",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:naruto"
+  ]
+ },
+ {
+  "title": "うたかた花火 (Utakata Hanabi)",
+  "artist": "supercell",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:naruto"
+  ]
+ },
+ {
+  "title": "透明だった世界 (Toumei Datta Sekai)",
+  "artist": "秦 基博 (Motohiro Hata)",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:naruto"
+  ]
+ },
+ {
+  "title": "Liar",
+  "artist": "ONE OK ROCK",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Nothing Helps",
+  "artist": "ONE OK ROCK",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Pierce",
+  "artist": "ONE OK ROCK",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "I Was King",
+  "artist": "ONE OK ROCK",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Start Again",
+  "artist": "ONE OK ROCK",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Listen",
+  "artist": "ONE OK ROCK",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Hard to Love",
+  "artist": "ONE OK ROCK",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Take What You Want",
+  "artist": "ONE OK ROCK",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Worst in Me",
+  "artist": "ONE OK ROCK",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Stuck in the Middle",
+  "artist": "ONE OK ROCK",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Let Me Let You Go",
+  "artist": "ONE OK ROCK",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Make It Out Alive",
+  "artist": "ONE OK ROCK",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Broken Heart of Gold",
+  "artist": "ONE OK ROCK",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Push Back",
+  "artist": "ONE OK ROCK",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Nobody's Home",
+  "artist": "ONE OK ROCK",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Bedroom Warfare",
+  "artist": "ONE OK ROCK",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "The Way Back",
+  "artist": "ONE OK ROCK",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Bon Voyage",
+  "artist": "ONE OK ROCK",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Last Dance",
+  "artist": "ONE OK ROCK",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "Head High",
+  "artist": "ONE OK ROCK",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:oneokrock"
+  ]
+ },
+ {
+  "title": "We Are! (2008 Ver.)",
+  "artist": "きただにひろし (Hiroshi Kitadani)",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:onepiece"
+  ]
+ },
+ {
+  "title": "チャレンジャー!!",
+  "artist": "松本梨香",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "いっぱいサマー!!",
+  "artist": "田村直美とヒマワリ合唱団",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "GLORY DAY ~輝くその日~",
+  "artist": "GARDEN",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "私、負けない!~ハルカのテーマ~",
+  "artist": "ハルカ(KAORI)",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "君のそばで~ヒカリのテーマ~",
+  "artist": "グリン",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ハイタッチ!",
+  "artist": "サトシ(松本梨香)&ヒカリ(豊口めぐみ)",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "風のメッセージ",
+  "artist": "水橋舞",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "もえよ ギザみみピチュー!",
+  "artist": "ギザみみピチュー starring しょこたん(中川翔子)",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "サイコー・エブリデイ!",
+  "artist": "あきよしふみえ",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "心のファンファーレ",
+  "artist": "奥井亜紀",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ポケモン言えるかな?BW",
+  "artist": "つるの剛士",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "やじるしになって!",
+  "artist": "松本梨香",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "七色アーチ",
+  "artist": "ポケモンBW合唱団(奥井亜紀、江崎とし子、あきよしふみえ)",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "みてみて☆こっちっち",
+  "artist": "ももいろクローバーZ",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "サクラ・ゴーラウンド",
+  "artist": "私立恵比寿中学",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "手をつなごう",
+  "artist": "私立恵比寿中学",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "夏めく坂道",
+  "artist": "ダイスケ",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "X海峡Y景色",
+  "artist": "J☆Dee'Z",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "めざせポケモンマスター -20th Anniversary-",
+  "artist": "松本梨香",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "未来コネクション",
+  "artist": "ЯeaL",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "キミの冒険",
+  "artist": "岡崎体育",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ドキメキダイアリー",
+  "artist": "asmi feat. Chinozo",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ハロ",
+  "artist": "yama×ぼっちぼろまる",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "バトルフロンティア",
+  "artist": "高屋亜希那",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "スパート!",
+  "artist": "松本梨香",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "そこに空があるから",
+  "artist": "江崎とし子",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "スマイル",
+  "artist": "江崎とし子",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "私、負けない!〜ハルカのテーマ〜",
+  "artist": "KAORI",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "七色アーチ",
+  "artist": "ポケモンBW合唱団",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ジャリボーイ・ジャリガール",
+  "artist": "岡崎体育",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "なつやすみファンクラブ",
+  "artist": "ポケモンキッズ&ポケモンママさん",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ピカピカまっさいチュウ",
+  "artist": "ポケモンキッズ&オーキド博士",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "たんけんたいをつくろう!",
+  "artist": "ポケモンキッズ",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "そらとぶポケモンキッズ",
+  "artist": "ベッキー&ポケモンキッズ",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ピチュピカ♪スウィング",
+  "artist": "ネオ★ポケッツ",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ともだち記念日",
+  "artist": "酒井法子&竹中直人",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "虹がうまれた日",
+  "artist": "森公美子",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "かくれんぼ",
+  "artist": "Whiteberry",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "まなつのだいさくせん!",
+  "artist": "遠藤久美子",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "明日 天気にしておくれ",
+  "artist": "藤井フミヤ",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "SECRET GARDEN",
+  "artist": "MADOKA",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "冒険のはじまりだ!!",
+  "artist": "KAORI",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "小さきもの",
+  "artist": "林明日香",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "L・O・V・E・L・Y〜夢見るLOVELY BOY〜",
+  "artist": "Tommy february6",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "はじまりのうた",
+  "artist": "PUFFY",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "守るべきもの",
+  "artist": "Sowelu",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ビー・ウィズ・ユー〜いつもそばに〜",
+  "artist": "Sarah Brightman",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ONE",
+  "artist": "Crystal Kay",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "アイスクリームシンドローム",
+  "artist": "スキマスイッチ",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "響-こえ-",
+  "artist": "Every Little Thing",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "Memories",
+  "artist": "ローラ",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "夜明けの流星群",
+  "artist": "SCANDAL",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "Tweedia",
+  "artist": "安田レイ",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ポストに声を投げ入れて",
+  "artist": "YUKI",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "オラシオンのテーマ〜共に歩こう〜",
+  "artist": "林明日香",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ブレス",
+  "artist": "ポルノグラフィティ",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ココ",
+  "artist": "Beverly",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ただいまとおかえり",
+  "artist": "木村カエラ",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "ふしぎなふしぎな生きもの",
+  "artist": "トータス松本",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:pokemon"
+  ]
+ },
+ {
+  "title": "気分しだいで責めないで",
+  "artist": "サザンオールスターズ",
+  "year": 1978,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "思い過ごしも恋のうち",
+  "artist": "サザンオールスターズ",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "女呼んでブギ",
+  "artist": "サザンオールスターズ",
+  "year": 1978,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "素顔で踊らせて",
+  "artist": "サザンオールスターズ",
+  "year": 1981,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "匂艶 THE NIGHT CLUB",
+  "artist": "サザンオールスターズ",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "Ya Ya (あの時代を忘れない)",
+  "artist": "サザンオールスターズ",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "フリフリ'65",
+  "artist": "サザンオールスターズ",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "Tarako",
+  "artist": "サザンオールスターズ",
+  "year": 1984,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "涙の海で抱かれたい〜SEA OF LOVE〜",
+  "artist": "サザンオールスターズ",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "LOVE AFFAIR~秘密のデート~",
+  "artist": "サザンオールスターズ",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "逢いたくなった時に君はここにいない",
+  "artist": "サザンオールスターズ",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "女神達への情歌",
+  "artist": "サザンオールスターズ",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "I AM YOUR SINGER",
+  "artist": "サザンオールスターズ",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "平和の琉歌",
+  "artist": "サザンオールスターズ",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "東京VICTORY",
+  "artist": "サザンオールスターズ",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "栄光の男",
+  "artist": "サザンオールスターズ",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "ピースとハイライト",
+  "artist": "サザンオールスターズ",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "気分しだいで責めないで",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1978,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "C調言葉に御用心",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "思い過ごしも恋のうち",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "別れ話は最後に",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1978,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "恋するマンスリー・デイ",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1980,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "匂艶 THE NIGHT CLUB",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "Ya Ya (あの時代を忘れない)",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "夏をあきらめて",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "素敵な夢を叶えましょう",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "忘れられたBig Wave",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1990,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "太陽は罪な奴",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "PARADISE",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "女神達への情歌",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "I AM YOUR SINGER",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "東京VICTORY",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "ピースとハイライト",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "栄光の男",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "LOVE AFFAIR〜秘密のデート〜",
+  "artist": "サザンオールスターズ (Southern All Stars)",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:southern"
+  ]
+ },
+ {
+  "title": "Devil Inside",
+  "artist": "Utada",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Easy Breezy",
+  "artist": "Utada",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Exodus '04",
+  "artist": "Utada",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "You Make Me Want to Be a Man",
+  "artist": "Utada",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Play A Love Song",
+  "artist": "宇多田ヒカル",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Keep Tryin'",
+  "artist": "宇多田ヒカル",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Take 5",
+  "artist": "宇多田ヒカル",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Come Back to Me",
+  "artist": "Utada",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "This Is Love",
+  "artist": "宇多田ヒカル",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Dirty Desire",
+  "artist": "Utada feat. Nas",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Goodbye Happiness",
+  "artist": "宇多田ヒカル",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "初恋",
+  "artist": "宇多田ヒカル",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Forevermore",
+  "artist": "Hikaru Utada",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Too Proud",
+  "artist": "Hikaru Utada",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "君に夢中",
+  "artist": "宇多田ヒカル",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "BADモード",
+  "artist": "宇多田ヒカル",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "PINK BLOOD",
+  "artist": "宇多田ヒカル",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "誰にも言わない",
+  "artist": "宇多田ヒカル",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Somewhere Near Marseilles - マルセイユ辺り",
+  "artist": "Hikaru Utada feat. Floating Points",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Time Will Tell",
+  "artist": "Utada Hikaru",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "For You",
+  "artist": "Utada Hikaru",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Letters",
+  "artist": "宇多田ヒカル",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Devil Inside",
+  "artist": "Utada Hikaru",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Keep Tryin'",
+  "artist": "Hikaru Utada",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Kremlin Dusk",
+  "artist": "Hikaru Utada",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Kiss & Cry",
+  "artist": "Hikaru Utada",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "This One (Crying Like a Child)",
+  "artist": "Utada",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "人生最高の日",
+  "artist": "宇多田ヒカル",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "俺の彼女",
+  "artist": "宇多田ヒカル",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Forevermore",
+  "artist": "宇多田ヒカル",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "誓い",
+  "artist": "宇多田ヒカル",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "PINK BLOOD",
+  "artist": "Hikaru Utada",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "気分じゃないの",
+  "artist": "宇多田ヒカル",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Find Love",
+  "artist": "Hikaru Utada",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "Somewhere Near Marseilles ~マルセイユ辺り~",
+  "artist": "Hikaru Utada & Skrillex",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:utada"
+  ]
+ },
+ {
+  "title": "X",
+  "artist": "X JAPAN",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Orgasm",
+  "artist": "X JAPAN",
+  "year": 1986,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "I'll Kill You",
+  "artist": "X JAPAN",
+  "year": 1985,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Alive",
+  "artist": "X JAPAN",
+  "year": 1988,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Sadistic Desire",
+  "artist": "X JAPAN",
+  "year": 1988,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Miscast",
+  "artist": "X JAPAN",
+  "year": 1991,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Rose of Pain",
+  "artist": "X JAPAN",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Voiceless Screaming",
+  "artist": "X JAPAN",
+  "year": 1991,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Longing ~跡切れたmelody~",
+  "artist": "X JAPAN",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "I.V.",
+  "artist": "X JAPAN",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Joker",
+  "artist": "X JAPAN",
+  "year": 1991,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Celebration",
+  "artist": "X JAPAN",
+  "year": 1989,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Stab Me in the Back",
+  "artist": "X JAPAN",
+  "year": 1991,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "Jade",
+  "artist": "X JAPAN",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:xjapan"
+  ]
+ },
+ {
+  "title": "アンコール (Encore)",
+  "artist": "YOASOBI",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:yoasobi"
+  ]
+ },
+ {
+  "title": "ラブレター (Love Letter)",
+  "artist": "YOASOBI",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:yoasobi"
+  ]
+ },
+ {
+  "title": "セブンティーン (Seventeen)",
+  "artist": "YOASOBI",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:yoasobi"
+  ]
+ },
+ {
+  "title": "サンタマリア",
+  "artist": "米津玄師",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "眼福",
+  "artist": "米津玄師",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "WOODEN DOLL",
+  "artist": "米津玄師",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "アンビリーバーズ",
+  "artist": "米津玄師",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "かいじゅうのマーチ",
+  "artist": "米津玄師",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "ナンバーナイン",
+  "artist": "米津玄師",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "TEENAGE RIOT",
+  "artist": "米津玄師",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "海の幽霊",
+  "artist": "米津玄師",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "POP SONG",
+  "artist": "米津玄師",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "vivi",
+  "artist": "米津玄師",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "灰色と青 (feat. 菅田将暉)",
+  "artist": "米津玄師",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "Decolleté",
+  "artist": "米津玄師",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "Nighthawks",
+  "artist": "米津玄師",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "迷える羊",
+  "artist": "米津玄師",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "春雷",
+  "artist": "米津玄師",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
+  ]
+ },
+ {
+  "title": "amen",
+  "artist": "米津玄師",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:yonezu"
   ]
  }
 ]
