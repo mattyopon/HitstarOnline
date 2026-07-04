@@ -35360,7 +35360,8 @@
   "year": 1969,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ]
  },
  {
@@ -35650,7 +35651,8 @@
   "year": 1983,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ]
  },
  {
@@ -141085,7 +141087,8 @@
   "year": 1982,
   "country": "jp",
   "categories": [
-   "jp-anime"
+   "jp-anime",
+   "pack:shoujo-anime"
   ]
  },
  {
@@ -164973,7 +164976,8 @@
   "year": 2014,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
+   "pack:jp-hits",
+   "pack:shoujo-anime"
   ]
  },
  {
@@ -172939,5 +172943,1049 @@
   ],
   "provider": "bilibili",
   "bvid": "BV1aicPeZESw"
+ },
+ {
+  "title": "キャンディ・キャンディ",
+  "artist": "堀江美都子、ザ・チャープス",
+  "year": 1976,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "あしたがすき",
+  "artist": "堀江美都子、ザ・チャープス",
+  "year": 1976,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "薔薇は美しく散る",
+  "artist": "鈴木宏子",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "愛の光と影",
+  "artist": "鈴木宏子",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "エースをねらえ！",
+  "artist": "大杉久美子",
+  "year": 1973,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "白いテニスコートで",
+  "artist": "大杉久美子",
+  "year": 1973,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "青春にかけろ!",
+  "artist": "VIP",
+  "year": 1978,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "バン・ボ・ボン",
+  "artist": "伊集加代子",
+  "year": 1969,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "パジャマのままで",
+  "artist": "太田貴子",
+  "year": 1983,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "あの子はあさりちゃん",
+  "artist": "前川陽子、こおろぎ'73",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "私は女の子",
+  "artist": "前川陽子、こおろぎ'73",
+  "year": 1982,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ガラスの仮面",
+  "artist": "芦部真梨子",
+  "year": 1984,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "パープル・ライト",
+  "artist": "芦部真梨子",
+  "year": 1984,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "若草の招待状",
+  "artist": "新田恵利",
+  "year": 1987,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "夕陽と風とメロディ",
+  "artist": "新田恵利",
+  "year": 1987,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "花の子ルンルン",
+  "artist": "堀江美都子、ザ・チャープス",
+  "year": 1979,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "花のささやき",
+  "artist": "下成佐登子",
+  "year": 1985,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "月虹",
+  "artist": "ももいろクローバーZ",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ニュームーンに恋して",
+  "artist": "やくしまるえつこ",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "eternal eternity",
+  "artist": "セーラーウラヌス(皆川純子)・セーラーネプチューン(大原さやか)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "CLEAR",
+  "artist": "坂本真綾",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ロケットビート",
+  "artist": "安野希世乃",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Jewelry",
+  "artist": "早見沙織",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "リワインド",
+  "artist": "鈴木みのり",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "キライになれない",
+  "artist": "中村あゆみ",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "太陽の楽園~Promised Land~",
+  "artist": "神戸みゆき",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Before the Moment",
+  "artist": "喜多村英梨",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "恋はア・ラ・モード",
+  "artist": "東京ミュウミュウ",
+  "year": 2002,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Cat!!してSuperGirls",
+  "artist": "Smewthie",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "トキメキ☆イチゴいちえ",
+  "artist": "Smewthie",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "めがもるふぉ~ぜ♡",
+  "artist": "Smewthie",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Can-do Dreamer",
+  "artist": "Smewthie",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ナージャ!!",
+  "artist": "本田美奈子.",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "けせら・せら",
+  "artist": "小清水亜美",
+  "year": 2003,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Brand New Days",
+  "artist": "Apink",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "りるりるわんだふるがーる!",
+  "artist": "フラワーフェアリルズ",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ぱぴぷぺPON!",
+  "artist": "Apink",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "さくら咲く青い春",
+  "artist": "Silent Siren",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "時を越えて",
+  "artist": "松雪泰子",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "明日へと駆け出してゆこう",
+  "artist": "松田聖子",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "夢みるメロディー",
+  "artist": "梶谷美由紀",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Till The End～終わらない愛を～",
+  "artist": "HIBIKI",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "おしゃれファンタジー",
+  "artist": "ファイン★レイン(小島めぐみ・後藤邑子)",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "輪舞-revolution",
+  "artist": "奥井雅美",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "truth",
+  "artist": "裕未瑠華",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "バーチャルスター発生学",
+  "artist": "上谷麻紀",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Rose&release",
+  "artist": "奥井雅美",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "スカーレット",
+  "artist": "岩男潤子",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ONE ~this world won't separate us~",
+  "artist": "DAY-BREAK",
+  "year": 2000,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ふたつの鼓動と赤い罪",
+  "artist": "ON/OFF",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "still doll",
+  "artist": "分島花音",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "輪廻-ロンド-",
+  "artist": "ON/OFF",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "砂のお城",
+  "artist": "分島花音",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ころころここたま!",
+  "artist": "ERIKA",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ここんぽいぽいここったま!",
+  "artist": "メロリー(豊崎愛生)とここたまファイブ",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Lucky Ending",
+  "artist": "ビッケブランカ",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "プリズム",
+  "artist": "AmPm feat. みゆな",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "乙女のルートはひとつじゃない！",
+  "artist": "angela",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "BAD END",
+  "artist": "蒼井翔太",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Signalize!",
+  "artist": "STAR☆ANIS",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "カレンダーガール",
+  "artist": "STAR☆ANIS",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ダイヤモンドハッピー",
+  "artist": "STAR☆ANIS",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "KIRA☆Power",
+  "artist": "STAR☆ANIS",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "SHINING LINE*",
+  "artist": "STAR☆ANIS",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "スタートライン!",
+  "artist": "AIKATSU☆STARS!",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "episode Solo",
+  "artist": "AIKATSU☆STARS!",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "STARDOM!",
+  "artist": "AIKATSU☆STARS!",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "MUSIC of DREAM!!!",
+  "artist": "AIKATSU☆STARS!",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ありがと⇄大丈夫",
+  "artist": "BEST FRIENDS!",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Believe it",
+  "artist": "BEST FRIENDS!",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ひとりじゃない!",
+  "artist": "BEST FRIENDS!",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ミラクル☆パラダイス",
+  "artist": "i☆Ris",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Jumpin'! Dancin'!",
+  "artist": "Prizmmy☆",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ドリームパレード",
+  "artist": "i☆Ris",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "1000%キュンキュンさせてよ♥",
+  "artist": "プリティーリズム☆オールスターズ",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Dear My Future～未来の自分へ～",
+  "artist": "Prizmmy☆",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "BOY MEETS GIRL",
+  "artist": "Prizmmy☆",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "イルミナージュ・ランド",
+  "artist": "Run Girls, Run!",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "星のダイアローグ",
+  "artist": "スタァライト九九組",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Fly Me to the Star",
+  "artist": "スタァライト九九組",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "世界は恋に落ちている",
+  "artist": "CHiCO with HoneyWorks",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ブルー",
+  "artist": "フジファブリック",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "光の破片",
+  "artist": "高橋優",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "未来",
+  "artist": "コブクロ",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Q&Aリサイタル!",
+  "artist": "戸松遥",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "White Wishes",
+  "artist": "9nine",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Magic Hour",
+  "artist": "&TEAM",
+  "year": 2025,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Wonderful World",
+  "artist": "&TEAM",
+  "year": 2025,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Gravity",
+  "artist": "BUMP OF CHICKEN",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "爽風",
+  "artist": "タニザワトモフミ",
+  "year": 2011,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "エトセトラ",
+  "artist": "imase",
+  "year": 2024,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "My Secret",
+  "artist": "水野佐彩",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "神様はじめました",
+  "artist": "ハナエ",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "神様お願い",
+  "artist": "ハナエ",
+  "year": 2012,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "神様の神様",
+  "artist": "ハナエ",
+  "year": 2015,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ハイスクール[ANIME SIDE] -Bootleg-",
+  "artist": "in NO hurry to shout;",
+  "year": 2017,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "普通の日曜日に",
+  "artist": "菊田知彦",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ケンカのあとで…",
+  "artist": "菊田知彦",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "届くかな",
+  "artist": "CaYOCO",
+  "year": 1997,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "天使のゆびきり",
+  "artist": "福田舞",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "夢の中へ",
+  "artist": "榎本温子・鈴木千尋",
+  "year": 1998,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Wish",
+  "artist": "OLIVIA inspi' REIRA(TRAPNEST)",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "LUCY",
+  "artist": "ANNA TSUCHIYA inspi' NANA(BLACK STONES)",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Winter sleep",
+  "artist": "OLIVIA inspi' REIRA(TRAPNEST)",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "Stand by me",
+  "artist": "ANNA TSUCHIYA inspi' NANA(BLACK STONES)",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "笑顔に会いたい",
+  "artist": "濱田理恵",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "素敵な小夜曲",
+  "artist": "藤原美穂",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "枯れ葉色のクレッシェンド",
+  "artist": "水島康宏",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "いとおしい人のために",
+  "artist": "佐藤朱美",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ときめきの導火線",
+  "artist": "今野友加里",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "笑顔のゲンキ",
+  "artist": "SMAP",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ブラブラさせて",
+  "artist": "SMAP",
+  "year": 1992,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "はじめての夏",
+  "artist": "SMAP",
+  "year": 1993,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "笑顔が好きだから",
+  "artist": "沢田聖子",
+  "year": 1994,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "ヒ・ロ・イ・ン",
+  "artist": "宍戸留美",
+  "year": 1995,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
+ },
+ {
+  "title": "19時のニュース",
+  "artist": "TOKIO",
+  "year": 1996,
+  "country": "jp",
+  "categories": [
+   "pack:shoujo-anime"
+  ]
  }
 ]
