@@ -31194,8 +31194,11 @@
   "country": "jp",
   "categories": [
    "karaoke",
-   "jrock"
-  ]
+   "jrock",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Cx411M7mU"
  },
  {
   "title": "ハッピーエンド",
@@ -31376,8 +31379,11 @@
    "jrock",
    "pack:mrsgreenapple",
    "pack:superstar",
-   "pack:anime-op"
-  ]
+   "pack:anime-op",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1LF4m1N7Nj"
  },
  {
   "title": "Magic",
@@ -31400,8 +31406,11 @@
   "categories": [
    "karaoke",
    "jpop",
-   "jrock"
-  ]
+   "jrock",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1WS4y1e7sY"
  },
  {
   "title": "Cry Baby",
@@ -161493,8 +161502,11 @@
   "year": 1999,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
-  ]
+   "pack:jp-hits",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV17i4UeoEFE"
  },
  {
   "title": "恋のダンスサイト",
@@ -164877,8 +164889,11 @@
   "year": 2013,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
-  ]
+   "pack:jp-hits",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1V4411X7Vj"
  },
  {
   "title": "自由の翼",
@@ -167068,8 +167083,11 @@
   "year": 2022,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
-  ]
+   "pack:jp-hits",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1fa4y1n7Ss"
  },
  {
   "title": "ツキマシテ",
@@ -167131,8 +167149,11 @@
   "year": 2021,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
-  ]
+   "pack:jp-hits",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1c14y1s7ua"
  },
  {
   "title": "不可幸力",
@@ -167545,8 +167566,11 @@
   "year": 2020,
   "country": "jp",
   "categories": [
-   "pack:jp-hits"
-  ]
+   "pack:jp-hits",
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Qt4y1e74s"
  },
  {
   "title": "無限大",
@@ -172174,5 +172198,746 @@
   "categories": [
    "pack:yonezu"
   ]
+ },
+ {
+  "title": "メフィスト",
+  "artist": "女王蜂",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xQ4y1c7Ta",
+  "isCover": true,
+  "coverArtist": "天音かなた"
+ },
+ {
+  "title": "馬と鹿",
+  "artist": "米津玄師",
+  "year": 2019,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1id4y1B73n",
+  "isCover": true,
+  "coverArtist": "天音かなた"
+ },
+ {
+  "title": "ラビットホール",
+  "artist": "DECO*27 feat. 初音ミク",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1D4421D7pu",
+  "isCover": true,
+  "coverArtist": "天音かなた×沙花叉クロヱ"
+ },
+ {
+  "title": "創聖のアクエリオン",
+  "artist": "AKINO from bless4",
+  "year": 2005,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1q4411M7aB",
+  "isCover": true,
+  "coverArtist": "星街すいせい"
+ },
+ {
+  "title": "バグ",
+  "artist": "かいりきベア feat. 初音ミク",
+  "year": 2022,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1AW4y1P7vD",
+  "isCover": true,
+  "coverArtist": "天音かなた"
+ },
+ {
+  "title": "エンゼルフィッシュ",
+  "artist": "パトリチェフ feat. 鏡音リン",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1bp411A7eL",
+  "isCover": true,
+  "coverArtist": "星街すいせい×天音かなた"
+ },
+ {
+  "title": "グッバイ宣言",
+  "artist": "Chinozo feat. flower",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1gy4y1j7Av",
+  "isCover": true,
+  "coverArtist": "潤羽るしあ"
+ },
+ {
+  "title": "怪物",
+  "artist": "YOASOBI",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1bS4y167DX",
+  "isCover": true,
+  "coverArtist": "潤羽るしあ"
+ },
+ {
+  "title": "三原色",
+  "artist": "YOASOBI",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1pt4y1g7j9",
+  "isCover": true,
+  "coverArtist": "星街すいせい×湊あくあ×常闇トワ"
+ },
+ {
+  "title": "アクト",
+  "artist": "Giga & TeddyLoid feat. Daoko",
+  "year": 2025,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1NTEh6yERm",
+  "isCover": true,
+  "coverArtist": "花譜"
+ },
+ {
+  "title": "仮装狂騒曲",
+  "artist": "初星学園（学園アイドルマスター）",
+  "year": 2024,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1VGyhBQEzr",
+  "isCover": true,
+  "coverArtist": "しぐれうい×花譜×星街すいせい"
+ },
+ {
+  "title": "グッバイ宣言",
+  "artist": "Chinozo feat. flower",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1v44y1r7mU",
+  "isCover": true,
+  "coverArtist": "小柔"
+ },
+ {
+  "title": "Ninelie",
+  "artist": "SawanoHiroyuki[nZk]:Aimer with chelly (EGOIST)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Em411U7xn",
+  "isCover": true,
+  "coverArtist": "小柔×咲间妮娜"
+ },
+ {
+  "title": "magnet",
+  "artist": "minato feat. 初音ミク・巡音ルカ",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV11z4y1Z7G1",
+  "isCover": true,
+  "coverArtist": "帕里_Paryi×京华"
+ },
+ {
+  "title": "アイドル",
+  "artist": "YOASOBI",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1fh4y197TG",
+  "isCover": true,
+  "coverArtist": "京华"
+ },
+ {
+  "title": "MIRA",
+  "artist": "Kanaria feat. 小春六花",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV16o4y1T7sK",
+  "isCover": true,
+  "coverArtist": "京华"
+ },
+ {
+  "title": "扉をあけて",
+  "artist": "ANZA",
+  "year": 1999,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1SnptekEGF",
+  "isCover": true,
+  "coverArtist": "小柔×多多poi"
+ },
+ {
+  "title": "きゅうくらりん",
+  "artist": "いよわ feat. 可不(Kafu)",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1sfQwBGEcZ",
+  "isCover": true,
+  "coverArtist": "明石缪"
+ },
+ {
+  "title": "いのちの名前",
+  "artist": "木村弓",
+  "year": 2001,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ct411k74P",
+  "isCover": true,
+  "coverArtist": "有栖マナ"
+ },
+ {
+  "title": "ちっちゃな私",
+  "artist": "マサラダ feat. 重音テトSV",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1USAQzDEav",
+  "isCover": true,
+  "coverArtist": "明石缪"
+ },
+ {
+  "title": "メルト",
+  "artist": "ryo(supercell) feat. 初音ミク",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1h7411k7HB",
+  "isCover": true,
+  "coverArtist": "神楽めあ×湊あくあ"
+ },
+ {
+  "title": "怪物",
+  "artist": "YOASOBI",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1wN4y1c7Z7",
+  "isCover": true,
+  "coverArtist": "ときのそら×星街すいせい×大空スバル×尾丸ポルカ×博衣こより×沙花叉クロヱ（StarAnimal）"
+ },
+ {
+  "title": "READY STEADY GO",
+  "artist": "L'Arc～en～Ciel",
+  "year": 2004,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1E6kDBjEuz",
+  "isCover": true,
+  "coverArtist": "輪堂千速"
+ },
+ {
+  "title": "レイメイ",
+  "artist": "さユり×MY FIRST STORY",
+  "year": 2018,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1f4iBYvETK",
+  "isCover": true,
+  "coverArtist": "水宮枢×輪堂千速"
+ },
+ {
+  "title": "晴る",
+  "artist": "ヨルシカ",
+  "year": 2023,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1hC41157TT",
+  "isCover": true,
+  "coverArtist": "火威青×音乃瀬奏×一条莉々華×儒烏風亭らでん×轟はじめ（ReGLOSS）"
+ },
+ {
+  "title": "Night Dancer",
+  "artist": "imase",
+  "year": 2021,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV13V41197Nq",
+  "isCover": true,
+  "coverArtist": "阿萨Aza"
+ },
+ {
+  "title": "炎",
+  "artist": "LiSA",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Cz4y1C7WZ",
+  "isCover": true,
+  "coverArtist": "星乃めあ"
+ },
+ {
+  "title": "ドライフラワー",
+  "artist": "優里",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Xsy4Y2ENx",
+  "isCover": true,
+  "coverArtist": "虹乃娜娜"
+ },
+ {
+  "title": "なんでもないや",
+  "artist": "RADWIMPS",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV19W411t7DP",
+  "isCover": true,
+  "coverArtist": "富士葵"
+ },
+ {
+  "title": "夢灯籠",
+  "artist": "RADWIMPS",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1uma1enELp",
+  "isCover": true,
+  "coverArtist": "神楽めあ"
+ },
+ {
+  "title": "Just Be Friends",
+  "artist": "dixie flatline feat. 巡音ルカ",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1MJ411U7eY",
+  "isCover": true,
+  "coverArtist": "小缘×Hanser"
+ },
+ {
+  "title": "シルエット",
+  "artist": "KANA-BOON",
+  "year": 2014,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1CE411D7Fn",
+  "isCover": true,
+  "coverArtist": "獅子神レオナ"
+ },
+ {
+  "title": "サムライハート（Some Like It Hot!!）",
+  "artist": "SPYAIR",
+  "year": 2013,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1xf4y1B7Q8",
+  "isCover": true,
+  "coverArtist": "瀬戸ぽんず"
+ },
+ {
+  "title": "感電",
+  "artist": "米津玄師",
+  "year": 2020,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV11i4y1F7me",
+  "isCover": true,
+  "coverArtist": "ぴろぱる"
+ },
+ {
+  "title": "ninelie",
+  "artist": "Aimer with chelly(EGOIST)",
+  "year": 2016,
+  "country": "jp",
+  "categories": [
+   "pack:utattemita"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1RK4y1G735",
+  "isCover": true,
+  "coverArtist": "ViANKiE×HACHI"
+ },
+ {
+  "title": "ワールドイズマイン",
+  "artist": "ryo(supercell) feat. 初音ミク",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1bx411c7Cd"
+ },
+ {
+  "title": "メルト",
+  "artist": "ryo(supercell) feat. 初音ミク",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV17s411b7eh"
+ },
+ {
+  "title": "ハレ晴レユカイ",
+  "artist": "涼宮ハルヒ(平野綾)ほかSOS団",
+  "year": 2006,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1XA411i7ew"
+ },
+ {
+  "title": "夢をかなえてドラえもん",
+  "artist": "mao",
+  "year": 2007,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1fS421P79r"
+ },
+ {
+  "title": "深海少女 -deep sea girl-",
+  "artist": "ゆうゆ feat. 初音ミク",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1rM411U7T8"
+ },
+ {
+  "title": "サイハテ",
+  "artist": "小林オニキス feat. 初音ミク",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1px411c75B"
+ },
+ {
+  "title": "モザイクロール",
+  "artist": "DECO*27 feat. GUMI",
+  "year": 2010,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV18x411c7Et"
+ },
+ {
+  "title": "裏表ラバーズ",
+  "artist": "wowaka feat. 初音ミク",
+  "year": 2009,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Ds4y167WV"
+ },
+ {
+  "title": "ブルーバード",
+  "artist": "いきものがかり",
+  "year": 2008,
+  "country": "jp",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ep411o7dW"
+ },
+ {
+  "title": "上山岗",
+  "artist": "洛天依 (ilem)",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1zJ411479H"
+ },
+ {
+  "title": "金鳞甲",
+  "artist": "洛天依",
+  "year": 2025,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1DjcZe3E9V"
+ },
+ {
+  "title": "我的滑板鞋",
+  "artist": "庞麦郎",
+  "year": 2014,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1mQ4y1M7Z9"
+ },
+ {
+  "title": "惊雷",
+  "artist": "MC六道",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1GV411o7bV"
+ },
+ {
+  "title": "忐忑",
+  "artist": "龚琳娜",
+  "year": 2006,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Kb411t7pf"
+ },
+ {
+  "title": "小苹果",
+  "artist": "筷子兄弟",
+  "year": 2014,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV16zaEznEfm"
+ },
+ {
+  "title": "最炫民族风",
+  "artist": "凤凰传奇",
+  "year": 2009,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Fs411w7SU"
+ },
+ {
+  "title": "一笑江湖（科目三）",
+  "artist": "闻人听书",
+  "year": 2020,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV11a4y167V5"
+ },
+ {
+  "title": "我们不一样",
+  "artist": "大壮",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Sx411j7VD"
+ },
+ {
+  "title": "少年",
+  "artist": "梦然",
+  "year": 2019,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1De411p77r"
+ },
+ {
+  "title": "我的将军啊",
+  "artist": "半阳",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV17N4y197gC"
+ },
+ {
+  "title": "大地球歌厅",
+  "artist": "洛天依 × ilem",
+  "year": 2023,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1Xs4y1377m"
+ },
+ {
+  "title": "再声 Recall",
+  "artist": "洛天依",
+  "year": 2024,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1JH4y1w7Ks"
+ },
+ {
+  "title": "潮声回响",
+  "artist": "洛天依",
+  "year": 2024,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1ivSiYbENA"
+ },
+ {
+  "title": "逆浪千秋",
+  "artist": "言和",
+  "year": 2018,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1eW411W7v4"
+ },
+ {
+  "title": "沙漠骆驼",
+  "artist": "展展与罗罗",
+  "year": 2017,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1cM411k7vL"
+ },
+ {
+  "title": "八方来财",
+  "artist": "揽佬SKAI ISYOURGOD",
+  "year": 2024,
+  "country": "cn",
+  "categories": [
+   "pack:bili-hits"
+  ],
+  "provider": "bilibili",
+  "bvid": "BV1aicPeZESw"
  }
 ]
