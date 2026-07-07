@@ -7,10 +7,17 @@ import { BilibiliPlayer } from "./BilibiliPlayer";
 import { GACHA_CHARS } from "@/lib/gachaChars";
 import { useT } from "@/lib/i18n";
 
+/** Character art for the picture-disc treatment (current-turn leader). */
+export interface DiscArt {
+  src: string;
+  /** background-position style crop from gachaChars `focus`. */
+  focus: string;
+}
+
 // Pick a purely-decorative muse to frame the vinyl. Deterministic from a seed
 // string (the active player's name) so it stays stable within a turn and feels
-// "assigned" — but it is DECORATION ONLY (no server-side character data exists
-// per player). Falls back to the first muse for an empty seed.
+// "assigned". FALLBACK ONLY: when the current-turn player's equipped leader is
+// published (discArt), the picture-disc shows that instead.
 function decoMuse(seed: string) {
   let h = 0;
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0;
@@ -37,6 +44,7 @@ export function GameStage({
   trackUnavailable,
   onUnavailable,
   countdownEl,
+  discArt,
 }: {
   phase: Phase;
   isActive: boolean;
@@ -59,6 +67,9 @@ export function GameStage({
   trackUnavailable: boolean;
   onUnavailable: () => void;
   countdownEl: ReactNode;
+  /** Current-turn player's leader art, printed ON the vinyl (picture disc).
+   *  null/undefined = no gacha data → the generic vinyl art, unchanged. */
+  discArt?: DiscArt | null;
 }) {
   const t = useT();
   const phaseTitle =
@@ -75,18 +86,39 @@ export function GameStage({
   // During reveal the YouTube video is shown in full; otherwise the answer is
   // hidden behind the turntable visual while the song plays.
   const showCountdown = (phase === "placing" || phase === "stealing") && !!countdownEl;
-  // Decorative half-body muse framing the vinyl (mock .vinyl-char). Purely
-  // cosmetic; there is no per-player character on the server, so it is derived
-  // from the active player's name only and never carries answer/game data.
+  // Decorative half-body muse framing the vinyl (mock .vinyl-char). FALLBACK
+  // path only (no published leader): purely cosmetic, derived from the active
+  // player's name, never carries answer/game data.
   const muse = decoMuse(activeName || phaseTitle || "hitstar");
   return (
     <div className="card stack">
       <div className="turntable">
-        {/* Decorative spinning record + tonearm (purely visual). */}
-        {!revealMode && <div className="big-vinyl" aria-hidden="true" />}
-        {/* Decorative muse rising behind the disc — framing only, aria-hidden.
-            Hidden at reveal so the full-size player is never obstructed. */}
+        {/* Decorative spinning record + tonearm (purely visual). When the
+            current-turn leader is known, their art is printed ON the disc
+            surface (picture disc): clipped to the circle, grooves/sheen over
+            the art, center label on top, spinning as one piece. */}
         {!revealMode && (
+          <div className="big-vinyl" aria-hidden="true">
+            {discArt && (
+              <div className="disc-face">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="pdisc-art"
+                  src={discArt.src}
+                  alt=""
+                  style={{ objectPosition: discArt.focus }}
+                />
+                <span className="pdisc-grooves" />
+                <span className="pdisc-label" />
+              </div>
+            )}
+          </div>
+        )}
+        {/* No-leader fallback: muse rising behind the disc — framing only,
+            aria-hidden. Hidden at reveal so the full player isn't obstructed.
+            Never shown together with the picture disc (that was the owner
+            complaint: a rectangular portrait behind the record). */}
+        {!revealMode && !discArt && (
           // eslint-disable-next-line @next/next/no-img-element
           <img className="vinyl-char" src={muse.img} alt="" aria-hidden="true" />
         )}
@@ -107,6 +139,7 @@ export function GameStage({
               reveal={revealMode}
               volume={volume}
               onUnavailable={onUnavailable}
+              discArt={discArt}
             />
           ) : (
             <YouTubePlayer
@@ -117,6 +150,7 @@ export function GameStage({
               reveal={revealMode}
               volume={volume}
               onUnavailable={onUnavailable}
+              discArt={discArt}
             />
           )}
         </div>

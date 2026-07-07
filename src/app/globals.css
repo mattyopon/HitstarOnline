@@ -787,6 +787,66 @@ select:focus {
   }
 }
 
+/* ── Picture disc: character art printed ON the vinyl surface ──────────────
+   Children of a circular container; the CONTAINER carries the spin so
+   art + grooves + label rotate together as one physical disc (the owner spec:
+   「レコードに女の子の顔がプリントされてる感じ」— never a rectangular portrait
+   layered behind the record). */
+.pdisc-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+/* Groove texture + light sheen OVER the art so it reads as pressed vinyl. */
+.pdisc-grooves {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    conic-gradient(from 30deg, transparent, rgba(255, 255, 255, 0.14) 25%, transparent 50%, rgba(255, 255, 255, 0.14) 75%, transparent),
+    repeating-radial-gradient(circle at center, rgba(8, 8, 26, 0.3) 0 2.5px, rgba(255, 255, 255, 0.05) 2.5px 5.5px);
+}
+/* Center label + spindle hole stay on top of the printed art. */
+.pdisc-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 34%;
+  height: 34%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 3;
+  pointer-events: none;
+  background: radial-gradient(circle at 35% 30%, var(--accent-2), var(--accent) 60%, #c41a6a 100%);
+  box-shadow: 0 0 0 3px #fff;
+}
+.pdisc-label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #08081a; /* spindle hole */
+}
+/* The yt-cover vinyl swaps its pseudo-element art for the pdisc children. */
+.vinyl.has-art {
+  overflow: hidden;
+}
+.vinyl.has-art::before,
+.vinyl.has-art::after {
+  display: none;
+}
+
 /* keep the youtube iframe present (for playback) but hide the answer */
 .yt-wrap {
   position: relative;
@@ -1644,6 +1704,19 @@ select:focus {
   box-shadow: 0 0 0 4px #fff inset, 0 30px 60px -10px rgba(0, 0, 0, 0.35);
   animation: spin 8s linear infinite;
 }
+/* Picture-disc face for the big turntable: paints OVER the ::after disc
+   (z-index:1 vs the pseudo's auto) with the leader's art clipped to the
+   circle; same 8s spin period so it IS the disc surface. The 16s halo ring
+   (::before) still frames it. Absent art → the ::after disc shows unchanged. */
+.big-vinyl .disc-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 0 0 4px #fff inset;
+  animation: spin 8s linear infinite;
+}
 @keyframes rotate {
   to {
     transform: rotate(360deg);
@@ -1792,17 +1865,23 @@ select:focus {
   position: relative;
   z-index: 2;
 }
-.enemy-card .portrait {
+/* Muse picture disc replacing the old rectangular .portrait (the owner
+   complaint): art clipped to the record circle, grooves/label from the shared
+   pdisc recipe, spinning while a song is live. */
+.enemy-card .spin-disc {
   position: absolute;
-  right: -20px;
-  bottom: 0;
-  height: 82%;
-  width: auto;
+  right: -24px;
+  bottom: 12px;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
   z-index: 1;
   pointer-events: none;
-  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.18));
-  -webkit-mask: linear-gradient(180deg, #000 78%, transparent 100%);
-  mask: linear-gradient(180deg, #000 78%, transparent 100%);
+  box-shadow: 0 14px 30px -14px rgba(0, 0, 0, 0.35), 0 0 0 4px #fff;
+}
+.enemy-card .spin-disc.spinning {
+  animation: spin 8s linear infinite;
 }
 .enemy-card .stats-mini {
   position: relative;
@@ -1987,6 +2066,8 @@ select:focus {
    soft pink border, going solid-pink + tinted background for the active
    (current turn) player. */
 .player-block {
+  /* Anchor for the leader reaction bubble (.char-bubble). */
+  position: relative;
   border: 2px solid var(--line);
   border-radius: 12px;
   padding: 8px;
@@ -1996,6 +2077,47 @@ select:focus {
   border-color: var(--accent);
   background: linear-gradient(90deg, var(--pink-soft), rgba(255, 255, 255, 0.95));
   box-shadow: 0 6px 14px -8px rgba(251, 114, 153, 0.4);
+}
+
+/* ── Leader reaction bubble (Feature: character reactions) ────────────────
+   Small speech bubble popping above a player's row — their equipped leader
+   "speaking" (waiting / success / fail lines). Auto-dismissed by the hook. */
+.char-bubble {
+  position: absolute;
+  left: 44px;
+  top: -12px;
+  z-index: 5;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1.5px solid var(--accent);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 6px 14px -8px rgba(251, 114, 153, 0.5);
+  animation: bubble-pop 0.18s ease-out;
+}
+/* Speech tail pointing down toward the avatar. */
+.char-bubble::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  bottom: -6px;
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  border: inherit;
+  border-top: 0;
+  border-left: 0;
+  transform: rotate(45deg);
+}
+@keyframes bubble-pop {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.9);
+  }
 }
 .player-block .timeline {
   padding: 4px 2px 2px;
@@ -2202,6 +2324,9 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   .big-vinyl,
   .big-vinyl::before,
   .big-vinyl::after,
+  .big-vinyl .disc-face,
+  .enemy-card .spin-disc.spinning,
+  .char-bubble,
   .live-dot,
   .rank-shine,
   .rank-sparkle,
@@ -2237,6 +2362,68 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   margin-top: 6px;
 }
 
+/* Hero backdrop (Netflix browse): poster-scale artwork of the hovered/focused
+   tile (falls back to the first selection). Same deriveTileStyle artwork as
+   the tile — no images, no new assets. aria-hidden decoration only. */
+.scope-hero {
+  position: relative;
+  height: 132px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1.5px solid var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 14px 16px;
+  background-color: var(--panel-2);
+  box-shadow: 0 3px 0 var(--line-2);
+}
+.scope-hero-scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(255, 247, 224, 0.94) 0%, rgba(255, 247, 224, 0.55) 34%, rgba(255, 247, 224, 0.14) 62%, transparent 82%);
+}
+.scope-hero-eyebrow,
+.scope-hero-title,
+.scope-hero-badge {
+  position: relative;
+  z-index: 1;
+}
+.scope-hero-eyebrow {
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.scope-hero-title {
+  font-size: 26px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.05;
+  color: var(--text);
+}
+.scope-hero-badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--text);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  box-shadow: 0 1px 3px rgba(40, 25, 8, 0.35);
+}
+/* Mobile single-column stays compact — no hero. */
+@media (max-width: 640px) {
+  .scope-hero {
+    display: none;
+  }
+}
+
 .scope-row {
   min-width: 0;
   /* Skip layout/paint for off-screen rows without affecting page width. */
@@ -2259,7 +2446,8 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px 2px 8px;
+  /* Enough headroom for the hover scale-up so lifted tiles aren't clipped. */
+  padding: 6px 2px 10px;
   scroll-snap-type: x proximity;
   scrollbar-width: thin;
   scrollbar-color: var(--line-2) transparent;
@@ -2295,7 +2483,7 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   /* deriveTileStyle sets background-image/size inline; this is the fallback. */
   background-color: var(--panel-2);
   box-shadow: 0 3px 0 var(--line-2);
-  transition: transform 0.14s ease, box-shadow 0.14s ease, opacity 0.14s ease;
+  transition: transform 0.18s cubic-bezier(0.2, 0.7, 0.3, 1), box-shadow 0.18s ease, opacity 0.14s ease;
 }
 /* Promote to a compositor layer only while actually animating (hover/focus),
    not permanently on every tile — avoids the will-change layer-explosion. */
@@ -2313,21 +2501,25 @@ input[type="range"]:focus-visible::-moz-range-thumb {
 .scope-tile.is-selected:focus-visible {
   box-shadow: inset 0 0 0 2px var(--gold), 0 0 0 2px var(--gold), 0 4px 0 var(--line-2);
 }
-/* Legibility scrim so ZCOOL KuaiLe title + Bebas Neue eyebrow stay readable over art. */
+/* Legibility scrim so ZCOOL KuaiLe title + Bebas Neue eyebrow stay readable over
+   art. 4-stop ramp matches the hero scrim for typographic cohesion. */
 .scope-tile::after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(0deg, rgba(255, 247, 224, 0.92) 0%, rgba(255, 247, 224, 0.18) 46%, transparent 70%);
+  background: linear-gradient(0deg, rgba(255, 247, 224, 0.94) 0%, rgba(255, 247, 224, 0.55) 38%, rgba(255, 247, 224, 0.14) 64%, transparent 82%);
 }
 .scope-tile > * {
   position: relative;
   z-index: 1;
 }
+/* Netflix hover: lift + scale preview (transform/opacity only — the rail's
+   perf contract). z-index keeps the scaled tile above its neighbors. */
 .scope-tile:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 var(--line-2);
+  transform: translateY(-3px) scale(1.045);
+  z-index: 2;
+  box-shadow: 0 8px 0 var(--line-2);
 }
 .scope-tile:active {
   transform: translateY(0);

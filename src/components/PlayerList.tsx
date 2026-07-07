@@ -2,20 +2,25 @@
 
 import { memo } from "react";
 import type { PublicState } from "@/lib/protocol";
+import type { ReactionBubble } from "@/hooks/useCharacterReactions";
 import { Avatar } from "./Avatar";
 import { RankIcon } from "./RankIcon";
 import { Timeline } from "./Timeline";
 import { useT } from "@/lib/i18n";
 
 // Memoized: renders every player's full timeline, so without this it would
-// re-render (and re-paint all those cards) on every ~500ms clock tick. `state`
-// and `meId` are stable between ticks (only change on Realtime updates).
+// re-render (and re-paint all those cards) on every ~500ms clock tick. `state`,
+// `meId` and `reactions` are stable between ticks (state/reactions only change
+// on Realtime updates / bubble show+dismiss, never on the clock tick itself).
 export const PlayerList = memo(function PlayerList({
   state,
   meId,
+  reactions,
 }: {
   state: PublicState;
   meId: string;
+  /** Leader reaction bubbles by userId (from useCharacterReactions). */
+  reactions?: Record<string, ReactionBubble>;
 }) {
   const t = useT();
   const activeId = state.order[state.activeIndex];
@@ -40,6 +45,14 @@ export const PlayerList = memo(function PlayerList({
             >
               <div className="player-row">
                 <Avatar name={p.name} url={p.avatarUrl} size="md" />
+                {/* Leader reaction bubble — character flavor text (like `quote`),
+                    deliberately NOT routed through t(). key remounts per bubble
+                    so the pop animation replays. */}
+                {reactions?.[p.userId] && p.leaderCharacterId && (
+                  <span className="char-bubble" role="status" key={reactions[p.userId].id}>
+                    {reactions[p.userId].text}
+                  </span>
+                )}
                 <span className="name">
                   <RankIcon tier={p.tier} size={18} />
                   {p.name}

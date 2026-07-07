@@ -9,6 +9,7 @@ import {
 } from "@/lib/protocol";
 import { useT } from "@/lib/i18n";
 import { ThemeRow, type RowItem } from "./ThemeRow";
+import { deriveTileStyle } from "./tileStyle";
 
 export interface ThemeBrowserProps {
   /** Controlled selection = the settings.categories array shape (genre + pack ids). */
@@ -32,6 +33,18 @@ const PACK_KIND_HEADING: Record<PackKind, string> = {
 };
 /** Pack kinds in display order. */
 const PACK_KIND_ORDER: PackKind[] = ["franchise", "artist", "anime-op"];
+
+/** Quiz-style packs get their own rail (Netflix row-per-collection): the
+ *  Bilibili-quiz trio + 少女アニメ are registered as kind "anime-op" in
+ *  protocol.ts but browse like a separate collection. */
+const QUIZ_PACK_IDS = new Set([
+  "pack:utattemita",
+  "pack:bili-hits",
+  "pack:jp-hits",
+  "pack:shoujo-anime",
+]);
+/** Heading for the quiz rail (chrome string — flows through t()). */
+const QUIZ_HEADING = "ソングクイズ";
 
 /** A row descriptor before flat-index assignment. */
 interface RowSpec {
@@ -90,19 +103,20 @@ export function ThemeBrowser({
   const rows = useMemo<RowSpec[]>(() => {
     const specs: RowSpec[] = [];
     if (wantPacks) {
+      const toItem = (p: (typeof PACKS)[number]): RowItem => ({
+        id: p.id,
+        labelJa: p.labelJa,
+        eyebrow: "PACK" as const,
+        selected: selectedSet.has(p.id),
+      });
       for (const kind of PACK_KIND_ORDER) {
-        const packs = PACKS.filter((p) => p.kind === kind);
+        // The quiz packs are split out of "アニメOP" into their own rail below.
+        const packs = PACKS.filter((p) => p.kind === kind && !QUIZ_PACK_IDS.has(p.id));
         if (!packs.length) continue;
-        specs.push({
-          heading: PACK_KIND_HEADING[kind],
-          items: packs.map((p) => ({
-            id: p.id,
-            labelJa: p.labelJa,
-            eyebrow: "PACK" as const,
-            selected: selectedSet.has(p.id),
-          })),
-        });
+        specs.push({ heading: PACK_KIND_HEADING[kind], items: packs.map(toItem) });
       }
+      const quiz = PACKS.filter((p) => QUIZ_PACK_IDS.has(p.id));
+      if (quiz.length) specs.push({ heading: QUIZ_HEADING, items: quiz.map(toItem) });
     }
     // Genre row (always present). Dimmed when a pack 縛り is active.
     specs.push({
@@ -177,6 +191,22 @@ export function ThemeBrowser({
     setActive({ row, col });
   }, []);
 
+  // ── Hero backdrop (Netflix browse): follows hover/focus, falls back to the
+  // first selection, then the first tile. Stable callback so memo'd tiles
+  // don't re-render. Lobby variant only (vote stays compact).
+  const [previewId, setPreviewId] = useState<string | null>(null);
+  const onPreview = useCallback((id: string | null) => setPreviewId(id), []);
+  const heroItem = useMemo<RowItem | null>(() => {
+    if (variant !== "lobby") return null;
+    const id = previewId ?? selected[0] ?? rows[0]?.items[0]?.id;
+    if (!id) return null;
+    for (const r of rows) {
+      const it = r.items.find((x) => x.id === id);
+      if (it) return it;
+    }
+    return null;
+  }, [variant, previewId, selected, rows]);
+
   const onTileKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLButtonElement>, row: number, col: number) => {
       const rowLen = rows[row]?.items.length ?? 0;
@@ -239,6 +269,18 @@ export function ThemeBrowser({
       aria-multiselectable={multi}
       aria-label={t(variant === "vote" ? "ジャンルを選んで投票" : "出題テーマを選ぶ")}
     >
+      {/* Hero backdrop: pure duplication of the focused/hovered tile's info at
+          poster scale (same deterministic artwork) — aria-hidden so screen
+          readers keep the listbox as the single source of truth. */}
+      {heroItem && (
+        <div className="scope-hero" aria-hidden="true" style={deriveTileStyle(heroItem.id)}>
+          <div className="scope-hero-scrim" />
+          <span className="scope-hero-eyebrow mono">{t(heroItem.eyebrow)}</span>
+          <span className="scope-hero-title serif">{t(heroItem.labelJa)}</span>
+          {heroItem.selected && <span className="scope-hero-badge mono">✓ {t("選択中")}</span>}
+        </div>
+      )}
+
       {rows.map((r, i) => (
         <ThemeRow
           key={r.heading + ":" + i}
@@ -251,6 +293,7 @@ export function ThemeBrowser({
           onTileKeyDown={onTileKeyDown}
           onTileFocus={onTileFocus}
           registerTile={registerTile}
+          onPreview={onPreview}
         />
       ))}
 

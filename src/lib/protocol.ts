@@ -151,6 +151,10 @@ export interface PublicPlayer {
   /** Ranked tier for display only (undefined for casual/solo/guest/bot).
    *  Opaque to the engine — injected by rooms.ts AFTER the pure engine runs. */
   tier?: Tier;
+  /** Equipped party leader (player_party slot 0) character id — a cosmetic
+   *  gacha id only, same trust tier as `tier`. Opaque to the engine —
+   *  injected by rooms.ts AFTER the pure engine runs. Never an answer. */
+  leaderCharacterId?: string;
 }
 
 /** What clients need to PLAY the mystery song without learning the answer. */

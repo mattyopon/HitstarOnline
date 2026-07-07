@@ -7,6 +7,7 @@ import { getDeck, deckKey, searchQuery } from "./deck";
 import { searchYouTubeId } from "./youtube";
 import { recordTransitions } from "./stats";
 import { getTierForUser } from "./rank";
+import { CHAR_BY_ID } from "./gachaChars";
 import { FullGame, PlayerSeed, PublicState, SecretState } from "./protocol";
 import {
   addPlayer,
@@ -29,6 +30,26 @@ export function genRoomCode(len = 4): string {
   let out = "";
   for (let i = 0; i < len; i++) out += CODE_ALPHABET[bytes[i] % CODE_ALPHABET.length];
   return out;
+}
+
+/** Slot-0 party leader for a user, validated against the roster. Cosmetic
+ *  only; read via the admin client (player_party RLS is owner-only, and we
+ *  deliberately do NOT loosen it — this is the same post-engine injection
+ *  pattern as `tier`). Never throws. */
+async function getLeaderCharacterId(userId: string): Promise<string | undefined> {
+  try {
+    const admin = createAdminClient();
+    const { data } = await admin
+      .from("player_party")
+      .select("character_id")
+      .eq("user_id", userId)
+      .eq("slot", 0)
+      .maybeSingle();
+    const id = data?.character_id as string | undefined;
+    return id && CHAR_BY_ID.has(id) ? id : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 interface LoadedRoom {
@@ -204,15 +225,17 @@ export async function createRoom(
   // Ranked rooms snapshot the host's tier (fixed for the room's lifetime).
   const isRanked = !!settings.ranked;
   const roomTier = isRanked ? await getTierForUser(seed.userId) : null;
+  // Cosmetic equipped-leader id, published for reaction bubbles / disc art.
+  const leaderId = await getLeaderCharacterId(seed.userId);
   // Insert-and-retry on the UNIQUE(code) constraint (no TOCTOU window).
   for (let attempt = 0; attempt < 10; attempt++) {
     const code = genRoomCode(6);
     const game = createLobby(code, seed, settings);
-    // Inject tier into the host's public player (post-engine; engine stays pure).
-    if (roomTier) {
-      const host = game.public.players.find((p) => p.userId === seed.userId);
-      if (host) host.tier = roomTier;
-    }
+    // Inject tier + leader id into the host's public player (post-engine;
+    // engine stays pure and gacha-agnostic).
+    const host = game.public.players.find((p) => p.userId === seed.userId);
+    if (host && roomTier) host.tier = roomTier;
+    if (host && leaderId) host.leaderCharacterId = leaderId;
     const { data: room, error } = await admin
       .from("rooms")
       .insert({
@@ -246,6 +269,8 @@ export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame
   // (e.g. game already started) never leaves lingering read access.
   // Both casual and ranked rooms are open to everyone (guests included).
   let lastConflict: ConflictError | null = null;
+  // Cosmetic equipped-leader id (resolved once, outside the retry loop).
+  const leaderId = await getLeaderCharacterId(seed.userId);
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     const loaded = await loadByCode(code);
     if (!loaded) throw new NotFoundError("部屋が見つかりません");
@@ -257,6 +282,13 @@ export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame
     if (loaded.game.public.settings.ranked) {
       const joiner = next.public.players.find((p) => p.userId === seed.userId);
       if (joiner) joiner.tier = await getTierForUser(seed.userId);
+    }
+    // Stamp the joiner's equipped leader (post-engine; opaque to the engine,
+    // same pattern as tier). Also refreshes on reconnect, so a party change
+    // propagates the next time the player re-joins.
+    {
+      const joiner = next.public.players.find((p) => p.userId === seed.userId);
+      if (joiner && leaderId) joiner.leaderCharacterId = leaderId;
     }
     try {
       if (next.public.version !== expected) {

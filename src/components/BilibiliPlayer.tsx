@@ -32,6 +32,7 @@ export function BilibiliPlayer({
   reveal,
   volume,
   onUnavailable,
+  discArt,
 }: {
   /** Bilibili BV id (named videoId to mirror YouTubePlayer's contract). */
   videoId: string | null;
@@ -45,6 +46,9 @@ export function BilibiliPlayer({
   volume?: number;
   /** Called when the embed never appears to start (region/login/blocked). */
   onUnavailable?: () => void;
+  /** Current-turn leader art printed ON the cover vinyl (picture disc).
+   *  null/undefined = generic vinyl, unchanged. */
+  discArt?: { src: string; focus: string } | null;
 }) {
   const t = useT();
   const [expanded, setExpanded] = useState(false);
@@ -135,7 +139,31 @@ export function BilibiliPlayer({
         </div>
         {!reveal && (
           <div className="yt-cover">
-            <div className={"vinyl" + (playing && videoId ? " spinning" : "")} aria-hidden="true" />
+            {/* Picture disc: the leader's face is printed ON the vinyl surface
+                (clipped to the circle, grooves over the art, label on top) and
+                the whole disc spins as one piece. No art → classic vinyl. */}
+            <div
+              className={
+                "vinyl" +
+                (playing && videoId ? " spinning" : "") +
+                (discArt ? " has-art" : "")
+              }
+              aria-hidden="true"
+            >
+              {discArt && (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="pdisc-art"
+                    src={discArt.src}
+                    alt=""
+                    style={{ objectPosition: discArt.focus }}
+                  />
+                  <span className="pdisc-grooves" />
+                  <span className="pdisc-label" />
+                </>
+              )}
+            </div>
             <div className="muted" style={{ fontWeight: 700 }}>
               {videoId ? t("♪ 再生中 — 曲名はナイショ！") : t("音源を準備中…")}
             </div>

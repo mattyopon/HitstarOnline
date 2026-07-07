@@ -25,6 +25,9 @@ import { NowSpinningCard } from "./NowSpinningCard";
 import { DEFAULT_SETTINGS, type PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
 import { playRankEntrySound } from "@/lib/rankSound";
+import { CHAR_BY_ID } from "@/lib/gachaChars";
+import { useCharacterVoice } from "@/hooks/useCharacterVoice";
+import { useCharacterReactions } from "@/hooks/useCharacterReactions";
 import { useT } from "@/lib/i18n";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
@@ -38,6 +41,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const googleToken = useGoogleToken();
 
   const [soundOn, setSoundOn] = useState(false);
+  // Character voice (audio files land later — silently no-ops until then) and
+  // leader reaction bubbles for every player, derived from public state only.
+  const playVoice = useCharacterVoice(soundOn);
+  const reactions = useCharacterReactions(state, playVoice);
   const [ytVolume, setYtVolume] = useState<number>(() => {
     if (typeof window === "undefined") return 70;
     const v = Number(localStorage.getItem("hitstar_yt_volume"));
@@ -323,6 +330,11 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const showVoice = isMultiplayer && voiceEnabled();
   const activeId = state.order[state.activeIndex];
   const activePlayer = state.players.find((p) => p.userId === activeId);
+  // Current-turn player's equipped leader (published cosmetic id, Feature A).
+  // undefined for bots/legacy players → all consumers fall back gracefully.
+  const turnLeader = activePlayer?.leaderCharacterId
+    ? CHAR_BY_ID.get(activePlayer.leaderCharacterId)
+    : undefined;
   const isActive = activeId === meId;
   const inGame = state.phase !== "lobby";
   const revealMode = state.phase === "reveal" || state.phase === "gameover";
@@ -431,7 +443,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               onStart={() => act("/api/game/start", {})}
             />
             <div className="stack">
-              <PlayerList state={state} meId={meId} />
+              <PlayerList state={state} meId={meId} reactions={reactions} />
               {showVoice && <VoicePanel code={code} players={state.players} />}
             </div>
           </div>
@@ -458,7 +470,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               onVote={(categories) => act("/api/game/vote", { categories })}
             />
             <div className="stack">
-              <PlayerList state={state} meId={meId} />
+              <PlayerList state={state} meId={meId} reactions={reactions} />
               {showVoice && <VoicePanel code={code} players={state.players} />}
             </div>
           </div>
@@ -507,6 +519,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               trackUnavailable={trackUnavailable}
               onUnavailable={() => setTrackUnavailable(true)}
               countdownEl={countdownEl}
+              discArt={turnLeader ? { src: turnLeader.img, focus: turnLeader.focus } : null}
             />
 
             {/* Free skip — open to ANY participant during placing (no token cost),
@@ -622,11 +635,15 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
           </div>
 
           <div className="stack">
-            {/* Decorative "Now Spinning" muse card (mock .enemy-card). Purely
-                cosmetic framing — no per-player character exists server-side, so
-                the muse is derived from the active player's name only. */}
-            <NowSpinningCard seed={activePlayer?.name ?? state.code} live={playing} />
-            <PlayerList state={state} meId={meId} />
+            {/* "Now Spinning" muse card (mock .enemy-card). Shows the current
+                turn player's equipped leader when published (leaderCharacterId);
+                otherwise falls back to the cosmetic name-derived muse. */}
+            <NowSpinningCard
+              seed={activePlayer?.name ?? state.code}
+              live={playing}
+              leaderCharacterId={activePlayer?.leaderCharacterId}
+            />
+            <PlayerList state={state} meId={meId} reactions={reactions} />
             {showVoice && <VoicePanel code={code} players={state.players} />}
             {me && (
               <div className="card stack" style={{ padding: 14 }}>

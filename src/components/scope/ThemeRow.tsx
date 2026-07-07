@@ -35,6 +35,8 @@ export interface ThemeRowProps {
   onTileFocus: (rowIndex: number, indexInRow: number) => void;
   /** Register the tile DOM node for programmatic focus/scrollIntoView. */
   registerTile: (flatIndex: number, el: HTMLButtonElement | null) => void;
+  /** Hero preview: tile id on hover/focus, null when the pointer leaves. */
+  onPreview?: (id: string | null) => void;
 }
 
 /**
@@ -53,6 +55,7 @@ export function ThemeRow({
   onTileKeyDown,
   onTileFocus,
   registerTile,
+  onPreview,
 }: ThemeRowProps) {
   const t = useT();
   const stripRef = useRef<HTMLDivElement>(null);
@@ -106,6 +109,7 @@ export function ThemeRow({
         onPointerUp={endDrag}
         onPointerLeave={endDrag}
         onClickCapture={onClickCapture}
+        onMouseLeave={() => onPreview?.(null)}
       >
         {items.map((it, i) => {
           const flat = baseFlatIndex + i;
@@ -123,6 +127,7 @@ export function ThemeRow({
               onToggle={onToggle}
               onKeyDown={(e) => onTileKeyDown(e, rowIndex, i)}
               onFocus={() => onTileFocus(rowIndex, i)}
+              onPreview={onPreview}
             />
           );
         })}

@@ -21,6 +21,8 @@ export interface ThemeTileProps {
   onToggle: (id: string) => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
   onFocus: () => void;
+  /** Hero preview: reports this tile's id on hover/focus (stable callback). */
+  onPreview?: (id: string | null) => void;
 }
 
 /**
@@ -30,7 +32,19 @@ export interface ThemeTileProps {
  */
 export const ThemeTile = memo(
   forwardRef<HTMLButtonElement, ThemeTileProps>(function ThemeTile(
-    { id, labelJa, eyebrow, selected, disabled, tabIndex, tally, onToggle, onKeyDown, onFocus },
+    {
+      id,
+      labelJa,
+      eyebrow,
+      selected,
+      disabled,
+      tabIndex,
+      tally,
+      onToggle,
+      onKeyDown,
+      onFocus,
+      onPreview,
+    },
     ref,
   ) {
     const t = useT();
@@ -48,7 +62,11 @@ export const ThemeTile = memo(
         style={deriveTileStyle(id)}
         onClick={() => !disabled && onToggle(id)}
         onKeyDown={onKeyDown}
-        onFocus={onFocus}
+        onFocus={() => {
+          onFocus();
+          onPreview?.(id); // keyboard users drive the hero too
+        }}
+        onMouseEnter={() => onPreview?.(id)}
         title={title}
       >
         <span className="scope-tile-eyebrow mono">{t(eyebrow)}</span>
