@@ -79,6 +79,20 @@ export function pickCharacter(rarity: Rarity, banner: Banner, pool: readonly Cha
   return filtered[Math.floor(Math.random() * filtered.length)].id;
 }
 
+/**
+ * The ACTUAL probability an SSR resolves to the pickup character. The 50/50
+ * miss falls through to a uniform draw over ALL SSRs — pickup included — so
+ * the effective rate is PICKUP_RATE + (1 - PICKUP_RATE) / nSSR (≈66.7% with 3
+ * SSRs), deliberately player-favorable. The rates panel must show THIS number,
+ * not the raw PICKUP_RATE (understating odds is fine legally but was flagged
+ * as a display/implementation mismatch — display the truth instead).
+ */
+export function effectivePickupRate(pool: readonly Character[] = GACHA_CHARS): number {
+  const nSSR = pool.filter((c) => c.rarity === "SSR").length;
+  if (nSSR === 0) return PICKUP_RATE;
+  return PICKUP_RATE + (1 - PICKUP_RATE) / nSSR;
+}
+
 export interface PullOutcome {
   characterId: string;
   rarity: Rarity;

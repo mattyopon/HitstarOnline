@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useT } from "@/lib/i18n";
 import { GACHA_CHARS, type Rarity } from "@/lib/gachaChars";
-import { RARITY_STARS, RARITY_RATES, PITY_THRESHOLD, PICKUP_RATE } from "@/lib/rarity";
-import { DEFAULT_BANNER } from "@/lib/gachaRoll";
+import { RARITY_STARS, RARITY_RATES, PITY_THRESHOLD } from "@/lib/rarity";
+import { DEFAULT_BANNER, effectivePickupRate } from "@/lib/gachaRoll";
 import { api } from "@/lib/clientApi";
 import type { CharacterListResponse, GachaRollResponse, GachaRollResultItem, PlayerGems } from "@/lib/gachaTypes";
 
@@ -322,7 +322,10 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
             <div className="rates-note">
               {t("天井: {n}回までに★★★★★確定", { n: PITY_THRESHOLD + 1 })}
               <br />
-              {t("{pct}でピックアップ確定", { pct: pct(PICKUP_RATE) })}
+              {/* Show the TRUE odds: the 50/50 miss re-draws from all SSRs
+                  (pickup included), so the effective rate is higher than the
+                  raw 50% — display what players actually get. */}
+              {t("★★★★★時 約{pct}でピックアップ", { pct: pct(effectivePickupRate()) })}
             </div>
           </div>
 

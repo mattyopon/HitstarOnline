@@ -426,6 +426,8 @@ export const PACKS: PackDef[] = [
   { id: "pack:higedan", labelJa: "Official髭男dism縛り", labelEn: "Official HIGE DANdism", kind: "artist", accent: "#a87830" },
   { id: "pack:xjapan", labelJa: "X JAPAN縛り", labelEn: "X JAPAN", kind: "artist", accent: "#3d2e1a" },
   { id: "pack:arashi", labelJa: "嵐縛り", labelEn: "Arashi", kind: "artist", accent: "#c44a3a" },
+  { id: "pack:aimyon", labelJa: "あいみょん縛り", labelEn: "Aimyon", kind: "artist", accent: "#3a6b4a" },
+  { id: "pack:kinggnu", labelJa: "King Gnu縛り", labelEn: "King Gnu", kind: "artist", accent: "#3d2e1a" },
   // ── Anime franchise packs (>= 12 unique year-verified songs in the deck) ─────
   { id: "pack:onepiece", labelJa: "ONE PIECE縛り", labelEn: "One Piece", kind: "franchise", accent: "#c44a3a" },
   { id: "pack:conan", labelJa: "名探偵コナン縛り", labelEn: "Detective Conan", kind: "franchise", accent: "#3d2e1a" },
