@@ -393,6 +393,14 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     (state.settings.allowExtend ?? true) &&
     !state.listeningExtended &&
     me.tokens >= (state.settings.extendCost ?? 1);
+  // Non-active listeners can stretch the same one-per-turn window for FREE —
+  // they gain no placement advantage, they just want to keep hearing the song.
+  const canExtendFree =
+    !!me &&
+    !isActive &&
+    isListening &&
+    (state.settings.allowExtend ?? true) &&
+    !state.listeningExtended;
 
   const settingsModal = showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />;
   const headerEl = (
@@ -571,6 +579,17 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                         name: activePlayer?.name ?? "",
                       })}
                 </div>
+                {canExtendFree && (
+                  <button
+                    className="btn secondary"
+                    disabled={busy}
+                    onClick={() => act("/api/game/extend", {})}
+                  >
+                    🎧 {t("無料でもっと聴く（+{s}秒・全員に延長）", {
+                      s: state.settings.extendSeconds ?? 60,
+                    })}
+                  </button>
+                )}
                 {me && <Timeline cards={me.timeline} compact />}
               </div>
             )}

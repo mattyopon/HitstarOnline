@@ -582,14 +582,23 @@ export function placeCard(
   return g;
 }
 
-/** Spend a token to extend the listening window (一回のみ / one-time per turn). */
+/** Extend the listening window (一回のみ / one-time per turn, shared by the room).
+ *  The ACTIVE player pays extendCost; any other CONNECTED member listening along
+ *  extends for FREE (no placement advantage to buy — they just want to keep
+ *  hearing the song). Both paths consume the single listeningExtended flag, so
+ *  a turn never stretches beyond one extension total. */
 export function extendListening(game: FullGame, userId: string, now: number): FullGame {
   const g = clone(game);
   const s = g.public.settings;
   if (g.public.phase !== "placing") throw new GameError("今は試聴を延長できません");
   if (!(s.allowExtend ?? DEFAULT_SETTINGS.allowExtend)) throw new GameError("試聴延長は無効です");
   const active = activePlayer(g.public);
-  if (active.userId !== userId) throw new GameError("あなたの番ではありません");
+  const requester = g.public.players.find((p) => p.userId === userId);
+  if (!requester) throw new GameError("この部屋のメンバーではありません");
+  const isActiveReq = active.userId === userId;
+  if (!isActiveReq && !requester.connected) {
+    throw new GameError("切断中は試聴を延長できません");
+  }
   if (g.public.listeningExtended) throw new GameError("試聴延長は1回までです");
 
   const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
@@ -597,10 +606,10 @@ export function extendListening(game: FullGame, userId: string, now: number): Fu
   if (now >= start + dur || g.public.listeningEndedAt != null) {
     throw new GameError("試聴は既に終了しました");
   }
-  const cost = s.extendCost ?? DEFAULT_SETTINGS.extendCost;
-  if (active.tokens < cost) throw new GameError("トークンが足りません");
+  const cost = isActiveReq ? s.extendCost ?? DEFAULT_SETTINGS.extendCost : 0;
+  if (requester.tokens < cost) throw new GameError("トークンが足りません");
 
-  active.tokens -= cost;
+  requester.tokens -= cost;
   g.public.listeningExtended = true;
   g.public.listenDurationMs = dur + (s.extendSeconds ?? DEFAULT_SETTINGS.extendSeconds) * 1000;
   // Placement deadline shifts with the longer listening window; the early-bonus

@@ -298,6 +298,55 @@ console.log("Scenario G (extend + early bonus):");
   ok("alice +2 early bonus (1→3)", g.public.players[0].tokens === 3);
 }
 
+// ── Scenario G2: non-active listener extends for FREE (shared once-per-turn) ─
+console.log("Scenario G2 (free extension by a non-active listener):");
+{
+  // alice active [1960], bob non-active [1965]; mystery 5(1985) for alice.
+  let g = createGame(
+    "ROOMG2",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 5],
+    songs,
+    1000,
+    { startingTokens: 2, listenSeconds: 30, placementSeconds: 30, extendSeconds: 60 },
+  );
+
+  // A non-member can't extend.
+  let threw = false;
+  try {
+    extendListening(g, "mallory", 5000);
+  } catch {
+    threw = true;
+  }
+  ok("non-member extend rejected", threw);
+
+  // A disconnected non-active player can't extend (only live listeners can).
+  const gDisc = setConnected(g, "bob", false);
+  threw = false;
+  try {
+    extendListening(gDisc, "bob", 5000);
+  } catch {
+    threw = true;
+  }
+  ok("disconnected non-active extend rejected", threw);
+
+  // Connected non-active bob extends: FREE, same flag/duration/deadline shift.
+  g = extendListening(g, "bob", 5000);
+  ok("free-extended flag set", g.public.listeningExtended === true);
+  ok("listen now 90s", g.public.listenDurationMs === 90000);
+  ok("bob paid nothing (2→2)", g.public.players[1].tokens === 2);
+  ok("placementDeadline = start+120s", g.public.placementDeadline === 1000 + 120000);
+
+  // The shared once-per-turn flag is consumed — even the active player can't stack.
+  threw = false;
+  try {
+    extendListening(g, "alice", 6000);
+  } catch {
+    threw = true;
+  }
+  ok("active extend after free extend rejected", threw);
+}
+
 // ── Scenario H: no early bonus after the 10s window ────────────────────────
 console.log("Scenario H (no early bonus when late):");
 {
