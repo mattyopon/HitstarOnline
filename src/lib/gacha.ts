@@ -42,6 +42,9 @@ export interface RollOutcome {
  * daily pull, the balance is unchanged so the caller passes the current
  * balance through).
  */
+/** How many times to re-roll if a concurrent roll advanced pity under us. */
+const PITY_CAS_MAX_ATTEMPTS = 6;
+
 async function persistRoll(
   admin: ReturnType<typeof createAdminClient>,
   userId: string,
@@ -50,49 +53,70 @@ async function persistRoll(
   startingPity: number,
   gemsAfterDebit: number,
 ): Promise<RollOutcome> {
-  const { outcomes, pityNew } = rollMany(count, startingPity, banner);
+  // Roll + persist under a pity CAS: the pity write only lands if pity_count is
+  // still the value we rolled from (apply_gacha_pull_batch_v2, 0008). If a
+  // concurrent roll for the same user advanced pity first, the RPC returns
+  // false, we re-read the committed pity and re-roll from it. This closes the
+  // read→compute→write race that let concurrent requests mint multiple
+  // guaranteed SSRs from a single pity (or clobber each other's pity progress).
+  let currentPity = startingPity;
+  for (let attempt = 0; attempt < PITY_CAS_MAX_ATTEMPTS; attempt++) {
+    const { outcomes, pityNew } = rollMany(count, currentPity, banner);
 
-  // Snapshot which characters are already owned BEFORE the batch is applied,
-  // purely to compute each outcome's "isNew" flag for the response. This read
-  // can race a concurrent roll (another request could insert a row between
-  // this select and the write below), but that only risks a display-only
-  // "isNew" flag being stale for one response — it never affects what gets
-  // persisted. The actual dupes/pity mutation is a single atomic RPC call
-  // (apply_gacha_pull_batch, 0006_gacha.sql) so concurrent rolls can never
-  // lose an update to either field, unlike a per-outcome select-then-update.
-  const uniqueIds = Array.from(new Set(outcomes.map((o) => o.characterId)));
-  const { data: existingRows } = await admin
-    .from("player_characters")
-    .select("character_id")
-    .eq("user_id", userId)
-    .in("character_id", uniqueIds);
-  const ownedBefore = new Set((existingRows ?? []).map((r) => r.character_id));
+    // Snapshot ownership BEFORE the grant, purely to compute the display-only
+    // "isNew" flag (a stale read here at worst mislabels isNew for one response;
+    // the grant itself is atomic and idempotent in the RPC).
+    const uniqueIds = Array.from(new Set(outcomes.map((o) => o.characterId)));
+    const { data: existingRows } = await admin
+      .from("player_characters")
+      .select("character_id")
+      .eq("user_id", userId)
+      .in("character_id", uniqueIds);
+    const ownedBefore = new Set((existingRows ?? []).map((r) => r.character_id));
 
-  const seenInBatch = new Set<string>();
-  const results: GachaRollResultItem[] = outcomes.map((outcome) => {
-    const isNew = !ownedBefore.has(outcome.characterId) && !seenInBatch.has(outcome.characterId);
-    seenInBatch.add(outcome.characterId);
-    return { characterId: outcome.characterId, rarity: outcome.rarity, isNew };
-  });
+    const { data: applied, error: applyErr } = await admin.rpc("apply_gacha_pull_batch_v2", {
+      p_user_id: userId,
+      p_character_ids: outcomes.map((o) => o.characterId),
+      p_pity_expected: currentPity,
+      p_pity_new: pityNew,
+    });
+    if (applyErr) throw applyErr;
 
-  const { error: applyErr } = await admin.rpc("apply_gacha_pull_batch", {
-    p_user_id: userId,
-    p_character_ids: outcomes.map((o) => o.characterId),
-    p_pity_new: pityNew,
-  });
-  if (applyErr) throw applyErr;
+    if (applied !== true) {
+      // Stale pity — another roll landed first. Re-read the committed value and
+      // re-roll from it. No characters were granted for this rejected attempt.
+      const { data: fresh } = await admin
+        .from("player_gems")
+        .select("pity_count")
+        .eq("user_id", userId)
+        .maybeSingle();
+      currentPity = (fresh?.pity_count as number | undefined) ?? currentPity;
+      continue;
+    }
 
-  await admin.from("gacha_pulls").insert(
-    outcomes.map((o) => ({
-      user_id: userId,
-      banner_id: banner.id,
-      character_id: o.characterId,
-      rarity: o.rarity,
-      pity_at: o.pityAt,
-    })),
-  );
+    const seenInBatch = new Set<string>();
+    const results: GachaRollResultItem[] = outcomes.map((outcome) => {
+      const isNew = !ownedBefore.has(outcome.characterId) && !seenInBatch.has(outcome.characterId);
+      seenInBatch.add(outcome.characterId);
+      return { characterId: outcome.characterId, rarity: outcome.rarity, isNew };
+    });
 
-  return { results, gemsRemaining: gemsAfterDebit };
+    await admin.from("gacha_pulls").insert(
+      outcomes.map((o) => ({
+        user_id: userId,
+        banner_id: banner.id,
+        character_id: o.characterId,
+        rarity: o.rarity,
+        pity_at: o.pityAt,
+      })),
+    );
+
+    return { results, gemsRemaining: gemsAfterDebit };
+  }
+
+  // Extremely unlikely: pity kept shifting under us every attempt. The gems were
+  // already debited, so surface a retryable error rather than silently dropping.
+  throw new Error("ガチャの確定に失敗しました。もう一度お試しください。");
 }
 
 /**
