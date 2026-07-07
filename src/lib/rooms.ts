@@ -99,7 +99,10 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
   if (song.provider === "bilibili") {
     game.public.current.provider = "bilibili";
     game.public.current.bvid = song.bvid;
-    game.public.current.isCover = true;
+    // Follow the deck's own flag: bili-hits are the original songs (not covers),
+    // so forcing isCover=true here mislabels them ("歌ってみた" banner / wrong
+    // "guess the original year" framing). utattemita entries carry isCover:true.
+    game.public.current.isCover = song.isCover ?? false;
     reanchorListenClock(game, !!song.bvid);
     return;
   }

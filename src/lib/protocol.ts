@@ -215,7 +215,13 @@ export interface RevealInfo {
   coverArtist?: string;
   /** Active player's placement, or null if they timed out. */
   placementSlot: number | null;
+  /** Whether the active player KEPT the card = placement correct AND (in pro/
+   *  expert) naming correct. Drives the card award, not raw placement accuracy. */
   activeCorrect: boolean;
+  /** Pure placement correctness (year in the right slot), independent of naming.
+   *  Used for category "placement accuracy" stats so a right-place/wrong-name
+   *  turn in pro/expert isn't miscounted as a placement miss. */
+  placementCorrect: boolean;
   /** Who ultimately won the card (active player or a stealer), or null. */
   awardedTo: string | null;
   /** True when the active player bought (auto-placed) the card. */
@@ -288,6 +294,10 @@ export interface SecretState {
   currentSongId?: number;
   /** NPC difficulty by bot userId (server-only; never exposed publicly). */
   bots?: Record<string, { difficulty: BotDifficulty }>;
+  /** Free-skip throttle: the round the skip counter belongs to + its count.
+   *  Server-only so it can't be tampered with; reset lazily when round changes. */
+  skipRound?: number;
+  skipCount?: number;
 }
 
 export interface FullGame {

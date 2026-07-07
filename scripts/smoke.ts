@@ -31,6 +31,8 @@ import {
   needsTrackResolution,
   answerAnimeQuiz,
   advanceReveal,
+  systemSkip,
+  MAX_FREE_SKIPS_PER_TURN,
 } from "../src/lib/engine";
 import {
   Song,
@@ -931,6 +933,81 @@ console.log("Scenario S (anime-quiz bonus):");
     "carol's timeline grew normally (turn 3)",
     g.public.players.find((p) => p.userId === "carol")!.timeline.length === 2,
   );
+}
+
+// ── Scenario T: free-skip throttle + opaque mystery cardId ──────────────────
+console.log("Scenario T (free-skip cap + opaque cardId):");
+{
+  let g = createGame(
+    "ROOMTT",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    Array.from({ length: 12 }, (_, i) => i),
+    songs,
+    1000,
+    { startingTokens: 0 },
+  );
+  // The public mystery cardId must NOT encode the songId (deck.json is public).
+  ok("mystery cardId is opaque (not s<songId>)", !/^s\d+$/.test(g.public.current!.cardId));
+  ok("mystery cardId uses opaque prefix", g.public.current!.cardId.startsWith("t"));
+
+  // Up to MAX_FREE_SKIPS_PER_TURN free skips are allowed within one turn.
+  for (let i = 0; i < MAX_FREE_SKIPS_PER_TURN; i++) g = systemSkip(g, songs, 2000 + i);
+  ok(`${MAX_FREE_SKIPS_PER_TURN} free skips allowed in a turn`, g.public.phase === "placing");
+
+  // The next skip in the SAME turn is rejected (deck-burn / grief guard).
+  let threw = false;
+  try {
+    g = systemSkip(g, songs, 9000);
+  } catch {
+    threw = true;
+  }
+  ok("free skip beyond cap rejected", threw);
+
+  // cardId changes on each redraw so skip-song's echo-guard still distinguishes.
+  const first = createGame("ROOMT2", [{ userId: "a", name: "A" }, { userId: "b", name: "B" }],
+    Array.from({ length: 6 }, (_, i) => i), songs, 1000, { startingTokens: 0 });
+  const id1 = first.public.current!.cardId;
+  const after = systemSkip(first, songs, 2000);
+  ok("cardId changes after a redraw", after.public.current!.cardId !== id1);
+}
+
+// ── Scenario U: alias / artistAlias naming match ────────────────────────────
+console.log("Scenario U (alias naming match):");
+{
+  const aliasSongs: Song[] = [
+    { title: "A", artist: "AA", year: 1970 },
+    { title: "B", artist: "BB", year: 1990 },
+    {
+      title: "C.R.E.A.M.",
+      artist: "Wu-Tang Clan",
+      year: 1994,
+      aliases: ["Cash Rules Everything Around Me"],
+      artistAliases: ["Wu Tang Clan"],
+    },
+  ];
+  // alice [1970]; mystery 2 (C.R.E.A.M., 1994) for alice, original mode.
+  let g = createGame(
+    "ROOMUU",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 2],
+    aliasSongs,
+    1000,
+    { startingTokens: 0, mode: "original" },
+  );
+  // Correct placement (after 1970) + answer using the DECK'S OWN alias spellings.
+  g = placeCard(
+    g,
+    "alice",
+    1,
+    { title: "Cash Rules Everything Around Me", artist: "Wu Tang Clan" },
+    aliasSongs,
+    2000,
+  );
+  const award = g.public.reveal!.tokenAwards.find((a) => a.userId === "alice");
+  ok("alias title matched", !!award && award.namedTitle === true);
+  ok("alias artist matched", !!award && award.namedArtist === true);
+  ok("alias title+artist earns the naming token", !!award && award.tokensGained === 1);
+  ok("placementCorrect exposed on reveal", g.public.reveal!.placementCorrect === true);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

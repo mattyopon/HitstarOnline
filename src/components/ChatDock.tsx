@@ -40,6 +40,15 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
   // Ids already requested (in-flight or done) — a ref so marking one doesn't
   // itself re-trigger the effect below (see the bug note there).
   const requestedIds = useRef<Set<string>>(new Set());
+  // True while mounted — gates late async setState (translation responses that
+  // arrive after unmount) without cancelling in-flight batches on every rerender.
+  const mountedRef = useRef(true);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
   const [fly, setFly] = useState<FlyItem[]>([]);
   const flown = useRef<Set<string>>(new Set());
   const listRef = useRef<HTMLDivElement>(null);
@@ -86,14 +95,21 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
     );
     if (!pending.length) return;
     for (const m of pending) requestedIds.current.add(m.id);
-    let cancelled = false;
+    // NOTE: do NOT cancel the in-flight batch on cleanup. `messages` is in the
+    // deps and changes on every new chat/emote, so a per-run `cancelled` flag
+    // would abort the fetch whenever a message arrives mid-translation — and
+    // because these ids are already in requestedIds, they'd never be retried,
+    // permanently stranding that translation (the exact self-cancel bug this
+    // component had before). setTranslations is an id-keyed merge, so a late
+    // response applies safely; we only need to avoid setState after UNMOUNT,
+    // which mountedRef guards.
     (async () => {
       try {
         const { translations: out } = await api<{ translations: string[] }>("/api/translate", {
           texts: pending.map((m) => m.text),
           target: myLang,
         });
-        if (cancelled) return;
+        if (!mountedRef.current) return;
         setTranslations((prev) => {
           const next = { ...prev };
           pending.forEach((m, i) => {
@@ -102,7 +118,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
           return next;
         });
       } catch {
-        if (cancelled) return;
+        if (!mountedRef.current) return;
         // Network/API failure: fall back to originals so the danmaku "wait
         // for translation" gate below doesn't stall on this message forever.
         setTranslations((prev) => {
@@ -112,9 +128,6 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
         });
       }
     })();
-    return () => {
-      cancelled = true;
-    };
   }, [messages, myLang]);
 
   // Spawn danmaku once a message's final (translated) text is available.

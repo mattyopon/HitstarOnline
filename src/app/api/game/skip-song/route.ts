@@ -32,8 +32,11 @@ export async function POST(req: Request) {
         throw new GameError("この部屋のメンバーではありません");
       }
       if (g.public.phase !== "placing") return g;
-      // Only skip the card the client is actually looking at (idempotent vs races).
-      if (typeof body.cardId === "string" && g.public.current?.cardId !== body.cardId) return g;
+      // Only skip the card the client is actually looking at (idempotent vs
+      // races). cardId is REQUIRED: without it a client could blind-skip a card
+      // it never saw, so a missing/mismatched cardId is a silent no-op. Combined
+      // with systemSkip's per-turn cap this blocks deck-burn griefing.
+      if (typeof body.cardId !== "string" || g.public.current?.cardId !== body.cardId) return g;
       skippedSongId = currentSongId(g);
       return systemSkip(g, songs, now);
     });

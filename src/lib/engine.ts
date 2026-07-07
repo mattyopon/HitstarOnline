@@ -46,6 +46,13 @@ function cardId(songId: number): string {
   return `s${songId}`;
 }
 
+/** Opaque public id for the CURRENT (unrevealed) mystery card. Derived from the
+ *  server-only draw position so it can't be reversed to the songId, yet is
+ *  deterministic per state (CAS-safe) and unique per (re)draw. */
+function mysteryCardId(g: FullGame): string {
+  return `t${(hash32(`${g.public.code}|${g.secret.drawPos}`) >>> 0).toString(36)}`;
+}
+
 function materialize(songId: number, songs: Song[]): TimelineCard {
   const s = songs[songId];
   if (!s) throw new GameError(`unknown songId ${songId}`);
@@ -306,14 +313,19 @@ function beginTurn(g: FullGame, songs: Song[], now: number): void {
   const drawn = songs[songId];
   const provider = drawn?.provider ?? "youtube";
   g.public.current = {
-    cardId: cardId(songId),
+    // Opaque per-draw token — NOT derivable to the songId. Publishing `s<songId>`
+    // would leak the answer (deck.json is public in the repo, so an index maps
+    // straight to title/artist/year). drawPos is server-only, so hashing it hides
+    // the identity while staying deterministic under CAS retries and changing on
+    // every (re)draw so skip-song's echo-guard still distinguishes cards.
+    cardId: mysteryCardId(g),
     youtubeId: null,
     startSeconds: g.public.settings.startSeconds,
     startedAt: now,
     // Carry the (non-answer) playback hints. For a bilibili card the playable id
     // (bvid) is left null/absent here and resolved server-side, mirroring how the
     // YouTube id is resolved later — engine purity is preserved.
-    ...(provider === "bilibili" ? { provider, isCover: drawn?.isCover ?? true } : {}),
+    ...(provider === "bilibili" ? { provider, isCover: drawn?.isCover ?? false } : {}),
   };
   g.public.placement = undefined;
   g.public.guess = undefined;
@@ -634,13 +646,34 @@ export function skipSong(game: FullGame, userId: string, songs: Song[], now: num
   return g;
 }
 
+/** Max free (no-token) system skips allowed within a single turn. Generous
+ *  enough for "a few players can't play this track" yet low enough that nobody
+ *  can burn the whole deck to force an early game-over/win. */
+export const MAX_FREE_SKIPS_PER_TURN = 5;
+
 /** Free "system" skip of the current song: redraw the mystery card with no
  *  token cost and no turn change. No-op outside the placing phase. Used for
- *  unplayable tracks and for the free skip button (any participant). */
+ *  unplayable tracks and for the free skip button (any participant).
+ *  Throttled per turn (MAX_FREE_SKIPS_PER_TURN) so nobody can spam the deck to
+ *  exhaustion and force a standings-based win. */
 export function systemSkip(game: FullGame, songs: Song[], now: number): FullGame {
   if (game.public.phase !== "placing") return game;
   const g = clone(game);
+  // Lazily reset the counter when a real new turn (round) began.
+  if (g.secret.skipRound !== g.public.round) {
+    g.secret.skipRound = g.public.round;
+    g.secret.skipCount = 0;
+  }
+  if ((g.secret.skipCount ?? 0) >= MAX_FREE_SKIPS_PER_TURN) {
+    throw new GameError("このターンのスキップ上限に達しました");
+  }
+  g.secret.skipCount = (g.secret.skipCount ?? 0) + 1;
+  const savedRound = g.secret.skipRound;
+  const savedCount = g.secret.skipCount;
   beginTurn(g, songs, now);
+  // beginTurn doesn't touch these, but keep them explicit against future churn.
+  g.secret.skipRound = savedRound;
+  g.secret.skipCount = savedCount;
   g.public.version++;
   return g;
 }
@@ -685,6 +718,7 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
       : {}),
     placementSlot: slot,
     activeCorrect: true,
+    placementCorrect: true,
     awardedTo: active.userId,
     bought: true,
     steals: [],
@@ -804,8 +838,13 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     placementSlot !== null && isPlacementCorrect(active.timeline, placementSlot, song.year);
 
   // Optional naming (active player). Original: earns a token if BOTH correct.
-  const namedTitle = looseMatch(g.public.guess?.title, song.title);
-  const namedArtist = looseMatch(g.public.guess?.artist, song.artist);
+  // Accept any of the deck's alternate titles/artist spellings (aliases /
+  // artistAliases) so cross-language/romanized/acronym-expanded answers that the
+  // deck itself provides are not scored wrong.
+  const titleForms = [song.title, ...(song.aliases ?? [])];
+  const artistForms = [song.artist, ...(song.artistAliases ?? [])];
+  const namedTitle = titleForms.some((t) => looseMatch(g.public.guess?.title, t));
+  const namedArtist = artistForms.some((a) => looseMatch(g.public.guess?.artist, a));
   const namedBoth = namedTitle && namedArtist;
 
   const tokenAwards = [];
@@ -905,6 +944,7 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
       : {}),
     placementSlot,
     activeCorrect: activeKeeps,
+    placementCorrect,
     awardedTo,
     earlyBonus: g.public.earlyBonusAwarded ?? false,
     extendUsed: g.public.listeningExtended ?? false,

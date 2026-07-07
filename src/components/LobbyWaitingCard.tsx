@@ -1,7 +1,9 @@
 "use client";
 
-import { CATEGORIES, type PublicState } from "@/lib/protocol";
+import { CATEGORIES, PACKS, isPackId, type PublicState } from "@/lib/protocol";
 import { useT } from "@/lib/i18n";
+
+type T = (ja: string, vars?: Record<string, string | number>) => string;
 
 function modeLabel(mode: string): string {
   if (mode === "pro") return "プロ";
@@ -9,9 +11,16 @@ function modeLabel(mode: string): string {
   return "オリジナル";
 }
 
-function catLabels(categories: string[]): string {
-  if (!categories || categories.length === 0) return "全ジャンル";
-  return categories.map((id) => CATEGORIES.find((c) => c.id === id)?.labelJa ?? id).join("・");
+/** Resolve each scope id to a human label — genre CATEGORIES *and* theme PACKS —
+ *  translated per-label (never showing a raw "pack:xxx" id). */
+function catLabels(categories: string[], t: T): string {
+  if (!categories || categories.length === 0) return t("全ジャンル");
+  return categories
+    .map((id) => {
+      const label = CATEGORIES.find((c) => c.id === id)?.labelJa ?? PACKS.find((p) => p.id === id)?.labelJa;
+      return label ? t(label) : id;
+    })
+    .join("・");
 }
 
 /** Pre-game waiting card: room code, copy/invite, rule summary, start button. */
@@ -29,10 +38,13 @@ export function LobbyWaitingCard({
   onStart: () => void;
 }) {
   const t = useT();
-  // With 2+ connected humans, "start" opens a genre majority-vote instead of
-  // dealing immediately — relabel the button so the host knows.
+  // With 2+ connected humans, "start" opens a genre majority-vote — UNLESS a
+  // theme pack (縛り) is selected, which fixes the deck and skips voting. Relabel
+  // the button so it matches what pressing it actually does.
   const humans = state.players.filter((p) => p.connected && !p.isBot).length;
-  const startLabel = humans >= 2 ? t("🗳️ ジャンル投票を開始") : t("🎶 ゲーム開始");
+  const packSelected = (state.settings.categories ?? []).some(isPackId);
+  const startLabel =
+    humans >= 2 && !packSelected ? t("🗳️ ジャンル投票を開始") : t("🎶 ゲーム開始");
   return (
     <div className="card stack">
       <div className="row" style={{ gap: 14 }}>
@@ -64,7 +76,7 @@ export function LobbyWaitingCard({
           tokens: state.settings.startingTokens,
         })}
         <br />
-        {t("カテゴリ: {cats}", { cats: t(catLabels(state.settings.categories)) })}
+        {t("カテゴリ: {cats}", { cats: catLabels(state.settings.categories, t) })}
       </div>
       {actionErr && <div className="error">{actionErr}</div>}
       {isHost ? (

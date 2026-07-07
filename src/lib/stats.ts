@@ -63,7 +63,10 @@ async function recordReveal(roomId: string, state: PublicState): Promise<void> {
   // Active player: a real placement attempt (skip timeouts and auto-buys).
   const activeId = state.order[state.activeIndex];
   if (reveal.placementSlot !== null && !reveal.bought && isRealUser(byUser[activeId])) {
-    attempts.push({ user: activeId, correct: reveal.activeCorrect });
+    // Category accuracy = PLACEMENT accuracy. Use placementCorrect (naming-
+    // independent) so a right-place/wrong-name turn in pro/expert isn't counted
+    // as a placement miss — and matches how stealers are scored (placement only).
+    attempts.push({ user: activeId, correct: reveal.placementCorrect ?? reveal.activeCorrect });
   }
   // Stealers each made a deliberate placement attempt.
   for (const s of reveal.steals) {
