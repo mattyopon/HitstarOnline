@@ -62,18 +62,26 @@ export function PlacementPanel({
           </span>
         )}
       </div>
-      {/* Optional guess FIRST, then choose a slot and press 提出 to submit. */}
+      {/* Guess FIRST, then choose a slot and press 提出 to submit. In pro/expert
+          naming is REQUIRED to keep the card (no token reward); in original it's
+          optional and both-correct earns a token — so label it per mode. */}
       <div className="row wrap" style={{ gap: 10 }}>
         <input
           type="text"
-          placeholder={t("曲名（任意・当てるとトークン）")}
+          placeholder={
+            settings.mode === "original"
+              ? t("曲名（任意・当てるとトークン）")
+              : t("曲名（獲得に必須）")
+          }
           value={gTitle}
           onChange={(e) => setGTitle(e.target.value)}
           style={{ flex: 1, minWidth: 160 }}
         />
         <input
           type="text"
-          placeholder={t("アーティスト名（任意）")}
+          placeholder={
+            settings.mode === "original" ? t("アーティスト名（任意）") : t("アーティスト名（獲得に必須）")
+          }
           value={gArtist}
           onChange={(e) => setGArtist(e.target.value)}
           style={{ flex: 1, minWidth: 160 }}

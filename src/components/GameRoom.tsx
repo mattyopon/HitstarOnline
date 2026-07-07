@@ -447,7 +447,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               {showVoice && <VoicePanel code={code} players={state.players} />}
             </div>
           </div>
-          {isMultiplayer && <ChatDock code={code} players={state.players} />}
+          {isMultiplayer && <ChatDock key="room-chatdock" code={code} players={state.players} />}
         </div>
       </div>
     );
@@ -474,7 +474,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
               {showVoice && <VoicePanel code={code} players={state.players} />}
             </div>
           </div>
-          {isMultiplayer && <ChatDock code={code} players={state.players} />}
+          {isMultiplayer && <ChatDock key="room-chatdock" code={code} players={state.players} />}
         </div>
       </div>
     );
@@ -668,7 +668,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             )}
           </div>
         </div>
-        {isMultiplayer && <ChatDock code={code} players={state.players} />}
+        {isMultiplayer && <ChatDock key="room-chatdock" code={code} players={state.players} />}
       </div>
     </div>
   );

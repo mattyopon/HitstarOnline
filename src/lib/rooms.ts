@@ -311,31 +311,47 @@ export async function joinRoom(code: string, seed: PlayerSeed): Promise<FullGame
 }
 
 export async function leaveRoom(code: string, userId: string): Promise<void> {
-  const loaded = await loadByCode(code);
-  if (!loaded) return;
   const admin = createAdminClient();
-  const wasLobby = loaded.game.public.phase === "lobby";
-  const next = removePlayer(loaded.game, userId);
+  // Retry under CAS: if a concurrent write bumps the version between our load and
+  // persist, reload and re-apply. Without this the leave was silently dropped on
+  // ConflictError, leaving the departing player as a permanently-"connected"
+  // ghost (mandatory empty turns / undeletable room). removePlayer is idempotent.
+  let lastConflict: ConflictError | null = null;
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    const loaded = await loadByCode(code);
+    if (!loaded) return;
+    // removePlayer fully removes players before dealing (lobby AND voting);
+    // afterwards it just marks them disconnected. Clean up the membership row
+    // and empty-room deletion in BOTH pre-deal phases.
+    const preDeal = loaded.game.public.phase === "lobby" || loaded.game.public.phase === "voting";
+    const next = removePlayer(loaded.game, userId);
 
-  if (wasLobby) {
-    await admin.from("room_members").delete().eq("room_id", loaded.id).eq("user_id", userId);
-    if (next.public.players.length === 0) {
-      // Version-guarded delete so a concurrent join doesn't get its room yanked.
-      const { data: del } = await admin
-        .from("rooms")
-        .delete()
-        .eq("id", loaded.id)
-        .eq("version", loaded.game.public.version)
-        .select("id"); // cascade clears secrets/members/etc.
-      if (del && del.length > 0) return;
-      // else someone joined concurrently (version bumped) — keep the room.
+    if (preDeal) {
+      await admin.from("room_members").delete().eq("room_id", loaded.id).eq("user_id", userId);
+      if (next.public.players.length === 0) {
+        // Version-guarded delete so a concurrent join doesn't get its room yanked.
+        const { data: del } = await admin
+          .from("rooms")
+          .delete()
+          .eq("id", loaded.id)
+          .eq("version", loaded.game.public.version)
+          .select("id"); // cascade clears secrets/members/etc.
+        if (del && del.length > 0) return;
+        // else someone joined concurrently (version bumped) — reload and retry.
+        continue;
+      }
     }
-  }
-  if (next.public.version !== loaded.game.public.version) {
+    if (next.public.version === loaded.game.public.version) return; // nothing to persist
     try {
       await persist(loaded.id, loaded.game.public.version, next);
+      return;
     } catch (e) {
-      if (!(e instanceof ConflictError)) throw e;
+      if (e instanceof ConflictError) {
+        lastConflict = e;
+        continue;
+      }
+      throw e;
     }
   }
+  throw lastConflict ?? new ConflictError("退室処理が競合しました");
 }
