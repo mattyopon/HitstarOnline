@@ -3753,7 +3753,7 @@
   "title": "Lean On",
   "artist": "Major Lazer & DJ Snake ft. MO",
   "year": 2015,
-  "country": "intl",
+  "country": "int",
   "categories": [
    "edm"
   ],
@@ -3784,7 +3784,7 @@
   "title": "Something Just Like This",
   "artist": "The Chainsmokers & Coldplay",
   "year": 2017,
-  "country": "intl",
+  "country": "int",
   "categories": [
    "edm",
    "rock"
@@ -5946,7 +5946,7 @@
   "title": "Dreams",
   "artist": "Fleetwood Mac",
   "year": 1977,
-  "country": "intl",
+  "country": "int",
   "categories": [
    "uspop",
    "rock"
@@ -93333,15 +93333,6 @@
   "title": "春江花月夜 (Chūn Jiāng Huā Yuè Yè / Spring River in the Flower Moon Night)",
   "artist": "Traditional pipa / 柳尧章、郑觐文 (arr.)",
   "year": 1925,
-  "country": "cn",
-  "categories": [
-   "jp-anime"
-  ]
- },
- {
-  "title": "平沙落雁 (Píngshā Luòyàn / Wild Geese Descending on the Sandbank)",
-  "artist": "Traditional guqin",
-  "year": 1634,
   "country": "cn",
   "categories": [
    "jp-anime"
