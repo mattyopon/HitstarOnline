@@ -32,6 +32,7 @@ import {
   answerAnimeQuiz,
   advanceReveal,
   systemSkip,
+  resolvedCurrentSongId,
   MAX_FREE_SKIPS_PER_TURN,
 } from "../src/lib/engine";
 import {
@@ -1008,6 +1009,66 @@ console.log("Scenario U (alias naming match):");
   ok("alias artist matched", !!award && award.namedArtist === true);
   ok("alias title+artist earns the naming token", !!award && award.tokensGained === 1);
   ok("placementCorrect exposed on reveal", g.public.reveal!.placementCorrect === true);
+}
+
+// ── Scenario V: deck.json redeploy index-drift correction ───────────────────
+console.log("Scenario V (deck redeploy index correction):");
+{
+  // Original deck at startGame time.
+  const orig: Song[] = [
+    { title: "AlphaSong", artist: "AArt", year: 1960 },
+    { title: "BetaSong", artist: "BArt", year: 1970 },
+    { title: "GammaSong", artist: "GArt", year: 1980 },
+    { title: "DeltaSong", artist: "DArt", year: 1990 },
+  ];
+  // alice starts with orig[0]=Alpha, bob with orig[1]=Beta; turn1 mystery =
+  // orig[2]=Gamma (1980) for alice.
+  let g = createGame(
+    "ROOMVV",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 2, 3],
+    orig,
+    1000,
+    { startingTokens: 0 },
+  );
+  ok("turn1 mystery resolves to Gamma with orig deck", resolvedCurrentSongId(g, orig) === 2);
+
+  // Now simulate a DECK REDEPLOY that reorders/inserts rows so array indices
+  // shift: a new song is prepended, pushing everything down by one and
+  // scrambling order. Same songs, DIFFERENT indices.
+  const redeployed: Song[] = [
+    { title: "NewIntro", artist: "NArt", year: 2000 }, // inserted at 0
+    { title: "GammaSong", artist: "GArt", year: 1980 }, // was index 2 → now 1
+    { title: "AlphaSong", artist: "AArt", year: 1960 },
+    { title: "DeltaSong", artist: "DArt", year: 1990 },
+    { title: "BetaSong", artist: "BArt", year: 1970 },
+  ];
+  // The raw stored index (2) now points to AlphaSong in the redeployed deck —
+  // WRONG. The deckKey correction must re-resolve it back to GammaSong (index 1).
+  ok("raw index 2 now points to the wrong song", redeployed[2].title === "AlphaSong");
+  ok(
+    "correction re-resolves the mystery to Gamma after redeploy",
+    resolvedCurrentSongId(g, redeployed) === 1,
+  );
+
+  // Resolve the turn against the REDEPLOYED deck: alice places correctly and the
+  // reveal must show Gamma (1980), not the drifted Alpha (1960).
+  g = placeCard(g, "alice", 1, undefined, redeployed, 2000); // Alpha[1960] + Gamma(1980) after
+  ok("reveal year is Gamma's 1980 (not drifted)", g.public.reveal!.year === 1980);
+  ok("reveal title is GammaSong (not drifted)", g.public.reveal!.title === "GammaSong");
+
+  // A pre-existing room with NO deckKeys (old save) must fall back to index-only.
+  const legacy = createGame(
+    "ROOMVL",
+    [{ userId: "a", name: "A" }, { userId: "b", name: "B" }],
+    [0, 1, 2, 3],
+    orig,
+    1000,
+    { startingTokens: 0 },
+  );
+  delete legacy.secret.deckKeys;
+  delete legacy.secret.currentDeckKey;
+  ok("legacy room (no deckKeys) falls back to raw index", resolvedCurrentSongId(legacy, orig) === 2);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

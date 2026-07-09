@@ -31,6 +31,7 @@ import {
   Song,
   TimelineCard,
   VOTE_DURATION_SECONDS,
+  deckKeyOf,
   defaultSettings,
   franchiseForCategories,
 } from "./protocol";
@@ -299,18 +300,45 @@ function drawNext(secret: SecretState): number | null {
   return songId;
 }
 
+/** Map a stored deck index (rawId) to the CURRENT songs[] index, correcting for
+ *  a deck.json redeploy that shifted array positions. Uses the captured deckKey:
+ *  fast path when songs[rawId] still matches; otherwise finds the song that
+ *  still carries the key. Falls back to rawId when there's no captured key
+ *  (room predates this feature) or the song was removed from the deck. */
+function resolveDeckIndex(rawId: number, key: string | undefined, songs: Song[]): number {
+  if (!key) return rawId; // backward compat: index-only room
+  const cur = songs[rawId];
+  if (cur && deckKeyOf(cur.title, cur.artist) === key) return rawId; // unchanged
+  const found = songs.findIndex((s) => deckKeyOf(s.title, s.artist) === key);
+  return found >= 0 ? found : rawId; // removed from deck → best-effort index
+}
+
+/** The current mystery card's index in the CURRENT songs[], re-resolved from its
+ *  captured deckKey so a mid-turn deck redeploy can't desync the reveal answer. */
+function currentResolvedSongId(g: FullGame, songs: Song[]): number | undefined {
+  const raw = g.secret.currentSongId;
+  if (raw === undefined) return undefined;
+  return resolveDeckIndex(raw, g.secret.currentDeckKey, songs);
+}
+
 /** Begin a turn: draw the mystery card and open the placing phase.
  *  The mystery card's answer (title/artist/year) is materialized lazily at
  *  reveal; only non-answer playback hints (provider/isCover) are copied here so
  *  the right player can be selected and the cover banner shown. */
 function beginTurn(g: FullGame, songs: Song[], now: number): void {
-  const songId = drawNext(g.secret);
-  if (songId === null) {
+  const rawSongId = drawNext(g.secret);
+  if (rawSongId === null) {
     endGame(g);
     return;
   }
+  // Correct the raw deck index against its captured deckKey so a deck.json
+  // redeploy that shifted array positions still draws the intended song.
+  const songId = resolveDeckIndex(rawSongId, g.secret.deckKeys?.[g.secret.drawPos - 1], songs);
   g.secret.currentSongId = songId;
   const drawn = songs[songId];
+  // Remember the current card's key so the reveal can re-resolve it even if the
+  // deck is redeployed mid-turn (between this draw and the reveal request).
+  g.secret.currentDeckKey = drawn ? deckKeyOf(drawn.title, drawn.artist) : undefined;
   const provider = drawn?.provider ?? "youtube";
   g.public.current = {
     // Opaque per-draw token — NOT derivable to the songId. Publishing `s<songId>`
@@ -363,6 +391,12 @@ export function startGame(game: FullGame, deckOrder: number[], songs: Song[], no
   delete g.public.votes;
 
   g.secret.deck = [...deckOrder];
+  // Capture each draw position's deckKey so a later deck.json redeploy that
+  // shifts array indices can't desync this game's questions/answers.
+  g.secret.deckKeys = deckOrder.map((i) => {
+    const s = songs[i];
+    return s ? deckKeyOf(s.title, s.artist) : "";
+  });
   g.secret.drawPos = 0;
 
   // Deal one starting card to each player (revealed on their timeline).
@@ -562,7 +596,7 @@ export function placeCard(
   if (slotIndex < 0 || slotIndex > active.timeline.length) throw new GameError("配置位置が不正です");
 
   const s = g.public.settings;
-  const song = songs[g.secret.currentSongId ?? -1];
+  const song = songs[currentResolvedSongId(g, songs) ?? -1];
 
   // Submitting ends the listening window (music stops) if still listening.
   if (g.public.listeningEndedAt == null) g.public.listeningEndedAt = now;
@@ -689,7 +723,7 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
   if (active.userId !== userId) throw new GameError("あなたの番ではありません");
   const cost = g.public.settings.buyCost;
   if (active.tokens < cost) throw new GameError(`トークンが足りません（${cost}枚必要）`);
-  const songId = g.secret.currentSongId;
+  const songId = currentResolvedSongId(g, songs);
   if (songId === undefined) throw new GameError("購入できる曲がありません");
   const song = songs[songId];
   const animeQuiz = buildAnimeQuiz(song, g.public);
@@ -827,7 +861,7 @@ function buildAnimeQuiz(song: Song, state: PublicState): AnimeQuizInfo | undefin
 }
 
 function resolve(g: FullGame, songs: Song[], now: number): void {
-  const songId = g.secret.currentSongId;
+  const songId = currentResolvedSongId(g, songs);
   if (songId === undefined) throw new GameError("解決できる曲がありません");
   const song = songs[songId];
   const animeQuiz = buildAnimeQuiz(song, g.public);
@@ -1123,6 +1157,13 @@ export function currentSongId(g: FullGame): number | undefined {
   return g.secret.currentSongId;
 }
 
+/** Like currentSongId but corrected for a deck.json redeploy that shifted array
+ *  indices (uses the card's captured deckKey). Prefer this wherever the id is
+ *  used to read the SONG from the current deck (playback resolution, answers). */
+export function resolvedCurrentSongId(g: FullGame, songs: Song[]): number | undefined {
+  return currentResolvedSongId(g, songs);
+}
+
 // ─── NPC (bot) logic ────────────────────────────────────────────────────────
 // Pure & deterministic: RNG is seeded from (code, round, seat, purpose) so a
 // mutateByCode CAS retry re-derives the SAME decision. Bots run only here,
@@ -1215,7 +1256,7 @@ export function stepBots(game: FullGame, songs: Song[], now: number): FullGame {
     return g;
   }
 
-  const songId = game.secret.currentSongId;
+  const songId = currentResolvedSongId(game, songs);
   if (songId === undefined) return game;
   const year = songs[songId].year;
 

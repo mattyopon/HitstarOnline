@@ -1,5 +1,5 @@
 import deckData from "../../data/deck.json";
-import { CATEGORY_IDS, PACK_IDS, Song, isPackId } from "./protocol";
+import { CATEGORY_IDS, PACK_IDS, Song, deckKeyOf, isPackId } from "./protocol";
 import { mulberry32 } from "./engine";
 
 const DECK: Song[] = deckData as Song[];
@@ -8,9 +8,10 @@ export function getDeck(): Song[] {
   return DECK;
 }
 
-/** Stable cache key for a song (used by the YouTube id cache). */
+/** Stable cache key for a song (used by the YouTube id cache and by the
+ *  engine's deck-redeploy index correction — same normalization via deckKeyOf). */
 export function deckKey(song: Song): string {
-  return `${song.title}|${song.artist}`.toLowerCase().replace(/\s+/g, " ").trim();
+  return deckKeyOf(song.title, song.artist);
 }
 
 /** A search query likely to surface the official audio/video on YouTube. */

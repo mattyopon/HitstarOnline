@@ -298,6 +298,21 @@ export interface SecretState {
    *  Server-only so it can't be tampered with; reset lazily when round changes. */
   skipRound?: number;
   skipCount?: number;
+  /** deckKey per position in `deck`, captured at startGame. Lets a running game
+   *  survive a deck.json redeploy that shifts array indices: the raw index is
+   *  re-resolved to whichever current song still carries the same key. Absent on
+   *  rooms started before this field existed → index-only fallback. */
+  deckKeys?: string[];
+  /** deckKey of the current mystery card, so its answer can be re-resolved at
+   *  reveal even if the deck was redeployed mid-turn. */
+  currentDeckKey?: string;
+}
+
+/** Normalized identity of a song, stable across deck.json reorders/edits.
+ *  Client-safe PURE helper — the SAME normalization deck.ts's deckKey uses, so a
+ *  persisted key still matches after a redeploy that changes array positions. */
+export function deckKeyOf(title: string, artist: string): string {
+  return `${title}|${artist}`.toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 export interface FullGame {

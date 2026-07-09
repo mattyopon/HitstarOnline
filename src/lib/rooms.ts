@@ -12,7 +12,7 @@ import { FullGame, PlayerSeed, PublicState, SecretState } from "./protocol";
 import {
   addPlayer,
   createLobby,
-  currentSongId,
+  resolvedCurrentSongId,
   listenMs,
   needsTrackResolution,
   placeMs,
@@ -88,7 +88,9 @@ async function ensureTrackResolved(game: FullGame): Promise<void> {
   if (!needsTrackResolution(game)) return;
   const admin = createAdminClient();
   const songs = getDeck();
-  const songId = currentSongId(game);
+  // Redeploy-safe: re-resolve the index from the card's deckKey so a deck.json
+  // change mid-game plays the intended song, not whatever now sits at that index.
+  const songId = resolvedCurrentSongId(game, songs);
   if (songId === undefined || !game.public.current) return;
   const song = songs[songId];
   if (!song) return;
