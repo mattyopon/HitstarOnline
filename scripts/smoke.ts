@@ -33,6 +33,7 @@ import {
   advanceReveal,
   systemSkip,
   resolvedCurrentSongId,
+  abandonIfNoHumans,
   MAX_FREE_SKIPS_PER_TURN,
 } from "../src/lib/engine";
 import {
@@ -1069,6 +1070,48 @@ console.log("Scenario V (deck redeploy index correction):");
   delete legacy.secret.deckKeys;
   delete legacy.secret.currentDeckKey;
   ok("legacy room (no deckKeys) falls back to raw index", resolvedCurrentSongId(legacy, orig) === 2);
+}
+
+// ── Scenario W: abandoned-room termination (cron backstop) ──────────────────
+console.log("Scenario W (abandon if no connected humans):");
+{
+  let g = createGame(
+    "ROOMWW",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 2, 3, 4],
+    songs,
+    1000,
+    { startingTokens: 0 },
+  );
+  ok("in-game with connected humans", g.public.phase === "placing");
+
+  // Both humans still connected → no-op.
+  const v0 = g.public.version;
+  g = abandonIfNoHumans(g);
+  ok("no-op while a human is connected", g.public.version === v0 && g.public.phase !== "gameover");
+
+  // Everyone disconnects → force-ended with a winner.
+  g = setConnected(g, "alice", false);
+  g = setConnected(g, "bob", false);
+  const before = g.public.version;
+  g = abandonIfNoHumans(g);
+  ok("force-ends when no human is connected", g.public.phase === "gameover");
+  ok("a winner is still declared", g.public.winnerId !== undefined);
+  ok("version bumped on abandon", g.public.version > before);
+
+  // Idempotent: already gameover → no-op.
+  const vEnd = g.public.version;
+  g = abandonIfNoHumans(g);
+  ok("no-op once already gameover", g.public.version === vEnd);
+
+  // A room with a connected BOT but no connected human is still abandoned
+  // (bots alone shouldn't keep a room alive).
+  let gb = createLobby("ROOMWB", { userId: "carol", name: "Carol" }, { startingTokens: 0 });
+  gb = addBot(gb, "easy");
+  gb = startGame(gb, [0, 1, 2, 3], songs, 1000);
+  gb = setConnected(gb, "carol", false); // human drops; bot stays "connected"
+  gb = abandonIfNoHumans(gb);
+  ok("bot-only room is abandoned when the human drops", gb.public.phase === "gameover");
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

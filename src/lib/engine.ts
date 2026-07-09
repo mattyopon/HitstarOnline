@@ -1030,6 +1030,23 @@ function nextTurn(g: FullGame, songs: Song[], now: number): void {
  * input unchanged (no version bump) if nothing is due, so multiple clients can
  * call it safely.
  */
+/** Phases in which a game is actively "running" (not lobby/gameover). */
+const IN_GAME_PHASES = new Set(["voting", "placing", "stealing", "reveal"]);
+
+/** Terminate a game that has been ABANDONED — no connected human players remain
+ *  in an in-game phase. Used by the cron backstop so a room where everyone
+ *  closed their tab doesn't churn through the whole deck. No-op (idempotent, no
+ *  version bump) when there's still a connected human, or when not in-game. */
+export function abandonIfNoHumans(game: FullGame): FullGame {
+  if (!IN_GAME_PHASES.has(game.public.phase)) return game;
+  const humanConnected = game.public.players.some((p) => p.connected && !isBot(p));
+  if (humanConnected) return game;
+  const g = clone(game);
+  endGame(g);
+  g.public.version++;
+  return g;
+}
+
 export function advance(game: FullGame, songs: Song[], now: number): FullGame {
   // Let NPCs act first (deterministic + idempotent). If a bot moved, return it.
   const stepped = stepBots(game, songs, now);
