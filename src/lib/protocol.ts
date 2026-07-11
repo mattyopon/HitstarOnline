@@ -4,7 +4,21 @@
 // a FullGame = { public, secret }. Only `public` is ever sent to clients.
 // ───────────────────────────────────────────────────────────────────────────
 
-export type Phase = "lobby" | "placing" | "stealing" | "reveal" | "gameover";
+import type { Tier } from "./rank";
+
+export type Phase = "lobby" | "voting" | "placing" | "stealing" | "reveal" | "gameover";
+
+/** Playback provider for a mystery card. Absent provider = "youtube" (the
+ *  15,431 existing deck songs are all implicitly YouTube). */
+export type Provider = "youtube" | "bilibili";
+
+/** Shared deck-size margin: a deck must hold at least players + this many songs
+ *  to start (1 starting card each + a comfortable supply of mystery cards). Used
+ *  by the start route, the vote-start fallback, and votable-category eligibility. */
+export const MIN_DECK_MARGIN = 6;
+
+/** Seconds the genre majority-vote stays open before the deadline backstop fires. */
+export const VOTE_DURATION_SECONDS = 30;
 
 /** Difficulty mode (changes what it takes to keep/steal a card). */
 export type GameMode = "original" | "pro" | "expert";
@@ -49,6 +63,9 @@ export interface GameSettings {
   earlyBonusMs: number;
   /** Tokens awarded for a correct early placement. Official 2. */
   earlyBonusTokens: number;
+  /** Tokens awarded to the active player for ANY correct placement (every turn).
+   *  Stacks on top of the early/naming bonuses. 0 disables. */
+  placementTokens: number;
 }
 
 /** Starting tokens per official mode. */
@@ -89,11 +106,11 @@ export function defaultSettings(): GameSettings {
     maxTokens: 5,
     placeSeconds: 75, // legacy, superseded by listenSeconds + placementSeconds
     stealSeconds: 10, // steal-decision window
-    revealSeconds: 12,
+    revealSeconds: 240, // reveal plays the song in full; players skip with ▶ 次の曲へ
     allowSkip: true,
     buyCost: 3,
     startSeconds: 0,
-    listenSeconds: 30,
+    listenSeconds: 60,
     placementSeconds: 30,
     allowExtend: true,
     extendCost: 1,
@@ -101,8 +118,14 @@ export function defaultSettings(): GameSettings {
     maxExtendPerTurn: 1,
     earlyBonusMs: 10000,
     earlyBonusTokens: 2,
+    placementTokens: 1,
   };
 }
+
+/** Frozen canonical defaults — the single source for the backward-compat
+ *  fallbacks used when reading possibly-old persisted settings
+ *  (e.g. `s.listenSeconds ?? DEFAULT_SETTINGS.listenSeconds`). */
+export const DEFAULT_SETTINGS: Readonly<GameSettings> = Object.freeze(defaultSettings());
 
 /** A revealed song card sitting on a player's timeline. */
 export interface TimelineCard {
@@ -125,6 +148,13 @@ export interface PublicPlayer {
   isBot?: boolean;
   /** Always sorted ascending by year. */
   timeline: TimelineCard[];
+  /** Ranked tier for display only (undefined for casual/solo/guest/bot).
+   *  Opaque to the engine — injected by rooms.ts AFTER the pure engine runs. */
+  tier?: Tier;
+  /** Equipped party leader (player_party slot 0) character id — a cosmetic
+   *  gacha id only, same trust tier as `tier`. Opaque to the engine —
+   *  injected by rooms.ts AFTER the pure engine runs. Never an answer. */
+  leaderCharacterId?: string;
 }
 
 /** What clients need to PLAY the mystery song without learning the answer. */
@@ -135,6 +165,15 @@ export interface CurrentTrack {
   startSeconds: number;
   /** Epoch ms when listening started (lets clients sync playback). */
   startedAt: number;
+  /** Playback provider; absent = "youtube" (backward-compatible default). */
+  provider?: Provider;
+  /** Bilibili video id (BV…), set only for bilibili cards. Resolved server-side
+   *  like youtubeId. NEVER carries the answer. */
+  bvid?: string;
+  /** True when this is a cover (歌ってみた): guess the ORIGINAL song's year.
+   *  A non-answer flavor hint only — the original's year/title/artist stay
+   *  server-side until reveal. */
+  isCover?: boolean;
 }
 
 export interface StealEntry {
@@ -165,9 +204,24 @@ export interface RevealInfo {
   artist: string;
   year: number;
   youtubeId: string | null;
+  /** Playback provider for the revealed card; absent = "youtube". Lets the
+   *  reveal play the full clip with the right player after `current` is cleared. */
+  provider?: Provider;
+  /** Bilibili video id (BV…) for a bilibili card, so reveal can play it in full. */
+  bvid?: string;
+  /** True for a cover (歌ってみた) card. */
+  isCover?: boolean;
+  /** The cover singer (歌い手) — flavor shown ONLY at reveal. */
+  coverArtist?: string;
   /** Active player's placement, or null if they timed out. */
   placementSlot: number | null;
+  /** Whether the active player KEPT the card = placement correct AND (in pro/
+   *  expert) naming correct. Drives the card award, not raw placement accuracy. */
   activeCorrect: boolean;
+  /** Pure placement correctness (year in the right slot), independent of naming.
+   *  Used for category "placement accuracy" stats so a right-place/wrong-name
+   *  turn in pro/expert isn't miscounted as a placement miss. */
+  placementCorrect: boolean;
   /** Who ultimately won the card (active player or a stealer), or null. */
   awardedTo: string | null;
   /** True when the active player bought (auto-placed) the card. */
@@ -179,6 +233,11 @@ export interface RevealInfo {
   steals: StealResult[];
   tokenAwards: TokenAward[];
   reason?: string;
+  /** Optional "このアニメは？" bonus question (single-franchise packs only).
+   *  100% optional/bonus: never gates advanceReveal and never affects
+   *  placement/steal scoring — only awards a small token bonus. Absent when
+   *  the song isn't in exactly one single-franchise pack. */
+  animeQuiz?: AnimeQuizInfo;
 }
 
 export interface PublicState {
@@ -213,12 +272,18 @@ export interface PublicState {
   placementDeadline?: number;
   /** True if the active player's placement earned the early bonus. */
   earlyBonusAwarded?: boolean;
+  /** Actual early-bonus tokens credited (after the maxTokens cap) — so the
+   *  reveal shows the real gain, not the nominal earlyBonusTokens. */
+  earlyBonusGained?: number;
   /** Stealers who have decided (steal OR pass) — enables early steal-phase end. */
   stealerDecisions?: Record<string, "steal" | "pass">;
   reveal?: RevealInfo;
   winnerId?: string | null;
   /** Number of cards remaining in the deck (for UI). */
   deckRemaining: number;
+  /** Genre majority-vote (phase "voting"): userId -> chosen category ids.
+   *  Only present during/while resolving voting; cleared when the game starts. */
+  votes?: Record<string, string[]>;
 }
 
 export interface SecretState {
@@ -229,6 +294,25 @@ export interface SecretState {
   currentSongId?: number;
   /** NPC difficulty by bot userId (server-only; never exposed publicly). */
   bots?: Record<string, { difficulty: BotDifficulty }>;
+  /** Free-skip throttle: the round the skip counter belongs to + its count.
+   *  Server-only so it can't be tampered with; reset lazily when round changes. */
+  skipRound?: number;
+  skipCount?: number;
+  /** deckKey per position in `deck`, captured at startGame. Lets a running game
+   *  survive a deck.json redeploy that shifts array indices: the raw index is
+   *  re-resolved to whichever current song still carries the same key. Absent on
+   *  rooms started before this field existed → index-only fallback. */
+  deckKeys?: string[];
+  /** deckKey of the current mystery card, so its answer can be re-resolved at
+   *  reveal even if the deck was redeployed mid-turn. */
+  currentDeckKey?: string;
+}
+
+/** Normalized identity of a song, stable across deck.json reorders/edits.
+ *  Client-safe PURE helper — the SAME normalization deck.ts's deckKey uses, so a
+ *  persisted key still matches after a redeploy that changes array positions. */
+export function deckKeyOf(title: string, artist: string): string {
+  return `${title}|${artist}`.toLowerCase().replace(/\s+/g, " ").trim();
 }
 
 export interface FullGame {
@@ -255,6 +339,17 @@ export interface Song {
   /** Alternate titles/scripts/romanizations for cross-language matching. */
   aliases?: string[];
   artistAliases?: string[];
+  /** Playback provider; absent = YouTube (all 15,431 existing songs). Only
+   *  "bilibili" is set explicitly for the cover/歌ってみた cards. */
+  provider?: "bilibili";
+  /** Bilibili video id (BV…), baked into the deck for bilibili cards (no network
+   *  resolution — egress is blocked). */
+  bvid?: string;
+  /** The cover singer (歌い手). Flavor shown ONLY at reveal — the year/title/
+   *  artist answer is always the ORIGINAL song's. */
+  coverArtist?: string;
+  /** True for cover (歌ってみた) cards: guess the ORIGINAL song's release year. */
+  isCover?: boolean;
 }
 
 export interface CategoryDef {
@@ -263,24 +358,163 @@ export interface CategoryDef {
   labelEn: string;
 }
 
-/** Selectable song categories (shared by client + server). */
+/** Selectable song categories (shared by client + server).
+ *  27 karaoke-menu buckets, in desired menu order. */
 export const CATEGORIES: CategoryDef[] = [
-  { id: "jpop", labelJa: "J-POP", labelEn: "J-Pop" },
-  { id: "jp-anime", labelJa: "アニメ(日)", labelEn: "Anime (JP)" },
+  { id: "jpop", labelJa: "J-POP", labelEn: "J-POP" },
+  { id: "jidol", labelJa: "アイドル", labelEn: "Idol" },
+  { id: "jrock", labelJa: "J-ROCK", labelEn: "J-Rock" },
+  { id: "enka", labelJa: "演歌・歌謡曲", labelEn: "Enka & Kayokyoku" },
   { id: "vocaloid", labelJa: "ボカロ", labelEn: "Vocaloid" },
-  { id: "uspop", labelJa: "洋楽ポップ", labelEn: "US Pop" },
-  { id: "us-cartoon", labelJa: "アニメ(米)", labelEn: "Cartoon (US)" },
-  { id: "disney", labelJa: "ディズニー", labelEn: "Disney" },
-  { id: "uk-rock", labelJa: "UKロック", labelEn: "UK Rock" },
-  { id: "kpop", labelJa: "K-POP", labelEn: "K-Pop" },
-  { id: "cn-anime", labelJa: "アニメ(中)", labelEn: "Anime (CN)" },
-  { id: "game-music", labelJa: "ゲーム音楽", labelEn: "Game Music" },
-  { id: "movie-themes", labelJa: "映画音楽", labelEn: "Movie Themes" },
-  { id: "latin", labelJa: "ラテン", labelEn: "Latin" },
-  { id: "famous-in-japan", labelJa: "日本で人気", labelEn: "Famous in Japan" },
-  { id: "famous-in-usa", labelJa: "アメリカで人気", labelEn: "Famous in USA" },
-  { id: "famous-in-korea", labelJa: "韓国で人気", labelEn: "Famous in Korea" },
-  { id: "famous-in-china", labelJa: "中国で人気", labelEn: "Famous in China" },
+  { id: "jp-anime", labelJa: "アニメ", labelEn: "Anime" },
+  { id: "tokusatsu", labelJa: "特撮", labelEn: "Tokusatsu" },
+  { id: "jrap", labelJa: "邦楽ラップ", labelEn: "J-Rap" },
+  { id: "game-music", labelJa: "ゲームミュージック", labelEn: "Game Music" },
+  { id: "cnpop", labelJa: "華語ポップス", labelEn: "Mandopop & Cantopop" },
+  { id: "us-cartoon", labelJa: "アニメ・キッズ(海外)", labelEn: "Cartoons & Kids (Intl.)" },
+  { id: "movie-themes", labelJa: "映画・ドラマ主題歌", labelEn: "Movie & Drama Themes" },
+  { id: "christmas", labelJa: "クリスマス", labelEn: "Christmas" },
+  { id: "jazz", labelJa: "ジャズ・ブルース", labelEn: "Jazz & Blues" },
+  { id: "kpop", labelJa: "K-POP", labelEn: "K-POP" },
+  { id: "uspop", labelJa: "洋楽POPS", labelEn: "Western Pop" },
+  { id: "rock", labelJa: "洋楽ROCK", labelEn: "Western Rock" },
+  { id: "edm", labelJa: "洋楽ダンス", labelEn: "Dance & EDM" },
+  { id: "hiphop", labelJa: "洋楽ヒップホップ", labelEn: "Hip-Hop" },
+  { id: "rnb", labelJa: "洋楽R&B・ソウル", labelEn: "R&B & Soul" },
+  { id: "karaoke", labelJa: "カラオケ定番", labelEn: "Karaoke Hits" },
+  // 廃止: classical(作曲年が曖昧で年当てゲームと相性が悪い) / bossa・latin・country・
+  // reggae・bollywood(日本のパーティー参加者には認知度が低いニッチジャンルと判断し削除)
 ];
 
 export const CATEGORY_IDS = new Set(CATEGORIES.map((c) => c.id));
+
+// ───────────────────────────────────────────────────────────────────────────
+// Theme packs ("縛り") — a SEPARATE axis from the 27 genre CATEGORIES above.
+// A pack is a curated subset of the SAME deck songs, tagged with a "pack:<slug>"
+// entry in their categories[] array. Packs piggyback on GameSettings.categories
+// (no new settings field): selecting a pack id constrains the deck to that pack.
+// CATEGORIES is never touched — packs live only in the PACKS registry below.
+// ───────────────────────────────────────────────────────────────────────────
+
+/** Tag/id prefix that distinguishes a theme pack from a genre category. */
+export const PACK_PREFIX = "pack:";
+
+/** True iff `id` is a theme-pack id (vs. one of the 27 genre categories). */
+export function isPackId(id: string): boolean {
+  return id.startsWith(PACK_PREFIX);
+}
+
+/** Kind of pack — drives grouping/labeling in the picker UI. */
+export type PackKind = "franchise" | "artist" | "anime-op";
+
+export interface PackDef {
+  /** MUST start with PACK_PREFIX ("pack:"). */
+  id: string;
+  labelJa: string;
+  labelEn: string;
+  kind: PackKind;
+  /** Optional Vinyl Lounge accent token (hex) for the pack chip/badge. */
+  accent?: string;
+}
+
+/**
+ * Registered theme packs. Each id MUST start with "pack:" and MUST NOT collide
+ * with any CATEGORIES id. Only packs with enough tagged songs in the deck
+ * (>= players + MIN_DECK_MARGIN; we register at the 12-song playable threshold)
+ * are listed here so a normal game always has a workable deck.
+ */
+export const PACKS: PackDef[] = [
+  // ── Theme / franchise-style packs ──────────────────────────────────────────
+  { id: "pack:anime-op", labelJa: "人気アニメOP", labelEn: "Popular Anime Openings", kind: "anime-op", accent: "#c44a3a" },
+  { id: "pack:superstar", labelJa: "超人気アーティスト", labelEn: "Superstars", kind: "artist", accent: "#d4a330" },
+  // ── Single-artist 縛り packs (>= 12 tagged songs in the deck) ───────────────
+  { id: "pack:bz", labelJa: "B'z縛り", labelEn: "B'z", kind: "artist", accent: "#a87830" },
+  { id: "pack:lisa", labelJa: "LiSA縛り", labelEn: "LiSA", kind: "artist", accent: "#c44a3a" },
+  { id: "pack:bump", labelJa: "BUMP OF CHICKEN縛り", labelEn: "BUMP OF CHICKEN", kind: "artist", accent: "#3a6b4a" },
+  { id: "pack:yonezu", labelJa: "米津玄師縛り", labelEn: "Kenshi Yonezu", kind: "artist", accent: "#6b6a3a" },
+  { id: "pack:utada", labelJa: "宇多田ヒカル縛り", labelEn: "Hikaru Utada", kind: "artist", accent: "#a87830" },
+  { id: "pack:mrchildren", labelJa: "Mr.Children縛り", labelEn: "Mr.Children", kind: "artist", accent: "#c44a3a" },
+  { id: "pack:oneokrock", labelJa: "ONE OK ROCK縛り", labelEn: "ONE OK ROCK", kind: "artist", accent: "#3d2e1a" },
+  { id: "pack:southern", labelJa: "サザンオールスターズ縛り", labelEn: "Southern All Stars", kind: "artist", accent: "#3a6b4a" },
+  { id: "pack:mrsgreenapple", labelJa: "Mrs. GREEN APPLE縛り", labelEn: "Mrs. GREEN APPLE", kind: "artist", accent: "#6b6a3a" },
+  { id: "pack:yoasobi", labelJa: "YOASOBI縛り", labelEn: "YOASOBI", kind: "artist", accent: "#d4a330" },
+  { id: "pack:higedan", labelJa: "Official髭男dism縛り", labelEn: "Official HIGE DANdism", kind: "artist", accent: "#a87830" },
+  { id: "pack:xjapan", labelJa: "X JAPAN縛り", labelEn: "X JAPAN", kind: "artist", accent: "#3d2e1a" },
+  { id: "pack:arashi", labelJa: "嵐縛り", labelEn: "Arashi", kind: "artist", accent: "#c44a3a" },
+  { id: "pack:aimyon", labelJa: "あいみょん縛り", labelEn: "Aimyon", kind: "artist", accent: "#3a6b4a" },
+  { id: "pack:kinggnu", labelJa: "King Gnu縛り", labelEn: "King Gnu", kind: "artist", accent: "#3d2e1a" },
+  // ── Anime franchise packs (>= 12 unique year-verified songs in the deck) ─────
+  { id: "pack:onepiece", labelJa: "ONE PIECE縛り", labelEn: "One Piece", kind: "franchise", accent: "#c44a3a" },
+  { id: "pack:conan", labelJa: "名探偵コナン縛り", labelEn: "Detective Conan", kind: "franchise", accent: "#3d2e1a" },
+  { id: "pack:naruto", labelJa: "NARUTO縛り", labelEn: "Naruto", kind: "franchise", accent: "#d4a330" },
+  { id: "pack:gundam", labelJa: "ガンダム縛り", labelEn: "Gundam", kind: "franchise", accent: "#3a6b4a" },
+  { id: "pack:pokemon", labelJa: "ポケモン縛り", labelEn: "Pokémon", kind: "franchise", accent: "#d4a330" },
+  { id: "pack:dragonball", labelJa: "ドラゴンボール縛り", labelEn: "Dragon Ball", kind: "franchise", accent: "#a87830" },
+  { id: "pack:kimetsu", labelJa: "鬼滅の刃縛り", labelEn: "Demon Slayer", kind: "franchise", accent: "#6b6a3a" },
+  // ── Bilibili quiz trio (Bilibili playback) ──────────────────────────────────
+  // Hear a Bilibili cover, guess the ORIGINAL song's release year. Cards are
+  // provider:"bilibili" + isCover and tagged ONLY "pack:utattemita" (never a genre).
+  // Trio plan: 配信者ヒット (VUP covers) / ビリビリヒット (site-legendary songs) /
+  // 日本ヒット (pack:jp-hits, registered once >=12 songs land).
+  { id: "pack:utattemita", labelJa: "ビリビリ配信者ヒットソングクイズ", labelEn: "Bilibili Streamer Hits Quiz", kind: "anime-op", accent: "#4a7fb5" },
+  // B站の镇站神曲・伝説曲そのもの（カバーではない）。provider:"bilibili" + bvid、
+  // 中国曲は country:"cn"。回答年はその曲自体の発表年。
+  { id: "pack:bili-hits", labelJa: "ビリビリヒットソングクイズ", labelEn: "Bilibili Hit Songs Quiz", kind: "anime-op", accent: "#23ade5" },
+  // オリコン/Billboard JAPAN等の実チャート実績・ミリオンセラー・タイアップ実績を
+  // 持つ日本のヒット曲（YouTube再生・通常のジャンルとは別軸）。トリオ最後の1つ。
+  { id: "pack:jp-hits", labelJa: "日本ヒットソングクイズ", labelEn: "Japan Hit Songs Quiz", kind: "anime-op", accent: "#e0507a" },
+  // 少女向けアニメのOP/ED限定（魔法少女/プリキュアシリーズ/少女漫画原作の恋愛系/
+  // 少女向けファンタジー等）。特定作品に縛らないため kind は anime-op。
+  { id: "pack:shoujo-anime", labelJa: "少女アニメソングクイズ", labelEn: "Girls' Anime Songs Quiz", kind: "anime-op", accent: "#d982b5" },
+];
+
+export const PACK_IDS = new Set(PACKS.map((p) => p.id));
+
+// ───────────────────────────────────────────────────────────────────────────
+// Anime-quiz bonus: an OPTIONAL "このアニメは？" multiple-choice question shown
+// alongside the normal reveal for songs in a SINGLE-franchise pack. The
+// franchise name is derivable directly from the pack id — no new per-song
+// data. Client-importable (types/constants only, no logic that needs
+// server-only deck/answer data).
+// ───────────────────────────────────────────────────────────────────────────
+
+/** Single-franchise packs whose anime/franchise name is a static 1:1 mapping
+ *  from the pack id. `pack:shoujo-anime` is deliberately OMITTED — it's a
+ *  mixed-franchise pack (少女漫画/アニメ全般), so there's no single correct
+ *  answer to derive; songs in it simply never get the bonus question. */
+export const FRANCHISE_PACK_NAMES: Record<string, string> = {
+  "pack:onepiece": "ONE PIECE",
+  "pack:naruto": "NARUTO",
+  "pack:conan": "名探偵コナン",
+  "pack:gundam": "ガンダム",
+  "pack:pokemon": "ポケモン",
+  "pack:dragonball": "ドラゴンボール",
+  "pack:kimetsu": "鬼滅の刃",
+};
+
+/** The single franchise name for a song's categories, or null if the song
+ *  doesn't belong to EXACTLY ONE of the packs above (0 matches = not a
+ *  franchise song; 2+ matches = ambiguous — skip the bonus either way). */
+export function franchiseForCategories(categories?: string[]): string | null {
+  if (!categories) return null;
+  const matches = categories.filter((c) => c in FRANCHISE_PACK_NAMES);
+  return matches.length === 1 ? FRANCHISE_PACK_NAMES[matches[0]] : null;
+}
+
+/** Modest bonus for the FIRST correct "このアニメは？" guess at reveal — a
+ *  side bonus, not a core scoring mechanic, so it's kept small on purpose. */
+export const ANIME_QUIZ_BONUS_TOKENS = 1;
+
+export interface AnimeQuizInfo {
+  /** Shuffled candidates: the correct franchise + 2–3 decoys from the other
+   *  single-franchise packs. Order carries no signal about which is correct. */
+  choices: string[];
+  /** The correct answer. Safe to reveal alongside title/artist/year — derived
+   *  from PUBLIC pack/category data, not a hidden game answer (see engine.ts
+   *  answerAnimeQuiz for why this is still never TRUSTED for scoring). */
+  correct: string;
+  /** userId → their submitted choice (one guess per player per reveal). */
+  answers: Record<string, string>;
+  /** userId of the first correct guesser this reveal, or null. */
+  solvedBy: string | null;
+}

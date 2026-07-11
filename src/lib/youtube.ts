@@ -10,6 +10,10 @@
 // only resolved once. On Vercel these requests run from the serverless function
 // (not behind any egress proxy), so plain fetch works.
 
+// Prefer ids that appear inside an actual search-result entry (videoRenderer);
+// the first bare "videoId" on the page is often a Shorts shelf, an ad, or a
+// non-embeddable promo, which is a major source of "songs that won't play".
+const YT_RESULT_RE = /"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"/;
 const YT_ID_RE = /"videoId":"([a-zA-Z0-9_-]{11})"/;
 
 async function viaDataApi(query: string, key: string): Promise<string | null> {
@@ -40,8 +44,7 @@ async function viaScrape(query: string): Promise<string | null> {
   });
   if (!res.ok) return null;
   const html = await res.text();
-  const m = html.match(YT_ID_RE);
-  return m ? m[1] : null;
+  return html.match(YT_RESULT_RE)?.[1] ?? html.match(YT_ID_RE)?.[1] ?? null;
 }
 
 export async function searchYouTubeId(query: string): Promise<string | null> {

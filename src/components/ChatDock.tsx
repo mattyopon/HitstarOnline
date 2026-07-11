@@ -5,7 +5,10 @@ import { useChat, type SendResult } from "@/hooks/useChat";
 import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
 import { EMOTES, MAX_CHAT_LEN, browserLang, type ChatMessage } from "@/lib/chat";
+import { useT } from "@/lib/i18n";
 import type { PublicPlayer } from "@/lib/protocol";
+import { Avatar } from "./Avatar";
+import { RankIcon } from "./RankIcon";
 
 interface FlyItem {
   key: string;
@@ -21,6 +24,7 @@ interface FlyItem {
  * language on the fly. Mounted for multiplayer rooms only.
  */
 export function ChatDock({ code, players }: { code: string; players: PublicPlayer[] }) {
+  const t = useT();
   const { user } = useUser();
   const { messages, send } = useChat(code, user, !!user);
   const myLang = browserLang();
@@ -33,6 +37,18 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
 
   // msgId -> translated text (in viewer's language). Set even on failure (= original).
   const [translations, setTranslations] = useState<Record<string, string>>({});
+  // Ids already requested (in-flight or done) — a ref so marking one doesn't
+  // itself re-trigger the effect below (see the bug note there).
+  const requestedIds = useRef<Set<string>>(new Set());
+  // True while mounted — gates late async setState (translation responses that
+  // arrive after unmount) without cancelling in-flight batches on every rerender.
+  const mountedRef = useRef(true);
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
   const [fly, setFly] = useState<FlyItem[]>([]);
   const flown = useRef<Set<string>>(new Set());
   const listRef = useRef<HTMLDivElement>(null);
@@ -43,11 +59,15 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
     setDanmaku(localStorage.getItem("hitstar_danmaku") !== "off");
   }, []);
 
-  // Resolve a sender's current display identity from the room roster.
+  // Resolve a sender's current display identity (incl. rank tier) from the roster.
   const display = useCallback(
     (m: ChatMessage) => {
       const p = players.find((pp) => pp.userId === m.userId);
-      return { name: p?.name ?? m.name, avatarUrl: p?.avatarUrl ?? m.avatarUrl ?? null };
+      return {
+        name: p?.name ?? m.name,
+        avatarUrl: p?.avatarUrl ?? m.avatarUrl ?? null,
+        tier: p?.tier,
+      };
     },
     [players],
   );
@@ -58,40 +78,57 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
   );
 
   // Translate foreign-language, non-emote messages into the viewer's language.
+  //
+  // BUG HISTORY: this used to mark "in-flight" by calling setTranslations()
+  // synchronously with the original text as a placeholder, and included
+  // `translations` in this effect's own dependency array. That placeholder
+  // write changed `translations`, which re-triggered this very effect, whose
+  // cleanup then set `cancelled = true` on the in-flight closure — so by the
+  // time the /api/translate response arrived, `if (cancelled) return` always
+  // fired and the real translation was discarded every time (translations
+  // silently never appeared). Track "already requested" in a ref instead, so
+  // marking a message doesn't cause a re-render/re-run at all, and drop
+  // `translations` from the deps so this effect only reacts to new messages.
   useEffect(() => {
     const pending = messages.filter(
-      (m) => !m.emote && m.lang !== myLang && translations[m.id] === undefined,
+      (m) => !m.emote && m.lang !== myLang && !requestedIds.current.has(m.id),
     );
     if (!pending.length) return;
-    let cancelled = false;
-    // Mark as in-flight (original as placeholder) so we don't double-request.
-    setTranslations((prev) => {
-      const next = { ...prev };
-      for (const m of pending) if (next[m.id] === undefined) next[m.id] = m.text;
-      return next;
-    });
+    for (const m of pending) requestedIds.current.add(m.id);
+    // NOTE: do NOT cancel the in-flight batch on cleanup. `messages` is in the
+    // deps and changes on every new chat/emote, so a per-run `cancelled` flag
+    // would abort the fetch whenever a message arrives mid-translation — and
+    // because these ids are already in requestedIds, they'd never be retried,
+    // permanently stranding that translation (the exact self-cancel bug this
+    // component had before). setTranslations is an id-keyed merge, so a late
+    // response applies safely; we only need to avoid setState after UNMOUNT,
+    // which mountedRef guards.
     (async () => {
       try {
         const { translations: out } = await api<{ translations: string[] }>("/api/translate", {
           texts: pending.map((m) => m.text),
           target: myLang,
         });
-        if (cancelled) return;
+        if (!mountedRef.current) return;
         setTranslations((prev) => {
           const next = { ...prev };
           pending.forEach((m, i) => {
-            if (typeof out[i] === "string") next[m.id] = out[i];
+            next[m.id] = typeof out[i] === "string" ? out[i] : m.text;
           });
           return next;
         });
       } catch {
-        /* keep originals */
+        if (!mountedRef.current) return;
+        // Network/API failure: fall back to originals so the danmaku "wait
+        // for translation" gate below doesn't stall on this message forever.
+        setTranslations((prev) => {
+          const next = { ...prev };
+          for (const m of pending) next[m.id] = m.text;
+          return next;
+        });
       }
     })();
-    return () => {
-      cancelled = true;
-    };
-  }, [messages, myLang, translations]);
+  }, [messages, myLang]);
 
   // Spawn danmaku once a message's final (translated) text is available.
   useEffect(() => {
@@ -152,8 +189,8 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
   }
 
   function feedback(r: SendResult) {
-    if (r === "rate") flash("送信が早すぎます。少し待ってね");
-    else if (r === "offline") flash("接続中… 少し待ってね");
+    if (r === "rate") flash(t("送信が早すぎます。少し待ってね"));
+    else if (r === "offline") flash(t("接続中… 少し待ってね"));
   }
 
   function submit() {
@@ -180,14 +217,8 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                 style={{ top: `${f.top}%`, animationDuration: `${f.dur}s` }}
                 onAnimationEnd={() => setFly((prev) => prev.filter((x) => x.key !== f.key))}
               >
-                <span className="danmaku-avatar">
-                  {d.avatarUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={d.avatarUrl} alt="" />
-                  ) : (
-                    (d.name || "?").charAt(0).toUpperCase()
-                  )}
-                </span>
+                <Avatar name={d.name || "?"} url={d.avatarUrl} className="danmaku-avatar" />
+                <RankIcon tier={d.tier} size={14} />
                 <span className="danmaku-name">{d.name}</span>
                 <span className="danmaku-text">{f.text}</span>
               </div>
@@ -201,14 +232,16 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
         {open ? (
           <div className="chat-card">
             <div className="row spread chat-head">
-              <strong>💬 チャット</strong>
+              <strong className="serif" style={{ fontStyle: "italic" }}>
+                {t("💬 チャット")}
+              </strong>
               <div className="row" style={{ gap: 6 }}>
                 <button
                   className="btn ghost tiny"
                   onClick={toggleDanmaku}
-                  title="画面を流れるコメントの表示切替"
+                  title={t("画面を流れるコメントの表示切替")}
                 >
-                  {danmaku ? "弾幕ON" : "弾幕OFF"}
+                  {danmaku ? t("弾幕ON") : t("弾幕OFF")}
                 </button>
                 <button className="btn ghost tiny" onClick={() => setOpen(false)}>
                   ✕
@@ -219,7 +252,7 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
             <div className="chat-list" ref={listRef}>
               {messages.length === 0 ? (
                 <p className="tiny muted" style={{ textAlign: "center", margin: "auto" }}>
-                  まだメッセージはありません
+                  {t("まだメッセージはありません")}
                 </p>
               ) : (
                 messages.map((m) => {
@@ -228,19 +261,15 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                   const translated = !m.emote && shown !== m.text;
                   return (
                     <div key={m.id} className="chat-msg">
-                      <span className="chat-avatar">
-                        {d.avatarUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={d.avatarUrl} alt="" />
-                        ) : (
-                          (d.name || "?").charAt(0).toUpperCase()
-                        )}
-                      </span>
+                      <Avatar name={d.name || "?"} url={d.avatarUrl} className="chat-avatar" />
                       <div className="chat-body">
-                        <span className="chat-name">{d.name}</span>{" "}
+                        <span className="chat-name">
+                          <RankIcon tier={d.tier} size={14} />
+                          {d.name}
+                        </span>{" "}
                         <span className={m.emote ? "chat-emote" : ""}>{shown}</span>
                         {translated && (
-                          <span className="chat-orig tiny muted" title="原文">
+                          <span className="chat-orig tiny muted" title={t("原文")}>
                             🌐 {m.text}
                           </span>
                         )}
@@ -266,18 +295,18 @@ export function ChatDock({ code, players }: { code: string; players: PublicPlaye
                 type="text"
                 value={text}
                 maxLength={MAX_CHAT_LEN}
-                placeholder="メッセージを入力（自動翻訳されます）"
+                placeholder={t("メッセージを入力（自動翻訳されます）")}
                 onChange={(e) => setText(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && submit()}
               />
               <button className="btn secondary" onClick={submit} type="button">
-                送信
+                {t("送信")}
               </button>
             </div>
           </div>
         ) : (
-          <button className="chat-fab" onClick={() => setOpen(true)} aria-label="チャットを開く">
-            💬
+          <button className="chat-fab" onClick={() => setOpen(true)} aria-label={t("チャットを開く")}>
+            <span aria-hidden>♪</span>
             {unread > 0 && <span className="chat-badge">{unread}</span>}
           </button>
         )}

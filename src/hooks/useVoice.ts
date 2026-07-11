@@ -242,6 +242,24 @@ export function useVoice(code: string, me: ClientUser | null): VoiceApi {
     async (msg: SignalMsg) => {
       const m = meRef.current;
       if (!m || msg.to !== m.id) return;
+      // Sender-authenticity guard. Broadcast payloads are self-asserted (the
+      // private-channel RLS only proves the sender is SOME room member, not that
+      // `from` is truthful), so drop the obvious spoofs: a signal claiming to be
+      // from ourselves, or from an id that isn't actually present in the voice
+      // channel. Legit peers are always in presence before they hand-shake, so
+      // this can't drop a real offer. (Full sender-authenticated signaling would
+      // require relaying every ICE candidate through the server — rejected here
+      // for latency; this closes the cheap spoof vectors.)
+      if (msg.from === m.id) return;
+      if (!peersRef.current.has(msg.from)) {
+        const st = channelRef.current?.presenceState() as
+          | Record<string, VoicePresence[]>
+          | undefined;
+        const present = st
+          ? Object.values(st).some((arr) => arr[0]?.userId === msg.from)
+          : false;
+        if (!present) return;
+      }
       const peer = peersRef.current.get(msg.from) ?? createPeer(msg.from, msg.from);
       const pc = peer.pc;
       try {

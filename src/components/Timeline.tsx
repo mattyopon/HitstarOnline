@@ -1,9 +1,14 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import type { TimelineCard } from "@/lib/protocol";
+import { useTimelineFit } from "@/hooks/useTimelineFit";
+import { useT } from "@/lib/i18n";
 
-export function Timeline({
+// Memoized: the parent (GameRoom) re-renders every clock tick (~500ms); without
+// memo every player's timeline would re-render twice a second, which is what made
+// the board lag as cards pile up. Props are state-derived (stable between ticks).
+export const Timeline = memo(function Timeline({
   cards,
   interactive = false,
   selectedSlot = null,
@@ -19,6 +24,8 @@ export function Timeline({
   mysterySlot?: number | null;
   compact?: boolean;
 }) {
+  const t = useT();
+  const fitRef = useTimelineFit(cards.length);
   const Slot = ({ i }: { i: number }) => {
     if (mysterySlot === i) {
       return (
@@ -33,7 +40,7 @@ export function Timeline({
         className={"slot interactive" + (selectedSlot === i ? " selected" : "")}
         onClick={() => onSelect?.(i)}
         role="button"
-        aria-label={`位置 ${i}`}
+        aria-label={t("位置 {i}", { i })}
       >
         ＋
       </div>
@@ -41,7 +48,7 @@ export function Timeline({
   };
 
   return (
-    <div className="timeline">
+    <div className="timeline" ref={fitRef}>
       <Slot i={0} />
       {cards.map((c, idx) => (
         <Fragment key={c.id}>
@@ -53,7 +60,7 @@ export function Timeline({
           <Slot i={idx + 1} />
         </Fragment>
       ))}
-      {cards.length === 0 && <span className="muted tiny">カードなし</span>}
+      {cards.length === 0 && <span className="muted tiny">{t("カードなし")}</span>}
     </div>
   );
-}
+});

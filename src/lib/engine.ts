@@ -11,10 +11,16 @@
 // ───────────────────────────────────────────────────────────────────────────
 
 import {
+  ANIME_QUIZ_BONUS_TOKENS,
+  AnimeQuizInfo,
   BOT_NAMES,
   BOT_PROFILES,
   BotDifficulty,
   BotProfile,
+  CATEGORIES,
+  CATEGORY_IDS,
+  DEFAULT_SETTINGS,
+  FRANCHISE_PACK_NAMES,
   FullGame,
   GameSettings,
   MODE_START_TOKENS,
@@ -24,7 +30,10 @@ import {
   SecretState,
   Song,
   TimelineCard,
+  VOTE_DURATION_SECONDS,
+  deckKeyOf,
   defaultSettings,
+  franchiseForCategories,
 } from "./protocol";
 import { looseMatch } from "./matching";
 
@@ -36,6 +45,13 @@ function clone<T>(x: T): T {
 
 function cardId(songId: number): string {
   return `s${songId}`;
+}
+
+/** Opaque public id for the CURRENT (unrevealed) mystery card. Derived from the
+ *  server-only draw position so it can't be reversed to the songId, yet is
+ *  deterministic per state (CAS-safe) and unique per (re)draw. */
+function mysteryCardId(g: FullGame): string {
+  return `t${(hash32(`${g.public.code}|${g.secret.drawPos}`) >>> 0).toString(36)}`;
 }
 
 function materialize(songId: number, songs: Song[]): TimelineCard {
@@ -78,32 +94,32 @@ function getPlayer(state: PublicState, userId: string): PublicPlayer {
 function eligibleStealers(state: PublicState): PublicPlayer[] {
   const activeUid = state.order[state.activeIndex];
   const already = new Set(state.steals.map((s) => s.userId));
+  // Any timeline always has len+1 placement slots, so an eligible stealer always
+  // has somewhere to place — the only gates are turn/connection/tokens/not-yet-acted.
   return state.players.filter(
     (p) =>
       p.userId !== activeUid &&
       p.connected &&
       p.tokens > 0 &&
-      !already.has(p.userId) &&
-      // must have somewhere to place (always true: any timeline has len+1 slots)
-      true,
+      !already.has(p.userId),
   );
 }
 
-// ── Timing accessors (with backward-compat defaults for old persisted rooms) ──
-function listenMs(s: GameSettings): number {
-  return (s.listenSeconds ?? 30) * 1000;
+// ── Timing accessors (fall back to DEFAULT_SETTINGS for old persisted rooms) ──
+export function listenMs(s: GameSettings): number {
+  return (s.listenSeconds ?? DEFAULT_SETTINGS.listenSeconds) * 1000;
 }
-function placeMs(s: GameSettings): number {
-  return (s.placementSeconds ?? 30) * 1000;
+export function placeMs(s: GameSettings): number {
+  return (s.placementSeconds ?? DEFAULT_SETTINGS.placementSeconds) * 1000;
 }
 function stealMs(s: GameSettings): number {
-  return (s.stealSeconds ?? 10) * 1000;
+  return (s.stealSeconds ?? DEFAULT_SETTINGS.stealSeconds) * 1000;
 }
 function earlyMs(s: GameSettings): number {
-  return s.earlyBonusMs ?? 10000;
+  return s.earlyBonusMs ?? DEFAULT_SETTINGS.earlyBonusMs;
 }
 function earlyTokens(s: GameSettings): number {
-  return s.earlyBonusTokens ?? 2;
+  return s.earlyBonusTokens ?? DEFAULT_SETTINGS.earlyBonusTokens;
 }
 
 /** True once every still-eligible (token-holding, connected) opponent has
@@ -166,7 +182,10 @@ export function addPlayer(game: FullGame, seed: PlayerSeed): FullGame {
   }
 
   const g = clone(game);
-  if (g.public.phase !== "lobby") {
+  // Brand-new joins are allowed only while pre-game (lobby OR the genre vote);
+  // mid-game only existing members may reconnect.
+  const joinable = g.public.phase === "lobby" || g.public.phase === "voting";
+  if (!joinable) {
     // Allow rejoin if already a member (reconnect); otherwise reject.
     const existing = g.public.players.find((p) => p.userId === seed.userId);
     if (existing) {
@@ -233,7 +252,14 @@ export function removePlayer(game: FullGame, userId: string): FullGame {
   const idx = g.public.players.findIndex((p) => p.userId === userId);
   if (idx === -1) return game;
 
-  if (g.public.phase === "lobby") {
+  // A departing player's genre vote must not keep counting (or block completion).
+  if (g.public.votes && userId in g.public.votes) delete g.public.votes[userId];
+
+  // Pre-game (lobby OR the genre vote): fully remove the player and re-seat the
+  // rest. During "voting" no hands are dealt and no turns rotate, so there is no
+  // reason to keep a disconnected ghost around — leaving them in would also let
+  // the vote-deadline backstop start a "zombie" game with no connected humans.
+  if (g.public.phase === "lobby" || g.public.phase === "voting") {
     g.public.players.splice(idx, 1);
     g.public.players.forEach((p, i) => (p.seat = i));
     g.public.order = g.public.players.map((p) => p.userId);
@@ -274,19 +300,60 @@ function drawNext(secret: SecretState): number | null {
   return songId;
 }
 
-/** Begin a turn: draw the mystery card and open the placing phase. */
+/** Map a stored deck index (rawId) to the CURRENT songs[] index, correcting for
+ *  a deck.json redeploy that shifted array positions. Uses the captured deckKey:
+ *  fast path when songs[rawId] still matches; otherwise finds the song that
+ *  still carries the key. Falls back to rawId when there's no captured key
+ *  (room predates this feature) or the song was removed from the deck. */
+function resolveDeckIndex(rawId: number, key: string | undefined, songs: Song[]): number {
+  if (!key) return rawId; // backward compat: index-only room
+  const cur = songs[rawId];
+  if (cur && deckKeyOf(cur.title, cur.artist) === key) return rawId; // unchanged
+  const found = songs.findIndex((s) => deckKeyOf(s.title, s.artist) === key);
+  return found >= 0 ? found : rawId; // removed from deck → best-effort index
+}
+
+/** The current mystery card's index in the CURRENT songs[], re-resolved from its
+ *  captured deckKey so a mid-turn deck redeploy can't desync the reveal answer. */
+function currentResolvedSongId(g: FullGame, songs: Song[]): number | undefined {
+  const raw = g.secret.currentSongId;
+  if (raw === undefined) return undefined;
+  return resolveDeckIndex(raw, g.secret.currentDeckKey, songs);
+}
+
+/** Begin a turn: draw the mystery card and open the placing phase.
+ *  The mystery card's answer (title/artist/year) is materialized lazily at
+ *  reveal; only non-answer playback hints (provider/isCover) are copied here so
+ *  the right player can be selected and the cover banner shown. */
 function beginTurn(g: FullGame, songs: Song[], now: number): void {
-  const songId = drawNext(g.secret);
-  if (songId === null) {
+  const rawSongId = drawNext(g.secret);
+  if (rawSongId === null) {
     endGame(g);
     return;
   }
+  // Correct the raw deck index against its captured deckKey so a deck.json
+  // redeploy that shifted array positions still draws the intended song.
+  const songId = resolveDeckIndex(rawSongId, g.secret.deckKeys?.[g.secret.drawPos - 1], songs);
   g.secret.currentSongId = songId;
+  const drawn = songs[songId];
+  // Remember the current card's key so the reveal can re-resolve it even if the
+  // deck is redeployed mid-turn (between this draw and the reveal request).
+  g.secret.currentDeckKey = drawn ? deckKeyOf(drawn.title, drawn.artist) : undefined;
+  const provider = drawn?.provider ?? "youtube";
   g.public.current = {
-    cardId: cardId(songId),
+    // Opaque per-draw token — NOT derivable to the songId. Publishing `s<songId>`
+    // would leak the answer (deck.json is public in the repo, so an index maps
+    // straight to title/artist/year). drawPos is server-only, so hashing it hides
+    // the identity while staying deterministic under CAS retries and changing on
+    // every (re)draw so skip-song's echo-guard still distinguishes cards.
+    cardId: mysteryCardId(g),
     youtubeId: null,
     startSeconds: g.public.settings.startSeconds,
     startedAt: now,
+    // Carry the (non-answer) playback hints. For a bilibili card the playable id
+    // (bvid) is left null/absent here and resolved server-side, mirroring how the
+    // YouTube id is resolved later — engine purity is preserved.
+    ...(provider === "bilibili" ? { provider, isCover: drawn?.isCover ?? false } : {}),
   };
   g.public.placement = undefined;
   g.public.guess = undefined;
@@ -302,6 +369,7 @@ function beginTurn(g: FullGame, songs: Song[], now: number): void {
   g.public.listeningExtended = false;
   g.public.listeningEndedAt = null;
   g.public.earlyBonusAwarded = false;
+  g.public.earlyBonusGained = 0;
   g.public.placementDeadline = now + listenMs(s) + placeMs(s);
 
   g.public.phase = "placing";
@@ -311,12 +379,24 @@ function beginTurn(g: FullGame, songs: Song[], now: number): void {
 
 export function startGame(game: FullGame, deckOrder: number[], songs: Song[], now: number): FullGame {
   const g = clone(game);
-  if (g.public.phase !== "lobby") throw new GameError("ゲームは既に開始されています");
+  // Startable from the lobby OR from the genre-vote phase (vote → game).
+  if (g.public.phase !== "lobby" && g.public.phase !== "voting") {
+    throw new GameError("ゲームは既に開始されています");
+  }
   const n = g.public.players.length;
   if (n < 1) throw new GameError("プレイヤーがいません");
   if (deckOrder.length < n + 1) throw new GameError("曲が足りません");
 
+  // Genre votes only matter pre-game; never leak them into in-game state.
+  delete g.public.votes;
+
   g.secret.deck = [...deckOrder];
+  // Capture each draw position's deckKey so a later deck.json redeploy that
+  // shifts array indices can't desync this game's questions/answers.
+  g.secret.deckKeys = deckOrder.map((i) => {
+    const s = songs[i];
+    return s ? deckKeyOf(s.title, s.artist) : "";
+  });
   g.secret.drawPos = 0;
 
   // Deal one starting card to each player (revealed on their timeline).
@@ -348,6 +428,157 @@ export function createGame(
   return startGame(g, deckOrder, songs, now);
 }
 
+// ─── Genre majority-vote (phase "voting") ─────────────────────────────────--
+// When 2+ humans are in a room the host opens a vote instead of starting the
+// game directly; every connected human votes for genre categories and the
+// majority winner builds the deck. Everything here is pure: the deck shuffle
+// (which needs the server-only deck) is built by the route from voteWinner +
+// votesHashSeed and handed to startFromVote, so CAS retries stay deterministic.
+
+/** Connected, present, non-bot players — the only eligible voters/tally base. */
+function humanVoters(state: PublicState): PublicPlayer[] {
+  return state.players.filter((p) => p.connected && !isBot(p));
+}
+
+/**
+ * Open the genre vote (lobby → voting). Precondition: at least 2 CONNECTED
+ * non-bot humans (M4) — bots never vote. Idempotent-ish: throws on misuse so
+ * the host route surfaces a clear error.
+ */
+export function openVoting(game: FullGame, now: number): FullGame {
+  const g = clone(game);
+  if (g.public.phase !== "lobby") throw new GameError("今は投票を開始できません");
+  if (humanVoters(g.public).length < 2) {
+    throw new GameError("投票には2人以上の参加者が必要です");
+  }
+  g.public.phase = "voting";
+  g.public.votes = {};
+  g.public.deadline = now + VOTE_DURATION_SECONDS * 1000;
+  g.public.version++;
+  return g;
+}
+
+/** Filter a raw category-id list to valid ids, de-duplicated, order-stable. */
+function sanitizeVote(cats: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const c of cats) {
+    if (CATEGORY_IDS.has(c) && !seen.has(c)) {
+      seen.add(c);
+      out.push(c);
+    }
+  }
+  return out;
+}
+
+/**
+ * Cast (or change) a player's vote. No-op (no version bump) when not in the
+ * voting phase (M1/late tap) or when the vote is unchanged (S2). Only present,
+ * connected, non-bot members may vote.
+ */
+export function castVote(game: FullGame, userId: string, cats: string[], _now: number): FullGame {
+  if (game.public.phase !== "voting") return game; // late/duplicate tap → benign
+  const voter = game.public.players.find((p) => p.userId === userId);
+  if (!voter || isBot(voter) || !voter.connected) {
+    throw new GameError("投票できません");
+  }
+  const next = sanitizeVote(cats);
+  const cur = game.public.votes?.[userId];
+  // Identical re-vote → no-op (avoid realtime churn). Order is significant here
+  // only as a stable signal; sanitizeVote keeps caller order.
+  if (cur && cur.length === next.length && cur.every((c, i) => c === next[i])) {
+    return game;
+  }
+  const g = clone(game);
+  if (!g.public.votes) g.public.votes = {};
+  g.public.votes[userId] = next;
+  g.public.version++;
+  return g;
+}
+
+/** True once every eligible (connected, non-bot) voter has cast a vote AND at
+ *  least one vote exists. Pure optimization for early start; the deadline is the
+ *  authoritative backstop (M6). */
+export function allVoted(state: PublicState): boolean {
+  const voters = humanVoters(state);
+  if (voters.length === 0) return false;
+  const votes = state.votes ?? {};
+  let any = false;
+  for (const p of voters) {
+    if (!(p.userId in votes)) return false;
+    any = true;
+  }
+  return any;
+}
+
+/** Deterministic seed for the vote-driven shuffle and tie-break. Folds version
+ *  so retries within one transition agree but successive votes/rematches differ
+ *  (S4). Evaluated on the PRE-start game (round is still 0 during voting). */
+export function votesHashSeed(g: FullGame): number {
+  return hash32(`${g.public.code}:${g.public.round}:${g.public.version}`);
+}
+
+/**
+ * Tally the votes (only from present, connected, non-bot players) and return the
+ * winning category ids. Each player's ballot is a list; every listed category
+ * gets one point. Returns:
+ *   - the set of categories tied for the most points (deterministically chosen
+ *     winner list), or
+ *   - [] when nobody voted → "all categories" (M8), NOT settings.categories.
+ */
+export function voteWinner(g: FullGame): string[] {
+  const voters = new Set(humanVoters(g.public).map((p) => p.userId));
+  const votes = g.public.votes ?? {};
+  const tally = new Map<string, number>();
+  for (const [uid, cats] of Object.entries(votes)) {
+    if (!voters.has(uid)) continue; // ignore departed/bot/disconnected voters
+    for (const c of cats) {
+      if (CATEGORY_IDS.has(c)) tally.set(c, (tally.get(c) ?? 0) + 1);
+    }
+  }
+  if (tally.size === 0) return []; // all-abstain → all categories
+  let max = 0;
+  for (const v of tally.values()) if (v > max) max = v;
+  // Stable, deterministic order: canonical CATEGORIES order, max-count only.
+  return CATEGORIES.map((c) => c.id).filter((id) => tally.get(id) === max);
+}
+
+/**
+ * Start the game from the voting phase using a deck order the CALLER built from
+ * voteWinner + votesHashSeed (deck access is server-only). Idempotent and
+ * phase-guarded (M1): a no-op if not in voting, so the double-start race
+ * (last-voter vs. deadline-advance) is benign under CAS. If the supplied deck is
+ * too small even after the caller's all-categories fallback, return to the lobby
+ * (clearing votes) rather than throwing an unrecoverable error (M7).
+ */
+export function startFromVote(game: FullGame, deckOrder: number[], songs: Song[], now: number): FullGame {
+  if (game.public.phase !== "voting") return game; // already started / not voting
+
+  // Everyone left during the vote (only bots / disconnected remain) → there is
+  // nobody to play, so recover to the lobby instead of starting a zombie game.
+  // No connected non-bot human → return-to-lobby recovery (same as the M7 path).
+  if (humanVoters(game.public).length === 0) {
+    const g = clone(game);
+    g.public.phase = "lobby";
+    delete g.public.votes;
+    g.public.deadline = undefined;
+    g.public.version++;
+    return g;
+  }
+
+  const n = game.public.players.length;
+  if (deckOrder.length < n + 1) {
+    // Even the fallback deck can't seat everyone → recover to lobby.
+    const g = clone(game);
+    g.public.phase = "lobby";
+    delete g.public.votes;
+    g.public.deadline = undefined;
+    g.public.version++;
+    return g;
+  }
+  return startGame(game, deckOrder, songs, now);
+}
+
 // ─── Turn actions ─────────────────────────────────────────────────────────--
 
 export function placeCard(
@@ -365,7 +596,7 @@ export function placeCard(
   if (slotIndex < 0 || slotIndex > active.timeline.length) throw new GameError("配置位置が不正です");
 
   const s = g.public.settings;
-  const song = songs[g.secret.currentSongId ?? -1];
+  const song = songs[currentResolvedSongId(g, songs) ?? -1];
 
   // Submitting ends the listening window (music stops) if still listening.
   if (g.public.listeningEndedAt == null) g.public.listeningEndedAt = now;
@@ -377,7 +608,9 @@ export function placeCard(
   const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
   const correct = !!song && isPlacementCorrect(active.timeline, slotIndex, song.year);
   if (correct && now - start <= earlyMs(s) && !g.public.earlyBonusAwarded) {
-    active.tokens = Math.min(s.maxTokens, active.tokens + earlyTokens(s));
+    const before = active.tokens;
+    active.tokens = Math.min(s.maxTokens, before + earlyTokens(s));
+    g.public.earlyBonusGained = active.tokens - before; // actual gain (0..earlyTokens)
     g.public.earlyBonusAwarded = true;
   }
 
@@ -395,14 +628,23 @@ export function placeCard(
   return g;
 }
 
-/** Spend a token to extend the listening window (一回のみ / one-time per turn). */
+/** Extend the listening window (一回のみ / one-time per turn, shared by the room).
+ *  The ACTIVE player pays extendCost; any other CONNECTED member listening along
+ *  extends for FREE (no placement advantage to buy — they just want to keep
+ *  hearing the song). Both paths consume the single listeningExtended flag, so
+ *  a turn never stretches beyond one extension total. */
 export function extendListening(game: FullGame, userId: string, now: number): FullGame {
   const g = clone(game);
   const s = g.public.settings;
   if (g.public.phase !== "placing") throw new GameError("今は試聴を延長できません");
-  if (!(s.allowExtend ?? true)) throw new GameError("試聴延長は無効です");
+  if (!(s.allowExtend ?? DEFAULT_SETTINGS.allowExtend)) throw new GameError("試聴延長は無効です");
   const active = activePlayer(g.public);
-  if (active.userId !== userId) throw new GameError("あなたの番ではありません");
+  const requester = g.public.players.find((p) => p.userId === userId);
+  if (!requester) throw new GameError("この部屋のメンバーではありません");
+  const isActiveReq = active.userId === userId;
+  if (!isActiveReq && !requester.connected) {
+    throw new GameError("切断中は試聴を延長できません");
+  }
   if (g.public.listeningExtended) throw new GameError("試聴延長は1回までです");
 
   const start = g.public.listenStartedAt ?? g.public.current?.startedAt ?? now;
@@ -410,12 +652,12 @@ export function extendListening(game: FullGame, userId: string, now: number): Fu
   if (now >= start + dur || g.public.listeningEndedAt != null) {
     throw new GameError("試聴は既に終了しました");
   }
-  const cost = s.extendCost ?? 1;
-  if (active.tokens < cost) throw new GameError("トークンが足りません");
+  const cost = isActiveReq ? s.extendCost ?? DEFAULT_SETTINGS.extendCost : 0;
+  if (requester.tokens < cost) throw new GameError("トークンが足りません");
 
-  active.tokens -= cost;
+  requester.tokens -= cost;
   g.public.listeningExtended = true;
-  g.public.listenDurationMs = dur + (s.extendSeconds ?? 60) * 1000;
+  g.public.listenDurationMs = dur + (s.extendSeconds ?? DEFAULT_SETTINGS.extendSeconds) * 1000;
   // Placement deadline shifts with the longer listening window; the early-bonus
   // cutoff (start + earlyMs) is UNCHANGED — it is measured from the song start.
   g.public.placementDeadline = start + g.public.listenDurationMs + placeMs(s);
@@ -438,6 +680,38 @@ export function skipSong(game: FullGame, userId: string, songs: Song[], now: num
   return g;
 }
 
+/** Max free (no-token) system skips allowed within a single turn. Generous
+ *  enough for "a few players can't play this track" yet low enough that nobody
+ *  can burn the whole deck to force an early game-over/win. */
+export const MAX_FREE_SKIPS_PER_TURN = 5;
+
+/** Free "system" skip of the current song: redraw the mystery card with no
+ *  token cost and no turn change. No-op outside the placing phase. Used for
+ *  unplayable tracks and for the free skip button (any participant).
+ *  Throttled per turn (MAX_FREE_SKIPS_PER_TURN) so nobody can spam the deck to
+ *  exhaustion and force a standings-based win. */
+export function systemSkip(game: FullGame, songs: Song[], now: number): FullGame {
+  if (game.public.phase !== "placing") return game;
+  const g = clone(game);
+  // Lazily reset the counter when a real new turn (round) began.
+  if (g.secret.skipRound !== g.public.round) {
+    g.secret.skipRound = g.public.round;
+    g.secret.skipCount = 0;
+  }
+  if ((g.secret.skipCount ?? 0) >= MAX_FREE_SKIPS_PER_TURN) {
+    throw new GameError("このターンのスキップ上限に達しました");
+  }
+  g.secret.skipCount = (g.secret.skipCount ?? 0) + 1;
+  const savedRound = g.secret.skipRound;
+  const savedCount = g.secret.skipCount;
+  beginTurn(g, songs, now);
+  // beginTurn doesn't touch these, but keep them explicit against future churn.
+  g.secret.skipRound = savedRound;
+  g.secret.skipCount = savedCount;
+  g.public.version++;
+  return g;
+}
+
 /**
  * Buy the current card: pay `buyCost` tokens to auto-place it at its correct
  * slot, no guessing and no challenge. Counts toward the win.
@@ -449,9 +723,10 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
   if (active.userId !== userId) throw new GameError("あなたの番ではありません");
   const cost = g.public.settings.buyCost;
   if (active.tokens < cost) throw new GameError(`トークンが足りません（${cost}枚必要）`);
-  const songId = g.secret.currentSongId;
+  const songId = currentResolvedSongId(g, songs);
   if (songId === undefined) throw new GameError("購入できる曲がありません");
   const song = songs[songId];
+  const animeQuiz = buildAnimeQuiz(song, g.public);
 
   active.tokens -= cost;
   const slot = correctSlot(active.timeline, song.year);
@@ -464,12 +739,25 @@ export function buyCard(game: FullGame, userId: string, songs: Song[], now: numb
     artist: song.artist,
     year: song.year,
     youtubeId: g.public.current?.youtubeId ?? null,
+    // Carry playback provider/ids + cover flavor so reveal can play in full
+    // (current is cleared just below). Never adds an answer beyond what reveal
+    // already exposes.
+    ...(g.public.current?.provider === "bilibili"
+      ? {
+          provider: "bilibili" as const,
+          bvid: g.public.current?.bvid,
+          isCover: g.public.current?.isCover,
+          coverArtist: song.coverArtist,
+        }
+      : {}),
     placementSlot: slot,
     activeCorrect: true,
+    placementCorrect: true,
     awardedTo: active.userId,
     bought: true,
     steals: [],
     tokenAwards: [],
+    ...(animeQuiz ? { animeQuiz } : {}),
     reason: "カード購入",
   };
   g.public.current = undefined;
@@ -539,8 +827,8 @@ function correctSlot(timeline: TimelineCard[], year: number): number {
   return timeline.length;
 }
 
-function wonCards(p: PublicPlayer): number {
-  // The starting seed card doesn't count toward the target.
+/** Earned cards (excludes the starting seed card). Shared with stats.ts. */
+export function wonCards(p: PublicPlayer): number {
   return Math.max(0, p.timeline.length - 1);
 }
 
@@ -551,10 +839,32 @@ function checkWin(g: FullGame, userId: string): void {
   }
 }
 
+/** Build the optional bonus quiz for a reveal, or undefined if `song` isn't in
+ *  exactly one single-franchise pack. Pure & deterministic — seeded from
+ *  (code, round) so a mutateByCode CAS retry reconstructs the SAME quiz. */
+function buildAnimeQuiz(song: Song, state: PublicState): AnimeQuizInfo | undefined {
+  const correct = franchiseForCategories(song.categories);
+  if (!correct) return undefined;
+  const rng = mulberry32(hash32(`${state.code}|${state.round}|animequiz`));
+  const decoyPool = Object.values(FRANCHISE_PACK_NAMES).filter((n) => n !== correct);
+  for (let i = decoyPool.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [decoyPool[i], decoyPool[j]] = [decoyPool[j], decoyPool[i]];
+  }
+  const decoyCount = Math.min(decoyPool.length, 2 + Math.floor(rng() * 2)); // 2 or 3
+  const choices = [correct, ...decoyPool.slice(0, decoyCount)];
+  for (let i = choices.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [choices[i], choices[j]] = [choices[j], choices[i]];
+  }
+  return { choices, correct, answers: {}, solvedBy: null };
+}
+
 function resolve(g: FullGame, songs: Song[], now: number): void {
-  const songId = g.secret.currentSongId;
+  const songId = currentResolvedSongId(g, songs);
   if (songId === undefined) throw new GameError("解決できる曲がありません");
   const song = songs[songId];
+  const animeQuiz = buildAnimeQuiz(song, g.public);
   const mode = g.public.settings.mode;
   const active = activePlayer(g.public);
   const placementSlot = g.public.placement?.slotIndex ?? null;
@@ -562,8 +872,13 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     placementSlot !== null && isPlacementCorrect(active.timeline, placementSlot, song.year);
 
   // Optional naming (active player). Original: earns a token if BOTH correct.
-  const namedTitle = looseMatch(g.public.guess?.title, song.title);
-  const namedArtist = looseMatch(g.public.guess?.artist, song.artist);
+  // Accept any of the deck's alternate titles/artist spellings (aliases /
+  // artistAliases) so cross-language/romanized/acronym-expanded answers that the
+  // deck itself provides are not scored wrong.
+  const titleForms = [song.title, ...(song.aliases ?? [])];
+  const artistForms = [song.artist, ...(song.artistAliases ?? [])];
+  const namedTitle = titleForms.some((t) => looseMatch(g.public.guess?.title, t));
+  const namedArtist = artistForms.some((a) => looseMatch(g.public.guess?.artist, a));
   const namedBoth = namedTitle && namedArtist;
 
   const tokenAwards = [];
@@ -576,14 +891,35 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
   }
 
   // Early-placement bonus tokens were already credited in placeCard; record the
-  // award here so the reveal can show it (no token math repeated).
+  // award here so the reveal can show it (using the ACTUAL capped gain, not the
+  // nominal earlyBonusTokens). Skip a zero gain (player was already at the cap).
   if (g.public.earlyBonusAwarded) {
+    const gained = g.public.earlyBonusGained ?? earlyTokens(g.public.settings);
+    if (gained > 0) {
+      tokenAwards.push({
+        userId: active.userId,
+        namedTitle: false,
+        namedArtist: false,
+        tokensGained: gained,
+        reason: "早置きボーナス",
+      });
+    }
+  }
+
+  // Correct-placement reward: the active player gains a token EVERY turn their
+  // placement is correct (stacks on the early/naming bonuses). Independent of
+  // whether they ultimately keep the card (pro/expert may still lose it to a
+  // stealer without naming) — the reward is for reading the year correctly.
+  const placementTokens = g.public.settings.placementTokens ?? DEFAULT_SETTINGS.placementTokens;
+  if (placementCorrect && placementTokens > 0) {
+    const gained = Math.min(g.public.settings.maxTokens - active.tokens, placementTokens);
+    if (gained > 0) active.tokens += gained;
     tokenAwards.push({
       userId: active.userId,
       namedTitle: false,
       namedArtist: false,
-      tokensGained: earlyTokens(g.public.settings),
-      reason: "早置きボーナス",
+      tokensGained: gained,
+      reason: "正解配置",
     });
   }
 
@@ -629,13 +965,26 @@ function resolve(g: FullGame, songs: Song[], now: number): void {
     artist: song.artist,
     year: song.year,
     youtubeId: g.public.current?.youtubeId ?? null,
+    // Carry playback provider/ids + cover flavor so reveal can play in full
+    // (current is cleared just below). Never adds an answer beyond what reveal
+    // already exposes.
+    ...(g.public.current?.provider === "bilibili"
+      ? {
+          provider: "bilibili" as const,
+          bvid: g.public.current?.bvid,
+          isCover: g.public.current?.isCover,
+          coverArtist: song.coverArtist,
+        }
+      : {}),
     placementSlot,
     activeCorrect: activeKeeps,
+    placementCorrect,
     awardedTo,
     earlyBonus: g.public.earlyBonusAwarded ?? false,
     extendUsed: g.public.listeningExtended ?? false,
     steals,
     tokenAwards,
+    ...(animeQuiz ? { animeQuiz } : {}),
     reason,
   };
   g.public.current = undefined;
@@ -681,6 +1030,23 @@ function nextTurn(g: FullGame, songs: Song[], now: number): void {
  * input unchanged (no version bump) if nothing is due, so multiple clients can
  * call it safely.
  */
+/** Phases in which a game is actively "running" (not lobby/gameover). */
+const IN_GAME_PHASES = new Set(["voting", "placing", "stealing", "reveal"]);
+
+/** Terminate a game that has been ABANDONED — no connected human players remain
+ *  in an in-game phase. Used by the cron backstop so a room where everyone
+ *  closed their tab doesn't churn through the whole deck. No-op (idempotent, no
+ *  version bump) when there's still a connected human, or when not in-game. */
+export function abandonIfNoHumans(game: FullGame): FullGame {
+  if (!IN_GAME_PHASES.has(game.public.phase)) return game;
+  const humanConnected = game.public.players.some((p) => p.connected && !isBot(p));
+  if (humanConnected) return game;
+  const g = clone(game);
+  endGame(g);
+  g.public.version++;
+  return g;
+}
+
 export function advance(game: FullGame, songs: Song[], now: number): FullGame {
   // Let NPCs act first (deterministic + idempotent). If a bot moved, return it.
   const stepped = stepBots(game, songs, now);
@@ -730,15 +1096,77 @@ export function advance(game: FullGame, songs: Song[], now: number): FullGame {
   return game; // nothing due
 }
 
+/**
+ * Manually advance PAST the reveal (the "▶ 次の曲へ" skip). The reveal now lets
+ * the song play in full (long auto-advance), so any member can skip ahead when
+ * everyone's ready. Idempotent: no-op if not in the reveal phase.
+ */
+export function advanceReveal(game: FullGame, songs: Song[], now: number): FullGame {
+  if (game.public.phase !== "reveal") return game;
+  const g = clone(game);
+  if (g.public.winnerId) {
+    g.public.phase = "gameover";
+    g.public.deadline = undefined;
+  } else {
+    nextTurn(g, songs, now);
+  }
+  g.public.version++;
+  return g;
+}
+
+/**
+ * Answer the OPTIONAL "このアニメは？" bonus quiz at reveal. 100% optional and
+ * side-channel: never gates advanceReveal/advance, never touches placement/
+ * steal scoring or the win condition — only tokens. Awards
+ * ANIME_QUIZ_BONUS_TOKENS (capped at maxTokens) to the FIRST correct guesser;
+ * later guesses (right or wrong) are recorded for the UI but earn nothing more
+ * (mirrors stealCard's "first correct wins" pattern). No-op (idempotent, no
+ * version bump) when there's no active quiz for this reveal or this player
+ * already answered — safe for a racing/late client.
+ * ANTI-CHEAT: the correct answer is re-derived here from `songs` (server-only
+ * deck data) — never trusted from the client's `choice`, and not read back
+ * from the public `reveal.animeQuiz.correct` field either.
+ */
+export function answerAnimeQuiz(
+  game: FullGame,
+  userId: string,
+  choice: string,
+  songs: Song[],
+): FullGame {
+  const quiz = game.public.reveal?.animeQuiz;
+  if (game.public.phase !== "reveal" || !quiz) return game;
+  if (!game.public.players.some((p) => p.userId === userId)) {
+    throw new GameError("この部屋のメンバーではありません");
+  }
+  if (quiz.answers[userId] !== undefined) return game; // one guess per player
+  if (!quiz.choices.includes(choice)) throw new GameError("不正な選択肢です");
+
+  const g = clone(game);
+  const q = g.public.reveal!.animeQuiz!;
+  q.answers[userId] = choice;
+
+  const song = songs[g.public.reveal!.songId];
+  const correctName = franchiseForCategories(song?.categories);
+  if (correctName && choice === correctName && q.solvedBy == null) {
+    q.solvedBy = userId;
+    const p = getPlayer(g.public, userId);
+    p.tokens = Math.min(g.public.settings.maxTokens, p.tokens + ANIME_QUIZ_BONUS_TOKENS);
+  }
+  g.public.version++;
+  return g;
+}
+
 // ─── Sanity helpers for the server ────────────────────────────────────────--
 
-/** Does the current state need a YouTube id resolved for its mystery card? */
+/** Does the current state need a playable id resolved for its mystery card?
+ *  YouTube cards need a youtubeId; bilibili cards need a bvid. */
 export function needsTrackResolution(g: FullGame): boolean {
-  return (
-    (g.public.phase === "placing" || g.public.phase === "stealing") &&
-    !!g.public.current &&
-    !g.public.current.youtubeId
-  );
+  const cur = g.public.current;
+  if ((g.public.phase !== "placing" && g.public.phase !== "stealing") || !cur) {
+    return false;
+  }
+  // Absent provider = "youtube" (backward-compatible default).
+  return cur.provider === "bilibili" ? !cur.bvid : !cur.youtubeId;
 }
 
 /** The songId of the card currently being played (server-side use only). */
@@ -746,12 +1174,19 @@ export function currentSongId(g: FullGame): number | undefined {
   return g.secret.currentSongId;
 }
 
+/** Like currentSongId but corrected for a deck.json redeploy that shifted array
+ *  indices (uses the card's captured deckKey). Prefer this wherever the id is
+ *  used to read the SONG from the current deck (playback resolution, answers). */
+export function resolvedCurrentSongId(g: FullGame, songs: Song[]): number | undefined {
+  return currentResolvedSongId(g, songs);
+}
+
 // ─── NPC (bot) logic ────────────────────────────────────────────────────────
 // Pure & deterministic: RNG is seeded from (code, round, seat, purpose) so a
 // mutateByCode CAS retry re-derives the SAME decision. Bots run only here,
 // server-side; their difficulty never enters public state.
 
-function hash32(str: string): number {
+export function hash32(str: string): number {
   let h = 2166136261 >>> 0;
   for (let i = 0; i < str.length; i++) {
     h ^= str.charCodeAt(i);
@@ -760,7 +1195,7 @@ function hash32(str: string): number {
   return h >>> 0;
 }
 
-function mulberry32(seed: number): () => number {
+export function mulberry32(seed: number): () => number {
   let a = seed >>> 0;
   return function () {
     a = (a + 0x6d2b79f5) | 0;
@@ -838,7 +1273,7 @@ export function stepBots(game: FullGame, songs: Song[], now: number): FullGame {
     return g;
   }
 
-  const songId = game.secret.currentSongId;
+  const songId = currentResolvedSongId(game, songs);
   if (songId === undefined) return game;
   const year = songs[songId].year;
 

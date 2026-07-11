@@ -15,12 +15,17 @@ export async function GET(request: Request) {
       ? rawNext
       : "/";
 
-  if (code) {
-    const supabase = await createClient();
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`);
-    }
-  }
-  return NextResponse.redirect(`${origin}/?authError=1`);
+  // The provider can bounce back with an error instead of a code (denied
+  // consent, misconfigured client, etc.) — surface it for diagnosis.
+  const provErr = searchParams.get("error_description") || searchParams.get("error");
+  const fail = (msg: string) =>
+    NextResponse.redirect(`${origin}/?authError=${encodeURIComponent(msg.slice(0, 200))}`);
+
+  if (provErr) return fail(provErr);
+  if (!code) return fail("認証コードがありません");
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.exchangeCodeForSession(code);
+  if (error) return fail(error.message);
+  return NextResponse.redirect(`${origin}${next}`);
 }

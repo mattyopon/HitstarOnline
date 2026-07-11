@@ -4,7 +4,8 @@
 
 import { createAdminClient } from "./supabase/admin";
 import { getDeck } from "./deck";
-import { CATEGORIES, type Phase, type PublicPlayer, type PublicState } from "./protocol";
+import { wonCards } from "./engine";
+import { CATEGORIES, isPackId, type Phase, type PublicPlayer, type PublicState } from "./protocol";
 
 function isRealUser(p: PublicPlayer | undefined): p is PublicPlayer {
   return !!p && !p.isBot;
@@ -13,11 +14,6 @@ function isRealUser(p: PublicPlayer | undefined): p is PublicPlayer {
 function categoriesOf(songId: number | undefined): string[] {
   if (songId === undefined) return [];
   return getDeck()[songId]?.categories ?? [];
-}
-
-/** Won cards excludes the starting seed card. */
-function wonCards(p: PublicPlayer): number {
-  return Math.max(0, p.timeline.length - 1);
 }
 
 /**
@@ -53,7 +49,9 @@ async function recordReveal(roomId: string, state: PublicState): Promise<void> {
     .insert({ room_id: roomId, version: state.version });
   if (guardErr) return; // 23505 (already recorded) or other → skip
 
-  const cats = categoriesOf(reveal.songId);
+  // Theme-pack tags ("pack:<slug>") live alongside genre categories in the
+  // song's categories[]; they must NOT create per-category stat buckets.
+  const cats = categoriesOf(reveal.songId).filter((c) => !isPackId(c));
   if (cats.length === 0) return;
 
   const byUser = state.players.reduce<Record<string, PublicPlayer>>((m, p) => {
@@ -65,7 +63,10 @@ async function recordReveal(roomId: string, state: PublicState): Promise<void> {
   // Active player: a real placement attempt (skip timeouts and auto-buys).
   const activeId = state.order[state.activeIndex];
   if (reveal.placementSlot !== null && !reveal.bought && isRealUser(byUser[activeId])) {
-    attempts.push({ user: activeId, correct: reveal.activeCorrect });
+    // Category accuracy = PLACEMENT accuracy. Use placementCorrect (naming-
+    // independent) so a right-place/wrong-name turn in pro/expert isn't counted
+    // as a placement miss — and matches how stealers are scored (placement only).
+    attempts.push({ user: activeId, correct: reveal.placementCorrect ?? reveal.activeCorrect });
   }
   // Stealers each made a deliberate placement attempt.
   for (const s of reveal.steals) {
@@ -128,6 +129,20 @@ async function recordMatchEnd(roomId: string, state: PublicState): Promise<void>
       is_winner: state.winnerId === p.userId,
     }));
   if (rows.length) await admin.from("match_players").insert(rows);
+
+  // Ranked: 1st place = WIN (+25 LP), every other real human = LOSS (−20 LP).
+  // Bots are skipped (isRealUser). Idempotent: recordMatchEnd runs once per room
+  // (recorded_matches guard above), so each player's RPC fires exactly once.
+  if (state.settings.ranked) {
+    for (const p of state.players) {
+      if (!isRealUser(p)) continue;
+      const { error } = await admin.rpc("apply_rank_result", {
+        p_user_id: p.userId,
+        p_is_win: state.winnerId === p.userId,
+      });
+      if (error) console.error(`[stats] LP update failed for ${p.userId}:`, error);
+    }
+  }
 }
 
 function realOrNull(state: PublicState, userId: string | null): string | null {

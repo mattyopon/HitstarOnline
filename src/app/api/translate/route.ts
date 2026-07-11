@@ -26,6 +26,26 @@ function cacheSet(k: string, v: string): void {
 
 const LANG_RE = /^[a-z]{2,3}(-[a-z]{2,8})?$/i;
 
+// Per-user, per-instance rate limit on UNCACHED translation requests so a
+// malicious client can't drive up the paid Google Translate quota. A fixed
+// window keyed by userId; cache hits below don't count against it.
+const RL_WINDOW_MS = 60_000;
+const RL_MAX_CALLS = 30; // upstream calls per user per minute (cache misses only)
+const RL = new Map<string, { count: number; resetAt: number }>();
+
+function rateLimited(userId: string, now: number): boolean {
+  const e = RL.get(userId);
+  if (!e || now >= e.resetAt) {
+    RL.set(userId, { count: 1, resetAt: now + RL_WINDOW_MS });
+    // Opportunistic cleanup so the map can't grow unbounded on a long-lived instance.
+    if (RL.size > 5000) for (const [k, v] of RL) if (now >= v.resetAt) RL.delete(k);
+    return false;
+  }
+  if (e.count >= RL_MAX_CALLS) return true;
+  e.count++;
+  return false;
+}
+
 /**
  * Translate up to a handful of short chat strings into the viewer's language.
  * Auth-gated (any signed-in user) and length-capped to keep quota in check.
@@ -63,6 +83,12 @@ export async function POST(req: Request) {
   });
 
   if (missTexts.length) {
+    // Only the upstream (paid) calls are rate-limited; cache hits above are free.
+    // When limited, degrade to originals for the misses instead of erroring.
+    if (rateLimited(user.id, Date.now())) {
+      missIdx.forEach((origIdx) => (out[origIdx] = texts[origIdx]));
+      return json({ translations: out.map((v, i) => v ?? texts[i]) });
+    }
     try {
       const res = await fetch(
         `https://translation.googleapis.com/language/translate/v2?key=${encodeURIComponent(key)}`,

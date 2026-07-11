@@ -1,6 +1,23 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useT } from "@/lib/i18n";
+import { serverNow } from "@/lib/serverClock";
+
+/** Re-check drift every this many ms during the listening window. */
+const DRIFT_CHECK_MS = 3500;
+/** Re-seek only when the player is off the expected position by more than this. */
+const DRIFT_THRESHOLD_S = 1.2;
+
+// Expected in-song position (seconds) right now. When listenStartMs is set
+// (the listening window), compensate for however late this client loaded/started
+// so every device converges on the same wall-clock-aligned position; otherwise
+// (reveal / full-play / lobby) just use the base offset.
+function expectedPos(startSeconds: number, listenStartMs?: number): number {
+  const base = startSeconds || 0;
+  if (!listenStartMs) return base;
+  return base + Math.max(0, (serverNow() - listenStartMs) / 1000);
+}
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 declare global {
@@ -32,20 +49,34 @@ function loadYT(): Promise<any> {
 export function YouTubePlayer({
   videoId,
   startSeconds,
+  listenStartMs,
   playing,
   reveal,
   volume,
+  onUnavailable,
+  discArt,
 }: {
   videoId: string | null;
   startSeconds: number;
+  /** Server epoch-ms when listening began (0/undefined = no drift-compensation,
+   *  e.g. reveal/full-play or lobby). Used to seek late loaders to the correct
+   *  wall-clock-aligned position so all players hear the same moment. */
+  listenStartMs?: number;
   playing: boolean;
   reveal: boolean;
   volume?: number;
+  /** Called when YouTube reports the video can't be embedded/played here. */
+  onUnavailable?: () => void;
+  /** Current-turn leader art printed ON the cover vinyl (picture disc).
+   *  null/undefined = generic vinyl, unchanged. */
+  discArt?: { src: string; focus: string } | null;
 }) {
+  const t = useT();
   const hostRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<any>(null);
   const ready = useRef(false);
   const currentId = useRef<string | null>(null);
+  const retried = useRef<Set<string>>(new Set());
   const [expanded, setExpanded] = useState(false);
 
   // Close the enlarged view with Escape.
@@ -57,8 +88,8 @@ export function YouTubePlayer({
   }, [expanded]);
 
   // Keep latest props for the onReady callback.
-  const propsRef = useRef({ videoId, startSeconds, playing, volume });
-  propsRef.current = { videoId, startSeconds, playing, volume };
+  const propsRef = useRef({ videoId, startSeconds, playing, volume, onUnavailable, listenStartMs });
+  propsRef.current = { videoId, startSeconds, playing, volume, onUnavailable, listenStartMs };
 
   function applyVolume(p: any) {
     const v = propsRef.current.volume ?? 70;
@@ -77,17 +108,25 @@ export function YouTubePlayer({
   function sync() {
     const p = playerRef.current;
     if (!p || !ready.current) return;
-    const { videoId: vid, startSeconds: ss, playing: pl } = propsRef.current;
+    const { videoId: vid, startSeconds: ss, playing: pl, listenStartMs: ls } = propsRef.current;
     if (vid && pl) {
+      // Seek to the wall-clock-aligned position so a late loader catches up to
+      // everyone else instead of starting behind at a fixed offset.
+      const target = expectedPos(ss, ls);
       if (currentId.current !== vid) {
         currentId.current = vid;
         try {
-          p.loadVideoById({ videoId: vid, startSeconds: ss || 0 });
+          p.loadVideoById({ videoId: vid, startSeconds: target });
         } catch {
           /* ignore */
         }
       } else {
+        // Same video already loaded: correct any accumulated drift, then play.
         try {
+          if (ls) {
+            const cur = p.getCurrentTime?.() ?? 0;
+            if (Math.abs(cur - target) > DRIFT_THRESHOLD_S) p.seekTo(target, true);
+          }
           p.playVideo();
         } catch {
           /* ignore */
@@ -125,6 +164,35 @@ export function YouTubePlayer({
             ready.current = true;
             sync();
           },
+          onError: (e: any) => {
+            // 5 = transient HTML5 player error → reload the same video once.
+            // 100 = removed/private, 101/150 = embedding disabled by the owner:
+            // unrecoverable on the client, so leave the "preparing audio" cover.
+            const vid = currentId.current;
+            // Only spend the one-shot retry when we actually intend to play
+            // (otherwise sync() just stops the video and the budget is wasted,
+            // disabling a genuine retry when the same video replays at reveal).
+            if (vid && e?.data === 5 && propsRef.current.playing && !retried.current.has(vid)) {
+              retried.current.add(vid);
+              currentId.current = null;
+              sync();
+            } else if (
+              vid &&
+              propsRef.current.playing &&
+              (e?.data === 100 || e?.data === 101 || e?.data === 150)
+            ) {
+              // Guard against STALE error events: sync() (line ~132) resets
+              // currentId.current to null and stops the player as soon as `playing`
+              // goes false (listening window ended / turn moved on) — completely
+              // normal, every turn. Without this guard, a delayed onError for a
+              // video we've already stopped wanting to play would still spuriously
+              // flag the (possibly perfectly fine) CURRENT song as unavailable,
+              // prompting an unwarranted free skip for the whole room — this was
+              // the reported "songs sometimes get skipped on their own" bug.
+              console.warn("[yt] video not embeddable/available:", e?.data, vid);
+              propsRef.current.onUnavailable?.();
+            }
+          },
         },
       });
     });
@@ -137,7 +205,27 @@ export function YouTubePlayer({
   useEffect(() => {
     sync();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [videoId, playing, startSeconds, volume]);
+  }, [videoId, playing, startSeconds, volume, listenStartMs]);
+
+  // Periodic drift correction during the listening window. Handles MID-SONG drift
+  // (buffer stalls) without waiting for a prop change. Re-seek only when the
+  // player has drifted past the threshold so we don't audibly stutter every tick.
+  useEffect(() => {
+    if (!playing || !videoId || !listenStartMs) return;
+    const id = window.setInterval(() => {
+      const p = playerRef.current;
+      if (!p || !ready.current || currentId.current !== videoId) return;
+      try {
+        const target = expectedPos(propsRef.current.startSeconds, propsRef.current.listenStartMs);
+        const cur = p.getCurrentTime?.() ?? 0;
+        if (Math.abs(cur - target) > DRIFT_THRESHOLD_S) p.seekTo(target, true);
+      } catch {
+        /* ignore */
+      }
+    }, DRIFT_CHECK_MS);
+    return () => window.clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playing, videoId, listenStartMs]);
 
   return (
     <>
@@ -146,9 +234,33 @@ export function YouTubePlayer({
         <div ref={hostRef} className="yt-frame" />
         {!reveal && (
           <div className="yt-cover">
-            <div className={"vinyl" + (playing && videoId ? " spinning" : "")} />
+            {/* Picture disc: the leader's face is printed ON the vinyl surface
+                (clipped to the circle, grooves over the art, label on top) and
+                the whole disc spins as one piece. No art → classic vinyl. */}
+            <div
+              className={
+                "vinyl" +
+                (playing && videoId ? " spinning" : "") +
+                (discArt ? " has-art" : "")
+              }
+              aria-hidden="true"
+            >
+              {discArt && (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="pdisc-art"
+                    src={discArt.src}
+                    alt=""
+                    style={{ objectPosition: discArt.focus }}
+                  />
+                  <span className="pdisc-grooves" />
+                  <span className="pdisc-label" />
+                </>
+              )}
+            </div>
             <div className="muted" style={{ fontWeight: 700 }}>
-              {videoId ? "♪ 再生中 — 曲名はナイショ！" : "音源を準備中…"}
+              {videoId ? t("♪ 再生中 — 曲名はナイショ！") : t("音源を準備中…")}
             </div>
           </div>
         )}
@@ -156,8 +268,8 @@ export function YouTubePlayer({
           type="button"
           className="yt-expand"
           onClick={() => setExpanded((e) => !e)}
-          title={expanded ? "閉じる" : "拡大表示"}
-          aria-label={expanded ? "閉じる" : "拡大表示"}
+          title={expanded ? t("閉じる") : t("拡大表示")}
+          aria-label={expanded ? t("閉じる") : t("拡大表示")}
         >
           {expanded ? "✕" : "⛶"}
         </button>

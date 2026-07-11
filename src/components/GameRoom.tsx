@@ -1,29 +1,50 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useRoom } from "@/hooks/useRoom";
-import { useNow } from "@/hooks/useNow";
+import { useServerNow } from "@/hooks/useServerNow";
+import { serverNow } from "@/lib/serverClock";
 import { useGoogleToken } from "@/hooks/useGoogleToken";
 import { api } from "@/lib/clientApi";
 import { Timeline } from "./Timeline";
-import { PlacementArea } from "./PlacementArea";
 import { PlayerList } from "./PlayerList";
 import { RevealCard } from "./RevealCard";
-import { YouTubePlayer } from "./YouTubePlayer";
 import { ChatDock } from "./ChatDock";
 import { VoicePanel } from "./VoicePanel";
-import { CATEGORIES } from "@/lib/protocol";
-import type { PublicState } from "@/lib/protocol";
+import { SettingsPanel } from "./SettingsPanel";
+import { SoundGate } from "./SoundGate";
+import { GameHeader } from "./GameHeader";
+import { GameStage } from "./GameStage";
+import { PlacementPanel } from "./PlacementPanel";
+import { StealPanel } from "./StealPanel";
+import { GameOverBanner } from "./GameOverBanner";
+import { LobbyWaitingCard } from "./LobbyWaitingCard";
+import { VotingPanel } from "./VotingPanel";
+import { NowSpinningCard } from "./NowSpinningCard";
+import { DEFAULT_SETTINGS, type PublicState } from "@/lib/protocol";
 import { voiceEnabled } from "@/lib/voice";
+import { playRankEntrySound } from "@/lib/rankSound";
+import { CHAR_BY_ID } from "@/lib/gachaChars";
+import { useCharacterVoice } from "@/hooks/useCharacterVoice";
+import { useCharacterReactions } from "@/hooks/useCharacterReactions";
+import { useT } from "@/lib/i18n";
 
 export function GameRoom({ code, meId }: { code: string; meId: string }) {
+  const t = useT();
   const router = useRouter();
   const { state, error, apply } = useRoom(code, true);
-  const now = useNow();
+  // Server-corrected clock: all timing is compared against server-authored
+  // timestamps, so a skewed device clock here would silence the song / mis-time
+  // the countdown for that device only (the 3-player "can't hear" bug).
+  const now = useServerNow();
   const googleToken = useGoogleToken();
 
   const [soundOn, setSoundOn] = useState(false);
+  // Character voice (audio files land later — silently no-ops until then) and
+  // leader reaction bubbles for every player, derived from public state only.
+  const playVoice = useCharacterVoice(soundOn);
+  const reactions = useCharacterReactions(state, playVoice);
   const [ytVolume, setYtVolume] = useState<number>(() => {
     if (typeof window === "undefined") return 70;
     const v = Number(localStorage.getItem("hitstar_yt_volume"));
@@ -34,35 +55,45 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const [gArtist, setGArtist] = useState("");
   const [busy, setBusy] = useState(false);
   const [actionErr, setActionErr] = useState<string | null>(null);
-  // "横取りしない" preference (per player, persisted). Default ON → auto-pass.
+  // True if YouTube reports the current song can't be embedded/played here.
+  const [trackUnavailable, setTrackUnavailable] = useState(false);
+  // "横取りしない" preference (per player, persisted). Default OFF: opponents get
+  // the full steal window to react. Opt-in ON makes you auto-pass for fast games.
   const [dontSteal, setDontSteal] = useState<boolean>(() => {
-    if (typeof window === "undefined") return true;
+    if (typeof window === "undefined") return false;
     const v = localStorage.getItem("hitstar_dont_steal");
-    return v == null ? true : v === "true";
+    return v == null ? false : v === "true";
   });
+  const [showSettings, setShowSettings] = useState(false);
   // Fire-once guards (keyed by round) for auto steal-pass and listen-end nudge.
   const autoPassedRound = useRef<number | null>(null);
   const listenEndNudgedRound = useRef<number | null>(null);
+  const autoPlacedCardRef = useRef<string | null>(null);
+  const entrySePlayed = useRef(false);
 
   const phase = state?.phase;
   const round = state?.round;
   const activeIndex = state?.activeIndex;
   const version = state?.version;
+  const cardId = state?.current?.cardId;
 
-  // Reset per-turn UI when the turn/phase changes.
+  // Reset per-turn UI when the turn/phase/card changes. Including cardId is
+  // important: a free skip swaps the card without changing the turn, and the
+  // "unavailable" flag MUST clear so a stale flag can't haunt the next song.
   useEffect(() => {
     setSelectedSlot(null);
     setGTitle("");
     setGArtist("");
     setActionErr(null);
-  }, [phase, activeIndex, round]);
+    setTrackUnavailable(false);
+  }, [phase, activeIndex, round, cardId]);
 
   // Auto-advance timed-out phases (host first, others as fallback).
   useEffect(() => {
     if (!state || !state.deadline) return;
     if (state.phase === "lobby" || state.phase === "gameover") return;
     const amHost = state.hostId === meId;
-    const delay = Math.max(0, state.deadline - Date.now()) + (amHost ? 300 : 2800);
+    const delay = Math.max(0, state.deadline - serverNow()) + (amHost ? 300 : 2800);
     const t = setTimeout(() => {
       api<{ state?: PublicState }>("/api/game/advance", { code })
         .then((r) => r.state && apply(r.state))
@@ -105,9 +136,10 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     if (state.listeningEndedAt != null) return;
     if (listenEndNudgedRound.current === state.round) return;
     const start = state.listenStartedAt ?? state.current?.startedAt ?? 0;
-    const dur = state.listenDurationMs ?? (state.settings.listenSeconds ?? 30) * 1000;
+    const dur =
+      state.listenDurationMs ?? (state.settings.listenSeconds ?? DEFAULT_SETTINGS.listenSeconds) * 1000;
     const round = state.round;
-    const delay = Math.max(0, start + dur - Date.now()) + 200;
+    const delay = Math.max(0, start + dur - serverNow()) + 200;
     const t = setTimeout(() => {
       listenEndNudgedRound.current = round;
       api<{ state?: PublicState }>("/api/game/advance", { code })
@@ -116,6 +148,36 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     }, delay);
     return () => clearTimeout(t);
   }, [version, state, meId, code, apply]);
+
+  // Active player: selecting a slot only STAGES the card; the player confirms with
+  // the 提出 button. If they don't, auto-submit the staged slot just before the
+  // placement deadline ("提出をせずに時間切れの場合はその位置で提出"). Fires once per
+  // card, and slightly before the server's no-placement timeout so the placement
+  // lands instead of being discarded.
+  useEffect(() => {
+    if (!state || state.phase !== "placing") return;
+    if (state.order[state.activeIndex] !== meId) return;
+    if (selectedSlot == null) return;
+    const cid = state.current?.cardId;
+    if (!cid || autoPlacedCardRef.current === cid) return;
+    const dl = state.placementDeadline ?? state.deadline;
+    if (!dl) return;
+    const slot = selectedSlot;
+    const delay = Math.max(0, dl - 400 - serverNow());
+    const timer = setTimeout(() => {
+      autoPlacedCardRef.current = cid;
+      api<{ state?: PublicState }>("/api/game/place", {
+        code,
+        slotIndex: slot,
+        guess: { title: gTitle, artist: gArtist },
+      })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {
+          autoPlacedCardRef.current = null;
+        });
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [version, state, meId, code, selectedSlot, gTitle, gArtist, apply]);
 
   // Auto-pass the steal decision when the player has "横取りしない" enabled,
   // so the steal phase can end without waiting the full 10s. Fires once/round.
@@ -135,6 +197,24 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
       });
   }, [version, state, meId, code, dontSteal, apply]);
 
+  // NOTE: no automatic skip. YouTube's IFrame API reports "can't embed" (150/101)
+  // for some videos even while audio plays, which caused playable songs to be
+  // skipped — and, looping, every following song too. Skipping an unplayable track
+  // is therefore MANUAL only: the free skip button below (open to everyone). The
+  // ⚠️ notice tells whoever can't hear it to press skip.
+
+  // Ranked entry fanfare: play the local player's rank SE once, after the sound
+  // gate unlocks (reuses the existing tap gate; no extra gesture listener).
+  useEffect(() => {
+    if (!soundOn || !state || entrySePlayed.current) return;
+    if (!state.settings.ranked) return;
+    const meTier = state.players.find((p) => p.userId === meId)?.tier;
+    if (meTier) {
+      entrySePlayed.current = true;
+      playRankEntrySound(meTier);
+    }
+  }, [soundOn, state, meId]);
+
   // Best-effort leave when the tab closes.
   useEffect(() => {
     const onLeave = () => {
@@ -151,34 +231,86 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     return () => window.removeEventListener("beforeunload", onLeave);
   }, [code]);
 
-  async function act(path: string, body: Record<string, unknown>) {
-    setBusy(true);
-    setActionErr(null);
+  // Reconnect recovery: a backgrounded tab or dropped network may have left us
+  // marked disconnected and missing Realtime updates. On regaining focus or
+  // connectivity, re-join (idempotent) to flip our connected flag back on and
+  // resync the latest state — so refreshing or coming back returns you in-game.
+  useEffect(() => {
+    const rejoin = () => {
+      if (document.visibilityState !== "visible") return;
+      const name =
+        (typeof window !== "undefined" && localStorage.getItem("hitstar_name")) || "";
+      api<{ state?: PublicState }>("/api/room/join", { code, name })
+        .then((r) => r.state && apply(r.state))
+        .catch(() => {});
+    };
+    document.addEventListener("visibilitychange", rejoin);
+    window.addEventListener("online", rejoin);
+    return () => {
+      document.removeEventListener("visibilitychange", rejoin);
+      window.removeEventListener("online", rejoin);
+    };
+  }, [code, apply]);
+
+  // Stable across renders (deps are themselves stable) so passing it as a prop
+  // to RevealCard doesn't defeat its memoization (its whole purpose is to avoid
+  // re-rendering on the ~500ms clock tick).
+  const act = useCallback(
+    async (path: string, body: Record<string, unknown>): Promise<boolean> => {
+      setBusy(true);
+      setActionErr(null);
+      try {
+        // Apply the server's returned state immediately so the acting player sees
+        // their move without waiting for the Realtime round-trip.
+        const res = await api<{ ok?: boolean; state?: PublicState }>(path, { code, ...body });
+        if (res.state) apply(res.state);
+        return true;
+      } catch (e) {
+        setActionErr(e instanceof Error ? e.message : t("操作に失敗しました"));
+        return false;
+      } finally {
+        setBusy(false);
+      }
+    },
+    [code, apply, t],
+  );
+
+  function forgetLastRoom() {
     try {
-      // Apply the server's returned state immediately so the acting player sees
-      // their move without waiting for the Realtime round-trip.
-      const res = await api<{ ok?: boolean; state?: PublicState }>(path, { code, ...body });
-      if (res.state) apply(res.state);
-    } catch (e) {
-      setActionErr(e instanceof Error ? e.message : "操作に失敗しました");
-    } finally {
-      setBusy(false);
+      localStorage.removeItem("hitstar_last_room");
+    } catch {
+      /* ignore */
     }
   }
 
   async function leave() {
+    forgetLastRoom();
     await api("/api/room/leave", { code }).catch(() => {});
     router.push("/");
+  }
+
+  function goHome() {
+    forgetLastRoom();
+    router.push("/");
+  }
+
+  function onVolumeChange(v: number) {
+    setYtVolume(v);
+    try {
+      localStorage.setItem("hitstar_yt_volume", String(v));
+    } catch {
+      /* ignore */
+    }
   }
 
   if (error && !state) {
     return (
       <div className="center-screen">
         <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
-          <h2>接続できませんでした</h2>
+          <h2>{t("接続できませんでした")}</h2>
           <p className="muted">{error}</p>
           <button className="btn" onClick={() => router.push("/")}>
-            ホームに戻る
+            {t("ホームに戻る")}
           </button>
         </div>
       </div>
@@ -198,26 +330,65 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
   const showVoice = isMultiplayer && voiceEnabled();
   const activeId = state.order[state.activeIndex];
   const activePlayer = state.players.find((p) => p.userId === activeId);
+  // Current-turn player's equipped leader (published cosmetic id, Feature A).
+  // undefined for bots/legacy players → all consumers fall back gracefully.
+  const turnLeader = activePlayer?.leaderCharacterId
+    ? CHAR_BY_ID.get(activePlayer.leaderCharacterId)
+    : undefined;
   const isActive = activeId === meId;
   const inGame = state.phase !== "lobby";
   const revealMode = state.phase === "reveal" || state.phase === "gameover";
 
   // Listening / placement sub-phase timing (derived from state + now).
   const listenStart = state.listenStartedAt ?? state.current?.startedAt ?? 0;
-  const listenDur = state.listenDurationMs ?? (state.settings.listenSeconds ?? 30) * 1000;
+  const listenDur =
+    state.listenDurationMs ?? (state.settings.listenSeconds ?? DEFAULT_SETTINGS.listenSeconds) * 1000;
   const listenEndAt = listenStart + listenDur;
+  // Small grace so residual clock jitter at the boundary can't briefly silence
+  // the song; the server still authoritatively ends listening via listeningEndedAt.
+  const LISTEN_GRACE_MS = 1200;
   const isListening =
-    state.phase === "placing" && state.listeningEndedAt == null && now < listenEndAt;
+    state.phase === "placing" &&
+    state.listeningEndedAt == null &&
+    now < listenEndAt + LISTEN_GRACE_MS;
   const earlyCutoff = listenStart + (state.settings.earlyBonusMs ?? 10000);
   const inEarlyWindow = state.phase === "placing" && now <= earlyCutoff;
-  const listenLeft = Math.max(0, Math.ceil((listenEndAt - now) / 1000));
+  // While still listening (incl. the grace window) never show 0s — audio is
+  // audibly playing, so a "0s" countdown would look like a stall.
+  const listenLeft = isListening
+    ? Math.max(1, Math.ceil((listenEndAt - now) / 1000))
+    : Math.max(0, Math.ceil((listenEndAt - now) / 1000));
   const earlyLeft = Math.max(0, Math.ceil((earlyCutoff - now) / 1000));
 
+  // Playback provider for the current card (absent = "youtube"). At reveal the
+  // public `current` is cleared, so the provider/playable-id come from the reveal
+  // info (which carries provider/bvid for bilibili); while the card is live
+  // (placing/stealing) they come from `current`.
+  const provider = revealMode
+    ? state.reveal?.provider ?? "youtube"
+    : state.current?.provider ?? "youtube";
+  const isCover = revealMode ? !!state.reveal?.isCover : !!state.current?.isCover;
+  // The playable id for the active provider (YouTube video id OR bilibili BV).
   const playVideoId = revealMode
-    ? state.reveal?.youtubeId ?? null
-    : state.current?.youtubeId ?? null;
+    ? provider === "bilibili"
+      ? state.reveal?.bvid ?? null
+      : state.reveal?.youtubeId ?? null
+    : provider === "bilibili"
+      ? state.current?.bvid ?? null
+      : state.current?.youtubeId ?? null;
   // Music plays only while the song is "on": the listening window, or at reveal.
   const playing = soundOn && !!playVideoId && (isListening || state.phase === "reveal");
+
+  // Drift-compensation anchor: only apply while actually listening to the mystery
+  // clip, so a late loader seeks to the same wall-clock-aligned position everyone
+  // else hears. At reveal the full clip plays from the base offset with no
+  // elapsed catch-up, so pass 0 there.
+  // NOTE (ready-barrier): the bounded ready-barrier from the plan (Part B) is
+  // DEFERRED. Its fixed-lead variant would set listenStartedAt = now + LEAD in the
+  // pure engine, but scripts/smoke.ts asserts exact deadline equality to the
+  // injected `now` (e.g. "steal deadline = +10s"), so the lead would break the
+  // "194 assertions UNCHANGED" constraint. Drift-correction below is self-sufficient.
+  const listenStartMs = isListening ? listenStart : 0;
 
   const secondsLeft = state.deadline
     ? Math.max(0, Math.ceil((state.deadline - now) / 1000))
@@ -234,97 +405,77 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     (state.settings.allowExtend ?? true) &&
     !state.listeningExtended &&
     me.tokens >= (state.settings.extendCost ?? 1);
+  // Non-active listeners can stretch the same one-per-turn window for FREE —
+  // they gain no placement advantage, they just want to keep hearing the song.
+  const canExtendFree =
+    !!me &&
+    !isActive &&
+    isListening &&
+    (state.settings.allowExtend ?? true) &&
+    !state.listeningExtended;
 
-  // ── Header ────────────────────────────────────────────────────────────────
-  const header = (
-    <div className="row spread" style={{ marginBottom: 16 }}>
-      <div className="brand" style={{ gap: 8 }}>
-        <div className="logo" style={{ width: 32, height: 32 }} />
-        <h1 style={{ fontSize: 18 }}>Hitstar Online</h1>
-      </div>
-      <div className="row" style={{ gap: 10 }}>
-        <span className="pill">部屋 <strong style={{ letterSpacing: 2 }}>{state.code}</strong></span>
-        {inGame && <span className="pill">第{state.round}ターン</span>}
-        {inGame && <span className="pill">残り{state.deckRemaining}曲</span>}
-        <button className="btn ghost tiny" onClick={leave}>
-          退出
-        </button>
-      </div>
-    </div>
+  const settingsModal = showSettings && <SettingsPanel onClose={() => setShowSettings(false)} />;
+  const headerEl = (
+    <GameHeader
+      code={state.code}
+      round={state.round}
+      deckRemaining={state.deckRemaining}
+      inGame={inGame}
+      onSettings={() => setShowSettings(true)}
+      onLeave={leave}
+    />
   );
-
-  // ── Sound unlock overlay ───────────────────────────────────────────────────
-  const soundGate =
-    inGame && !soundOn ? (
-      <div className="tap-overlay" onClick={() => setSoundOn(true)}>
-        <div className="card stack" style={{ maxWidth: 360 }}>
-          <div style={{ fontSize: 44 }}>🔊</div>
-          <h2 style={{ margin: 0 }}>タップして開始</h2>
-          <p className="muted" style={{ margin: 0 }}>
-            音楽を再生するために一度タップしてください。
-          </p>
-          <button className="btn block">サウンドを有効にする</button>
-        </div>
-      </div>
-    ) : null;
 
   // ── Lobby ──────────────────────────────────────────────────────────────────
   if (state.phase === "lobby") {
-    const isHost = state.hostId === meId;
     return (
-      <div className="container">
-        {header}
-        <div className="grid-2">
-          <div className="card stack">
-            <h2 style={{ marginTop: 0 }}>友達を待っています…</h2>
-            <p className="muted" style={{ marginTop: 0 }}>
-              下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。
-            </p>
-            <div className="row" style={{ justifyContent: "center", gap: 14 }}>
-              <span className="code-pill">{state.code}</span>
-              <button
-                className="btn secondary"
-                onClick={() => {
-                  navigator.clipboard?.writeText(state.code);
-                }}
-              >
-                コピー
-              </button>
-              <button
-                className="btn secondary"
-                onClick={() => {
-                  const url = `${location.origin}/room/${state.code}`;
-                  navigator.clipboard?.writeText(url);
-                }}
-              >
-                招待リンク
-              </button>
+      <div className="screen-battle-inner">
+        <div className="container">
+          {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+          {settingsModal}
+          {headerEl}
+          <div className="grid-2">
+            <LobbyWaitingCard
+              state={state}
+              isHost={state.hostId === meId}
+              busy={busy}
+              actionErr={actionErr}
+              onStart={() => act("/api/game/start", {})}
+            />
+            <div className="stack">
+              <PlayerList state={state} meId={meId} reactions={reactions} />
+              {showVoice && <VoicePanel code={code} players={state.players} />}
             </div>
-            <div className="notice tiny">
-              ルール: {modeLabel(state.settings.mode)} ／ {state.settings.targetCards}枚で勝利 ／
-              開始トークン{state.settings.startingTokens}
-              <br />
-              カテゴリ: {catLabels(state.settings.categories)}
-            </div>
-            {actionErr && <div className="error">{actionErr}</div>}
-            {isHost ? (
-              <button
-                className="btn block"
-                disabled={busy || state.players.length < 2}
-                onClick={() => act("/api/game/start", {})}
-              >
-                {state.players.length < 2 ? "2人以上で開始できます" : "🎶 ゲーム開始"}
-              </button>
-            ) : (
-              <div className="notice">ホストの開始を待っています…</div>
-            )}
           </div>
-          <div className="stack">
-            <PlayerList state={state} meId={meId} />
-            {showVoice && <VoicePanel code={code} players={state.players} />}
-          </div>
+          {isMultiplayer && <ChatDock key="room-chatdock" code={code} players={state.players} />}
         </div>
-        {isMultiplayer && <ChatDock code={code} players={state.players} />}
+      </div>
+    );
+  }
+
+  // ── Genre vote ───────────────────────────────────────────────────────────--
+  if (state.phase === "voting") {
+    return (
+      <div className="screen-battle-inner">
+        <div className="container">
+          {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+          {settingsModal}
+          {headerEl}
+          <div className="grid-2">
+            <VotingPanel
+              state={state}
+              meId={meId}
+              busy={busy}
+              actionErr={actionErr}
+              onVote={(categories) => act("/api/game/vote", { categories })}
+            />
+            <div className="stack">
+              <PlayerList state={state} meId={meId} reactions={reactions} />
+              {showVoice && <VoicePanel code={code} players={state.players} />}
+            </div>
+          </div>
+          {isMultiplayer && <ChatDock key="room-chatdock" code={code} players={state.players} />}
+        </div>
       </div>
     );
   }
@@ -338,306 +489,187 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
     </div>
   );
 
-  const stage = (
-    <div className="card stack">
-      <div className="row spread">
-        <strong>
-          {state.phase === "placing" &&
-            isListening &&
-            (isActive ? "🎧 試聴中（聞いて配置）" : `🎧 ${activePlayer?.name} が試聴中`)}
-          {state.phase === "placing" &&
-            !isListening &&
-            (isActive ? "⏳ 配置してOK！" : `⏳ ${activePlayer?.name} が配置中`)}
-          {state.phase === "stealing" && "横取りチャンス！"}
-          {state.phase === "reveal" && "結果発表"}
-          {state.phase === "gameover" && "ゲーム終了"}
-        </strong>
-        {state.phase !== "gameover" && countdownEl}
-      </div>
-      <div className="row" style={{ justifyContent: "center" }}>
-        <YouTubePlayer
-          videoId={playVideoId}
-          startSeconds={state.settings.startSeconds}
-          playing={playing}
-          reveal={revealMode}
-          volume={ytVolume}
-        />
-      </div>
-      <div className="row" style={{ gap: 10, alignItems: "center", justifyContent: "center" }}>
-        <span className="tiny muted">🔊 曲の音量</span>
-        <input
-          type="range"
-          min={0}
-          max={100}
-          value={ytVolume}
-          onChange={(e) => {
-            const v = Number(e.target.value);
-            setYtVolume(v);
-            try {
-              localStorage.setItem("hitstar_yt_volume", String(v));
-            } catch {
-              /* ignore */
-            }
-          }}
-          style={{ width: 160 }}
-          aria-label="曲の音量"
-        />
-        <span className="tiny muted" style={{ width: 32, textAlign: "right" }}>{ytVolume}</span>
-      </div>
-    </div>
-  );
-
   return (
-    <div className="container">
-      {soundGate}
-      {header}
-      {actionErr && (
-        <div className="error" style={{ marginBottom: 12 }}>
-          {actionErr}
-        </div>
-      )}
-      <div className="grid-2">
-        <div className="stack">
-          {stage}
+    <div className="screen-battle-inner">
+      <div className="container">
+        {!soundOn && <SoundGate onEnable={() => setSoundOn(true)} />}
+        {settingsModal}
+        {headerEl}
+        {actionErr && (
+          <div className="error" style={{ marginBottom: 12 }}>
+            {actionErr}
+          </div>
+        )}
+        <div className="grid-2">
+          <div className="stack">
+            <GameStage
+              phase={state.phase}
+              isActive={isActive}
+              isListening={isListening}
+              activeName={activePlayer?.name ?? ""}
+              provider={provider}
+              playVideoId={playVideoId}
+              playing={playing}
+              startSeconds={state.settings.startSeconds}
+              listenStartMs={listenStartMs}
+              volume={ytVolume}
+              onVolumeChange={onVolumeChange}
+              revealMode={revealMode}
+              isCover={isCover}
+              trackUnavailable={trackUnavailable}
+              onUnavailable={() => setTrackUnavailable(true)}
+              countdownEl={countdownEl}
+              discArt={turnLeader ? { src: turnLeader.img, focus: turnLeader.focus } : null}
+            />
 
-          {/* Reveal */}
-          {revealMode && <RevealCard state={state} googleToken={googleToken} />}
-
-          {/* Game over */}
-          {state.phase === "gameover" && (
-            <div className="card big-banner stack">
-              <div className="trophy">🏆</div>
-              <h2 style={{ margin: 0 }}>
-                {state.players.find((p) => p.userId === state.winnerId)?.name ?? "?"} の勝ち！
-              </h2>
-              <div className="stack" style={{ gap: 6, marginTop: 8 }}>
-                {[...state.players]
-                  .sort((a, b) => b.timeline.length - a.timeline.length || b.tokens - a.tokens)
-                  .map((p, i) => (
-                    <div key={p.userId} className="row spread">
-                      <span>
-                        {i + 1}位 {p.name}
-                      </span>
-                      <span className="muted">
-                        🃏 {Math.max(0, p.timeline.length - 1)} ／ 🪙 {p.tokens}
-                      </span>
-                    </div>
-                  ))}
-              </div>
-              <button className="btn block" onClick={() => router.push("/")}>
-                ホームに戻る
+            {/* Free skip — open to ANY participant during placing (no token cost),
+                separate from the token skip. Lets anyone move past a song they
+                can't hear / don't want. reason:"unavailable" (only when this client
+                detected an embed error) lets the server re-resolve a bad cached id. */}
+            {state.phase === "placing" && state.current && (
+              <button
+                className="btn ghost block"
+                disabled={busy}
+                onClick={() =>
+                  act("/api/game/skip-song", {
+                    cardId: state.current?.cardId,
+                    reason: trackUnavailable ? "unavailable" : "manual",
+                  })
+                }
+              >
+                ⏭ {t("この曲をスキップ")}
               </button>
-            </div>
-          )}
+            )}
 
-          {/* Active player's placement controls */}
-          {state.phase === "placing" && isActive && me && (
-            <div className="card stack fade-in">
-              <div className="row spread" style={{ alignItems: "center" }}>
-                <strong>
-                  {isListening
-                    ? "🎧 曲を聞いて配置しよう"
-                    : `⏳ ${state.settings.placementSeconds ?? 30}秒以内に配置してOK！`}
-                </strong>
-                {inEarlyWindow && (
-                  <span
-                    className="pill"
-                    style={{ borderColor: "var(--gold)", color: "var(--gold)" }}
-                    title="開始10秒以内に正解配置でトークン2枚"
-                  >
-                    ⚡早置き +{state.settings.earlyBonusTokens ?? 2}🪙 あと{earlyLeft}s
-                  </span>
-                )}
-              </div>
-              <PlacementArea
-                cards={me.timeline}
+            {revealMode && (
+              <RevealCard state={state} googleToken={googleToken} meId={meId} act={act} busy={busy} />
+            )}
+
+            {/* Skip the reveal — the song plays in full, so anyone can move on. */}
+            {state.phase === "reveal" && (
+              <button className="btn block" disabled={busy} onClick={() => act("/api/game/next", {})}>
+                ▶ {t("次の曲へ")}
+              </button>
+            )}
+
+            {state.phase === "gameover" && (
+              <GameOverBanner players={state.players} winnerId={state.winnerId} onHome={goHome} />
+            )}
+
+            {/* Active player's placement controls */}
+            {state.phase === "placing" && isActive && me && (
+              <PlacementPanel
+                settings={state.settings}
+                me={me}
+                isListening={isListening}
+                inEarlyWindow={inEarlyWindow}
+                earlyLeft={earlyLeft}
                 selectedSlot={selectedSlot}
-                onSelect={setSelectedSlot}
+                setSelectedSlot={setSelectedSlot}
+                gTitle={gTitle}
+                setGTitle={setGTitle}
+                gArtist={gArtist}
+                setGArtist={setGArtist}
+                busy={busy}
+                canExtend={canExtend}
+                canSkip={canSkip}
+                canBuy={canBuy}
+                listeningExtended={!!state.listeningExtended}
+                act={act}
               />
-              <div className="row wrap" style={{ gap: 10 }}>
-                <input
-                  type="text"
-                  placeholder="曲名（任意・当てるとトークン）"
-                  value={gTitle}
-                  onChange={(e) => setGTitle(e.target.value)}
-                  style={{ flex: 1, minWidth: 160 }}
-                />
-                <input
-                  type="text"
-                  placeholder="アーティスト名（任意）"
-                  value={gArtist}
-                  onChange={(e) => setGArtist(e.target.value)}
-                  style={{ flex: 1, minWidth: 160 }}
-                />
-              </div>
-              <div className="row wrap">
-                <button
-                  className="btn"
-                  disabled={busy || selectedSlot === null}
-                  onClick={() =>
-                    act("/api/game/place", {
-                      slotIndex: selectedSlot,
-                      guess: { title: gTitle, artist: gArtist },
-                    })
-                  }
-                >
-                  ✅ 提出（OK）
-                </button>
-                {canExtend && (
+            )}
+
+            {/* Non-active waiting during placing */}
+            {state.phase === "placing" && !isActive && (
+              <div className="card stack">
+                <div className="muted">
+                  {isListening
+                    ? t("🎧 {name} が試聴中… 一緒に聞こう（{s}s）", {
+                        name: activePlayer?.name ?? "",
+                        s: listenLeft,
+                      })
+                    : t("{name} が配置中… 配置されたら横取りのチャンス！", {
+                        name: activePlayer?.name ?? "",
+                      })}
+                </div>
+                {canExtendFree && (
                   <button
                     className="btn secondary"
                     disabled={busy}
                     onClick={() => act("/api/game/extend", {})}
-                    title={`トークン${state.settings.extendCost ?? 1}枚で試聴を${state.settings.extendSeconds ?? 60}秒延長（1回のみ）`}
                   >
-                    ⏱ 延長 +{state.settings.extendSeconds ?? 60}s 🪙{state.settings.extendCost ?? 1}
+                    🎧 {t("無料でもっと聴く（+{s}秒・全員に延長）", {
+                      s: state.settings.extendSeconds ?? 60,
+                    })}
                   </button>
                 )}
-                <button
-                  className="btn secondary"
-                  disabled={busy || !canSkip}
-                  onClick={() => act("/api/game/skip", {})}
-                  title="トークン1枚で別の曲に"
-                >
-                  スキップ 🪙1
-                </button>
-                <button
-                  className="btn gold"
-                  disabled={busy || !canBuy}
-                  onClick={() => act("/api/game/buy", {})}
-                  title={`トークン${state.settings.buyCost}枚で自動的に正しい位置へ`}
-                >
-                  購入 🪙{state.settings.buyCost}
-                </button>
+                {me && <Timeline cards={me.timeline} compact />}
               </div>
-              <div className="tiny muted">
-                あなたのトークン: <span className="token">🪙 {me.tokens}</span>
-                {state.listeningExtended && <span className="muted">　（延長済み）</span>}
-              </div>
-            </div>
-          )}
+            )}
 
-          {/* Non-active waiting during placing */}
-          {state.phase === "placing" && !isActive && (
-            <div className="card stack">
-              <div className="muted">
-                {isListening
-                  ? `🎧 ${activePlayer?.name} が試聴中… 一緒に聞こう（${listenLeft}s）`
-                  : `${activePlayer?.name} が配置中… 配置されたら横取りのチャンス！`}
-              </div>
-              {me && <Timeline cards={me.timeline} compact />}
-            </div>
-          )}
+            {/* Stealing */}
+            {state.phase === "stealing" && (
+              <StealPanel
+                me={me}
+                isActive={isActive}
+                activePlayer={activePlayer}
+                placementSlot={state.placement?.slotIndex ?? null}
+                selectedSlot={selectedSlot}
+                setSelectedSlot={setSelectedSlot}
+                dontSteal={dontSteal}
+                setDontSteal={setDontSteal}
+                myStealDecided={myStealDecided}
+                secondsLeft={secondsLeft}
+                busy={busy}
+                act={act}
+              />
+            )}
 
-          {/* Stealing */}
-          {state.phase === "stealing" && (
-            <div className="card stack fade-in">
-              <strong>{activePlayer?.name} の配置はここ 👇</strong>
-              {activePlayer && (
-                <Timeline cards={activePlayer.timeline} mysterySlot={state.placement?.slotIndex ?? null} compact />
-              )}
-              {!isActive && (
-                <label className="row" style={{ gap: 8, alignItems: "center", cursor: "pointer" }}>
-                  <input
-                    type="checkbox"
-                    checked={dontSteal}
-                    onChange={(e) => {
-                      setDontSteal(e.target.checked);
-                      try {
-                        localStorage.setItem("hitstar_dont_steal", String(e.target.checked));
-                      } catch {
-                        /* ignore */
-                      }
+            {/* Your timeline reference during reveal */}
+            {revealMode && me && state.phase === "reveal" && (
+              <div className="card stack">
+                <div className="tiny muted">{t("あなたの年表")}</div>
+                <Timeline cards={me.timeline} compact />
+              </div>
+            )}
+          </div>
+
+          <div className="stack">
+            {/* "Now Spinning" muse card (mock .enemy-card). Shows the current
+                turn player's equipped leader when published (leaderCharacterId);
+                otherwise falls back to the cosmetic name-derived muse. */}
+            <NowSpinningCard
+              seed={activePlayer?.name ?? state.code}
+              live={playing}
+              leaderCharacterId={activePlayer?.leaderCharacterId}
+            />
+            <PlayerList state={state} meId={meId} reactions={reactions} />
+            {showVoice && <VoicePanel code={code} players={state.players} />}
+            {me && (
+              <div className="card stack" style={{ padding: 14 }}>
+                <div className="row spread">
+                  <span className="muted tiny">{t("あなたの持ちトークン")}</span>
+                  <span className="token">🪙 {me.tokens}</span>
+                </div>
+                <div className="bar">
+                  <div
+                    style={{
+                      width: `${Math.min(100, (Math.max(0, me.timeline.length - 1) / state.settings.targetCards) * 100)}%`,
                     }}
-                    style={{ width: "auto" }}
                   />
-                  <span className="tiny">横取りしない（ONなら自動でパス）</span>
-                </label>
-              )}
-              {isActive ? (
-                <div className="notice">相手の判断を待っています…（{secondsLeft}s）</div>
-              ) : myStealDecided ? (
-                <div className="notice">決定済み！結果を待っています</div>
-              ) : !me || me.tokens <= 0 ? (
-                <div className="muted">トークンがないため横取りできません。</div>
-              ) : dontSteal ? (
-                <div className="notice">「横取りしない」設定のためスキップします…</div>
-              ) : (
-                <>
-                  <strong>違うと思う？正しい位置に置いて横取り！（🪙1・あと{secondsLeft}s）</strong>
-                  <PlacementArea
-                    cards={me.timeline}
-                    selectedSlot={selectedSlot}
-                    onSelect={setSelectedSlot}
-                    hint="違うと思う位置にタイルをドラッグ（タップでもOK）"
-                  />
-                  <div className="row wrap">
-                    <button
-                      className="btn"
-                      disabled={busy || selectedSlot === null}
-                      onClick={() => act("/api/game/steal", { slotIndex: selectedSlot })}
-                    >
-                      横取りする 🪙1
-                    </button>
-                    <button
-                      className="btn secondary"
-                      disabled={busy}
-                      onClick={() => act("/api/game/steal-pass", {})}
-                    >
-                      パス
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
-
-          {/* Your timeline reference during reveal */}
-          {revealMode && me && state.phase === "reveal" && (
-            <div className="card stack">
-              <div className="tiny muted">あなたの年表</div>
-              <Timeline cards={me.timeline} compact />
-            </div>
-          )}
+                </div>
+                <div className="tiny muted">
+                  {t("獲得カード {n} / {total}", {
+                    n: Math.max(0, me.timeline.length - 1),
+                    total: state.settings.targetCards,
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-
-        <div className="stack">
-          <PlayerList state={state} meId={meId} />
-          {showVoice && <VoicePanel code={code} players={state.players} />}
-          {me && (
-            <div className="card stack" style={{ padding: 14 }}>
-              <div className="row spread">
-                <span className="muted tiny">あなたの持ちトークン</span>
-                <span className="token">🪙 {me.tokens}</span>
-              </div>
-              <div className="bar">
-                <div
-                  style={{
-                    width: `${Math.min(100, (Math.max(0, me.timeline.length - 1) / state.settings.targetCards) * 100)}%`,
-                  }}
-                />
-              </div>
-              <div className="tiny muted">
-                獲得カード {Math.max(0, me.timeline.length - 1)} / {state.settings.targetCards}
-              </div>
-            </div>
-          )}
-        </div>
+        {isMultiplayer && <ChatDock key="room-chatdock" code={code} players={state.players} />}
       </div>
-      {isMultiplayer && <ChatDock code={code} players={state.players} />}
     </div>
   );
-}
-
-function modeLabel(mode: string): string {
-  if (mode === "pro") return "プロ";
-  if (mode === "expert") return "エキスパート";
-  return "オリジナル";
-}
-
-function catLabels(categories: string[]): string {
-  if (!categories || categories.length === 0) return "全ジャンル";
-  return categories
-    .map((id) => CATEGORIES.find((c) => c.id === id)?.labelJa ?? id)
-    .join("・");
 }

@@ -1,14 +1,21 @@
 "use client";
 
-import { Fragment, useRef, useState } from "react";
+import { Fragment, memo, useRef, useState } from "react";
 import type { TimelineCard } from "@/lib/protocol";
+import { useT } from "@/lib/i18n";
 
 /**
  * Interactive timeline placement with drag-and-drop (touch + pointer) AND
  * tap-to-place fallback. Drag the mystery "?" tile into a gap on your timeline,
  * or simply tap a gap. Calls onSelect(slotIndex) when a gap is chosen.
+ *
+ * Memoized + rAF-throttled drag: the parent re-renders on every ~500ms clock
+ * tick, and pointermove used to do a layout-forcing elementFromPoint() + setState
+ * on every event — both got costlier as the timeline grew (the ">5 cards = laggy"
+ * report). memo skips tick re-renders; the rAF throttle does at most one hit-test
+ * per frame and only re-renders when the hovered slot actually changes.
  */
-export function PlacementArea({
+export const PlacementArea = memo(function PlacementArea({
   cards,
   selectedSlot,
   onSelect,
@@ -19,9 +26,12 @@ export function PlacementArea({
   onSelect: (slot: number) => void;
   hint?: string;
 }) {
+  const t = useT();
   const [dragging, setDragging] = useState(false);
   const [hover, setHover] = useState<number | null>(null);
   const ghost = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
+  const lastPt = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   function slotAt(x: number, y: number): number | null {
     const el = document.elementFromPoint(x, y);
@@ -46,15 +56,27 @@ export function PlacementArea({
     (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
     setDragging(true);
     moveGhost(e.clientX, e.clientY);
-    setHover(slotAt(e.clientX, e.clientY));
+    const s = slotAt(e.clientX, e.clientY);
+    setHover((prev) => (prev === s ? prev : s));
   }
   function onPointerMove(e: React.PointerEvent) {
     if (!dragging) return;
-    moveGhost(e.clientX, e.clientY);
-    setHover(slotAt(e.clientX, e.clientY));
+    lastPt.current = { x: e.clientX, y: e.clientY };
+    if (rafRef.current != null) return; // coalesce to one hit-test per frame
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      const { x, y } = lastPt.current;
+      moveGhost(x, y);
+      const s = slotAt(x, y);
+      setHover((prev) => (prev === s ? prev : s)); // re-render only on change
+    });
   }
   function onPointerUp(e: React.PointerEvent) {
     if (!dragging) return;
+    if (rafRef.current != null) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
     setDragging(false);
     const s = slotAt(e.clientX, e.clientY);
     setHover(null);
@@ -72,7 +94,7 @@ export function PlacementArea({
         data-slot={i}
         onClick={() => onSelect(i)}
         role="button"
-        aria-label={`位置 ${i}`}
+        aria-label={t("位置 {i}", { i })}
       >
         ＋
       </div>
@@ -92,7 +114,7 @@ export function PlacementArea({
         >
           <div className="q">?</div>
         </div>
-        <div className="placement-hint">{hint}</div>
+        <div className="placement-hint">{t(hint)}</div>
       </div>
 
       <div className={"timeline" + (dragging ? " dragging" : "")}>
@@ -118,13 +140,14 @@ export function PlacementArea({
       )}
     </div>
   );
-}
+});
 
 function MysteryGhostCard() {
+  const t = useT();
   return (
     <div className="tl-card mystery" style={{ borderStyle: "solid", borderColor: "var(--accent)" }}>
       <div className="q" style={{ fontSize: 30 }}>★</div>
-      <div className="tiny" style={{ color: "var(--accent)" }}>ここ</div>
+      <div className="tiny" style={{ color: "var(--accent)" }}>{t("ここ")}</div>
     </div>
   );
 }

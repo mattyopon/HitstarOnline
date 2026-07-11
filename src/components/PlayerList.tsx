@@ -1,14 +1,28 @@
 "use client";
 
+import { memo } from "react";
 import type { PublicState } from "@/lib/protocol";
+import type { ReactionBubble } from "@/hooks/useCharacterReactions";
+import { Avatar } from "./Avatar";
+import { RankIcon } from "./RankIcon";
+import { Timeline } from "./Timeline";
+import { useT } from "@/lib/i18n";
 
-export function PlayerList({
+// Memoized: renders every player's full timeline, so without this it would
+// re-render (and re-paint all those cards) on every ~500ms clock tick. `state`,
+// `meId` and `reactions` are stable between ticks (state/reactions only change
+// on Realtime updates / bubble show+dismiss, never on the clock tick itself).
+export const PlayerList = memo(function PlayerList({
   state,
   meId,
+  reactions,
 }: {
   state: PublicState;
   meId: string;
+  /** Leader reaction bubbles by userId (from useCharacterReactions). */
+  reactions?: Record<string, ReactionBubble>;
 }) {
+  const t = useT();
   const activeId = state.order[state.activeIndex];
   const target = state.settings.targetCards;
   const inGame = state.phase !== "lobby";
@@ -16,39 +30,56 @@ export function PlayerList({
   return (
     <div className="card stack" style={{ padding: 14 }}>
       <div className="row spread">
-        <strong>プレイヤー（{state.players.length}）</strong>
-        {inGame && <span className="tiny muted">🏆 {target}枚で勝利</span>}
+        <strong className="serif" style={{ fontStyle: "italic", fontSize: 18 }}>
+          {t("プレイヤー（{n}）", { n: state.players.length })}
+        </strong>
+        {inGame && <span className="mono tiny muted">{t("🏆 {n}枚で勝利", { n: target })}</span>}
       </div>
-      <div className="stack" style={{ gap: 4 }}>
+      <div className="stack" style={{ gap: 8 }}>
         {state.players.map((p) => {
           const won = Math.max(0, p.timeline.length - 1);
           return (
             <div
               key={p.userId}
-              className={"player-row" + (inGame && p.userId === activeId ? " active" : "")}
+              className={"player-block" + (inGame && p.userId === activeId ? " active" : "")}
             >
-              <span className="avatar" style={{ width: 30, height: 30, fontSize: 13 }}>
-                {p.avatarUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.avatarUrl} alt="" />
-                ) : (
-                  p.name.charAt(0).toUpperCase()
+              <div className="player-row">
+                <Avatar name={p.name} url={p.avatarUrl} size="md" />
+                {/* Leader reaction bubble — character flavor text (like `quote`),
+                    deliberately NOT routed through t(). key remounts per bubble
+                    so the pop animation replays. */}
+                {reactions?.[p.userId] && p.leaderCharacterId && (
+                  <span className="char-bubble" role="status" key={reactions[p.userId].id}>
+                    {reactions[p.userId].text}
+                  </span>
                 )}
-              </span>
-              <span className="name">
-                {p.name}
-                {p.userId === meId && <span className="muted tiny">（あなた）</span>}
-                {p.userId === state.hostId && <span className="tiny"> 👑</span>}
-              </span>
-              <span className="meta">
-                {inGame && <span className="tiny">🃏 {won}/{target}</span>}
-                {inGame && <span className="token tiny">🪙 {p.tokens}</span>}
-                <span className={"dot" + (p.connected ? " on" : "")} title={p.connected ? "オンライン" : "オフライン"} />
-              </span>
+                <span className="name">
+                  <RankIcon tier={p.tier} size={18} />
+                  {p.name}
+                  {p.userId === meId && <span className="muted tiny">{t("（あなた）")}</span>}
+                  {p.userId === state.hostId && <span className="tiny"> 👑</span>}
+                </span>
+                <span className="meta">
+                  {inGame && (
+                    <span className="mono tiny" style={{ color: "var(--gold)", fontWeight: 700 }}>
+                      🃏 {won}/{target}
+                    </span>
+                  )}
+                  {inGame && <span className="token tiny">🪙 {p.tokens}</span>}
+                  <span
+                    className={"dot" + (p.connected ? " on" : "")}
+                    title={p.connected ? t("オンライン") : t("オフライン")}
+                  />
+                </span>
+              </div>
+              {/* Everyone's hand (won cards) is public — always visible. */}
+              {inGame && p.timeline.length > 0 && (
+                <Timeline cards={p.timeline} compact />
+              )}
             </div>
           );
         })}
       </div>
     </div>
   );
-}
+});

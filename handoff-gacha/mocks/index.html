@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>HITSTAR · BILIBILI v2 (15 muses)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#fb7299;
+    --pink-2:#ff85a8;
+    --pink-soft:#ffd6e3;
+    --pink-bg:#fff0f5;
+    --cyan:#23ade5;
+    --cyan-soft:#bff0ff;
+    --white:#ffffff;
+    --cream:#fff8fb;
+    --ink:#1a1a3a;
+    --ink-2:#41476b;
+    --muted:#a3a8c8;
+    --line:rgba(251,114,153,.22);
+    --line-2:rgba(35,173,229,.25);
+    --gold:#ffc44a;
+    --ssr-a:#ff8a3d;
+    --ssr-b:#ff5a1a;
+    --sr-a:#bd87ff;
+    --sr-b:#9050d0;
+    --r-a:#7ec6ff;
+    --r-b:#3a8ad0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:"Quicksand","Noto Sans SC","Hiragino Sans",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
+
+  .app-chrome{position:fixed;top:0;left:0;right:0;z-index:100;background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(255,255,255,.6) 70%,transparent);padding:10px 18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;backdrop-filter:blur(8px)}
+  .chrome-ttl{font-family:"ZCOOL KuaiLe",sans-serif;color:var(--pink);font-size:18px}
+  .chrome-ttl small{display:block;color:var(--muted);font-size:10px;letter-spacing:.16em;font-family:"Quicksand",sans-serif;font-weight:600;margin-top:-2px}
+  .seg{display:flex;gap:2px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px;box-shadow:0 4px 14px -4px rgba(251,114,153,.25)}
+  .seg button{appearance:none;border:none;background:transparent;padding:7px 14px;font-size:11.5px;font-weight:700;border-radius:999px;cursor:pointer;color:var(--ink-2);font-family:inherit}
+  .seg button.on{background:linear-gradient(180deg,var(--pink),var(--pink-2));color:#fff;box-shadow:0 4px 12px -2px rgba(251,114,153,.55)}
+  .chrome-spacer{flex:1}
+  .chrome-roster{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em}
+  .chrome-roster strong{color:var(--pink);font-weight:900;font-size:14px;font-family:"Bebas Neue",sans-serif;letter-spacing:.08em}
+
+  .screen{display:none;min-height:100vh;position:relative;padding-top:60px}
+  .screen.on{display:block}
+
+  /* ─── TITLE ─── */
+  .screen-title{background:url('img/bg-title.jpg') center/cover no-repeat;min-height:100vh;display:flex;align-items:center;justify-content:center}
+  .screen-title::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45) 0%, rgba(255,214,227,.3) 50%, rgba(255,255,255,.85) 100%);pointer-events:none}
+
+  .title-stage{position:relative;z-index:2;text-align:center;width:min(1080px,94vw);padding:30px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+  .title-char{position:relative;height:620px;display:flex;align-items:flex-end;justify-content:center}
+  .title-char img{height:100%;width:auto;filter:drop-shadow(0 20px 40px rgba(251,114,153,.4))}
+  .title-char::before{content:"";position:absolute;left:50%;bottom:-10px;width:380px;height:60px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(251,114,153,.4),transparent 70%);z-index:-1}
+  .title-mini-char{position:absolute;height:140px;width:auto;filter:drop-shadow(0 10px 16px rgba(251,114,153,.5))}
+  .title-mini-char.tmc1{right:-30px;bottom:80px;transform:rotate(8deg)}
+  .title-mini-char.tmc2{left:-40px;top:60px;transform:rotate(-6deg)}
+
+  .title-info{text-align:left}
+  .title-logo-text{font-family:"ZCOOL KuaiLe",sans-serif;font-size:88px;line-height:.9;letter-spacing:-.02em;color:var(--pink);text-shadow:5px 5px 0 var(--cyan), -2px -2px 0 #fff, 10px 10px 30px rgba(0,0,0,.15);margin:0}
+  .title-logo-text .small{display:block;font-size:24px;color:var(--cyan);text-shadow:3px 3px 0 var(--pink),-1px -1px 0 #fff;margin-top:6px;letter-spacing:.2em}
+  .title-tagline{margin:24px 0 24px;color:var(--ink-2);font-size:15px;line-height:1.8;max-width:440px;font-weight:500}
+  .title-tagline strong{color:var(--pink);font-weight:700}
+  .title-tagline em{color:var(--cyan);font-style:normal;font-weight:700}
+
+  .btn-primary{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:280px;padding:18px 30px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:22px;color:#fff;background:linear-gradient(180deg,var(--pink),var(--pink-2));border:none;border-radius:999px;cursor:pointer;letter-spacing:.06em;
+    box-shadow:0 0 0 4px #fff inset, 0 0 0 6px var(--pink-soft) inset, 0 12px 30px -6px rgba(251,114,153,.55);transition:transform .12s}
+  .btn-primary:hover{transform:translateY(-2px)}
+  .btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:280px;padding:13px 24px;background:#fff;color:var(--ink);border:2px solid var(--cyan);border-radius:999px;font-weight:700;font-size:13.5px;cursor:pointer;margin-top:10px;box-shadow:0 4px 12px -4px rgba(35,173,229,.3)}
+  .title-buttons{display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+
+  .title-roster-strip{margin-top:24px;padding:14px;background:rgba(255,255,255,.92);border:2px solid var(--line);border-radius:18px;backdrop-filter:blur(8px);max-width:480px}
+  .title-roster-strip .lbl{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:11px;letter-spacing:.2em;margin-bottom:8px}
+  .title-roster-row{display:flex;gap:6px;overflow:hidden}
+  .title-roster-row .av{width:36px;height:36px;border-radius:50%;border:2px solid var(--pink);overflow:hidden;flex:none;background:#fff;background-size:cover;background-position:center top}
+  .title-roster-row .more{width:36px;height:36px;border-radius:50%;border:2px dashed var(--pink);display:inline-flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900;font-size:14px;font-family:"Bebas Neue",sans-serif}
+
+  .title-footer{margin-top:18px;display:flex;gap:14px;font-size:10.5px;color:var(--muted);letter-spacing:.06em;font-weight:600}
+  .title-footer .pulse{width:6px;height:6px;border-radius:50%;background:var(--pink);box-shadow:0 0 6px var(--pink);animation:pulse 1.4s ease-in-out infinite;display:inline-block;margin-right:6px;vertical-align:middle}
+  @keyframes pulse{50%{opacity:.4}}
+
+  .deco{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .deco-item{position:absolute;opacity:0;animation:floatUp 14s linear infinite}
+  .deco-item:nth-child(1){left:8%;animation-delay:0s;font-size:30px;color:var(--pink)}
+  .deco-item:nth-child(2){left:18%;animation-delay:4s;font-size:24px;color:var(--cyan)}
+  .deco-item:nth-child(3){left:88%;animation-delay:7s;font-size:28px;color:var(--pink-2)}
+  .deco-item:nth-child(4){left:78%;animation-delay:1s;font-size:22px;color:var(--cyan)}
+  .deco-item:nth-child(5){left:48%;animation-delay:10s;font-size:32px;color:var(--gold)}
+  @keyframes floatUp{0%{transform:translateY(110vh) rotate(-12deg);opacity:0}10%{opacity:.7}90%{opacity:.7}100%{transform:translateY(-20vh) rotate(15deg);opacity:0}}
+
+  /* ─── LOBBY ─── */
+  .screen-lobby{background:url('img/bg-lobby.jpg') center/cover no-repeat;min-height:100vh;display:flex;flex-direction:column}
+  .screen-lobby::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,214,227,.45) 0%, rgba(191,240,255,.3) 50%, rgba(255,255,255,.8) 100%);pointer-events:none}
+
+  .lobby-top{position:relative;z-index:2;display:flex;align-items:center;gap:14px;padding:14px 24px}
+  .player-card{display:flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;background:#fff;border:2px solid var(--pink);border-radius:999px;box-shadow:0 6px 14px -6px rgba(251,114,153,.35)}
+  .av-circle{position:relative;width:44px;height:44px;border-radius:50%;flex:none;overflow:hidden;background:linear-gradient(135deg,var(--pink),var(--cyan));padding:2px}
+  .av-circle img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:50% 15%;background:#fff}
+  .av-circle::after{content:"";position:absolute;inset:-2px;border-radius:50%;background:conic-gradient(from 0deg,var(--pink),var(--gold),var(--cyan),var(--pink));-webkit-mask:radial-gradient(closest-side,transparent 88%,#000 90%);mask:radial-gradient(closest-side,transparent 88%,#000 90%);animation:rotate 6s linear infinite}
+  @keyframes rotate{to{transform:rotate(360deg)}}
+  .player-info .nm{font-family:"ZCOOL KuaiLe",sans-serif;font-size:17px;color:var(--ink);line-height:1.1}
+  .player-info .meta{font-size:10.5px;color:var(--muted);letter-spacing:.08em;font-weight:600}
+  .player-info .meta .lv{color:var(--pink);font-weight:900}
+
+  .resource-bar{display:flex;gap:6px;margin-left:auto}
+  .res{display:flex;align-items:center;gap:6px;padding:5px 12px 5px 5px;background:#fff;border:1.5px solid var(--line);border-radius:999px}
+  .res .ic{width:30px;height:30px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;background:linear-gradient(135deg,var(--pink-soft),var(--cyan-soft))}
+  .res .v{font-family:"Bebas Neue",sans-serif;font-size:18px;color:var(--ink);line-height:1;letter-spacing:.04em}
+  .res .v small{display:block;font-family:"Quicksand",sans-serif;font-size:8.5px;color:var(--muted);letter-spacing:.16em;font-weight:700;text-transform:uppercase}
+  .icon-btn{width:40px;height:40px;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+
+  .danmu-strip{position:relative;z-index:2;margin:4px 24px;padding:8px 16px;background:rgba(0,0,0,.55);border-radius:12px;overflow:hidden;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;gap:14px;backdrop-filter:blur(4px)}
+  .danmu-strip .live{padding:2px 8px;background:var(--pink);border-radius:4px;font-size:10px;letter-spacing:.16em;font-weight:900}
+  .danmu-strip .marquee{flex:1;overflow:hidden;white-space:nowrap;position:relative;height:18px}
+  .danmu-strip .marquee span{position:absolute;left:0;animation:scroll 16s linear infinite}
+  @keyframes scroll{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+
+  .mission-banner{position:relative;z-index:2;margin:4px 24px;padding:10px 16px;background:linear-gradient(90deg,var(--pink-soft),var(--cyan-soft) 50%,transparent);border-left:3px solid var(--pink);border-radius:8px;display:flex;align-items:center;gap:12px;font-size:13px;color:var(--ink-2);font-weight:600}
+  .mission-banner .badge{padding:3px 10px;background:var(--pink);border-radius:999px;font-size:10px;font-weight:900;color:#fff;letter-spacing:.1em}
+
+  .lobby-main{position:relative;z-index:2;flex:1;padding:14px 24px 18px;display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:16px}
+  .lobby-left,.lobby-right{display:flex;flex-direction:column;gap:14px}
+
+  .panel{background:rgba(255,255,255,.92);border:1.5px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 14px 36px -16px rgba(251,114,153,.35);backdrop-filter:blur(8px)}
+  .panel h3{margin:0 0 4px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:20px;color:var(--pink)}
+  .panel h3 small{display:block;font-family:"Quicksand",sans-serif;color:var(--muted);font-size:10px;letter-spacing:.16em;font-weight:600;text-transform:uppercase}
+
+  .menu-list{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+  .menu-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(90deg,var(--pink-soft),transparent);border:1px solid var(--line);border-radius:12px;cursor:pointer;color:var(--ink);font-family:inherit;text-align:left;font-weight:600;transition:transform .1s}
+  .menu-item:hover{transform:translateX(3px)}
+  .menu-item .ic{font-size:18px;width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--pink),var(--pink-2));border-radius:10px;flex:none;color:#fff;box-shadow:0 4px 10px -2px rgba(251,114,153,.4)}
+  .menu-item .text{flex:1}
+  .menu-item .ttl{font-weight:700;font-size:13px}
+  .menu-item .sub{font-size:10.5px;color:var(--muted);margin-top:2px;font-weight:500}
+  .menu-item.featured{background:linear-gradient(90deg,var(--pink),var(--pink-2));color:#fff;border-color:var(--pink)}
+  .menu-item.featured .sub{color:rgba(255,255,255,.85)}
+  .menu-item.featured .ic{background:#fff;color:var(--pink)}
+
+  .center-stage{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;min-height:620px}
+  .featured-art{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);height:88%;max-height:620px;width:auto;filter:drop-shadow(0 30px 60px rgba(251,114,153,.4));z-index:2;animation:bob 4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateX(-50%) translateY(-8px)}}
+  .featured-bubble{position:relative;z-index:3;background:#fff;border:3px solid var(--pink);border-radius:24px;padding:14px 22px;text-align:center;width:100%;max-width:360px;box-shadow:0 14px 30px -8px rgba(251,114,153,.4)}
+  .featured-bubble::before{content:"";position:absolute;left:50%;top:-12px;transform:translateX(-50%) rotate(45deg);width:20px;height:20px;background:#fff;border-left:3px solid var(--pink);border-top:3px solid var(--pink);border-radius:4px 0 0 0}
+  .featured-bubble .nm{font-family:"ZCOOL KuaiLe",sans-serif;font-size:22px;color:var(--pink);letter-spacing:.04em;line-height:1.1}
+  .featured-bubble .jp{font-size:11px;color:var(--ink-2);font-weight:600;margin-top:1px}
+  .featured-bubble .era{font-family:"Bebas Neue",sans-serif;color:var(--cyan);font-size:16px;letter-spacing:.16em;margin-top:6px}
+  .featured-bubble .stars{color:var(--gold);font-size:14px;letter-spacing:.16em;margin:6px 0 4px}
+  .featured-bubble .quote{font-size:12px;color:var(--ink-2);font-weight:500}
+
+  .speech-bub{position:absolute;background:#fff;border:2px solid var(--pink);border-radius:18px;padding:8px 14px;font-size:12.5px;color:var(--ink);font-weight:700;box-shadow:0 8px 20px -6px rgba(251,114,153,.35);z-index:3}
+  .speech-bub::after{content:"";position:absolute;width:0;height:0;border:8px solid transparent}
+  .speech-bub.top-right{top:60px;right:0}
+  .speech-bub.top-right::after{left:-10px;top:50%;transform:translateY(-50%);border-right-color:#fff;border-left-width:0}
+  .speech-bub.top-left{top:140px;left:-10px}
+  .speech-bub.top-left::after{right:-10px;top:50%;transform:translateY(-50%);border-left-color:#fff;border-right-width:0}
+
+  /* Right panels */
+  .quickplay{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+  .qp{padding:14px 12px;background:#fff;border:2px solid var(--line);border-radius:14px;color:var(--ink);text-align:center;cursor:pointer;font-family:inherit;font-weight:700;font-size:12.5px;transition:transform .1s, border-color .15s}
+  .qp:hover{transform:translateY(-2px);border-color:var(--pink)}
+  .qp .ic{font-size:24px;margin-bottom:4px;display:block}
+  .qp .sub{font-size:9.5px;color:var(--muted);font-weight:500;margin-top:2px}
+  .qp.ranked{background:linear-gradient(180deg,var(--gold),#ffaa3d);color:#fff;border-color:var(--gold)}
+  .qp.ranked .sub{color:rgba(255,255,255,.85)}
+
+  .friend-list{margin-top:10px;display:flex;flex-direction:column;gap:4px}
+  .friend{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;cursor:pointer;font-size:12.5px;font-weight:600}
+  .friend:hover{background:var(--pink-soft)}
+  .friend .av{width:30px;height:30px;border-radius:50%;border:2px solid var(--pink);overflow:hidden;flex:none;background-size:cover;background-position:center top}
+  .friend .nm{flex:1}
+  .friend .st{font-size:10px;color:#3ddc97;font-weight:700;letter-spacing:.06em}
+
+  .start-btn{margin-top:auto;padding:14px;background:linear-gradient(180deg,var(--pink),var(--pink-2));border:none;border-radius:14px;color:#fff;font-family:"ZCOOL KuaiLe",sans-serif;font-size:22px;letter-spacing:.06em;cursor:pointer;box-shadow:0 8px 24px -6px rgba(251,114,153,.55);position:relative}
+
+  .bottom-nav{position:relative;z-index:2;padding:8px 24px 16px;display:flex;justify-content:center;gap:6px}
+  .nav-tab{padding:8px 18px;background:#fff;border:2px solid var(--line);border-radius:999px;color:var(--ink-2);font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px}
+  .nav-tab.on{background:linear-gradient(180deg,var(--pink),var(--pink-2));border-color:var(--pink);color:#fff;box-shadow:0 6px 14px -4px rgba(251,114,153,.5)}
+
+  /* Party row in lobby (showcase a few characters) */
+  .party-strip{position:relative;z-index:2;margin:0 24px 8px;padding:10px 14px;background:rgba(255,255,255,.86);border:1.5px solid var(--line);border-radius:14px;backdrop-filter:blur(6px);display:flex;align-items:center;gap:12px}
+  .party-strip .lbl{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:11px;letter-spacing:.2em}
+  .party-strip .row{display:flex;gap:6px;flex:1}
+  .party-strip .av{width:44px;height:44px;border-radius:12px;border:2px solid var(--pink);overflow:hidden;background-size:cover;background-position:center top;position:relative}
+  .party-strip .av.ssr{border-color:var(--ssr-a)}
+  .party-strip .av.sr{border-color:var(--sr-a)}
+  .party-strip .av.r{border-color:var(--r-a)}
+  .party-strip .av .rar{position:absolute;top:0;right:0;background:var(--pink);color:#fff;font-family:"Bebas Neue",sans-serif;font-size:8px;padding:1px 3px;border-radius:0 0 0 4px;letter-spacing:.05em;line-height:1}
+  .party-strip .av.ssr .rar{background:var(--ssr-a)}
+  .party-strip .av.sr .rar{background:var(--sr-a)}
+  .party-strip .av.r .rar{background:var(--r-a)}
+  .party-strip .edit{font-size:11px;font-weight:700;color:var(--pink);cursor:pointer;padding:4px 12px;background:var(--pink-soft);border-radius:999px;border:none;font-family:inherit}
+
+  /* ─── BATTLE ─── */
+  .screen-battle{background:url('img/bg-battle.jpg') center/cover no-repeat;min-height:100vh;position:relative}
+  .screen-battle::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.4) 0%, rgba(255,214,227,.15) 50%, rgba(255,255,255,.85) 100%);pointer-events:none}
+
+  .battle-head{position:relative;z-index:2;display:flex;align-items:center;gap:12px;padding:12px 24px}
+  .turn-bar{flex:1;display:flex;align-items:center;justify-content:center;gap:12px;padding:8px 18px;background:linear-gradient(90deg,transparent,var(--pink-soft) 30%, var(--pink-soft) 70%, transparent);border-radius:999px}
+  .turn-bar .label{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:14px;letter-spacing:.3em}
+  .turn-bar .who{font-family:"ZCOOL KuaiLe",sans-serif;font-size:18px;color:var(--ink)}
+  .stamps{display:flex;gap:6px}
+  .stamp{padding:6px 12px;background:#fff;border:1.5px solid var(--line);border-radius:10px;min-width:60px;text-align:left}
+  .stamp .k{font-family:"Bebas Neue",sans-serif;font-size:9.5px;color:var(--muted);letter-spacing:.2em}
+  .stamp .v{font-family:"ZCOOL KuaiLe",sans-serif;color:var(--pink);font-size:15px;line-height:1.1}
+
+  .battle-stage{position:relative;z-index:2;padding:0 24px;display:grid;grid-template-columns:300px 1fr 280px;gap:18px;min-height:540px;align-items:start}
+  .party-col{display:flex;flex-direction:column;gap:6px}
+  .party-ttl{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:12px;letter-spacing:.24em;padding:0 4px;margin-bottom:4px}
+  .pt-tile{display:flex;align-items:center;gap:10px;padding:8px;background:rgba(255,255,255,.95);border:2px solid var(--line);border-radius:12px;backdrop-filter:blur(4px)}
+  .pt-tile.active{border-color:var(--pink);background:linear-gradient(90deg,var(--pink-soft),rgba(255,255,255,.95))}
+  .pt-tile .av{width:48px;height:48px;border-radius:50%;flex:none;overflow:hidden;background-size:cover;background-position:center top;border:2px solid #fff;box-shadow:0 0 0 2px var(--pink);background-color:#fff}
+  .pt-tile .nm{font-family:"ZCOOL KuaiLe",sans-serif;font-size:14px;color:var(--ink);line-height:1.1}
+  .pt-tile .nm small{display:block;font-family:"Quicksand",sans-serif;font-size:9.5px;color:var(--cyan);letter-spacing:.1em;font-weight:700;text-transform:uppercase;margin-top:2px}
+  .pt-tile .stats{margin-left:auto;text-align:right}
+  .pt-tile .cards{font-family:"Bebas Neue",sans-serif;font-size:22px;color:var(--pink);line-height:1}
+  .pt-tile .tokens{font-size:10px;color:var(--gold);font-weight:700}
+  .hp-bar{height:5px;background:rgba(0,0,0,.08);margin-top:5px;border-radius:3px;overflow:hidden}
+  .hp-bar > div{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold))}
+
+  .battle-center{display:flex;flex-direction:column;align-items:center;gap:10px;position:relative}
+  .vinyl-frame{position:relative;width:min(460px,100%);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+  .vinyl-frame .ring{position:absolute;inset:0;border-radius:50%;background:
+    conic-gradient(from 0deg, var(--pink), var(--gold), var(--cyan), var(--pink));
+    padding:6px;-webkit-mask:radial-gradient(closest-side, transparent 78%, #000 80%);mask:radial-gradient(closest-side, transparent 78%, #000 80%);animation:rotate 16s linear infinite}
+  .vinyl-frame .disc{position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at center, #1a1a3a 26%, #08081a 27%);animation:rotate 8s linear infinite;box-shadow:0 0 0 4px #fff inset, 0 30px 60px -10px rgba(0,0,0,.5)}
+  .vinyl-frame .disc::before{content:"";position:absolute;inset:6%;border-radius:50%;background:repeating-radial-gradient(circle at center, transparent 0 4px, rgba(255,255,255,.06) 4px 5px);opacity:.7}
+  .vinyl-frame .disc::after{content:"";position:absolute;inset:36%;border-radius:50%;background:radial-gradient(circle at 35% 30%, var(--pink-2), var(--pink) 60%, #c41a6a);box-shadow:0 0 20px rgba(251,114,153,.5)}
+  .vinyl-char{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:90%;width:auto;z-index:2;filter:drop-shadow(0 20px 40px rgba(251,114,153,.5))}
+  .vinyl-count{position:absolute;top:8%;left:50%;transform:translateX(-50%);font-family:"Bebas Neue",sans-serif;font-size:90px;color:#fff;text-shadow:0 0 24px var(--pink), 0 4px 12px rgba(0,0,0,.5);line-height:.9;z-index:3;letter-spacing:.02em}
+  .vinyl-count small{display:block;font-size:11px;letter-spacing:.4em;color:var(--gold);font-family:"ZCOOL KuaiLe",sans-serif;text-shadow:0 0 8px rgba(0,0,0,.8);margin-top:-2px}
+
+  .battle-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:100%;max-width:480px}
+  .ba{padding:8px 14px;background:#fff;border:2px solid var(--line);border-radius:14px;cursor:pointer;font-family:inherit;font-weight:700;color:var(--ink);display:flex;flex-direction:column;align-items:center;min-width:78px}
+  .ba .ic{font-size:18px}
+  .ba .lbl{font-family:"Bebas Neue",sans-serif;font-size:12px;color:var(--pink);letter-spacing:.12em}
+  .ba .cost{font-size:9.5px;color:var(--muted)}
+  .ba.primary{background:linear-gradient(180deg,var(--pink),var(--pink-2));border-color:var(--pink);color:#fff;box-shadow:0 6px 14px -4px rgba(251,114,153,.5)}
+  .ba.primary .lbl{color:#fff}
+  .ba.primary .cost{color:rgba(255,255,255,.85)}
+
+  .enemy-card{position:relative;background:#fff;border:2px solid var(--pink);border-radius:18px;padding:12px;min-height:370px;overflow:hidden;box-shadow:0 14px 30px -12px rgba(251,114,153,.4)}
+  .enemy-card .head{position:relative;z-index:2}
+  .enemy-card .head .ttl{font-family:"Bebas Neue",sans-serif;font-size:10.5px;color:var(--cyan);letter-spacing:.24em}
+  .enemy-card .head .nm{font-family:"ZCOOL KuaiLe",sans-serif;font-size:20px;color:var(--pink);letter-spacing:.04em;line-height:1.15;margin-top:2px}
+  .enemy-card .era{display:inline-block;padding:3px 9px;background:linear-gradient(180deg,var(--cyan),#1989c4);color:#fff;border-radius:999px;font-family:"Bebas Neue",sans-serif;font-size:10px;letter-spacing:.18em;margin-top:4px}
+  .enemy-card .stars{color:var(--gold);font-size:12px;letter-spacing:.1em;margin-top:4px;position:relative;z-index:2}
+  .enemy-card img.portrait{position:absolute;right:-20px;bottom:0;height:88%;width:auto;z-index:1;filter:drop-shadow(0 8px 20px rgba(0,0,0,.2))}
+  .stats-mini{position:relative;z-index:2;display:flex;gap:6px;margin-top:auto;padding-top:14px}
+  .stat-mini{flex:1;padding:6px 8px;background:linear-gradient(180deg,var(--pink-soft),rgba(255,255,255,.7));border:1px solid var(--line);border-radius:8px}
+  .stat-mini .k{font-size:9px;color:var(--ink-2);letter-spacing:.12em;font-weight:700}
+  .stat-mini .v{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:18px;line-height:1.1}
+
+  .battle-timeline{position:relative;z-index:2;margin:18px 24px 24px;padding:12px 16px;background:rgba(255,255,255,.92);border:2px solid var(--line);border-radius:16px;backdrop-filter:blur(8px);box-shadow:0 14px 30px -14px rgba(251,114,153,.3)}
+  .battle-timeline .head{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .battle-timeline .head .ttl{font-family:"ZCOOL KuaiLe",sans-serif;font-size:16px;color:var(--pink);letter-spacing:.04em}
+  .battle-timeline .head .progress{flex:1;height:6px;background:var(--pink-soft);border-radius:999px;overflow:hidden;max-width:220px}
+  .battle-timeline .head .progress > div{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold));border-radius:999px}
+  .battle-timeline .head .cnt{font-family:"Bebas Neue",sans-serif;color:var(--ink);font-size:14px;letter-spacing:.1em}
+  .tl-strip{display:flex;gap:6px;align-items:stretch;overflow-x:auto;padding:4px 2px 8px}
+  .tl-slot{flex:none;width:28px;align-self:stretch;border:2px dashed var(--pink);background:var(--pink-soft);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-size:14px;cursor:pointer;font-weight:900;opacity:.6}
+  .tl-slot.active{opacity:1;width:42px;background:var(--pink);color:#fff;box-shadow:0 0 16px rgba(251,114,153,.5)}
+  .tl-card{flex:none;width:110px;background:#fff;border:2px solid var(--pink);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:4px;position:relative;box-shadow:0 4px 10px -4px rgba(251,114,153,.3)}
+  .tl-card::after{content:"";position:absolute;top:6px;right:6px;width:14px;height:14px;border-radius:50%;background:repeating-radial-gradient(circle at center,#1a1a3a 0 1px, #08081a 1px 2px);box-shadow:0 0 0 1px var(--gold)}
+  .tl-card .yr{font-family:"Bebas Neue",sans-serif;font-size:28px;color:var(--pink);line-height:.95;letter-spacing:.02em}
+  .tl-card .ttl{font-size:11.5px;font-weight:700;color:var(--ink);line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .tl-card .art{font-size:9.5px;color:var(--muted);font-weight:600}
+  .tl-card.mystery{background:linear-gradient(135deg,var(--pink),var(--pink-2));border-color:var(--gold);align-items:center;justify-content:center;color:#fff;box-shadow:0 0 20px rgba(251,114,153,.6)}
+  .tl-card.mystery::after{display:none}
+  .tl-card.mystery .q{font-family:"ZCOOL KuaiLe",sans-serif;font-size:40px;color:#fff;text-shadow:0 0 12px rgba(255,255,255,.6)}
+  .tl-card.mystery .lbl{font-family:"Bebas Neue",sans-serif;font-size:9.5px;letter-spacing:.18em;color:var(--gold)}
+
+  /* ─── ROSTER ─── 15-character full display ──────────── */
+  .screen-roster{background:linear-gradient(180deg,var(--cream) 0%, var(--pink-soft) 40%, var(--cyan-soft) 100%);min-height:100vh;padding:0 24px 32px}
+  .screen-roster::before{content:"";position:fixed;inset:0;background:url('img/bg-lobby.jpg') center/cover no-repeat;opacity:.18;z-index:0;filter:blur(2px)}
+  .roster-hero{position:relative;z-index:2;padding:24px 0 18px;display:flex;align-items:flex-end;gap:24px}
+  .roster-hero .ttl{font-family:"ZCOOL KuaiLe",sans-serif;font-size:42px;color:var(--pink);letter-spacing:.04em;line-height:1;text-shadow:4px 4px 0 var(--cyan-soft),-2px -2px 0 #fff}
+  .roster-hero .ttl small{display:block;font-family:"Quicksand",sans-serif;font-size:11px;color:var(--muted);letter-spacing:.2em;font-weight:600;margin-top:8px;text-transform:uppercase}
+  .roster-hero .stats{display:flex;gap:10px;margin-left:auto;flex-wrap:wrap}
+  .roster-hero .stat{padding:8px 14px;background:#fff;border:1.5px solid var(--line);border-radius:12px;text-align:center;min-width:80px}
+  .roster-hero .stat .k{font-size:9.5px;color:var(--muted);letter-spacing:.16em;font-weight:700;text-transform:uppercase}
+  .roster-hero .stat .v{font-family:"Bebas Neue",sans-serif;font-size:22px;color:var(--pink);line-height:1;letter-spacing:.06em}
+  .roster-hero .stat.ssr .v{color:var(--ssr-a)}
+  .roster-hero .stat.sr .v{color:var(--sr-a)}
+  .roster-hero .stat.r .v{color:var(--r-a)}
+
+  .roster-filter{position:relative;z-index:2;display:flex;gap:6px;margin:8px 0 16px;flex-wrap:wrap}
+  .fchip{padding:7px 16px;background:#fff;border:1.5px solid var(--line);border-radius:999px;font-size:11.5px;color:var(--ink-2);font-weight:700;cursor:pointer;font-family:inherit;letter-spacing:.06em}
+  .fchip.on{background:linear-gradient(180deg,var(--pink),var(--pink-2));color:#fff;border-color:var(--pink);box-shadow:0 4px 10px -2px rgba(251,114,153,.4)}
+  .fchip.ssr.on{background:linear-gradient(180deg,var(--ssr-a),var(--ssr-b));border-color:var(--ssr-a)}
+  .fchip.sr.on{background:linear-gradient(180deg,var(--sr-a),var(--sr-b));border-color:var(--sr-a)}
+  .fchip.r.on{background:linear-gradient(180deg,var(--r-a),var(--r-b));border-color:var(--r-a)}
+
+  .roster-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  @media (max-width:1100px){.roster-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:700px){.roster-grid{grid-template-columns:repeat(2,1fr)}}
+  .ctile{position:relative;aspect-ratio:3/4.4;background:#fff;border:3px solid var(--pink);border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 8px 20px -8px rgba(251,114,153,.45);transition:transform .15s, box-shadow .15s}
+  .ctile:hover{transform:translateY(-4px);box-shadow:0 16px 30px -8px rgba(251,114,153,.55)}
+  .ctile.ssr{border-color:var(--ssr-a);box-shadow:0 8px 20px -6px var(--ssr-a)}
+  .ctile.sr{border-color:var(--sr-a);box-shadow:0 8px 20px -6px var(--sr-a)}
+  .ctile.r{border-color:var(--r-a);box-shadow:0 8px 20px -6px var(--r-a)}
+  .ctile .portrait{position:absolute;inset:0;background-size:cover;background-position:center top}
+  .ctile::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%, rgba(0,0,0,.65) 100%);pointer-events:none}
+  .ctile .flag{position:absolute;top:8px;right:8px;padding:3px 9px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:12px;letter-spacing:.1em;border-radius:6px;color:#fff;font-weight:700}
+  .ctile.ssr .flag{background:linear-gradient(180deg,var(--ssr-a),var(--ssr-b));box-shadow:0 2px 8px rgba(255,138,61,.55)}
+  .ctile.sr .flag{background:linear-gradient(180deg,var(--sr-a),var(--sr-b));box-shadow:0 2px 8px rgba(189,135,255,.55)}
+  .ctile.r .flag{background:linear-gradient(180deg,var(--r-a),var(--r-b));box-shadow:0 2px 8px rgba(126,198,255,.55)}
+  .ctile .era-tag{position:absolute;top:8px;left:8px;padding:3px 8px;background:rgba(35,173,229,.92);color:#fff;font-family:"Bebas Neue",sans-serif;font-size:10.5px;letter-spacing:.14em;border-radius:6px}
+  .ctile .attr-tag{position:absolute;top:36px;left:8px;padding:2px 7px;background:rgba(0,0,0,.5);color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:9px;letter-spacing:.18em;border-radius:4px;backdrop-filter:blur(4px)}
+  .ctile .info{position:absolute;left:0;right:0;bottom:0;padding:12px 12px;z-index:2;color:#fff}
+  .ctile .info .nm{font-family:"ZCOOL KuaiLe",sans-serif;font-size:16px;letter-spacing:.04em;line-height:1.1;text-shadow:0 2px 6px rgba(0,0,0,.95)}
+  .ctile .info .jp{font-size:10px;color:rgba(255,255,255,.85);margin-top:1px;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.8)}
+  .ctile .info .stars{color:var(--gold);font-size:10px;margin-top:5px;text-shadow:0 1px 3px rgba(0,0,0,.7);letter-spacing:.06em}
+  .ctile .info .lvl{display:flex;justify-content:space-between;font-size:10px;margin-top:3px;color:rgba(255,255,255,.85);font-weight:600}
+  .ctile .info .lvl .v{font-family:"Bebas Neue",sans-serif;color:var(--gold);font-size:14px;letter-spacing:.06em}
+
+  /* ─── GACHA ─── */
+  .screen-gacha{background:radial-gradient(70% 60% at 50% 30%, var(--pink-soft), var(--cyan-soft) 60%, var(--cream));min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:24px;position:relative;overflow:hidden}
+  .screen-gacha::before{content:"";position:absolute;inset:-10%;background:repeating-conic-gradient(from 0deg, var(--pink-soft) 0deg 12deg, transparent 12deg 24deg);opacity:.2;animation:slowSpin 60s linear infinite;pointer-events:none}
+  @keyframes slowSpin{to{transform:rotate(360deg)}}
+
+  .gacha-head{position:relative;z-index:2;text-align:center;margin:14px 0 18px}
+  .gacha-head .eb{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:13px;letter-spacing:.4em}
+  .gacha-head h2{margin:6px 0 4px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:44px;color:var(--ink);letter-spacing:.04em;text-shadow:4px 4px 0 var(--pink-soft),-2px -2px 0 var(--cyan-soft)}
+  .gacha-head .banner-name{display:inline-block;padding:4px 18px;background:#fff;border:2px solid var(--gold);border-radius:999px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:14px;color:var(--pink)}
+
+  .gacha-stage{position:relative;z-index:2;display:grid;grid-template-columns:1fr 340px;gap:30px;align-items:flex-end;flex:1;width:100%;max-width:1100px;padding:14px 0}
+  .feat-display{position:relative;display:flex;justify-content:center;align-items:flex-end;height:560px}
+  .feat-display img{height:100%;width:auto;filter:drop-shadow(0 30px 80px rgba(251,114,153,.55))}
+  .feat-display::before{content:"";position:absolute;left:50%;top:50%;width:520px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(circle, rgba(251,114,153,.45) 0%, transparent 60%);z-index:-1;animation:pulseBg 3s ease-in-out infinite}
+  @keyframes pulseBg{50%{transform:translate(-50%,-50%) scale(1.1);opacity:.6}}
+
+  .gacha-side-chars{position:absolute;display:flex;flex-direction:column;gap:8px;z-index:3}
+  .gacha-side-chars.left{left:-8px;top:60px}
+  .gacha-side-chars.right{right:-8px;top:120px}
+  .gacha-side-chars .mini{width:60px;height:80px;border-radius:8px;border:2px solid var(--pink);background:#fff;background-size:cover;background-position:center top;box-shadow:0 6px 14px -4px rgba(251,114,153,.55);transform:rotate(-4deg);transition:transform .15s}
+  .gacha-side-chars .mini:hover{transform:rotate(-4deg) scale(1.1)}
+  .gacha-side-chars.right .mini{transform:rotate(4deg)}
+
+  .rates{display:flex;flex-direction:column;gap:10px}
+  .rates-card{background:#fff;border:2px solid var(--pink);border-radius:18px;padding:18px;box-shadow:0 14px 30px -10px rgba(251,114,153,.4)}
+  .rates-card h4{margin:0 0 12px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:17px;color:var(--pink);letter-spacing:.06em;text-align:center}
+  .rate{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1.5px dotted var(--line);font-size:12.5px}
+  .rate:last-child{border-bottom:none}
+  .rate .lbl{font-weight:700;color:var(--ink)}
+  .rate .stars{color:var(--gold);font-size:10px;margin-left:4px}
+  .rate .pct{font-family:"Bebas Neue",sans-serif;font-size:18px;letter-spacing:.04em}
+  .rate.ssr .pct{color:var(--ssr-a)}
+  .rate.sr .pct{color:var(--sr-a)}
+  .rate.r .pct{color:var(--r-a)}
+  .pickup{margin-top:6px;background:linear-gradient(135deg,var(--pink-soft),var(--cyan-soft));border:2px solid var(--gold);border-radius:14px;padding:12px}
+  .pickup .eb{font-family:"Bebas Neue",sans-serif;color:var(--pink);font-size:10.5px;letter-spacing:.3em}
+  .pickup .pn{font-family:"ZCOOL KuaiLe",sans-serif;font-size:17px;color:var(--ink);margin-top:2px}
+  .pickup .pd{font-size:11px;color:var(--ink-2);margin-top:4px;line-height:1.45;font-weight:500}
+
+  .pulls{position:relative;z-index:2;display:flex;gap:14px;justify-content:center;padding:18px 0 8px;width:100%;max-width:780px}
+  .pull-btn{flex:1;position:relative;padding:16px 14px;background:#fff;border:3px solid var(--pink);border-radius:18px;cursor:pointer;text-align:center;font-family:inherit;color:var(--ink);transition:transform .15s, box-shadow .15s;box-shadow:0 10px 26px -8px rgba(251,114,153,.45)}
+  .pull-btn:hover{transform:translateY(-3px)}
+  .pull-btn .n{font-family:"ZCOOL KuaiLe",sans-serif;font-size:26px;color:var(--pink)}
+  .pull-btn .sub{font-size:10.5px;color:var(--muted);letter-spacing:.14em;font-weight:600;margin-top:2px;text-transform:uppercase}
+  .pull-btn .cost{display:inline-flex;align-items:center;gap:4px;margin-top:8px;padding:3px 11px;background:var(--pink-soft);border-radius:999px;font-family:"Bebas Neue",sans-serif;font-size:13px;color:var(--pink);letter-spacing:.1em}
+  .pull-btn.featured{background:linear-gradient(180deg,var(--pink),var(--pink-2));border-color:var(--gold);color:#fff}
+  .pull-btn.featured .n{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .pull-btn.featured .sub{color:rgba(255,255,255,.85)}
+  .pull-btn.featured .cost{background:#fff;color:var(--pink)}
+  .pull-btn .best{position:absolute;top:-10px;right:-8px;padding:3px 10px;background:var(--gold);color:var(--ink);font-family:"ZCOOL KuaiLe",sans-serif;font-size:11px;border-radius:6px;transform:rotate(8deg);box-shadow:0 4px 8px -2px rgba(0,0,0,.3)}
+
+  .gacha-foot{position:relative;z-index:2;font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.06em;text-align:center;margin-top:8px}
+
+  @media (max-width:1100px){
+    .title-stage{grid-template-columns:1fr;gap:18px}
+    .title-char{height:340px}
+    .title-logo-text{font-size:60px}
+    .lobby-main,.battle-stage{grid-template-columns:1fr}
+    .gacha-stage{grid-template-columns:1fr}
+    .feat-display{height:380px}
+    .pulls{flex-direction:column}
+  }
+
+  /* modal for character detail */
+  .modal-back{position:fixed;inset:0;background:rgba(20,10,40,.7);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px);padding:20px}
+  .modal-back.on{display:flex}
+  .modal{background:#fff;border:3px solid var(--pink);border-radius:20px;max-width:760px;width:100%;max-height:90vh;overflow:auto;display:grid;grid-template-columns:280px 1fr;box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+  @media (max-width:680px){.modal{grid-template-columns:1fr}}
+  .modal .left{background:linear-gradient(180deg,var(--pink-soft),var(--cyan-soft));display:flex;align-items:flex-end;justify-content:center;position:relative;padding-top:20px}
+  .modal .left img{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 20px rgba(0,0,0,.2))}
+  .modal .left .rar-tag{position:absolute;top:14px;left:14px;padding:4px 12px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:13px;border-radius:6px;color:#fff}
+  .modal .right{padding:24px}
+  .modal .nm{font-family:"ZCOOL KuaiLe",sans-serif;font-size:28px;color:var(--pink);line-height:1.1}
+  .modal .jp{font-size:13px;color:var(--ink-2);font-weight:600;margin-top:2px}
+  .modal .meta-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .modal .meta-row span{padding:3px 10px;border:1.5px solid var(--line);border-radius:999px;font-family:"Bebas Neue",sans-serif;font-size:11px;letter-spacing:.18em;color:var(--ink-2)}
+  .modal .quote{margin-top:14px;padding:12px 14px;background:var(--pink-soft);border-left:3px solid var(--pink);border-radius:8px;font-size:13px;color:var(--ink);font-weight:500;font-style:italic}
+  .modal .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+  .modal .stats .stat{padding:8px;background:var(--cream);border:1.5px solid var(--line);border-radius:10px;text-align:center}
+  .modal .stats .stat .k{font-size:9.5px;color:var(--muted);letter-spacing:.16em;font-weight:700;text-transform:uppercase}
+  .modal .stats .stat .v{font-family:"Bebas Neue",sans-serif;font-size:24px;color:var(--pink);letter-spacing:.06em}
+  .modal .close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:2px solid var(--pink);background:#fff;color:var(--pink);font-size:18px;font-weight:900;cursor:pointer;font-family:inherit}
+  .modal .actions{margin-top:18px;display:flex;gap:8px}
+  .modal .actions button{flex:1;padding:12px;border-radius:12px;font-family:"ZCOOL KuaiLe",sans-serif;font-size:15px;cursor:pointer;border:none}
+  .modal .actions .primary{background:linear-gradient(180deg,var(--pink),var(--pink-2));color:#fff;box-shadow:0 6px 14px -4px rgba(251,114,153,.5)}
+  .modal .actions .secondary{background:#fff;color:var(--cyan);border:2px solid var(--cyan)}
+</style>
+</head>
+<body data-pattern="bilibili_v2">
+
+<div class="app-chrome">
+  <div class="chrome-ttl">ヒットスター ♪<small>BILIBILI v2 · 15 muses unified roster</small></div>
+  <div class="seg" id="scrSeg">
+    <button data-scr="title" class="on">Title</button>
+    <button data-scr="lobby">Lobby</button>
+    <button data-scr="battle">Battle</button>
+    <button data-scr="roster">Roster</button>
+    <button data-scr="gacha">Gacha</button>
+  </div>
+  <div class="chrome-spacer"></div>
+  <div class="chrome-roster">Owned: <strong>15</strong> / 15 muses · <strong>3</strong> SSR · <strong>6</strong> SR · <strong>6</strong> R</div>
+</div>
+
+<!-- ═══════════ TITLE ═══════════ -->
+<section class="screen on screen-title" data-screen="title">
+  <div class="deco" aria-hidden><span class="deco-item">♪</span><span class="deco-item">♡</span><span class="deco-item">♫</span><span class="deco-item">★</span><span class="deco-item">♩</span></div>
+  <div class="title-stage">
+    <div class="title-char">
+      <img src="img/char-stellaris.jpg" alt="">
+      <img class="title-mini-char tmc1" src="img/char-velvet.jpg" alt="">
+      <img class="title-mini-char tmc2" src="img/char-popciel.jpg" alt="">
+    </div>
+    <div class="title-info">
+      <h1 class="title-logo-text">ヒットスター<span class="small">HITSTAR ONLINE · 15人のミューズと音楽の旅</span></h1>
+      <p class="title-tagline">
+        曲を聴いて<strong>年代を当てる</strong>、<br>
+        <em>15人の個性ゆたかなミューズ</em>と一緒に♪<br>
+        中華風、昭和、ナイトラウンジ、フェス…時代を超えた仲間たちと音楽の世界を旅しよう♡
+      </p>
+      <div class="title-buttons">
+        <button class="btn-primary">▶ プレイスタート</button>
+        <button class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Googleでログイン
+        </button>
+      </div>
+      <div class="title-roster-strip">
+        <div class="lbl">★ ALL 15 MUSES ★</div>
+        <div class="title-roster-row" id="titleRosterRow"></div>
+      </div>
+      <div class="title-footer">
+        <span><span class="pulse"></span>ONLINE · 12,481</span>
+        <span>Ver. 2.4.0</span>
+        <span>♡ 1.2M PLAYERS</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ LOBBY ═══════════ -->
+<section class="screen screen-lobby" data-screen="lobby">
+  <div class="lobby-top">
+    <div class="player-card">
+      <div class="av-circle"><img src="img/char-synthea.jpg" alt=""></div>
+      <div class="player-info">
+        <div class="nm">ユカ</div>
+        <div class="meta">LV <span class="lv">42</span> · MAESTRO</div>
+      </div>
+    </div>
+    <div class="resource-bar">
+      <div class="res"><span class="ic">💎</span><span class="v">2,840<small>GEMS</small></span></div>
+      <div class="res"><span class="ic">🎵</span><span class="v">15,200<small>NOTES</small></span></div>
+      <div class="res"><span class="ic">🪙</span><span class="v">3<small>TOKENS</small></span></div>
+      <button class="icon-btn">📧</button>
+      <button class="icon-btn">⚙</button>
+    </div>
+  </div>
+
+  <div class="danmu-strip">
+    <span class="live">LIVE</span>
+    <div class="marquee">
+      <span>♡ Velvetちゃん、新しい曲おしえて〜 │ さくら: 喫茶店ミューズ全員引いた〜！ │ DJ_KOJI: SteIIaris狙いで天井…│ ♪ ピックアップ★Velvet Lin 配信中 ♪ │ 中華・昭和・クラブ・フェス全部いる15人ガチャ</span>
+    </div>
+  </div>
+
+  <div class="party-strip">
+    <span class="lbl">▸ MY PARTY ▸</span>
+    <div class="row" id="partyRow"></div>
+    <button class="edit">編成 ▸</button>
+  </div>
+
+  <div class="mission-banner">
+    <span class="badge">每日</span>
+    <span>本日のミッション：<strong>2010年代の楽曲を3回正解</strong> · 報酬 💎200</span>
+    <span style="margin-left:auto;color:var(--pink)">▶</span>
+  </div>
+
+  <div class="lobby-main">
+    <div class="lobby-left">
+      <div class="panel">
+        <h3>冒険<small>Story · Daily · Events</small></h3>
+        <div class="menu-list">
+          <button class="menu-item featured">
+            <span class="ic">📖</span>
+            <span class="text"><span class="ttl">メインストーリー</span><span class="sub">Chapter 3 · 失われた音色</span></span>
+          </button>
+          <button class="menu-item">
+            <span class="ic">🎯</span>
+            <span class="text"><span class="ttl">デイリークエスト</span><span class="sub">残り 03:42:18</span></span>
+          </button>
+          <button class="menu-item">
+            <span class="ic">🏆</span>
+            <span class="text"><span class="ttl">アリーナ</span><span class="sub">現在ランク GOLD II</span></span>
+          </button>
+          <button class="menu-item">
+            <span class="ic">⚡</span>
+            <span class="text"><span class="ttl">スキルマップ</span><span class="sub">ポイント +12</span></span>
+          </button>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>ログインボーナス<small>連続 7日目</small></h3>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px">
+          <div style="aspect-ratio:1;background:var(--pink-soft);border:2px solid var(--pink);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900">✓</div>
+          <div style="aspect-ratio:1;background:var(--pink-soft);border:2px solid var(--pink);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900">✓</div>
+          <div style="aspect-ratio:1;background:var(--pink-soft);border:2px solid var(--pink);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900">✓</div>
+          <div style="aspect-ratio:1;background:var(--pink-soft);border:2px solid var(--pink);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900">✓</div>
+          <div style="aspect-ratio:1;background:var(--pink-soft);border:2px solid var(--pink);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900">✓</div>
+          <div style="aspect-ratio:1;background:var(--pink-soft);border:2px solid var(--pink);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--pink);font-weight:900">✓</div>
+          <div style="aspect-ratio:1;background:linear-gradient(135deg,var(--pink),var(--cyan));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;box-shadow:0 0 14px rgba(251,114,153,.5)">💎</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="center-stage">
+      <img class="featured-art" src="img/char-velvet.jpg" alt="">
+      <div class="speech-bub top-right">「来てくれてうれしい♪」</div>
+      <div class="speech-bub top-left">★ ピックアップ ★</div>
+      <div class="featured-bubble">
+        <div class="nm">Velvet Lin</div>
+        <div class="jp">ヴェルヴェット・リン</div>
+        <div class="era">1960s · GRACE</div>
+        <div class="stars">★ ★ ★ ★</div>
+        <div class="quote">"昔の歌、聴いてくれる？"</div>
+      </div>
+    </div>
+
+    <div class="lobby-right">
+      <div class="panel">
+        <h3>クイックプレイ<small>1タップで開始</small></h3>
+        <div class="quickplay">
+          <button class="qp ranked"><span class="ic">🏆</span>RANKED<span class="sub">記録対戦</span></button>
+          <button class="qp"><span class="ic">👥</span>PARTY<span class="sub">フレンドと</span></button>
+          <button class="qp"><span class="ic">🧑‍💻</span>SOLO<span class="sub">NPC練習</span></button>
+          <button class="qp"><span class="ic">🎯</span>PRACTICE<span class="sub">フリー</span></button>
+        </div>
+      </div>
+      <div class="panel" style="display:flex;flex-direction:column">
+        <h3>フレンド<small>3人がオンライン</small></h3>
+        <div class="friend-list">
+          <div class="friend"><span class="av" style="background-image:url('img/char-grungia.jpg')"></span><span class="nm">ハル</span><span class="st">対戦中</span></div>
+          <div class="friend"><span class="av" style="background-image:url('img/char-meilan.jpg')"></span><span class="nm">ケン</span><span class="st">ロビー</span></div>
+          <div class="friend"><span class="av" style="background-image:url('img/char-honey.jpg')"></span><span class="nm">リサ</span><span class="st">ガチャ中</span></div>
+        </div>
+        <button class="start-btn">出撃 ♪</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-nav">
+    <button class="nav-tab on">🏠 ホーム</button>
+    <button class="nav-tab">⚔ 出撃</button>
+    <button class="nav-tab">👥 仲間</button>
+    <button class="nav-tab">💎 ガチャ</button>
+    <button class="nav-tab">🛒 ショップ</button>
+  </div>
+</section>
+
+<!-- ═══════════ BATTLE ═══════════ -->
+<section class="screen screen-battle" data-screen="battle">
+  <div class="battle-head">
+    <div class="player-card" style="padding:4px 14px 4px 4px">
+      <div class="av-circle" style="width:36px;height:36px"><img src="img/char-synthea.jpg" alt=""></div>
+      <div class="player-info"><div class="nm" style="font-size:14px">ユカ</div><div class="meta">LV <span class="lv">42</span></div></div>
+    </div>
+    <div class="turn-bar">
+      <div class="label">▸ TURN 04 ▸</div>
+      <div class="who">あなたの番♪</div>
+      <div class="label">◂ GO!</div>
+    </div>
+    <div class="stamps">
+      <div class="stamp"><div class="k">Room</div><div class="v">AB23</div></div>
+      <div class="stamp"><div class="k">Deck</div><div class="v">87</div></div>
+      <button class="icon-btn">×</button>
+    </div>
+  </div>
+
+  <div class="battle-stage">
+    <div class="party-col">
+      <div class="party-ttl">YOUR PARTY · 4</div>
+      <div class="pt-tile active">
+        <div class="av" style="background-image:url('img/char-synthea.jpg')"></div>
+        <div>
+          <div class="nm">Synthea Neon <small>You · 1980s</small></div>
+          <div class="hp-bar"><div style="width:74%"></div></div>
+        </div>
+        <div class="stats"><div class="cards">3</div><div class="tokens">🪙2</div></div>
+      </div>
+      <div class="pt-tile">
+        <div class="av" style="background-image:url('img/char-velvet.jpg')"></div>
+        <div>
+          <div class="nm">Velvet Lin <small>1960s · Grace</small></div>
+          <div class="hp-bar"><div style="width:88%"></div></div>
+        </div>
+        <div class="stats"><div class="cards">4</div><div class="tokens">🪙1</div></div>
+      </div>
+      <div class="pt-tile">
+        <div class="av" style="background-image:url('img/char-meilan.jpg')"></div>
+        <div>
+          <div class="nm">Mei Lan <small>1990s · Shadow</small></div>
+          <div class="hp-bar"><div style="width:42%"></div></div>
+        </div>
+        <div class="stats"><div class="cards">2</div><div class="tokens">🪙3</div></div>
+      </div>
+      <div class="pt-tile">
+        <div class="av" style="background-image:url('img/char-stellaris.jpg')"></div>
+        <div>
+          <div class="nm">EDM Stellaris <small>2010s · Light</small></div>
+          <div class="hp-bar"><div style="width:62%"></div></div>
+        </div>
+        <div class="stats"><div class="cards">3</div><div class="tokens">🪙0</div></div>
+      </div>
+    </div>
+
+    <div class="battle-center">
+      <div class="vinyl-frame">
+        <div class="ring"></div>
+        <div class="disc"></div>
+        <img class="vinyl-char" src="img/char-synthea.jpg" alt="">
+        <div class="vinyl-count">15<small>SECONDS LEFT</small></div>
+      </div>
+      <div class="battle-actions">
+        <button class="ba"><span class="ic">⏭</span><span class="lbl">Skip</span><span class="cost">🪙1</span></button>
+        <button class="ba"><span class="ic">💰</span><span class="lbl">Buy</span><span class="cost">🪙3</span></button>
+        <button class="ba primary"><span class="ic">🎤</span><span class="lbl">Call Tune</span><span class="cost">+1🪙</span></button>
+        <button class="ba"><span class="ic">⚡</span><span class="lbl">Skill</span><span class="cost">CD2</span></button>
+      </div>
+    </div>
+
+    <div class="enemy-card">
+      <div class="head">
+        <div class="ttl">▸ NOW SPINNING</div>
+        <div class="nm">Synthea Neon</div>
+        <span class="era">1980s · STAR</span>
+        <div class="stars">★ ★ ★ ★ ★</div>
+      </div>
+      <img class="portrait" src="img/char-synthea.jpg" alt="">
+      <div class="stats-mini">
+        <div class="stat-mini"><div class="k">ATK</div><div class="v">1820</div></div>
+        <div class="stat-mini"><div class="k">DEF</div><div class="v">940</div></div>
+        <div class="stat-mini"><div class="k">SPD</div><div class="v">128</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="battle-timeline">
+    <div class="head">
+      <div class="ttl">あなたのコレクション</div>
+      <div class="progress"><div style="width:30%"></div></div>
+      <div class="cnt">3 / 10</div>
+    </div>
+    <div class="tl-strip">
+      <div class="tl-slot">+</div>
+      <div class="tl-card"><div class="yr">1985</div><div class="ttl">Take On Me</div><div class="art">a-ha</div></div>
+      <div class="tl-slot active">★</div>
+      <div class="tl-card mystery"><div class="q">?</div><div class="lbl">HERE</div></div>
+      <div class="tl-slot">+</div>
+      <div class="tl-card"><div class="yr">1999</div><div class="ttl">Genie in a Bottle</div><div class="art">Christina A.</div></div>
+      <div class="tl-slot">+</div>
+      <div class="tl-card"><div class="yr">2014</div><div class="ttl">Happy</div><div class="art">Pharrell W.</div></div>
+      <div class="tl-slot">+</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ROSTER · 15 muses ═══════════ -->
+<section class="screen screen-roster" data-screen="roster">
+  <div class="roster-hero">
+    <div>
+      <div class="ttl">キャラクター図鑑<small>あなたのコレクション · 15 muses</small></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="k">TOTAL</div><div class="v">15</div></div>
+      <div class="stat ssr"><div class="k">SSR</div><div class="v">3</div></div>
+      <div class="stat sr"><div class="k">SR</div><div class="v">6</div></div>
+      <div class="stat r"><div class="k">R</div><div class="v">6</div></div>
+    </div>
+  </div>
+  <div class="roster-filter">
+    <button class="fchip on" data-f="all">ALL · 15</button>
+    <button class="fchip ssr" data-f="SSR">SSR · 3</button>
+    <button class="fchip sr" data-f="SR">SR · 6</button>
+    <button class="fchip r" data-f="R">R · 6</button>
+    <button class="fchip" data-f="1960s">1960s</button>
+    <button class="fchip" data-f="1970s">1970s</button>
+    <button class="fchip" data-f="1980s">1980s</button>
+    <button class="fchip" data-f="1990s">1990s</button>
+    <button class="fchip" data-f="2000s">2000s</button>
+    <button class="fchip" data-f="2010s">2010s</button>
+    <button class="fchip" data-f="2020s">2020s</button>
+  </div>
+  <div class="roster-grid" id="rosterGrid"></div>
+</section>
+
+<!-- ═══════════ GACHA ═══════════ -->
+<section class="screen screen-gacha" data-screen="gacha">
+  <div class="gacha-head">
+    <div class="eb">★ FEATURED SUMMON ★</div>
+    <h2>Showa Genesis</h2>
+    <div class="banner-name">★★★★ Velvet Lin ピックアップ</div>
+  </div>
+  <div class="gacha-stage">
+    <div class="feat-display">
+      <img src="img/char-velvet.jpg" alt="">
+      <div class="gacha-side-chars left">
+        <div class="mini" style="background-image:url('img/char-sakura.jpg')"></div>
+        <div class="mini" style="background-image:url('img/char-cocoa.jpg')"></div>
+        <div class="mini" style="background-image:url('img/char-honey.jpg')"></div>
+      </div>
+      <div class="gacha-side-chars right">
+        <div class="mini" style="background-image:url('img/char-ruby.jpg')"></div>
+        <div class="mini" style="background-image:url('img/char-lilac.jpg')"></div>
+        <div class="mini" style="background-image:url('img/char-mirage.jpg')"></div>
+      </div>
+    </div>
+    <div class="rates">
+      <div class="rates-card">
+        <h4>排出確率</h4>
+        <div class="rate ssr"><span class="lbl">SSR <span class="stars">★ ★ ★ ★ ★</span></span><span class="pct">3.0%</span></div>
+        <div class="rate sr"><span class="lbl">SR <span class="stars">★ ★ ★ ★</span></span><span class="pct">12.0%</span></div>
+        <div class="rate r"><span class="lbl">R <span class="stars">★ ★ ★</span></span><span class="pct">85.0%</span></div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1.5px dashed var(--line);font-size:11px;color:var(--ink-2);line-height:1.5;font-weight:600">天井: 90回までに ★★★★★ 確定<br>50% でピックアップ確定</div>
+      </div>
+      <div class="pickup">
+        <div class="eb">▸ PICKUP ▸</div>
+        <div class="pn">Velvet Lin</div>
+        <div class="pd">1960年代を司る昭和の歌姫。エレガントなチャイナドレスで魅了する♡</div>
+      </div>
+    </div>
+  </div>
+  <div class="pulls">
+    <button class="pull-btn"><div class="n">×1</div><div class="sub">Single</div><div class="cost">💎 160</div></button>
+    <button class="pull-btn featured"><span class="best">お得♡</span><div class="n">×10</div><div class="sub">Multi</div><div class="cost">💎 1,440</div></button>
+    <button class="pull-btn"><div class="n">FREE</div><div class="sub">Daily Pull</div><div class="cost" style="color:#3ddc97">残03:42</div></button>
+  </div>
+  <div class="gacha-foot">排出確率は <a href="#" style="color:var(--cyan)">こちら</a> · イベント終了まで <strong style="color:var(--pink)">5日 12:48:30</strong></div>
+</section>
+
+<!-- character detail modal -->
+<div class="modal-back" id="modalBack">
+  <div class="modal">
+    <div class="left">
+      <span class="rar-tag" id="modalRar"></span>
+      <img id="modalImg" src="" alt="">
+    </div>
+    <div class="right">
+      <button class="close" id="modalClose">×</button>
+      <div class="nm" id="modalNm"></div>
+      <div class="jp" id="modalJp"></div>
+      <div class="meta-row" id="modalMeta"></div>
+      <div class="quote" id="modalQuote"></div>
+      <div class="stats">
+        <div class="stat"><div class="k">ATK</div><div class="v" id="modalAtk"></div></div>
+        <div class="stat"><div class="k">DEF</div><div class="v" id="modalDef"></div></div>
+        <div class="stat"><div class="k">SPD</div><div class="v" id="modalSpd"></div></div>
+      </div>
+      <div class="actions">
+        <button class="primary">▶ パーティに加える</button>
+        <button class="secondary">★ 強化</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="_chars.js"></script>
+<script>
+  // Build roster grid
+  const grid = document.getElementById('rosterGrid');
+  function renderGrid(filter){
+    grid.innerHTML = '';
+    const list = filter === 'all' ? CHARS : CHARS.filter(c => c.rarity === filter || c.era === filter);
+    list.forEach(c => {
+      const stars = c.rarity === 'SSR' ? '★ ★ ★ ★ ★' : c.rarity === 'SR' ? '★ ★ ★ ★' : '★ ★ ★';
+      const div = document.createElement('div');
+      div.className = 'ctile ' + c.rarity.toLowerCase();
+      div.innerHTML = `
+        <div class="portrait" style="background-image:url('${c.img}');background-position:${c.focus || 'center top'}"></div>
+        <span class="flag">${c.rarity}</span>
+        <span class="era-tag">${c.era}</span>
+        <span class="attr-tag">${c.attr}</span>
+        <div class="info">
+          <div class="nm">${c.nm}</div>
+          <div class="jp">${c.jp}</div>
+          <div class="stars">${stars}</div>
+          <div class="lvl"><span>LV</span><span class="v">${c.lv}</span></div>
+        </div>
+      `;
+      div.addEventListener('click', () => openModal(c));
+      grid.appendChild(div);
+    });
+  }
+  renderGrid('all');
+
+  // Filter chips
+  document.querySelectorAll('.fchip').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.fchip').forEach(x => x.classList.remove('on'));
+    b.classList.add('on');
+    renderGrid(b.dataset.f);
+  }));
+
+  // Title roster row
+  const trRow = document.getElementById('titleRosterRow');
+  CHARS.slice(0, 12).forEach(c => {
+    const d = document.createElement('div');
+    d.className = 'av';
+    d.style.backgroundImage = `url('${c.img}')`;
+    d.style.backgroundPosition = c.focus || 'center top';
+    trRow.appendChild(d);
+  });
+  const m = document.createElement('div');
+  m.className = 'more';
+  m.textContent = '+3';
+  trRow.appendChild(m);
+
+  // Party row in lobby
+  const partyRow = document.getElementById('partyRow');
+  ['synthea','velvet','meilan','stellaris','ruby'].forEach(id => {
+    const c = CHARS.find(x => x.id === id);
+    if (!c) return;
+    const d = document.createElement('div');
+    d.className = 'av ' + c.rarity.toLowerCase();
+    d.style.backgroundImage = `url('${c.img}')`;
+    d.style.backgroundPosition = c.focus || 'center top';
+    d.innerHTML = '<span class="rar">' + c.rarity + '</span>';
+    partyRow.appendChild(d);
+  });
+
+  // Modal
+  const modalBack = document.getElementById('modalBack');
+  function openModal(c){
+    document.getElementById('modalImg').src = c.img;
+    document.getElementById('modalNm').textContent = c.nm;
+    document.getElementById('modalJp').textContent = c.jp;
+    const rar = document.getElementById('modalRar');
+    rar.textContent = c.rarity;
+    rar.style.background = c.rarity === 'SSR' ? 'linear-gradient(180deg,#ff8a3d,#ff5a1a)' : c.rarity === 'SR' ? 'linear-gradient(180deg,#bd87ff,#9050d0)' : 'linear-gradient(180deg,#7ec6ff,#3a8ad0)';
+    const stars = c.rarity === 'SSR' ? '★★★★★' : c.rarity === 'SR' ? '★★★★' : '★★★';
+    document.getElementById('modalMeta').innerHTML = `<span>${c.era}</span><span>${c.attr}</span><span>LV ${c.lv}</span><span style="color:var(--gold);font-family:Arial">${stars}</span>`;
+    document.getElementById('modalQuote').textContent = `"${c.quote}"`;
+    document.getElementById('modalAtk').textContent = c.atk;
+    document.getElementById('modalDef').textContent = c.def;
+    document.getElementById('modalSpd').textContent = c.spd;
+    modalBack.classList.add('on');
+  }
+  document.getElementById('modalClose').addEventListener('click', () => modalBack.classList.remove('on'));
+  modalBack.addEventListener('click', e => { if (e.target === modalBack) modalBack.classList.remove('on'); });
+
+  // Screen switcher
+  const seg = document.getElementById('scrSeg');
+  const screens = ['title','lobby','battle','roster','gacha'];
+  let cur = localStorage.getItem('hsbv2_scr') || 'title';
+  function show(name){
+    document.querySelectorAll('.screen').forEach(el => el.classList.toggle('on', el.dataset.screen === name));
+    seg.querySelectorAll('button').forEach(b => b.classList.toggle('on', b.dataset.scr === name));
+    cur = name;
+    localStorage.setItem('hsbv2_scr', name);
+    window.scrollTo(0,0);
+  }
+  seg.addEventListener('click', e => { const b = e.target.closest('button'); if(!b) return; show(b.dataset.scr); });
+  document.addEventListener('keydown', e => {
+    if (e.target.matches('input,textarea')) return;
+    if (e.key === 'ArrowRight'){ show(screens[(screens.indexOf(cur)+1)%screens.length]); }
+    if (e.key === 'ArrowLeft'){  show(screens[(screens.indexOf(cur)+screens.length-1)%screens.length]); }
+    if (e.key === 'Escape'){ modalBack.classList.remove('on'); }
+  });
+  show(cur);
+</script>
+</body>
+</html>

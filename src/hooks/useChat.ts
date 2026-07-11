@@ -14,6 +14,7 @@ import {
   type ChatMessage,
 } from "@/lib/chat";
 import { cleanText } from "@/lib/profanity";
+import { api } from "@/lib/clientApi";
 import type { ClientUser } from "@/hooks/useUser";
 
 export type SendResult = "ok" | "empty" | "rate" | "offline";
@@ -107,34 +108,48 @@ export function useChat(code: string, me: ClientUser | null, enabled: boolean): 
 
   const send = useCallback(
     (raw: string): SendResult => {
-      const ch = channelRef.current;
-      if (!ch || !me) return "offline";
+      if (!channelRef.current || !me) return "offline";
 
       const emote = isEmote(raw);
       const text = cleanText(raw.trim()).slice(0, MAX_CHAT_LEN);
       if (!text) return "empty";
 
-      // Client rate limit.
+      // Client rate limit (fast local gate; the server enforces its own too).
       const now = performance.now();
       sentTimes.current = sentTimes.current.filter((t) => now - t < RATE_WINDOW_MS);
       if (sentTimes.current.length >= RATE_MAX) return "rate";
       sentTimes.current.push(now);
 
+      const lang = browserLang();
+      // Optimistic local echo (the server broadcast uses self:false, so we never
+      // receive our own message back). The relayed copy others receive is stamped
+      // with a server-authoritative userId, so nobody can spoof someone else's id.
       const msg: ChatMessage = {
         id: newId(me.id),
         userId: me.id,
         name: me.name,
         avatarUrl: me.avatarUrl,
         text,
-        lang: browserLang(),
+        lang,
         emote: emote || undefined,
         at: Date.now(),
       };
-      ch.send({ type: "broadcast", event: CHAT_EVENT, payload: msg });
-      push(msg); // local echo (self:false)
+      push(msg);
+
+      // Relay THROUGH the server (which stamps the sender id from the session and
+      // re-masks/caps the text) instead of broadcasting the raw payload directly.
+      void api("/api/chat/send", {
+        code,
+        text: raw.trim(),
+        name: me.name,
+        avatarUrl: me.avatarUrl,
+        lang,
+      }).catch(() => {
+        /* fire-and-forget: the optimistic echo already showed it locally */
+      });
       return "ok";
     },
-    [me, push],
+    [code, me, push],
   );
 
   return { messages, ready, send };
