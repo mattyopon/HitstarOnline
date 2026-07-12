@@ -5,7 +5,14 @@
 import { createAdminClient } from "./supabase/admin";
 import { getDeck } from "./deck";
 import { wonCards } from "./engine";
-import { CATEGORIES, isPackId, type Phase, type PublicPlayer, type PublicState } from "./protocol";
+import {
+  CATEGORIES,
+  MATCH_GEMS,
+  isPackId,
+  type Phase,
+  type PublicPlayer,
+  type PublicState,
+} from "./protocol";
 
 function isRealUser(p: PublicPlayer | undefined): p is PublicPlayer {
   return !!p && !p.isBot;
@@ -142,6 +149,26 @@ async function recordMatchEnd(roomId: string, state: PublicState): Promise<void>
       });
       if (error) console.error(`[stats] LP update failed for ${p.userId}:`, error);
     }
+  }
+
+  // Match gem rewards (💎) — the gacha economy's earn path. Multiplayer (2+
+  // humans) pays full rewards; solo-vs-bots pays the small solo amounts so
+  // farming bots stays slow. Amounts mirror MATCH_GEMS shown on the game-over
+  // screen. Same once-per-room idempotency as everything above.
+  const humanCount = state.players.filter(isRealUser).length;
+  const solo = humanCount <= 1;
+  for (const p of state.players) {
+    if (!isRealUser(p)) continue;
+    const isWin = state.winnerId === p.userId;
+    const amount = solo
+      ? isWin
+        ? MATCH_GEMS.soloWin
+        : MATCH_GEMS.soloPlay
+      : isWin
+        ? MATCH_GEMS.win
+        : MATCH_GEMS.play;
+    const { error } = await admin.rpc("grant_gems", { p_user_id: p.userId, p_amount: amount });
+    if (error) console.error(`[stats] gem grant failed for ${p.userId}:`, error);
   }
 }
 

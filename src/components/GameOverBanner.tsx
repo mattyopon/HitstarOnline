@@ -1,6 +1,6 @@
 "use client";
 
-import type { PublicPlayer } from "@/lib/protocol";
+import { MATCH_GEMS, type PublicPlayer } from "@/lib/protocol";
 import { useT } from "@/lib/i18n";
 import { GACHA_CHARS } from "@/lib/gachaChars";
 
@@ -20,14 +20,35 @@ function celebrationChar(winnerId: string | null | undefined) {
 export function GameOverBanner({
   players,
   winnerId,
+  meId,
+  isHost,
+  busy,
+  onRematch,
   onHome,
 }: {
   players: PublicPlayer[];
   winnerId: string | null | undefined;
+  meId: string;
+  isHost: boolean;
+  busy: boolean;
+  onRematch: () => void;
   onHome: () => void;
 }) {
   const t = useT();
   const muse = celebrationChar(winnerId);
+  const me = players.find((p) => p.userId === meId);
+  // Mirror of the server-side grant in recordMatchEnd (bots earn nothing).
+  const humanCount = players.filter((p) => !p.isBot).length;
+  const solo = humanCount <= 1;
+  const myGems = me?.isBot
+    ? 0
+    : winnerId === meId
+      ? solo
+        ? MATCH_GEMS.soloWin
+        : MATCH_GEMS.win
+      : solo
+        ? MATCH_GEMS.soloPlay
+        : MATCH_GEMS.play;
   return (
     <div className="card big-banner stack">
       <div className="section-eyebrow" style={{ marginBottom: 0 }}>Side B · Final Standings</div>
@@ -56,7 +77,23 @@ export function GameOverBanner({
             </div>
           ))}
       </div>
-      <button className="btn gold block" onClick={onHome}>
+      {myGems > 0 && (
+        <div className="notice tiny" style={{ textAlign: "center" }}>
+          {winnerId === meId
+            ? t("🏆 勝利報酬 +{n}💎 を獲得！ガチャで使えます", { n: myGems })
+            : t("🎁 参加報酬 +{n}💎 を獲得！ガチャで使えます", { n: myGems })}
+        </div>
+      )}
+      {isHost ? (
+        <button className="btn gold block" disabled={busy} onClick={onRematch}>
+          🔁 {t("同じメンバーでもう一回")}
+        </button>
+      ) : (
+        <div className="tiny muted" style={{ textAlign: "center" }}>
+          {t("ホストが再戦を始めると、そのまま次のゲームに入れます")}
+        </div>
+      )}
+      <button className="btn block" onClick={onHome}>
         {t("ホームに戻る")}
       </button>
     </div>

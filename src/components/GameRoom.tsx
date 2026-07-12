@@ -553,7 +553,15 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
             )}
 
             {state.phase === "gameover" && (
-              <GameOverBanner players={state.players} winnerId={state.winnerId} onHome={goHome} />
+              <GameOverBanner
+                players={state.players}
+                winnerId={state.winnerId}
+                meId={meId}
+                isHost={state.hostId === meId}
+                busy={busy}
+                onRematch={() => act("/api/game/rematch", {})}
+                onHome={goHome}
+              />
             )}
 
             {/* Active player's placement controls */}
