@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   CATEGORIES,
   PACKS,
@@ -72,6 +72,23 @@ export function ThemeBrowser({
   const anyPack = useMemo(() => selected.some(isPackId), [selected]);
   const wantPacks = showPacks && variant === "lobby";
 
+  // Deck sizes per scope id ("{n}曲" chips) — the catalogue's scale was
+  // previously invisible in-product. Static per build; fetched once and shared
+  // across renders. Failure just hides the chips (non-blocking).
+  const [sizes, setSizes] = useState<Record<string, number> | null>(null);
+  useEffect(() => {
+    let active = true;
+    fetch("/api/deck/sizes")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { sizes?: Record<string, number> } | null) => {
+        if (active && d?.sizes) setSizes(d.sizes);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
+
   // ── Selection contract ──────────────────────────────────────────────────────
   const toggle = useCallback(
     (id: string) => {
@@ -108,6 +125,7 @@ export function ThemeBrowser({
         labelJa: p.labelJa,
         eyebrow: "PACK" as const,
         selected: selectedSet.has(p.id),
+        count: sizes?.[p.id],
       });
       for (const kind of PACK_KIND_ORDER) {
         // The quiz packs are split out of "アニメOP" into their own rail below.
@@ -128,10 +146,11 @@ export function ThemeBrowser({
         selected: selectedSet.has(c.id),
         disabled: anyPack,
         tally: tally ? tally[c.id] : undefined,
+        count: sizes?.[c.id],
       })),
     });
     return specs;
-  }, [wantPacks, selectedSet, anyPack, tally]);
+  }, [wantPacks, selectedSet, anyPack, tally, sizes]);
 
   // Flat index bookkeeping for roving tabindex + arrow navigation.
   const baseFlat = useMemo(() => {

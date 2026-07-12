@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { CATEGORIES, PACKS, isPackId, type PublicState } from "@/lib/protocol";
 import { useT } from "@/lib/i18n";
+import { HowToPlayModal } from "./HowToPlayModal";
 
 type T = (ja: string, vars?: Record<string, string | number>) => string;
 
@@ -38,6 +40,7 @@ export function LobbyWaitingCard({
   onStart: () => void;
 }) {
   const t = useT();
+  const [showHelp, setShowHelp] = useState(false);
   // With 2+ connected humans, "start" opens a genre majority-vote — UNLESS a
   // theme pack (縛り) is selected, which fixes the deck and skips voting. Relabel
   // the button so it matches what pressing it actually does.
@@ -86,6 +89,10 @@ export function LobbyWaitingCard({
       ) : (
         <div className="notice">{t("ホストの開始を待っています…")}</div>
       )}
+      <button className="btn ghost sm" onClick={() => setShowHelp(true)}>
+        ❓ {t("遊び方を見る")}
+      </button>
+      {showHelp && <HowToPlayModal onClose={() => setShowHelp(false)} />}
     </div>
   );
 }

@@ -12,6 +12,8 @@ export interface RowItem {
   selected: boolean;
   disabled?: boolean;
   tally?: number;
+  /** Unique songs in this scope (deck size), shown as a "{n}曲" chip. */
+  count?: number;
 }
 
 export interface ThemeRowProps {
@@ -123,6 +125,7 @@ export function ThemeRow({
               selected={it.selected}
               disabled={it.disabled}
               tally={it.tally}
+              count={it.count}
               tabIndex={flat === activeFlatIndex ? 0 : -1}
               onToggle={onToggle}
               onKeyDown={(e) => onTileKeyDown(e, rowIndex, i)}

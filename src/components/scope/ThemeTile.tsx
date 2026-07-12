@@ -18,6 +18,8 @@ export interface ThemeTileProps {
   tabIndex: number;
   /** Optional vote tally badge (vote variant). */
   tally?: number;
+  /** Unique songs in this scope (deck size). Shown as a "{n}曲" chip. */
+  count?: number;
   onToggle: (id: string) => void;
   onKeyDown: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
   onFocus: () => void;
@@ -40,6 +42,7 @@ export const ThemeTile = memo(
       disabled,
       tabIndex,
       tally,
+      count,
       onToggle,
       onKeyDown,
       onFocus,
@@ -78,6 +81,9 @@ export const ThemeTile = memo(
         )}
         {tally != null && tally > 0 && (
           <span className="scope-tile-tally mono">{t("{n}票", { n: tally })}</span>
+        )}
+        {count != null && count > 0 && (
+          <span className="scope-tile-count mono">{t("{n}曲", { n: count.toLocaleString() })}</span>
         )}
       </button>
     );

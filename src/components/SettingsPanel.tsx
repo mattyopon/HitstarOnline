@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { getSeVolume, setSeVolume } from "@/lib/rankSound";
 import { LOCALES, useLocale, useT } from "@/lib/i18n";
+import { HowToPlayModal } from "./HowToPlayModal";
 
 /** Site settings modal: language + sound-effect (SE) volume. */
 export function SettingsPanel({
@@ -17,6 +18,7 @@ export function SettingsPanel({
   const t = useT();
   const [locale, setLoc] = useLocale();
   const [se, setSe] = useState<number>(() => Math.round(getSeVolume() * 100));
+  const [showHelp, setShowHelp] = useState(false);
 
   return (
     <div className="tap-overlay" onClick={onClose}>
@@ -81,6 +83,10 @@ export function SettingsPanel({
         >
           💎 {t("パーティ編成（図鑑）")}
         </button>
+        <button type="button" className="btn outline block" onClick={() => setShowHelp(true)}>
+          ❓ {t("遊び方を見る")}
+        </button>
+        {showHelp && <HowToPlayModal onClose={() => setShowHelp(false)} />}
       </div>
     </div>
   );
