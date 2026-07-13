@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/clientApi";
 import { useT } from "@/lib/i18n";
+import { tierLabel } from "@/lib/rank";
+import { RankIcon } from "./RankIcon";
 import type { UserStats, CategoryAccuracy } from "@/lib/stats";
 
 function pct(n: number): string {
@@ -74,6 +76,29 @@ export function StatsPanel({ onClose }: { onClose: () => void }) {
           </p>
         ) : (
           <>
+            {stats.rank.games > 0 ? (
+              <div className="row" style={{ gap: 12, alignItems: "center" }}>
+                <RankIcon tier={stats.rank.tier} size={36} />
+                <div className="stack" style={{ gap: 3, flex: 1 }}>
+                  <strong>
+                    {t(tierLabel(stats.rank.tier))} · {stats.rank.lp}LP
+                  </strong>
+                  <div className="bar">
+                    <div style={{ width: `${Math.min(100, Math.max(0, stats.rank.lp))}%` }} />
+                  </div>
+                  <span className="tiny muted">
+                    {t("次のティアまであと{n}LP（勝利+25 / 敗北-20）", {
+                      n: Math.max(0, 100 - stats.rank.lp),
+                    })}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <p className="tiny muted" style={{ margin: 0 }}>
+                {t("ランクはまだありません。「ランク戦」で対戦するとティアとLPが付きます。")}
+              </p>
+            )}
+
             <div className="stats-grid">
               <Stat label={t("対戦数")} value={String(stats.games)} />
               <Stat label={t("1位回数")} value={String(stats.wins)} />

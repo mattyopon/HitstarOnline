@@ -21,6 +21,8 @@ import { GACHA_CHARS, leaderPortrait } from "@/lib/gachaChars";
 import type { CharacterListResponse } from "@/lib/gachaTypes";
 import { useFriends } from "@/hooks/useFriends";
 import { useT } from "@/lib/i18n";
+import { tierLabel, type UserRank } from "@/lib/rank";
+import { RankIcon } from "./RankIcon";
 
 // Lobby's own local sub-screens (Roster/Gacha/Friends/Shop). This is
 // intentionally a tiny client-side view switch, not a router: each screen is
@@ -99,13 +101,54 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [showStats, setShowStats] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   // If we were in a room recently, offer a one-tap return (survives refresh).
+  // Validated against /api/room/peek first: the saved code may point at a room
+  // that has since finished or been GC'd, and a banner that leads to a join
+  // error is worse than no banner. Stale codes are also cleared from storage.
   const [lastRoom, setLastRoom] = useState<string | null>(null);
   useEffect(() => {
+    let saved: string | null = null;
     try {
-      setLastRoom(localStorage.getItem("hitstar_last_room"));
+      saved = localStorage.getItem("hitstar_last_room");
     } catch {
       /* ignore */
     }
+    if (!saved) return;
+    let active = true;
+    api<{ exists: boolean; phase?: string }>("/api/room/peek", { code: saved })
+      .then((r) => {
+        const alive = r.exists && r.phase !== "gameover";
+        if (active && alive) setLastRoom(saved);
+        if (!alive) {
+          try {
+            localStorage.removeItem("hitstar_last_room");
+          } catch {
+            /* ignore */
+          }
+        }
+      })
+      .catch(() => {
+        // Probe failure (offline, transient 5xx): keep the old behavior and
+        // show the banner — the room page itself will surface any join error.
+        if (active) setLastRoom(saved);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Ladder standing for the home-screen chip (previously the tier/LP earned in
+  // ranked play was invisible outside a game). games===0 ⇒ unranked ⇒ no chip.
+  const [myRank, setMyRank] = useState<UserRank | null>(null);
+  useEffect(() => {
+    let active = true;
+    api<{ rank: UserRank }>("/api/rank/me", {})
+      .then((r) => {
+        if (active && r.rank.games > 0) setMyRank(r.rank);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Presence heartbeat: bump the caller's last_seen_at on Lobby mount and every
@@ -271,7 +314,19 @@ export function Lobby({ user }: { user: ClientUser }) {
             <Avatar name={name} url={user.avatarUrl} image={leaderPortrait(party) ?? undefined} />
             <div className="player-info">
               <div className="nm">{name || t("ゲスト")}</div>
-              <div className="meta">{user.isAnonymous ? t("ゲスト") : "Google"}</div>
+              <div className="meta">
+                {user.isAnonymous ? t("ゲスト") : "Google"}
+                {myRank && (
+                  <span
+                    className="row"
+                    style={{ gap: 4, alignItems: "center", display: "inline-flex", marginLeft: 8 }}
+                    title={t("ランク戦 {w}勝 / {g}戦", { w: myRank.wins, g: myRank.games })}
+                  >
+                    <RankIcon tier={myRank.tier} size={14} />
+                    {t(tierLabel(myRank.tier))} {myRank.lp}LP
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           <ResourceBar gems={gems} loading={gachaLoading} />
@@ -307,9 +362,18 @@ export function Lobby({ user }: { user: ClientUser }) {
           </button>
         )}
 
-        <div className="mission-banner">
+        {/* Points at REAL daily loops (free daily pull, match gem rewards) —
+            the old copy was a generic slogan wearing a fake "毎日" badge. */}
+        <div
+          className="mission-banner"
+          role="button"
+          tabIndex={0}
+          style={{ cursor: "pointer" }}
+          onClick={() => setView("gacha")}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setView("gacha")}
+        >
           <span className="badge">{t("毎日")}</span>
-          <span>{t("表示名とテーマを選んで、今すぐ出撃しよう！")}</span>
+          <span>{t("無料デイリーガチャを忘れずに！対戦すると💎ももらえるよ")}</span>
         </div>
 
         <div className="lobby-main">

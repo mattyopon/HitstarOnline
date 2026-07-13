@@ -5,6 +5,7 @@
 import { createAdminClient } from "./supabase/admin";
 import { getDeck } from "./deck";
 import { wonCards } from "./engine";
+import { getUserRank, type UserRank } from "./rank";
 import {
   CATEGORIES,
   MATCH_GEMS,
@@ -192,6 +193,8 @@ export interface UserStats {
   winRate: number;
   rankedGames: number;
   rankedWins: number;
+  /** Ladder standing (tier/LP). games===0 ⇒ unranked (never played ranked). */
+  rank: UserRank;
   avgRank: number | null;
   totalCards: number;
   strong: CategoryAccuracy[];
@@ -278,6 +281,7 @@ export async function getUserStats(userId: string): Promise<UserStats> {
     winRate: games ? wins / games : 0,
     rankedGames: ranked.length,
     rankedWins,
+    rank: await getUserRank(userId),
     avgRank,
     totalCards,
     strong,
