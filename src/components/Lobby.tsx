@@ -24,6 +24,7 @@ import { useT } from "@/lib/i18n";
 import { tierLabel, type UserRank } from "@/lib/rank";
 import { RankIcon } from "./RankIcon";
 import type { RoomInviteSummary } from "@/lib/friendsTypes";
+import { googleCleanSignIn, googleLinkGuest } from "@/lib/googleAuth";
 
 // Lobby's own local sub-screens (Roster/Gacha/Friends/Shop). This is
 // intentionally a tiny client-side view switch, not a router: each screen is
@@ -206,26 +207,42 @@ export function Lobby({ user }: { user: ClientUser }) {
   // Lightweight friend-count summary for the home-view "フレンド" panel entry.
   const { data: friendsData } = useFriends();
 
+  // "Log into my Google account" — clean sign-in, guest session discarded.
+  // Kept as the DEFAULT path so returning Google users (who always carry the
+  // auto-created empty guest session) stay a single OAuth round-trip.
   async function googleLogin() {
     setBusy("google");
-    const supabase = createClient();
-    // Sign out the current guest session first so OAuth is a clean sign-in
-    // (avoids an anonymous→OAuth conversion that can fail at the callback).
-    await supabase.auth.signOut().catch(() => {});
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${location.origin}/auth/callback`,
-        // Basic, non-sensitive scopes only → no Google app-verification needed,
-        // so sign-in works worldwide. (The YouTube-favorites scope is sensitive
-        // and would block unverified apps; re-add via incremental auth once the
-        // OAuth consent screen is verified.)
-        scopes: "openid email profile",
-      },
-    });
-    if (error) {
+    const msg = await googleCleanSignIn(createClient());
+    if (msg) {
       setErr(t("Googleログインを開始できませんでした"));
       setBusy(null);
+    }
+  }
+
+  // "Save this guest's data to Google" — linkIdentity keeps the user id, so
+  // every stat/rank/gem/muse/friend row survives. NEVER falls back to a clean
+  // sign-in on failure (that silent signOut was the original data-loss bug).
+  const [showLinkConfirm, setShowLinkConfirm] = useState(false);
+  // "1" = the Google account already has its own user (identity_already_exists
+  // etc. from the auth callback); "cfg" = manual linking is off server-side.
+  const [linkConflict] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    const v = new URLSearchParams(location.search).get("linkConflict");
+    if (v) history.replaceState(null, "", "/"); // don't re-show on refresh
+    return v;
+  });
+  async function googleLinkSave() {
+    setShowLinkConfirm(false);
+    setBusy("link");
+    setErr(null);
+    const msg = await googleLinkGuest(createClient());
+    if (msg) {
+      setBusy(null);
+      setErr(
+        msg === "manual_linking_disabled"
+          ? t("連携機能がサーバ側で未設定です。ゲストデータは無事です。")
+          : t("連携を開始できませんでした（ゲストデータは無事です）: {msg}", { msg }),
+      );
     }
   }
 
@@ -522,10 +539,56 @@ export function Lobby({ user }: { user: ClientUser }) {
                 <div className="lobby-subpanel" style={{ marginTop: 10 }}>
                   {user.isAnonymous && (
                     <div className="notice stack tiny" style={{ gap: 8 }}>
-                      <span>{t("👤 ゲストでもランク戦・対戦が遊べます。⭐お気に入り保存には Google ログインを。")}</span>
-                      <button type="button" className="btn google block" onClick={googleLogin} disabled={!!busy}>
-                        {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
+                      <span>
+                        {t("👤 ゲストでもランク戦・対戦が遊べます。戦績やミューズを残すならGoogle連携を。")}
+                      </span>
+                      {linkConflict === "1" && (
+                        <span className="error" style={{ display: "block" }}>
+                          {t(
+                            "⚠️ そのGoogleアカウントには既に別のデータがあります。ゲストデータとの統合は準備中です。「Googleでログイン」（引き継ぎなし）を使うか、別のGoogleアカウントで保存してください。ゲストデータは無事です。",
+                          )}
+                        </span>
+                      )}
+                      {linkConflict === "cfg" && (
+                        <span className="error" style={{ display: "block" }}>
+                          {t("連携機能がサーバ側で未設定です。ゲストデータは無事です。")}
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        className="btn google block"
+                        onClick={() => setShowLinkConfirm(true)}
+                        disabled={!!busy}
+                      >
+                        {busy === "link" ? t("リダイレクト中…") : t("💾 ゲストデータをGoogleに保存")}
                       </button>
+                      <button type="button" className="btn outline block" onClick={googleLogin} disabled={!!busy}>
+                        {busy === "google"
+                          ? t("リダイレクト中…")
+                          : t("Googleでログイン（このゲストデータは引き継ぎません）")}
+                      </button>
+                    </div>
+                  )}
+                  {showLinkConfirm && (
+                    <div className="tap-overlay" onClick={() => setShowLinkConfirm(false)}>
+                      <div
+                        className="card stack"
+                        style={{ maxWidth: 420, width: "100%" }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <h2 className="section-ttl" style={{ margin: 0 }}>💾 {t("Googleに保存")}</h2>
+                        <p className="muted" style={{ margin: 0 }}>
+                          {t(
+                            "この端末のゲストデータ（戦績・ランク・ジェム・ミューズ・フレンド）を、これから選ぶGoogleアカウントに保存します。共有端末では自分のアカウントを選んでください。",
+                          )}
+                        </p>
+                        <button type="button" className="btn gold block" onClick={googleLinkSave} disabled={!!busy}>
+                          {t("保存して連携する")}
+                        </button>
+                        <button type="button" className="btn outline block" onClick={() => setShowLinkConfirm(false)}>
+                          {t("キャンセル")}
+                        </button>
+                      </div>
                     </div>
                   )}
 
