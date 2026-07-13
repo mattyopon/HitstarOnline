@@ -559,6 +559,7 @@ export function GameRoom({ code, meId }: { code: string; meId: string }) {
                 meId={meId}
                 isHost={state.hostId === meId}
                 busy={busy}
+                ranked={state.settings.ranked}
                 onRematch={() => act("/api/game/rematch", {})}
                 onHome={goHome}
               />
