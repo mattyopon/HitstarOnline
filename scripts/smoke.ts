@@ -34,6 +34,7 @@ import {
   systemSkip,
   resolvedCurrentSongId,
   abandonIfNoHumans,
+  rematchToLobby,
   MAX_FREE_SKIPS_PER_TURN,
 } from "../src/lib/engine";
 import {
@@ -1112,6 +1113,56 @@ console.log("Scenario W (abandon if no connected humans):");
   gb = setConnected(gb, "carol", false); // human drops; bot stays "connected"
   gb = abandonIfNoHumans(gb);
   ok("bot-only room is abandoned when the human drops", gb.public.phase === "gameover");
+}
+
+// ── Scenario X: rematch (gameover → lobby with same members) ────────────────
+console.log("Scenario X (rematch to lobby):");
+{
+  // 2 players, tiny deck → exhaust it quickly to reach gameover.
+  let g = createGame(
+    "ROOMXX",
+    [{ userId: "alice", name: "Alice" }, { userId: "bob", name: "Bob" }],
+    [0, 1, 2],
+    songs,
+    1000,
+    { startingTokens: 0 },
+  );
+  // Turn 1 uses the last deck card; resolving it exhausts the deck → next
+  // advance ends the game.
+  g = placeCard(g, "alice", 1, undefined, songs, 2000);
+  ok("turn1 revealed", g.public.phase === "reveal");
+  g = advanceReveal(g, songs, 300000);
+  ok("deck exhausted → gameover", g.public.phase === "gameover");
+
+  // Non-host cannot trigger the rematch.
+  let threw = false;
+  try {
+    rematchToLobby(g, "bob");
+  } catch {
+    threw = true;
+  }
+  ok("non-host rematch rejected", threw);
+
+  // Host returns the room to the lobby: members/settings kept, match state gone.
+  g = rematchToLobby(g, "alice");
+  ok("back to lobby", g.public.phase === "lobby");
+  ok("players kept", g.public.players.length === 2);
+  ok("winner cleared", g.public.winnerId === undefined);
+  ok("timelines cleared", g.public.players.every((p) => p.timeline.length === 0));
+
+  // The normal start flow works again from here.
+  g = startGame(g, [3, 4, 5, 6], songs, 400000);
+  ok("second game starts", g.public.phase === "placing");
+  ok("hands re-dealt", g.public.players.every((p) => p.timeline.length === 1));
+
+  // Rematch outside gameover is rejected.
+  threw = false;
+  try {
+    rematchToLobby(g, "alice");
+  } catch {
+    threw = true;
+  }
+  ok("rematch mid-game rejected", threw);
 }
 
 console.log(`\nAll ${passed} engine checks passed ✅`);

@@ -2586,6 +2586,22 @@ input[type="range"]:focus-visible::-moz-range-thumb {
   letter-spacing: 0.04em;
 }
 
+/* Deck-size chip ("123曲") — bottom-right so it never collides with the
+   top-left tally badge or the top-right selected check. */
+.scope-tile-count {
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  color: var(--text);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
 /* Disabled (genre tiles dimmed while a pack 縛り is active). */
 .scope-tile.is-disabled {
   cursor: not-allowed;

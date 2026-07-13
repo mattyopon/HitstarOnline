@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { CATEGORIES, PACKS, isPackId, type PublicState } from "@/lib/protocol";
 import { useT } from "@/lib/i18n";
+import { HowToPlayModal } from "./HowToPlayModal";
 
 type T = (ja: string, vars?: Record<string, string | number>) => string;
 
@@ -38,6 +40,7 @@ export function LobbyWaitingCard({
   onStart: () => void;
 }) {
   const t = useT();
+  const [showHelp, setShowHelp] = useState(false);
   // With 2+ connected humans, "start" opens a genre majority-vote — UNLESS a
   // theme pack (縛り) is selected, which fixes the deck and skips voting. Relabel
   // the button so it matches what pressing it actually does.
@@ -51,11 +54,15 @@ export function LobbyWaitingCard({
         <span className="vinyl-mark" aria-hidden="true" />
         <div>
           <div className="section-eyebrow">Side A · Waiting Room</div>
-          <h2 className="section-ttl" style={{ marginTop: 0 }}>{t("友達を待っています…")}</h2>
+          <h2 className="section-ttl" style={{ marginTop: 0 }}>
+            {state.settings.ranked ? t("対戦相手を探しています…") : t("友達を待っています…")}
+          </h2>
         </div>
       </div>
       <p className="muted" style={{ marginTop: 0 }}>
-        {t("下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。")}
+        {state.settings.ranked
+          ? t("同じティアのプレイヤーが自動でここに集まります。コードを共有して友達と対戦することもできます。")
+          : t("下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。")}
       </p>
       <div className="row" style={{ justifyContent: "center", gap: 14 }}>
         <span className="code-pill">{state.code}</span>
@@ -86,6 +93,10 @@ export function LobbyWaitingCard({
       ) : (
         <div className="notice">{t("ホストの開始を待っています…")}</div>
       )}
+      <button className="btn ghost sm" onClick={() => setShowHelp(true)}>
+        ❓ {t("遊び方を見る")}
+      </button>
+      {showHelp && <HowToPlayModal onClose={() => setShowHelp(false)} />}
     </div>
   );
 }

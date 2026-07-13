@@ -21,6 +21,23 @@ export async function GET(request: Request) {
   const fail = (msg: string) =>
     NextResponse.redirect(`${origin}/?authError=${encodeURIComponent(msg.slice(0, 200))}`);
 
+  // Link-flow failures MUST be checked before the generic error branch: GoTrue
+  // sends error + error_description ALONGSIDE error_code on linkIdentity
+  // failures, and the guest session is still alive — so these bounce to the
+  // Lobby with a conflict flag (rendered there) instead of the authError path
+  // (which the signed-in Lobby never displays).
+  const errCode = searchParams.get("error_code");
+  if (
+    errCode === "identity_already_exists" ||
+    errCode === "email_exists" ||
+    errCode === "user_already_exists"
+  ) {
+    return NextResponse.redirect(`${origin}/?linkConflict=1`);
+  }
+  if (errCode === "manual_linking_disabled") {
+    return NextResponse.redirect(`${origin}/?linkConflict=cfg`);
+  }
+
   if (provErr) return fail(provErr);
   if (!code) return fail("認証コードがありません");
 

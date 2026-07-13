@@ -32,6 +32,8 @@ function resolveBanner(bannerId?: string): Banner {
 export interface RollOutcome {
   results: GachaRollResultItem[];
   gemsRemaining: number;
+  /** Pity counter after this batch (for the UI's 天井 progress display). */
+  pityCount: number;
 }
 
 /**
@@ -111,7 +113,7 @@ async function persistRoll(
       })),
     );
 
-    return { results, gemsRemaining: gemsAfterDebit };
+    return { results, gemsRemaining: gemsAfterDebit, pityCount: pityNew };
   }
 
   // Extremely unlikely: pity kept shifting under us every attempt. The gems were

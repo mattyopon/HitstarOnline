@@ -1047,6 +1047,45 @@ export function abandonIfNoHumans(game: FullGame): FullGame {
   return g;
 }
 
+/**
+ * Rematch: return a FINISHED room to the lobby with the same members and
+ * settings, so the group can play again without re-creating/re-joining a room
+ * (game over was previously a dead end). Host-only, gameover-only. From the
+ * lobby the normal start flow applies unchanged (genre vote with 2+ humans,
+ * direct start otherwise) and startGame re-deals hands/tokens/deck as usual.
+ */
+export function rematchToLobby(game: FullGame, userId: string): FullGame {
+  if (game.public.phase !== "gameover") throw new GameError("ゲームはまだ終了していません");
+  if (game.public.hostId !== userId) throw new GameError("ホストのみが再戦を開始できます");
+  const g = clone(game);
+  g.public.phase = "lobby";
+  g.public.winnerId = undefined;
+  g.public.current = undefined;
+  g.public.reveal = undefined;
+  g.public.placement = undefined;
+  g.public.guess = undefined;
+  g.public.steals = [];
+  g.public.stealOpenedAt = undefined;
+  g.public.stealerDecisions = undefined;
+  g.public.deadline = undefined;
+  delete g.public.votes;
+  g.public.round = 0;
+  g.public.activeIndex = 0;
+  g.public.deckRemaining = 0;
+  // Clear per-player match state now so the lobby doesn't show stale hands;
+  // startGame will re-deal and re-set tokens anyway.
+  for (const p of g.public.players) {
+    p.timeline = [];
+    p.tokens = 0;
+  }
+  // Fresh secret next game: startGame overwrites deck/deckKeys/drawPos, but
+  // clear the current-card remnants so nothing stale is readable meanwhile.
+  g.secret.currentSongId = undefined;
+  g.secret.currentDeckKey = undefined;
+  g.public.version++;
+  return g;
+}
+
 export function advance(game: FullGame, songs: Song[], now: number): FullGame {
   // Let NPCs act first (deterministic + idempotent). If a bot moved, return it.
   const stepped = stepBots(game, songs, now);

@@ -21,6 +21,10 @@ import { GACHA_CHARS, leaderPortrait } from "@/lib/gachaChars";
 import type { CharacterListResponse } from "@/lib/gachaTypes";
 import { useFriends } from "@/hooks/useFriends";
 import { useT } from "@/lib/i18n";
+import { tierLabel, type UserRank } from "@/lib/rank";
+import { RankIcon } from "./RankIcon";
+import type { RoomInviteSummary } from "@/lib/friendsTypes";
+import { googleCleanSignIn, googleLinkGuest } from "@/lib/googleAuth";
 
 // Lobby's own local sub-screens (Roster/Gacha/Friends/Shop). This is
 // intentionally a tiny client-side view switch, not a router: each screen is
@@ -99,13 +103,54 @@ export function Lobby({ user }: { user: ClientUser }) {
   const [showStats, setShowStats] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   // If we were in a room recently, offer a one-tap return (survives refresh).
+  // Validated against /api/room/peek first: the saved code may point at a room
+  // that has since finished or been GC'd, and a banner that leads to a join
+  // error is worse than no banner. Stale codes are also cleared from storage.
   const [lastRoom, setLastRoom] = useState<string | null>(null);
   useEffect(() => {
+    let saved: string | null = null;
     try {
-      setLastRoom(localStorage.getItem("hitstar_last_room"));
+      saved = localStorage.getItem("hitstar_last_room");
     } catch {
       /* ignore */
     }
+    if (!saved) return;
+    let active = true;
+    api<{ exists: boolean; phase?: string }>("/api/room/peek", { code: saved })
+      .then((r) => {
+        const alive = r.exists && r.phase !== "gameover";
+        if (active && alive) setLastRoom(saved);
+        if (!alive) {
+          try {
+            localStorage.removeItem("hitstar_last_room");
+          } catch {
+            /* ignore */
+          }
+        }
+      })
+      .catch(() => {
+        // Probe failure (offline, transient 5xx): keep the old behavior and
+        // show the banner — the room page itself will surface any join error.
+        if (active) setLastRoom(saved);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  // Ladder standing for the home-screen chip (previously the tier/LP earned in
+  // ranked play was invisible outside a game). games===0 ⇒ unranked ⇒ no chip.
+  const [myRank, setMyRank] = useState<UserRank | null>(null);
+  useEffect(() => {
+    let active = true;
+    api<{ rank: UserRank }>("/api/rank/me", {})
+      .then((r) => {
+        if (active && r.rank.games > 0) setMyRank(r.rank);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
   }, []);
 
   // Presence heartbeat: bump the caller's last_seen_at on Lobby mount and every
@@ -119,6 +164,32 @@ export function Lobby({ user }: { user: ClientUser }) {
     const id = setInterval(beat, 60_000);
     return () => clearInterval(id);
   }, []);
+
+  // Incoming "join my room" pings from friends → banner with a one-tap join.
+  // Polled (30s) rather than pushed: the Lobby has no Realtime channel of its
+  // own and invites tolerate half-a-minute of latency. Best-effort like the
+  // heartbeat above.
+  const [invites, setInvites] = useState<RoomInviteSummary[]>([]);
+  useEffect(() => {
+    let active = true;
+    const poll = () => {
+      api<{ invites: RoomInviteSummary[] }>("/api/friends/invites", {})
+        .then((d) => {
+          if (active) setInvites(d.invites);
+        })
+        .catch(() => {});
+    };
+    poll();
+    const id = setInterval(poll, 30_000);
+    return () => {
+      active = false;
+      clearInterval(id);
+    };
+  }, []);
+  function dismissInvite(id: string) {
+    setInvites((cur) => cur.filter((i) => i.id !== id));
+    api("/api/friends/invite/dismiss", { id }).catch(() => {});
+  }
 
   // Local sub-screen switch (see LobbyView above) — Roster/Gacha render as an
   // overlay above the rest of Lobby's markup; the room create/join flow below
@@ -136,26 +207,42 @@ export function Lobby({ user }: { user: ClientUser }) {
   // Lightweight friend-count summary for the home-view "フレンド" panel entry.
   const { data: friendsData } = useFriends();
 
+  // "Log into my Google account" — clean sign-in, guest session discarded.
+  // Kept as the DEFAULT path so returning Google users (who always carry the
+  // auto-created empty guest session) stay a single OAuth round-trip.
   async function googleLogin() {
     setBusy("google");
-    const supabase = createClient();
-    // Sign out the current guest session first so OAuth is a clean sign-in
-    // (avoids an anonymous→OAuth conversion that can fail at the callback).
-    await supabase.auth.signOut().catch(() => {});
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${location.origin}/auth/callback`,
-        // Basic, non-sensitive scopes only → no Google app-verification needed,
-        // so sign-in works worldwide. (The YouTube-favorites scope is sensitive
-        // and would block unverified apps; re-add via incremental auth once the
-        // OAuth consent screen is verified.)
-        scopes: "openid email profile",
-      },
-    });
-    if (error) {
+    const msg = await googleCleanSignIn(createClient());
+    if (msg) {
       setErr(t("Googleログインを開始できませんでした"));
       setBusy(null);
+    }
+  }
+
+  // "Save this guest's data to Google" — linkIdentity keeps the user id, so
+  // every stat/rank/gem/muse/friend row survives. NEVER falls back to a clean
+  // sign-in on failure (that silent signOut was the original data-loss bug).
+  const [showLinkConfirm, setShowLinkConfirm] = useState(false);
+  // "1" = the Google account already has its own user (identity_already_exists
+  // etc. from the auth callback); "cfg" = manual linking is off server-side.
+  const [linkConflict] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    const v = new URLSearchParams(location.search).get("linkConflict");
+    if (v) history.replaceState(null, "", "/"); // don't re-show on refresh
+    return v;
+  });
+  async function googleLinkSave() {
+    setShowLinkConfirm(false);
+    setBusy("link");
+    setErr(null);
+    const msg = await googleLinkGuest(createClient());
+    if (msg) {
+      setBusy(null);
+      setErr(
+        msg === "manual_linking_disabled"
+          ? t("連携機能がサーバ側で未設定です。ゲストデータは無事です。")
+          : t("連携を開始できませんでした（ゲストデータは無事です）: {msg}", { msg }),
+      );
     }
   }
 
@@ -271,7 +358,19 @@ export function Lobby({ user }: { user: ClientUser }) {
             <Avatar name={name} url={user.avatarUrl} image={leaderPortrait(party) ?? undefined} />
             <div className="player-info">
               <div className="nm">{name || t("ゲスト")}</div>
-              <div className="meta">{user.isAnonymous ? t("ゲスト") : "Google"}</div>
+              <div className="meta">
+                {user.isAnonymous ? t("ゲスト") : "Google"}
+                {myRank && (
+                  <span
+                    className="row"
+                    style={{ gap: 4, alignItems: "center", display: "inline-flex", marginLeft: 8 }}
+                    title={t("ランク戦 {w}勝 / {g}戦", { w: myRank.wins, g: myRank.games })}
+                  >
+                    <RankIcon tier={myRank.tier} size={14} />
+                    {t(tierLabel(myRank.tier))} {myRank.lp}LP
+                  </span>
+                )}
+              </div>
             </div>
           </div>
           <ResourceBar gems={gems} loading={gachaLoading} />
@@ -297,6 +396,32 @@ export function Lobby({ user }: { user: ClientUser }) {
 
         {err && <div className="error">{err}</div>}
 
+        {invites.slice(0, 2).map((inv) => (
+          <div key={inv.id} className="lobby-return-banner" style={{ cursor: "default" }}>
+            <span style={{ flex: 1 }}>
+              💌 {t("{name} が部屋 {code} に招待しています！", { name: inv.fromName, code: inv.code })}
+            </span>
+            <button
+              type="button"
+              className="btn sm gold"
+              onClick={() => {
+                dismissInvite(inv.id);
+                router.push(`/room/${inv.code}`);
+              }}
+            >
+              {t("参加する")}
+            </button>
+            <button
+              type="button"
+              className="btn sm outline"
+              aria-label={t("招待を閉じる")}
+              onClick={() => dismissInvite(inv.id)}
+            >
+              ✕
+            </button>
+          </div>
+        ))}
+
         {lastRoom && (
           <button
             type="button"
@@ -307,9 +432,18 @@ export function Lobby({ user }: { user: ClientUser }) {
           </button>
         )}
 
-        <div className="mission-banner">
+        {/* Points at REAL daily loops (free daily pull, match gem rewards) —
+            the old copy was a generic slogan wearing a fake "毎日" badge. */}
+        <div
+          className="mission-banner"
+          role="button"
+          tabIndex={0}
+          style={{ cursor: "pointer" }}
+          onClick={() => setView("gacha")}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setView("gacha")}
+        >
           <span className="badge">{t("毎日")}</span>
-          <span>{t("表示名とテーマを選んで、今すぐ出撃しよう！")}</span>
+          <span>{t("無料デイリーガチャを忘れずに！対戦すると💎ももらえるよ")}</span>
         </div>
 
         <div className="lobby-main">
@@ -405,10 +539,56 @@ export function Lobby({ user }: { user: ClientUser }) {
                 <div className="lobby-subpanel" style={{ marginTop: 10 }}>
                   {user.isAnonymous && (
                     <div className="notice stack tiny" style={{ gap: 8 }}>
-                      <span>{t("👤 ゲストでもランク戦・対戦が遊べます。⭐お気に入り保存には Google ログインを。")}</span>
-                      <button type="button" className="btn google block" onClick={googleLogin} disabled={!!busy}>
-                        {busy === "google" ? t("リダイレクト中…") : t("Googleでログイン")}
+                      <span>
+                        {t("👤 ゲストでもランク戦・対戦が遊べます。戦績やミューズを残すならGoogle連携を。")}
+                      </span>
+                      {linkConflict === "1" && (
+                        <span className="error" style={{ display: "block" }}>
+                          {t(
+                            "⚠️ そのGoogleアカウントには既に別のデータがあります。ゲストデータとの統合は準備中です。「Googleでログイン」（引き継ぎなし）を使うか、別のGoogleアカウントで保存してください。ゲストデータは無事です。",
+                          )}
+                        </span>
+                      )}
+                      {linkConflict === "cfg" && (
+                        <span className="error" style={{ display: "block" }}>
+                          {t("連携機能がサーバ側で未設定です。ゲストデータは無事です。")}
+                        </span>
+                      )}
+                      <button
+                        type="button"
+                        className="btn google block"
+                        onClick={() => setShowLinkConfirm(true)}
+                        disabled={!!busy}
+                      >
+                        {busy === "link" ? t("リダイレクト中…") : t("💾 ゲストデータをGoogleに保存")}
                       </button>
+                      <button type="button" className="btn outline block" onClick={googleLogin} disabled={!!busy}>
+                        {busy === "google"
+                          ? t("リダイレクト中…")
+                          : t("Googleでログイン（このゲストデータは引き継ぎません）")}
+                      </button>
+                    </div>
+                  )}
+                  {showLinkConfirm && (
+                    <div className="tap-overlay" onClick={() => setShowLinkConfirm(false)}>
+                      <div
+                        className="card stack"
+                        style={{ maxWidth: 420, width: "100%" }}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <h2 className="section-ttl" style={{ margin: 0 }}>💾 {t("Googleに保存")}</h2>
+                        <p className="muted" style={{ margin: 0 }}>
+                          {t(
+                            "この端末のゲストデータ（戦績・ランク・ジェム・ミューズ・フレンド）を、これから選ぶGoogleアカウントに保存します。共有端末では自分のアカウントを選んでください。",
+                          )}
+                        </p>
+                        <button type="button" className="btn gold block" onClick={googleLinkSave} disabled={!!busy}>
+                          {t("保存して連携する")}
+                        </button>
+                        <button type="button" className="btn outline block" onClick={() => setShowLinkConfirm(false)}>
+                          {t("キャンセル")}
+                        </button>
+                      </div>
                     </div>
                   )}
 

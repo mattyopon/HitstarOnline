@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/hooks/useUser";
 import { api } from "@/lib/clientApi";
+import { createClient } from "@/lib/supabase/client";
 import { useT } from "@/lib/i18n";
 import { GameRoom } from "./GameRoom";
 import { Brand } from "./Brand";
@@ -69,19 +70,11 @@ export function RoomClient({ code }: { code: string }) {
   }
 
   if (!user) {
-    return (
-      <Centered>
-        <div className="card stack" style={{ maxWidth: 420, textAlign: "center" }}>
-          <Brand />
-          <p className="muted">
-            {t("部屋")} <strong>{CODE}</strong> {t("に参加するにはログインが必要です。")}
-          </p>
-          <button className="btn" onClick={() => router.push("/")}>
-            {t("ログイン画面へ")}
-          </button>
-        </div>
-      </Centered>
-    );
+    // Invite landing: sign in RIGHT HERE instead of bouncing to "/" (which used
+    // to lose the room code — the #1 detected onboarding dead end). Guest is one
+    // tap; Google round-trips via /auth/callback?next=/room/CODE and lands back
+    // here, where the join effect above fires automatically.
+    return <InviteGate code={CODE} />;
   }
 
   if (joinErr) {
@@ -119,4 +112,86 @@ export function RoomClient({ code }: { code: string }) {
   }
 
   return <GameRoom code={CODE} meId={user.id} />;
+}
+
+/** Logged-out invite-link landing: nickname + guest/Google sign-in without
+ * leaving the room URL. Auth handlers mirror Title.tsx (same Supabase calls),
+ * except Google carries `next=/room/CODE` so the OAuth round trip returns here. */
+function InviteGate({ code }: { code: string }) {
+  const t = useT();
+  const [name, setName] = useState("");
+  const [busy, setBusy] = useState<string | null>(null);
+  const [err, setErr] = useState<string | null>(null);
+  const googleEnabled = process.env.NEXT_PUBLIC_GOOGLE_ENABLED === "true";
+
+  async function guest() {
+    setErr(null);
+    const nm = name.trim();
+    if (nm) localStorage.setItem("hitstar_name", nm.slice(0, 24));
+    setBusy("guest");
+    const { error } = await createClient().auth.signInAnonymously();
+    // Success needs no navigation: the auth listener flips `user` and the
+    // join effect takes over on this same page.
+    if (error) {
+      setErr(t("ゲスト参加が無効です。Supabaseで匿名サインインを有効にしてください。"));
+      setBusy(null);
+    }
+  }
+
+  async function google() {
+    setErr(null);
+    const nm = name.trim();
+    if (nm) localStorage.setItem("hitstar_name", nm.slice(0, 24));
+    setBusy("google");
+    const supabase = createClient();
+    // Sign out any existing (e.g. anonymous/guest) session first so the OAuth
+    // flow is a clean sign-in, not an anonymous→OAuth conversion (which can fail).
+    await supabase.auth.signOut().catch(() => {});
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${location.origin}/auth/callback?next=${encodeURIComponent(`/room/${code}`)}`,
+        scopes: "openid email profile",
+      },
+    });
+    if (error) {
+      setErr(t("Googleログインを開始できませんでした。Supabaseの設定をご確認ください。"));
+      setBusy(null);
+    }
+  }
+
+  return (
+    <Centered>
+      <div className="card stack" style={{ maxWidth: 420, width: "100%", textAlign: "center" }}>
+        <Brand />
+        <p className="muted" style={{ marginTop: 0 }}>
+          {t("部屋 {code} に招待されています！ニックネームを決めてすぐ参加できます。", {
+            code,
+          })}
+        </p>
+        <span className="code-pill" style={{ alignSelf: "center" }}>{code}</span>
+        {err && <div className="error">{err}</div>}
+        <input
+          type="text"
+          placeholder={t("ニックネーム")}
+          value={name}
+          maxLength={24}
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && guest()}
+          aria-label={t("ニックネーム")}
+        />
+        <button className="btn block gold" onClick={guest} disabled={!!busy}>
+          {busy === "guest" ? t("参加中…") : t("▶ ゲストですぐ参加")}
+        </button>
+        {googleEnabled && (
+          <button className="btn google block outline" onClick={google} disabled={!!busy}>
+            {busy === "google" ? t("リダイレクト中…") : t("Googleでログインして参加")}
+          </button>
+        )}
+        <p className="fine serif" style={{ marginBottom: 0 }}>
+          {t("※ ゲストはこの端末のみの一時アカウントです。戦績やガチャを残すならGoogleでログイン。")}
+        </p>
+      </div>
+    </Centered>
+  );
 }

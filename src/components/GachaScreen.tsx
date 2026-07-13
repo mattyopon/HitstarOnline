@@ -242,6 +242,18 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
   const stars = (r: Rarity) => "★".repeat(RARITY_STARS[r]);
   const pct = (n: number) => `${(n * 100).toFixed(1)}%`;
 
+  // Daily-pull cooldown: previously the button gave no hint and users only
+  // learned the 24h gate by pressing it and getting an error. Re-tick once a
+  // minute so the countdown stays fresh while the screen sits open.
+  const [nowTick, setNowTick] = useState(() => Date.now());
+  useEffect(() => {
+    const iv = setInterval(() => setNowTick(Date.now()), 60_000);
+    return () => clearInterval(iv);
+  }, []);
+  const dailyWaitMs = gems?.dailyPullAt
+    ? Math.max(0, new Date(gems.dailyPullAt).getTime() + 24 * 3600_000 - nowTick)
+    : 0;
+
   async function doRoll(kind: "single" | "multi" | "daily") {
     if (busy) return;
     setBusy(kind);
@@ -254,7 +266,16 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
               count: kind === "multi" ? 10 : 1,
               banner: DEFAULT_BANNER.id,
             });
-      setGems((prev) => (prev ? { ...prev, gems: res.gemsRemaining } : prev));
+      setGems((prev) =>
+        prev
+          ? {
+              ...prev,
+              gems: res.gemsRemaining,
+              pityCount: res.pityCount ?? prev.pityCount,
+              dailyPullAt: kind === "daily" ? new Date().toISOString() : prev.dailyPullAt,
+            }
+          : prev,
+      );
       if (res.results.length > 0) {
         setResults(res.results);
         setPullSeq((n) => n + 1);
@@ -321,6 +342,16 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
             </div>
             <div className="rates-note">
               {t("天井: {n}回までに★★★★★確定", { n: PITY_THRESHOLD + 1 })}
+              {!gemsLoading && gems && (
+                <>
+                  {" ／ "}
+                  <strong>
+                    {t("確定まであと{n}回", {
+                      n: Math.max(1, PITY_THRESHOLD - gems.pityCount + 1),
+                    })}
+                  </strong>
+                </>
+              )}
               <br />
               {/* Show the TRUE odds: the 50/50 miss re-draws from all SSRs
                   (pickup included), so the effective rate is higher than the
@@ -368,11 +399,24 @@ export function GachaScreen({ onClose }: { onClose?: () => void }) {
             💎 {busy === "multi" ? t("処理中…") : ROLL_COST[10].toLocaleString()}
           </div>
         </button>
-        <button type="button" className="pull-btn" onClick={() => doRoll("daily")} disabled={!!busy}>
+        <button
+          type="button"
+          className="pull-btn"
+          onClick={() => doRoll("daily")}
+          disabled={!!busy || dailyWaitMs > 0}
+        >
           <div className="n">FREE</div>
           <div className="sub">{t("Daily Pull")}</div>
           <div className="cost free">
-            {busy === "daily" ? t("処理中…") : gemsLoading ? "—" : t("1日1回")}
+            {busy === "daily"
+              ? t("処理中…")
+              : gemsLoading
+                ? "—"
+                : dailyWaitMs > 0
+                  ? dailyWaitMs >= 3600_000
+                    ? t("あと{h}時間", { h: Math.ceil(dailyWaitMs / 3600_000) })
+                    : t("あと{m}分", { m: Math.max(1, Math.ceil(dailyWaitMs / 60_000)) })
+                  : t("24時間に1回")}
           </div>
         </button>
       </div>

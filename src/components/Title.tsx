@@ -134,13 +134,15 @@ export function Title({ authError }: { authError?: string | null }) {
             </div>
           </div>
 
+          {/* Honest footer: no invented player counts (the old "ONLINE · 12,481"
+              was a hard-coded fake — flagged in the requirements-gap review). */}
           <div className="title-footer">
             <span>
               <span className="pulse" aria-hidden="true" />
-              {t("ONLINE · {n}", { n: "12,481" })}
+              {t("サーバー稼働中")}
             </span>
             <span>{t("Ver. {v}", { v: "0.1.0" })}</span>
-            <span>{t("♡ {n} PLAYERS", { n: "1.2M" })}</span>
+            <span>{t("♡ {n}曲以上収録", { n: "18,000" })}</span>
           </div>
         </div>
       </div>

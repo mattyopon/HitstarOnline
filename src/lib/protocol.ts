@@ -75,6 +75,17 @@ export const MODE_START_TOKENS: Record<GameMode, number> = {
   expert: 3,
 };
 
+/** Match-end gem rewards (💎, the gacha currency). Granted server-side exactly
+ *  once per room (recordMatchEnd's idempotency guard); these constants are
+ *  client-safe so the game-over screen can show what was earned. Solo rooms
+ *  (vs bots only) pay the smaller solo amounts so bot-farming stays slow. */
+export const MATCH_GEMS = {
+  win: 60,
+  play: 25,
+  soloWin: 15,
+  soloPlay: 5,
+} as const;
+
 /** NPC difficulty for solo play. */
 export type BotDifficulty = "easy" | "normal" | "hard";
 

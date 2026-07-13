@@ -31,6 +31,8 @@ export interface GachaRollResultItem {
 export interface GachaRollResponse {
   results: GachaRollResultItem[];
   gemsRemaining: number;
+  /** Pity counter AFTER this batch — lets the UI show 天井 progress live. */
+  pityCount: number;
 }
 
 /** GET /api/character/list response payload. */
