@@ -23,6 +23,7 @@ import { useFriends } from "@/hooks/useFriends";
 import { useT } from "@/lib/i18n";
 import { tierLabel, type UserRank } from "@/lib/rank";
 import { RankIcon } from "./RankIcon";
+import type { RoomInviteSummary } from "@/lib/friendsTypes";
 
 // Lobby's own local sub-screens (Roster/Gacha/Friends/Shop). This is
 // intentionally a tiny client-side view switch, not a router: each screen is
@@ -162,6 +163,32 @@ export function Lobby({ user }: { user: ClientUser }) {
     const id = setInterval(beat, 60_000);
     return () => clearInterval(id);
   }, []);
+
+  // Incoming "join my room" pings from friends → banner with a one-tap join.
+  // Polled (30s) rather than pushed: the Lobby has no Realtime channel of its
+  // own and invites tolerate half-a-minute of latency. Best-effort like the
+  // heartbeat above.
+  const [invites, setInvites] = useState<RoomInviteSummary[]>([]);
+  useEffect(() => {
+    let active = true;
+    const poll = () => {
+      api<{ invites: RoomInviteSummary[] }>("/api/friends/invites", {})
+        .then((d) => {
+          if (active) setInvites(d.invites);
+        })
+        .catch(() => {});
+    };
+    poll();
+    const id = setInterval(poll, 30_000);
+    return () => {
+      active = false;
+      clearInterval(id);
+    };
+  }, []);
+  function dismissInvite(id: string) {
+    setInvites((cur) => cur.filter((i) => i.id !== id));
+    api("/api/friends/invite/dismiss", { id }).catch(() => {});
+  }
 
   // Local sub-screen switch (see LobbyView above) — Roster/Gacha render as an
   // overlay above the rest of Lobby's markup; the room create/join flow below
@@ -351,6 +378,32 @@ export function Lobby({ user }: { user: ClientUser }) {
         <PartyStrip party={party} onEdit={() => setView("roster")} />
 
         {err && <div className="error">{err}</div>}
+
+        {invites.slice(0, 2).map((inv) => (
+          <div key={inv.id} className="lobby-return-banner" style={{ cursor: "default" }}>
+            <span style={{ flex: 1 }}>
+              💌 {t("{name} が部屋 {code} に招待しています！", { name: inv.fromName, code: inv.code })}
+            </span>
+            <button
+              type="button"
+              className="btn sm gold"
+              onClick={() => {
+                dismissInvite(inv.id);
+                router.push(`/room/${inv.code}`);
+              }}
+            >
+              {t("参加する")}
+            </button>
+            <button
+              type="button"
+              className="btn sm outline"
+              aria-label={t("招待を閉じる")}
+              onClick={() => dismissInvite(inv.id)}
+            >
+              ✕
+            </button>
+          </div>
+        ))}
 
         {lastRoom && (
           <button

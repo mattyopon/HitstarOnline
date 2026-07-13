@@ -29,3 +29,12 @@ export interface FriendsListResponse {
   incoming: FriendRequestSummary[];
   outgoing: FriendRequestSummary[];
 }
+
+/** A pending "join my room" ping (POST /api/friends/invites). */
+export interface RoomInviteSummary {
+  id: string;
+  fromUserId: string;
+  fromName: string;
+  code: string;
+  createdAt: string;
+}

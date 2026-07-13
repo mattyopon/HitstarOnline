@@ -94,21 +94,31 @@ export function FriendsScreen({ onClose }: { onClose?: () => void }) {
     setMsg({ kind: "ok", text: t("フレンドコードをコピーしました") });
   }
 
-  // "Invite to my current room": copy the caller's active room code (saved in
-  // localStorage when they were last in a room) to clipboard so they can paste
-  // it to the friend. No server involvement — reuses the join-by-code flow.
-  function invite() {
+  // "Invite to my current room": deliver an in-app ping (room_invites) the
+  // friend sees as a Lobby banner — the old behavior only copied the code to
+  // the clipboard, so the friend had to receive it out-of-band (detected gap).
+  async function invite(friendId: string) {
+    if (busy) return;
     let room: string | null = null;
     try {
       room = localStorage.getItem("hitstar_last_room");
     } catch {
       /* ignore */
     }
-    if (room) {
-      navigator.clipboard?.writeText(room);
-      setMsg({ kind: "ok", text: t("部屋コードをコピーしました（{code}）", { code: room }) });
-    } else {
+    if (!room) {
       setMsg({ kind: "err", text: t("先に部屋を作ってから招待してください") });
+      return;
+    }
+    setBusy(true);
+    setMsg(null);
+    try {
+      await api("/api/friends/invite", { friendId, code: room });
+      navigator.clipboard?.writeText(room).catch?.(() => {});
+      setMsg({ kind: "ok", text: t("招待を送りました！（部屋 {code}）", { code: room }) });
+    } catch (e) {
+      setMsg({ kind: "err", text: e instanceof Error ? e.message : t("送信に失敗しました") });
+    } finally {
+      setBusy(false);
     }
   }
 
@@ -222,7 +232,7 @@ export function FriendsScreen({ onClose }: { onClose?: () => void }) {
                     {f.online ? t("オンライン") : t("オフライン")}
                   </span>
                   <span className="friend-actions">
-                    <button type="button" className="btn sm outline" onClick={invite} disabled={busy}>
+                    <button type="button" className="btn sm outline" onClick={() => invite(f.userId)} disabled={busy}>
                       {t("招待")}
                     </button>
                     <button type="button" className="btn sm outline" onClick={() => remove(f.userId)} disabled={busy}>
