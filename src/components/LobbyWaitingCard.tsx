@@ -54,11 +54,15 @@ export function LobbyWaitingCard({
         <span className="vinyl-mark" aria-hidden="true" />
         <div>
           <div className="section-eyebrow">Side A · Waiting Room</div>
-          <h2 className="section-ttl" style={{ marginTop: 0 }}>{t("友達を待っています…")}</h2>
+          <h2 className="section-ttl" style={{ marginTop: 0 }}>
+            {state.settings.ranked ? t("対戦相手を探しています…") : t("友達を待っています…")}
+          </h2>
         </div>
       </div>
       <p className="muted" style={{ marginTop: 0 }}>
-        {t("下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。")}
+        {state.settings.ranked
+          ? t("同じティアのプレイヤーが自動でここに集まります。コードを共有して友達と対戦することもできます。")
+          : t("下のコードを友達に伝えてください。同じコードで参加すると一緒に遊べます。")}
       </p>
       <div className="row" style={{ justifyContent: "center", gap: 14 }}>
         <span className="code-pill">{state.code}</span>
